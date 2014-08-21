@@ -30,7 +30,7 @@ body .h4,
 body .h5,
 body .h6 .item,
 body .item-divider {
-  font-family: 'open_sansregular', sans-serif;
+  font-family: 'Regular', sans-serif;
 }
 /**** Button Styles ****/
 .button.button-green {
@@ -42,11 +42,11 @@ body .item-divider {
   background: #3D578C;
   border-color: transparent;
   color: #ffffff;
-  font-family: 'open_sanslight', sans-serif;
+  font-family: 'Light', sans-serif;
 }
 .button.button-facebook .fa-facebook {
   font-size: 1.4rem;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
   margin-right: 0.66rem;
   vertical-align: text-top;
 }
@@ -70,7 +70,7 @@ body .item-divider {
   text-align: center;
 }
 .login-view .button-green {
-  font-family: 'open_sanssemibold', sans-serif;
+  font-family: 'Semibold', sans-serif;
   border-color: transparent;
 }
 .login-view h1,
@@ -80,5 +80,5 @@ body .item-divider {
 .login-view h5,
 .login-view h6 {
   color: #ffffff;
-  font-family: 'open_sanslight', sans-serif;
+  font-family: 'Light', sans-serif;
 }
