@@ -1,19 +1,87 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
 
-.login-bg {
-    background: url("../img/background.jpg") no-repeat center;
-    background-color: #000000;
-    background-size: 100% 100%;
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css);
+/*
+App Name:       Minyawns Ionic App
+Theme URI:      http://ajency.in/
+Description:    Style Classes for the Ionic App
+Author:         Jarryd for Ajency.in
+Author URI:     http://ajency.in/
+Version:        0.1.0
+*//**** Fonts ****/
+/**** Font Awesome Icons ****/
+/****Colors****/
+/**** Body Styles ****/
+body {
+  font-family: 'Open Sans', 'Helvetica', sans-serif;
 }
-
-#LogoCover {
-	background: #444444;
-	width: 100%;
-	height: 25%;
-	margin-top: 15%;
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body p,
+body input,
+body button,
+body select,
+body textarea,
+body .h1,
+body .h2,
+body .h3,
+body .h4,
+body .h5,
+body .h6 .item,
+body .item-divider {
+  font-family: 'Open Sans', 'Helvetica', sans-serif;
 }
-
-#logo {
-	width: 75%;
-	height: 'auto';
-	vertical-align: 'middle';
+/**** Button Styles ****/
+.button.button-green {
+  background: #88d816;
+  border-color: #4e7b0d;
+  color: #ffffff;
+}
+.button.button-facebook {
+  background: #3D578C;
+  border-color: transparent;
+  color: #ffffff;
+  font-weight: 300;
+}
+.button.button-facebook .fa-facebook {
+  font-size: 1.4rem;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+  margin-right: 0.66rem;
+  vertical-align: text-top;
+}
+/**** Login View Styles ****/
+.login-view {
+  background: url("../img/background.jpg") no-repeat center bottom;
+  background-color: #444444;
+  background-size: cover;
+  text-align: center;
+}
+.login-view #logo-cover {
+  width: 100%;
+  height: 25%;
+  margin: 3rem 0 2rem;
+}
+.login-view #logo-cover #logo {
+  width: 75%;
+  height: 'auto';
+}
+.login-view input {
+  text-align: center;
+}
+.login-view .button-green {
+  font-weight: 600;
+  border-color: transparent;
+}
+.login-view h1,
+.login-view h2,
+.login-view h3,
+.login-view h4,
+.login-view h5,
+.login-view h6 {
+  color: #ffffff;
+  font-weight: 300;
 }
