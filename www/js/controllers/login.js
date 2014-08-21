@@ -2,11 +2,11 @@ angular.module('starter.login', ['login.home'])
 
 .controller('LoginController', function($scope, $state) {
 
-	console.log($scope).
+	// console.log($scope).
 
 	$scope.onLoginClick = function(e){
 		
-		console.log($scope.username);
+		
 		$state.go('home');
 	};
 	
