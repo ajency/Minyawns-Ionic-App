@@ -1,7 +1,35 @@
-<ion-view>
-    <ion-content>
+<div class="bar bar-header bar-green">
+  <button class="button button-icon icon ion-android-drawer main-menu-toggle" ng-click="toggleLeftSideMenu()"></button>
+  <img id="logo" src="./img/minyawnsHeaderLogo.png"/>
+  <button class="button button-icon icon ion-android-more pull-right"></button>
+</div>
+<ion-side-menus>
 
-    	Home View
+	<ion-side-menu-content>
+		<ion-view class="home-view">
+		    <ion-content>
 
-    </ion-content>
-</ion-view>
+		    	<h4>Home View</h4>
+
+		    </ion-content>
+		</ion-view>
+  	</ion-side-menu-content>
+
+	<!-- Left menu -->
+	<ion-side-menu side="left">
+		<div class="list">
+			<a class="item item-avatar" href="#">
+				<img src="./img/venkman.jpg">
+				<h2>Pete Venkman</h2>
+				<p>Minions</p>
+			</a>
+			<div class="item item-divider">
+				Browse
+			</div>
+			<a class="item" href="#">
+				All Jobs
+			</a>
+		</div>
+	</ion-side-menu>
+
+</ion-side-menus>

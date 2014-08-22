@@ -11,13 +11,14 @@
 		  </label>
 		  <label class="item item-input">
 		    <input type="password" placeholder="Password" ng-model="password">
+		    <a href="#" class="padding-horizontal show-password">
+			    <i class="icon ion-eye show-password"></i>
+			</a>
 		  </label>
 		</div>
 
 		<div class="padding-horizontal">
-			<button class="button button-block button-green" ng-click="onLoginClick(username, password)">
-			  Login
-			</button>
+			<button class="button button-block button-green" ng-click="onLoginClick(username, password)">Login</button>
 		</div>
 
 		<div class="padding">
@@ -25,9 +26,7 @@
 		</div>
 
 		<div class="padding">
-			<button class="button icon-left ion-social-facebook button-facebook">
-				Sign in with Facebook
-			</button>
+			<button class="button icon-left ion-social-facebook button-facebook">Sign in with Facebook</button>
 		</div>
 
     </ion-content>
