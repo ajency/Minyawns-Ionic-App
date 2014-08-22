@@ -1,6 +1,4 @@
 @import url(../resources/fonts/open-sans/open-sans.css);
-
-@import url(../resources/fonts/font-awesome-4.1.0/css/font-awesome.min.css);
 /*
 App Name:       Minyawns Ionic App
 Theme URI:      http://ajency.in/
@@ -9,7 +7,6 @@ Author:         Jarryd for Ajency.in
 Author URI:     http://ajency.in/
 Version:        0.1.0
 *//**** Fonts ****/
-/**** Font Awesome Icons ****/
 /****Colors****/
 /**** Body Styles ****/
 body h1,
@@ -44,11 +41,9 @@ body .item-divider {
   color: #ffffff;
   font-family: 'Light', sans-serif;
 }
-.button.button-facebook .fa-facebook {
-  font-size: 1.4rem;
+.button.button-facebook.icon-left:before {
   text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
-  margin-right: 0.66rem;
-  vertical-align: text-top;
+  margin-right: 0.4rem;
 }
 /**** Login View Styles ****/
 .login-view {

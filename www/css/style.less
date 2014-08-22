@@ -10,9 +10,6 @@ Version:        0.1.0
 /**** Fonts ****/
 @import url(../resources/fonts/open-sans/open-sans.css);
 
-/**** Font Awesome Icons ****/
-@import url(../resources/fonts/font-awesome-4.1.0/css/font-awesome.min.css);
-
 /****Colors****/
 @green: #88D816;
 @dark-grey: #444444;
@@ -37,11 +34,11 @@ body {
 		border-color: transparent;
 		color: @white;
 		font-family: 'Light', sans-serif;
-		.fa-facebook {
-			font-size: 1.4rem;
-			text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
-			margin-right: 0.66rem;
-			vertical-align: text-top;
+		&.icon-left {
+			&:before {
+				text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+				margin-right: 0.4rem;
+			}
 		}
 	}
 }
