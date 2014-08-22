@@ -14,6 +14,14 @@ angular.module('starter', ['ionic', 'starter.login'])
 			StatusBar.styleDefault();
 		}
 
+		//Hide splash screen
+		if(navigator.splashscreen){
+
+			setTimeout(function(){
+				navigator.splashscreen.hide();
+			}, 500)
+		}
+
 		//Goto Login
 		$state.go('login');
 
