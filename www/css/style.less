@@ -8,10 +8,7 @@ Version:        0.1.0
 */ 
 
 /**** Fonts ****/
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
-
-/**** Font Awesome Icons ****/
-@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css);
+@import url(../resources/fonts/open-sans/open-sans.css);
 
 /****Colors****/
 @green: #88D816;
@@ -20,9 +17,8 @@ Version:        0.1.0
 
 /**** Body Styles ****/
 body {
-	font-family: 'Open Sans', 'Helvetica', sans-serif;
 	h1, h2, h3, h4, h5, h6, p, input, button, select, textarea, .h1, .h2, .h3, .h4, .h5, .h6 .item, .item-divider {
-		font-family: 'Open Sans', 'Helvetica', sans-serif;
+		font-family: 'Regular', sans-serif;
 	}
 }
 
@@ -37,12 +33,12 @@ body {
 		background: #3D578C;
 		border-color: transparent;
 		color: @white;
-		font-weight: 300;
-		.fa-facebook {
-			font-size: 1.4rem;
-			text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
-			margin-right: 0.66rem;
-			vertical-align: text-top;
+		font-family: 'Light', sans-serif;
+		&.icon-left {
+			&:before {
+				text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+				margin-right: 0.4rem;
+			}
 		}
 	}
 }
@@ -66,11 +62,11 @@ body {
     	text-align: center;
     }
     .button-green {
-    	font-weight: 600;
+    	font-family: 'Semibold', sans-serif;
     	border-color: transparent;
     }
     h1, h2, h3, h4, h5, h6 {
     	color: @white;
-    	font-weight: 300;
+    	font-family: 'Light', sans-serif;
     } 
 }
