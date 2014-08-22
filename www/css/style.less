@@ -12,6 +12,7 @@ Version:        0.1.0
 
 /****Colors****/
 @green: #88D816;
+@grey: #B1B1B1;
 @dark-grey: #444444;
 @white: #ffffff;
 
@@ -69,9 +70,14 @@ body {
     		color: @green;
     	}
     }
-    input {
-    	text-align: center;
+    .item-input {
+    	padding-left: 0;
+    	input {
+	    	text-align: center;
+	    	padding-left: 44px;
+	    }
     }
+    
     .button-green {
     	font-family: 'Semibold', sans-serif;
     	border-color: transparent;
@@ -80,6 +86,12 @@ body {
     	color: @white;
     	font-family: 'Light', sans-serif;
     } 
+    .loader {
+    	color: @white;
+    	font-size: 3rem;
+    	margin: 2rem 0;
+    	display: none;
+    }
 }
 
 /**** Main Header Styles ****/
@@ -107,4 +119,38 @@ body {
 /**** Content Styles ****/
 .home-view, .menu-left {
 	margin-top: 50px;
+}
+
+/**** Left Menu Styles ****/
+.menu-left {
+	.list {
+		.item {
+			color: @grey;
+			padding-top: 0.5rem;
+			padding-bottom: 0.5rem;
+			text-transform: uppercase;
+			font-size: 0.8rem;
+			&.item-avatar {
+				padding: 16px;
+				padding-left: 72px;
+				text-transform: capitalize;
+				img {
+					border-radius: 100%;
+				}
+				h2 {
+					color: @grey;
+				}
+				p {
+					color: @green;
+				}
+			}
+			&.item-divider {
+				background: @white;
+				color: @dark-grey;
+				font-size: 1rem;
+				padding-top: 0.75rem;
+				padding-bottom: 0.75rem;
+			}
+		}
+	}
 }

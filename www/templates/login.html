@@ -5,20 +5,26 @@
     		<img id="logo" src="./img/minyawnsLogo.png"/>
     	</div>
 
-    	<div class="list list-inset">
-		  <label class="item item-input">
-		    <input type="email" placeholder="Username" ng-model="username">
-		  </label>
-		  <label class="item item-input">
-		    <input type="password" placeholder="Password" ng-model="password">
-		    <a href="#" class="padding-horizontal show-password">
-			    <i class="icon ion-eye show-password"></i>
-			</a>
-		  </label>
+    	<div class="login">
+	    	<div class="list list-inset">
+			  <label class="item item-input">
+			    <input type="email" placeholder="Username" ng-model="username">
+			  </label>
+			  <label class="item item-input">
+			    <input type="password" placeholder="Password" ng-model="password">
+			    <a href="#" class="padding-horizontal show-password">
+				    <i class="icon ion-eye show-password"></i>
+				</a>
+			  </label>
+			</div>
+
+			<div class="padding-horizontal">
+				<button class="button button-block button-green" ng-click="onLoginClick(username, password)">Login</button>
+			</div>
 		</div>
 
-		<div class="padding-horizontal">
-			<button class="button button-block button-green" ng-click="onLoginClick(username, password)">Login</button>
+		<div class="padding loader">
+			<i class="icon ion-loading-c"></i>
 		</div>
 
 		<div class="padding">
