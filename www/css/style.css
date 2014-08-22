@@ -61,6 +61,18 @@ body .item-divider {
   width: 75%;
   height: 'auto';
 }
+.login-view .show-password {
+  position: absolute;
+  font-size: 1.5rem;
+  z-index: 3;
+  right: 6px;
+  top: 4px;
+  color: #444444;
+}
+.login-view .show-password:hover,
+.login-view .show-password:focus {
+  color: #88d816;
+}
 .login-view input {
   text-align: center;
 }
@@ -76,4 +88,30 @@ body .item-divider {
 .login-view h6 {
   color: #ffffff;
   font-family: 'Light', sans-serif;
+}
+/**** Main Header Styles ****/
+.bar-green {
+  background: #88d816;
+  height: 50px;
+}
+.bar-green .button {
+  color: #ffffff;
+}
+.bar-green .button:before {
+  font-size: 1.4rem !important;
+}
+.bar-green .main-menu-toggle {
+  position: relative;
+  left: -16px;
+}
+.bar-green #logo {
+  height: 100%;
+  width: auto;
+  position: relative;
+  left: -20px;
+}
+/**** Content Styles ****/
+.home-view,
+.menu-left {
+  margin-top: 50px;
 }

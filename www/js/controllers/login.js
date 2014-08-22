@@ -5,19 +5,21 @@ angular.module('starter.login', ['login.home'])
 
 	$scope.onLoginClick = function(username, password){
 
-		if(!_.isUndefined(username) && !_.isUndefined(password)){
-			if(username.trim()!="" && password.trim()!=""){
+		$state.go('home');
 
-				$scope.data = {
-					pdemail: username,
-					pdpass: password
-				}
+		// if(!_.isUndefined(username) && !_.isUndefined(password)){
+		// 	if(username.trim()!="" && password.trim()!=""){
 
-				$scope.loginAuthentication();
-			}
-			else $scope.errorPopUp('Please enter Username/Password');
-		}
-		else $scope.errorPopUp('Please enter Username/Password');
+		// 		$scope.data = {
+		// 			pdemail: username,
+		// 			pdpass: password
+		// 		}
+
+		// 		$scope.loginAuthentication();
+		// 	}
+		// 	else $scope.errorPopUp('Please enter Username/Password');
+		// }
+		// else $scope.errorPopUp('Please enter Username/Password');
 	};
 
 

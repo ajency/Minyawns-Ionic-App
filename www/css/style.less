@@ -58,6 +58,17 @@ body {
 			height: 'auto';
 		}
     }
+    .show-password {
+    	position: absolute;
+    	font-size: 1.5rem;
+    	z-index: 3;
+    	right: 6px;
+    	top: 4px;
+    	color: @dark-grey;
+    	&:hover, &:focus {
+    		color: @green;
+    	}
+    }
     input {
     	text-align: center;
     }
@@ -69,4 +80,31 @@ body {
     	color: @white;
     	font-family: 'Light', sans-serif;
     } 
+}
+
+/**** Main Header Styles ****/
+.bar-green {
+	background: @green;
+	height: 50px;
+	.button {
+		color: @white;
+		&:before {
+			font-size: 1.4rem !important;
+		}
+	}
+	.main-menu-toggle {
+		position: relative;
+		left: -16px;
+	}
+	#logo {
+		height: 100%;
+		width: auto;
+		position: relative;
+		left: -20px;
+	}
+}
+
+/**** Content Styles ****/
+.home-view, .menu-left {
+	margin-top: 50px;
 }
