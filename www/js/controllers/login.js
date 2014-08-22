@@ -5,21 +5,21 @@ angular.module('starter.login', ['login.home'])
 
 	$scope.onLoginClick = function(username, password){
 
-		$state.go('home');
+		// $state.go('home');
 
-		// if(!_.isUndefined(username) && !_.isUndefined(password)){
-		// 	if(username.trim()!="" && password.trim()!=""){
+		if(!_.isUndefined(username) && !_.isUndefined(password)){
+			if(username.trim()!="" && password.trim()!=""){
 
-		// 		$scope.data = {
-		// 			pdemail: username,
-		// 			pdpass: password
-		// 		}
+				$scope.data = {
+					pdemail: username,
+					pdpass: password
+				}
 
-		// 		$scope.loginAuthentication();
-		// 	}
-		// 	else $scope.errorPopUp('Please enter Username/Password');
-		// }
-		// else $scope.errorPopUp('Please enter Username/Password');
+				$scope.loginAuthentication();
+			}
+			else $scope.errorPopUp('Please enter Username/Password');
+		}
+		else $scope.errorPopUp('Please enter Username/Password');
 	};
 
 
@@ -51,6 +51,12 @@ angular.module('starter.login', ['login.home'])
             if(data.success) $state.go('home');
             else $scope.errorPopUp('Invalid Username/Password');
         });
+	};
+
+
+	$scope.onShowPassword = function(){
+
+		console.log('Show password');
 	};
 	
 }])
