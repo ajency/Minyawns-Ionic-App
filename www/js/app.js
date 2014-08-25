@@ -1,5 +1,5 @@
 // Ionic Starter App
-angular.module('starter', ['ionic', 'starter.login'])
+angular.module('starter', ['ionic', 'starter.storage', 'starter.login', 'starter.home'])
 
 
 .run(function($ionicPlatform, $state) {
@@ -19,7 +19,7 @@ angular.module('starter', ['ionic', 'starter.login'])
 
 			setTimeout(function(){
 				navigator.splashscreen.hide();
-			}, 500)
+			}, 1000)
 		}
 
 		//Goto Login
@@ -29,7 +29,13 @@ angular.module('starter', ['ionic', 'starter.login'])
 })
 
 
-.config(function($stateProvider, $urlRouterProvider) {
+
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+
+	//Default headers
+	$httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+	
 	
 	$stateProvider
 		
@@ -37,6 +43,12 @@ angular.module('starter', ['ionic', 'starter.login'])
 			url: "/login",
 			templateUrl: 'templates/login.html',
 			controller: 'LoginController'
+		})
+
+		.state('home', {
+			url: "/home",
+			templateUrl: 'templates/home.html',
+			controller: 'HomeController'
 		})
 
 });

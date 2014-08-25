@@ -1,7 +1,13 @@
-angular.module('starter.login', ['login.home'])
+angular.module('starter.login', ['ngCookies'])
 
-.controller('LoginController', ['$scope', '$state', '$http', '$ionicLoading', '$ionicPopup'
-	, function($scope, $state, $http, $ionicLoading, $ionicPopup) {
+.controller('LoginController', ['$scope', '$state', '$http', '$ionicPopup', '$cookies', 'Storage'
+	, function($scope, $state, $http, $ionicPopup, $cookies, Storage) {
+
+	//Default
+	$scope.showLoader = false;
+	$scope.showPassword = false;
+
+	$scope.username = Storage.getUserName();
 
 	$scope.onLoginClick = function(username, password){
 
@@ -9,6 +15,8 @@ angular.module('starter.login', ['login.home'])
 
 		if(!_.isUndefined(username) && !_.isUndefined(password)){
 			if(username.trim()!="" && password.trim()!=""){
+
+				$scope.showLoader = true;
 
 				$scope.data = {
 					pdemail: username,
@@ -21,6 +29,28 @@ angular.module('starter.login', ['login.home'])
 		}
 		else $scope.errorPopUp('Please enter Username/Password');
 	};
+	
+
+
+	$scope.loginAuthentication = function(){
+
+		var url = 'http://www.minyawns.ajency.in/wp-admin/admin-ajax.php?action=popup_userlogin';
+
+	    $http.post(url, $.param($scope.data))
+        .success(function(data, status, headers, config) {
+
+            if(data.success){
+
+            	Storage.setUserName(data.userdata.user_login);
+            	$state.go('home');
+            }
+            else{
+
+            	$scope.showLoader = false;
+            	$scope.errorPopUp('Invalid Username/Password');
+            } 
+        });
+	};
 
 
 	$scope.errorPopUp = function(message){
@@ -32,45 +62,10 @@ angular.module('starter.login', ['login.home'])
 	};
 
 
-	$scope.loginAuthentication = function(){
+	$scope.togglePassword = function(){
 
-		$ionicLoading.show({ template: 'Please wait...' });
-
-		var url = 'http://www.minyawns.ajency.in/wp-admin/admin-ajax.php?action=popup_userlogin';
-
-		$http({
-	        method  : 'POST',
-	        url     : url,
-	        data    : $.param($scope.data),
-	        headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-	    })
-        .success(function(data, status, headers, config) {
-
-            $ionicLoading.hide();
-
-            if(data.success) $state.go('home');
-            else $scope.errorPopUp('Invalid Username/Password');
-        });
-	};
-
-
-	$scope.onShowPassword = function(){
-
-		console.log('Show password');
+		if($scope.showPassword) $scope.showPassword = false;
+		else $scope.showPassword = true;
 	};
 	
 }])
-
-
-
-.config(function($stateProvider, $urlRouterProvider) {
-	
-	$stateProvider
-		
-		.state('home', {
-			url: "/home",
-			templateUrl: 'templates/home.html',
-			controller: 'HomeController'
-		})
-
-})

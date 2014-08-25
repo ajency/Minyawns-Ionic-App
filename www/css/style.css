@@ -97,7 +97,7 @@ body .item-divider {
   color: #ffffff;
   font-size: 3rem;
   margin: 2rem 0;
-  display: none;
+  display: block;
 }
 /**** Main Header Styles ****/
 .bar-green {
