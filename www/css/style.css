@@ -70,7 +70,8 @@ body .item-divider {
   color: #444444;
 }
 .login-view .show-password:hover,
-.login-view .show-password:focus {
+.login-view .show-password:focus,
+.login-view .show-password.shown {
   color: #88d816;
 }
 .login-view .item-input {
@@ -95,9 +96,9 @@ body .item-divider {
 }
 .login-view .loader {
   color: #ffffff;
-  font-size: 3rem;
-  margin: 2rem 0;
-  display: block;
+  font-size: 2.5rem;
+  margin: 6rem 0 2rem;
+  display: none;
 }
 /**** Main Header Styles ****/
 .bar-green {
