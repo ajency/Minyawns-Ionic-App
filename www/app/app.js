@@ -23,7 +23,7 @@ angular.module('starter', ['ionic', 'starter.storage', 'starter.login', 'starter
 		}
 
 		//Goto Login
-		$state.go('login');
+		$state.go('home');
 
 	});
 })

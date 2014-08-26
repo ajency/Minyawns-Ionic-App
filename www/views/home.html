@@ -1,10 +1,25 @@
-<div class="bar bar-header bar-green">
+
+<ion-header-bar class="bar bar-header bar-green">
   <button class="button button-icon icon ion-android-drawer main-menu-toggle" ng-click="toggleLeft()"></button>
   <img id="logo" src="./img/minyawnsHeaderLogo.png"/>
   <button class="button button-icon icon ion-android-more pull-right"></button>
-</div>
+</ion-header-bar>
 
 <ion-side-menus>
+
+	<!-- Main content -->
+	<ion-side-menu-content>
+		
+		<ion-view class="home-view">
+		    <ion-content>
+
+		    	<h4>Home View</h4>
+
+		    </ion-content>
+		</ion-view>
+
+  	</ion-side-menu-content>
+
 
 	<!-- Left menu -->
 	<ion-side-menu side="left">
@@ -34,16 +49,5 @@
 			</a>
 		</div>
 	</ion-side-menu>
-
-	<!-- Main content -->
-	<ion-side-menu-content>
-		<ion-view class="home-view">
-		    <ion-content>
-
-		    	<h4>Home View</h4>
-
-		    </ion-content>
-		</ion-view>
-  	</ion-side-menu-content>
 
 </ion-side-menus>

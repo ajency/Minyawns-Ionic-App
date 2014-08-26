@@ -3,9 +3,9 @@ angular.module('starter.home', [])
 .controller('HomeController', ['$scope', '$ionicSideMenuDelegate'
 	, function($scope, $ionicSideMenuDelegate) {
 
-		$scope.toggleLeft = function(){
+	$scope.toggleLeft = function(){
 
-			$ionicSideMenuDelegate.toggleLeft();
-		};
+		$ionicSideMenuDelegate.toggleLeft();
+	};
 	
 }])
