@@ -2,7 +2,7 @@
 <ion-header-bar class="bar bar-header bar-green">
   <button class="button button-icon icon ion-android-drawer main-menu-toggle" ng-click="toggleLeft()"></button>
   <img id="logo" src="./img/minyawnsHeaderLogo.png"/>
-  <button class="button button-icon icon ion-android-more pull-right"></button>
+  <button class="button button-icon icon ion-android-more pull-right settings-button"></button>
 </ion-header-bar>
 
 <ion-side-menus>
@@ -23,31 +23,31 @@
 
 	<!-- Left menu -->
 	<ion-side-menu side="left">
-		<div class="list">
-			<a class="item item-avatar" href="#">
+		<ion-list>
+			<ion-item class="item-avatar">
 				<img src="./img/venkman.jpg">
 				<h2>Pete Venkman</h2>
 				<p>Minions</p>
-			</a>
-			<div class="item item-divider">
+			</ion-item>
+			<ion-item class="item item-divider">
 				Browse
-			</div>
-			<a class="item" href="#">
+			</ion-item>
+			<ion-item>
 				All Jobs
-			</a>
-			<a class="item" href="#">
+			</ion-item>
+			<ion-item>
 				Minions Directory
-			</a>
-			<a class="item" href="#">
+			</ion-item>
+			<ion-item>
 				Blog
-			</a>
-			<a class="item" href="#">
+			</ion-item>
+			<ion-item>
 				Create Job
-			</a>
-			<a class="item" href="#">
+			</ion-item>
+			<ion-item>
 				Logout
-			</a>
-		</div>
+			</ion-item>
+		</ion-list>
 	</ion-side-menu>
 
 </ion-side-menus>

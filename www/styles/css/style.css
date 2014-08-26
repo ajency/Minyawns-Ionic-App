@@ -47,7 +47,7 @@ body .item-divider {
 }
 /**** Login View Styles ****/
 .login-view {
-  background: url("../../img/background.jpg") no-repeat center bottom;
+  background: url("../img/background.jpg") no-repeat center bottom;
   background-color: #444444;
   background-size: cover;
   text-align: center;
@@ -121,12 +121,13 @@ body .item-divider {
   position: relative;
   left: -20px;
 }
-/**** Content Styles ****/
-.home-view,
+.bar-green .settings-button {
+  margin-right: 0.25rem;
+}
+/**** Left Menu Styles ****/
 .menu-left {
   margin-top: 50px;
 }
-/**** Left Menu Styles ****/
 .menu-left .list .item {
   color: #b1b1b1;
   padding-top: 0.5rem;
