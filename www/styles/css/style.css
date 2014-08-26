@@ -1,4 +1,4 @@
-@import url(../resources/fonts/open-sans/open-sans.css);
+@import url(../../styles/fonts/open-sans/open-sans.css);
 /*
 App Name:       Minyawns Ionic App
 Theme URI:      http://ajency.in/
@@ -47,7 +47,7 @@ body .item-divider {
 }
 /**** Login View Styles ****/
 .login-view {
-  background: url("../img/background.jpg") no-repeat center bottom;
+  background: url("../../img/background.jpg") no-repeat center bottom;
   background-color: #444444;
   background-size: cover;
   text-align: center;
@@ -98,7 +98,7 @@ body .item-divider {
   color: #ffffff;
   font-size: 2.5rem;
   margin: 6rem 0 2rem;
-  display: none;
+  display: block;
 }
 /**** Main Header Styles ****/
 .bar-green {

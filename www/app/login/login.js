@@ -11,8 +11,6 @@ angular.module('starter.login', [])
 
 	$scope.onLoginClick = function(username, password){
 
-		// $state.go('home');
-
 		if(!_.isUndefined(username) && !_.isUndefined(password)){
 			if(username.trim()!="" && password.trim()!=""){
 

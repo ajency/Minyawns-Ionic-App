@@ -41,13 +41,13 @@ angular.module('starter', ['ionic', 'starter.storage', 'starter.login', 'starter
 		
 		.state('login', {
 			url: "/login",
-			templateUrl: 'templates/login.html',
+			templateUrl: 'views/login.html',
 			controller: 'LoginController'
 		})
 
 		.state('home', {
 			url: "/home",
-			templateUrl: 'templates/home.html',
+			templateUrl: 'views/home.html',
 			controller: 'HomeController'
 		})
 
