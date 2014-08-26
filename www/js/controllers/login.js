@@ -1,7 +1,7 @@
-angular.module('starter.login', ['ngCookies'])
+angular.module('starter.login', [])
 
-.controller('LoginController', ['$scope', '$state', '$http', '$ionicPopup', '$cookies', 'Storage'
-	, function($scope, $state, $http, $ionicPopup, $cookies, Storage) {
+.controller('LoginController', ['$scope', '$state', '$http', '$ionicPopup', 'Storage'
+	, function($scope, $state, $http, $ionicPopup, Storage) {
 
 	//Default
 	$scope.showLoader = false;
@@ -38,7 +38,7 @@ angular.module('starter.login', ['ngCookies'])
 
 	    $http.post(url, $.param($scope.data))
         .success(function(data, status, headers, config) {
-
+        	
             if(data.success){
 
             	Storage.setUserName(data.userdata.user_login);
