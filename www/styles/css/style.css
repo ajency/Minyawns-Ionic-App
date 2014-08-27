@@ -116,8 +116,6 @@ body .item-divider {
 /**** Left Menu Styles ****/
 .menu-left .list .item {
   color: #b1b1b1;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
   text-transform: uppercase;
   font-size: 0.8rem;
 }

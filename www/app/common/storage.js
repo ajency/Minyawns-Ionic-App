@@ -1,4 +1,4 @@
-angular.module('starter.storage', [])
+angular.module('minyawns.storage', [])
 
 
 .factory('Storage', function() {
