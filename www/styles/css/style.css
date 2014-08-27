@@ -114,26 +114,40 @@ body .item-divider {
   color: #ffffff;
 }
 /**** Left Menu Styles ****/
-.menu-left .list .item {
+.menu-left .menu-header {
+  height: auto;
+  box-shadow: 0 1px 1px 0 #e4e4e4;
+}
+.menu-left .menu-header .item-avatar {
+  padding: 0 16px;
+  padding-left: 72px;
+  text-transform: capitalize;
+  min-height: initial;
+  max-height: 52px;
+}
+.menu-left .menu-header .item-avatar img {
+  border-radius: 100%;
+  top: auto;
+}
+.menu-left .menu-header .item-avatar h2 {
+  color: #b1b1b1;
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+.menu-left .menu-header .item-avatar p {
+  color: #88d816;
+  margin-bottom: 0;
+}
+.menu-left .has-header {
+  top: 53px;
+}
+.menu-left .has-header .list .item {
   color: #b1b1b1;
   text-transform: uppercase;
   font-size: 0.8rem;
 }
-.menu-left .list .item.item-avatar {
-  padding: 16px;
-  padding-left: 72px;
-  text-transform: capitalize;
-}
-.menu-left .list .item.item-avatar img {
-  border-radius: 100%;
-}
-.menu-left .list .item.item-avatar h2 {
-  color: #b1b1b1;
-}
-.menu-left .list .item.item-avatar p {
-  color: #88d816;
-}
-.menu-left .list .item.item-divider {
+.menu-left .has-header .list .item.item-divider {
   background: #ffffff;
   color: #444444;
   font-size: 1rem;
