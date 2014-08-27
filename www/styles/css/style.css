@@ -47,7 +47,7 @@ body .item-divider {
 }
 /**** Login View Styles ****/
 .login-view {
-  background: url("../img/background.jpg") no-repeat center bottom;
+  background: url("../../img/background.jpg") no-repeat center bottom;
   background-color: #444444;
   background-size: cover;
   text-align: center;

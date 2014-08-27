@@ -1,5 +1,5 @@
 // Ionic Starter App
-angular.module('starter', ['ionic', 'starter.storage', 'starter.login', 'starter.home'])
+angular.module('starter', ['ionic', 'starter.storage', 'starter.login', 'starter.home', 'starter.menu'])
 
 
 .run(function($ionicPlatform) {
@@ -48,6 +48,35 @@ angular.module('starter', ['ionic', 'starter.storage', 'starter.login', 'starter
 			controller: 'HomeController'
 		})
 
-		$urlRouterProvider.otherwise('/home');
+
+		//Abstract state menu
+		.state('menu', {
+			url: "/menu",
+			abstract: true,
+			templateUrl: "views/menu.html"
+		})
+
+		.state('menu.browsejobs', {
+	      url: "/browsejobs",
+	      views: {
+	        'menuContent' :{
+	          templateUrl: "views/browsejobs.html",
+	          controller: 'BrowseController'
+	        }
+	      }
+	    })
+
+	    .state('menu.blog', {
+	      url: "/blog",
+	      views: {
+	        'menuContent' :{
+	          templateUrl: "views/blog.html",
+	          controller: 'BlogController'
+	        }
+	      }
+	    })
+
+
+		$urlRouterProvider.otherwise('/menu/browsejobs');
 
 });

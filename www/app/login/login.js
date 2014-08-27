@@ -5,7 +5,6 @@ angular.module('starter.login', [])
 
 	//Default
 	$scope.showLoader = false;
-	$scope.showPassword = false;
 
 	$scope.username = Storage.getUserName();
 
@@ -57,13 +56,6 @@ angular.module('starter.login', [])
 			title: 'ERROR',
 			template: message
 		});
-	};
-
-
-	$scope.togglePassword = function(){
-
-		if($scope.showPassword) $scope.showPassword = false;
-		else $scope.showPassword = true;
 	};
 	
 }])
