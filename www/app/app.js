@@ -1,5 +1,6 @@
-// Ionic Starter App
-angular.module('starter', ['ionic', 'starter.storage', 'starter.login', 'starter.home', 'starter.menu'])
+// Minyawns app
+angular.module('minyawns', ['ionic', 'minyawns.storage', 'minyawns.login', 'minyawns.jobs'
+						 ,  'minyawns.blog'])
 
 
 .run(function($ionicPlatform) {
@@ -26,8 +27,7 @@ angular.module('starter', ['ionic', 'starter.storage', 'starter.login', 'starter
 })
 
 
-
-.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function($stateProvider, $httpProvider) {
 
 	//Default headers
 	$httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
@@ -35,48 +35,20 @@ angular.module('starter', ['ionic', 'starter.storage', 'starter.login', 'starter
 	
 	
 	$stateProvider
-		
+
+		//Login
 		.state('login', {
 			url: "/login",
 			templateUrl: 'views/login.html',
 			controller: 'LoginController'
 		})
 
-		.state('home', {
-			url: "/home",
-			templateUrl: 'views/home.html',
-			controller: 'HomeController'
-		})
-
-
-		//Abstract state menu
+		
+		//Menu
 		.state('menu', {
 			url: "/menu",
 			abstract: true,
 			templateUrl: "views/menu.html"
 		})
-
-		.state('menu.browsejobs', {
-	      url: "/browsejobs",
-	      views: {
-	        'menuContent' :{
-	          templateUrl: "views/browsejobs.html",
-	          controller: 'BrowseController'
-	        }
-	      }
-	    })
-
-	    .state('menu.blog', {
-	      url: "/blog",
-	      views: {
-	        'menuContent' :{
-	          templateUrl: "views/blog.html",
-	          controller: 'BlogController'
-	        }
-	      }
-	    })
-
-
-		$urlRouterProvider.otherwise('/menu/browsejobs');
 
 });

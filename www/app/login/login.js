@@ -1,4 +1,4 @@
-angular.module('starter.login', [])
+angular.module('minyawns.login', [])
 
 .controller('LoginController', ['$scope', '$state', '$http', '$ionicPopup', 'Storage'
 	, function($scope, $state, $http, $ionicPopup, Storage) {
