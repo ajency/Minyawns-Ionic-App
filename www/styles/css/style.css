@@ -104,30 +104,16 @@ body .item-divider {
 .bar-green {
   background: #88d816;
   height: 50px;
-}
-.bar-green .button {
   color: #ffffff;
 }
-.bar-green .button:before {
-  font-size: 1.4rem !important;
-}
 .bar-green .main-menu-toggle {
-  position: relative;
-  left: -16px;
+  color: rgba(0, 0, 0, 0.33);
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.33);
 }
-.bar-green #logo {
-  height: 100%;
-  width: auto;
-  position: relative;
-  left: -20px;
-}
-.bar-green .settings-button {
-  margin-right: 0.25rem;
+.bar-green .title {
+  color: #ffffff;
 }
 /**** Left Menu Styles ****/
-.menu-left {
-  margin-top: 50px;
-}
 .menu-left .list .item {
   color: #b1b1b1;
   padding-top: 0.5rem;
