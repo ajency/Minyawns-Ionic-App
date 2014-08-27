@@ -2,7 +2,7 @@
 angular.module('starter', ['ionic', 'starter.storage', 'starter.login', 'starter.home'])
 
 
-.run(function($ionicPlatform, $state) {
+.run(function($ionicPlatform) {
 
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,9 +21,6 @@ angular.module('starter', ['ionic', 'starter.storage', 'starter.login', 'starter
 				navigator.splashscreen.hide();
 			}, 1000)
 		}
-
-		//Goto Login
-		$state.go('home');
 
 	});
 })
@@ -50,5 +47,7 @@ angular.module('starter', ['ionic', 'starter.storage', 'starter.login', 'starter
 			templateUrl: 'views/home.html',
 			controller: 'HomeController'
 		})
+
+		$urlRouterProvider.otherwise('/home');
 
 });
