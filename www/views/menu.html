@@ -8,7 +8,8 @@
 			<button menu-toggle="left"class="button button-icon icon ion-navicon main-menu-toggle"></button>
 		</ion-nav-buttons>
 
-		<ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+		<ion-nav-view name="menuContent" nav-router animation="none"></ion-nav-view>
+		<!-- animation="slide-left-right-ios7" -->
 	</ion-pane>
 
 	<ion-side-menu side="left">
@@ -23,19 +24,19 @@
 		
 	<ion-content>
 		<ion-list>
-			<ion-item nav-clear menu-close ui-sref="menu.browsejobs">
+			<ion-item menu-close ui-sref="menu.browsejobs">
 				Browse
 			</ion-item>
 			<ion-item>
 				Minions Directory
 			</ion-item>
-			<ion-item nav-clear menu-close ui-sref="menu.blog">
+			<ion-item menu-close ui-sref="menu.blog">
 				Blog
 			</ion-item>
 			<ion-item>
 				Create Job
 			</ion-item>
-			<ion-item>
+			<ion-item nav-clear ui-sref="login">
 				Logout
 			</ion-item>
 
