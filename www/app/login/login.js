@@ -20,7 +20,7 @@ angular.module('minyawns.login', [])
 					pdpass: password
 				}
 
-				$scope.loginAuthentication();
+				$scope.authenticate();
 			}
 			else $scope.errorPopUp('Please enter Username/Password');
 		}
@@ -29,24 +29,35 @@ angular.module('minyawns.login', [])
 	
 
 
-	$scope.loginAuthentication = function(){
+	$scope.authenticate = function(){
 
 		var url = 'http://www.minyawns.ajency.in/wp-admin/admin-ajax.php?action=popup_userlogin';
 
 	    $http.post(url, $.param($scope.data))
-        .success(function(data, status, headers, config) {
-        	
-            if(data.success){
+	    .then(function(resp, status, headers, config){
 
-            	Storage.setUserName(data.userdata.user_login);
-            	$state.go('home');
+			if(resp.data.success){
+
+            	Storage.setUserName(resp.data.userdata.user_login);
+            	$state.go('menu.browsejobs');
             }
             else{
 
             	$scope.showLoader = false;
             	$scope.errorPopUp('Invalid Username/Password');
             } 
-        });
+
+		},
+
+		function(error){
+
+			console.log('LOGIN ERROR');
+			console.log(error);
+
+			$scope.showLoader = false;
+            $scope.errorPopUp('Network not available');
+
+		});
 	};
 
 

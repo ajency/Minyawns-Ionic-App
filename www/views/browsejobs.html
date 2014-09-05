@@ -1,16 +1,42 @@
-<ion-view title="BROWSE JOBS">
+<!-- <ion-view title="BROWSE JOBS">
   <ion-content class="has-header">
-    <ion-list class="job-list">
-    	<ion-item class="card">
-    		<div class="row">
-    			<div class="col col-75">
+	<ion-list class="job-list">
+		<ion-item class="card">
+			<div class="row">
+				<div class="col col-75">
 					<h2>Pete Venkman</h2>
-          		</div>
-          		<div class="col">
-          			boo!
-          		</div>
-          	</div>
-        </ion-item>
+				</div>
+				<div class="col">
+					boo!
+				</div>
+			</div>
+		</ion-item>
 	</ion-list>
+  </ion-content>
+</ion-view> -->
+
+<ion-view title="BROWSE JOBS">
+  <ion-content ng-init="totalJobs=1" >
+
+	<ion-list class="job-list">
+
+		<ion-item class="card" ng-repeat="job in jobs">
+
+			<div class="row">
+				<div class="col">
+				<h2>Post ID: {{ job.post_id }}</h2>
+				<h2>Job Author: {{ job.job_author }}</h2>
+				<h2>Job Location: {{ job.job_location }}</h2>
+				<h2>Job Company: {{ job.job_company }}</h2>
+				</div>
+
+			</div>
+		</ion-item>
+
+	</ion-list>
+
+	<ion-infinite-scroll icon="ion-refreshing" distance="5%" ng-if="canLoadMore()" on-infinite="fetchJobs()">
+	</ion-infinite-scroll>
+
   </ion-content>
 </ion-view>

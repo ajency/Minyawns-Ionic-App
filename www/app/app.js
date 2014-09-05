@@ -1,5 +1,6 @@
 // Minyawns app
-angular.module('minyawns', ['ionic', 'minyawns.storage', 'minyawns.login', 'minyawns.jobs'
+angular.module('minyawns', ['ionic', 'minyawns.storage', 'minyawns.interceptor'
+						 ,  'minyawns.login', 'minyawns.jobs'
 						 ,  'minyawns.blog'])
 
 
@@ -28,10 +29,6 @@ angular.module('minyawns', ['ionic', 'minyawns.storage', 'minyawns.login', 'miny
 
 
 .config(function($stateProvider, $httpProvider) {
-
-	//Default headers
-	$httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
-	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 	
 	
 	$stateProvider

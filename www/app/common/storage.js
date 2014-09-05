@@ -19,5 +19,5 @@ angular.module('minyawns.storage', [])
 			else return userName;
 		}
 
-	}
+	};
 });
