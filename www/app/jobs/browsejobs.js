@@ -4,6 +4,7 @@ angular.module('minyawns.jobs', [])
 
 	$scope.offset = 0;
 	$scope.jobs = [];
+	$scope.totalJobs = 1;
 	
 	$scope.fetchJobs = function(){
 
@@ -31,7 +32,6 @@ angular.module('minyawns.jobs', [])
 	$scope.canLoadMore = function(){
 
 		return ($scope.totalJobs==0) ? false : true
-
 	};
 
 	$scope.scrollComplete = function(){
