@@ -1,12 +1,12 @@
-angular.module('minyawns.storage', [])
+angular.module('minyawns.storage', ['ngUnderscore'])
 
 
-.factory('Storage', function() {
+.factory('Storage', ['_', function(_) {
 
 
 	var LS = window.localStorage;
 
-	return {
+	var localStorage =  {
 
 		setUserName: function(name) {
 			LS.setItem("minyawns_username", name);
@@ -20,4 +20,6 @@ angular.module('minyawns.storage', [])
 		}
 
 	};
-});
+
+	return localStorage;
+}]);

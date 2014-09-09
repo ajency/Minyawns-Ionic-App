@@ -2,8 +2,8 @@ angular.module('minyawns.interceptor', [])
 
 
 .factory('Method', [function() {
-    
-    var method =  {
+	
+	var method =  {
 
 		isGET: function(config) {
 
@@ -23,20 +23,18 @@ angular.module('minyawns.interceptor', [])
 
 
 //Interceptor to check if network is available for every online request.
-.factory('NetworkCheck', ['$q', 'Method', function($q, Method) {
+.factory('NetworkCheck', ['$q', 'Method', '$cordovaNetwork', function($q, Method, $cordovaNetwork) {
 
-	var isAvailable = true;
-
-	if(navigator.connection)
-		isAvailable = (navigator.connection.type === "none") ? true : false;
-    
-    var network = {
+	var online = true;
+	if (ionic.Platform.isWebView()) online = ($cordovaNetwork.isOnline()) ? true : false;
+	
+	var network = {
 
 		request: function(config) {
 
 			if(Method.isGET(config) || Method.isPOST(config)){
 
-				if(isAvailable) return config;
+				if(online) return config;
 				else return $q.reject('NetworkNotAvailable');
 
 			}
@@ -51,21 +49,21 @@ angular.module('minyawns.interceptor', [])
 
 //TODO: Interceptor to inject cookies in every request.
 .factory('CookieInjector', ['Method', function(Method) {
-    
-    var cookieInjector = {
+	
+	var cookieInjector = {
 
-        request: function(config) {
+		request: function(config) {
 
-        	if(Method.isGET(config) || Method.isPOST(config)){
-		        	
-		            return config;
-		    }
+			if(Method.isGET(config) || Method.isPOST(config)){
+					
+				   return config;
+			}
 
-	        else return config;
-        }
-    };
+			else return config;
+		}
+	};
 
-    return cookieInjector;
+	return cookieInjector;
 }])
 
 
@@ -76,7 +74,47 @@ angular.module('minyawns.interceptor', [])
 
 	$httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
-    
-    $httpProvider.interceptors.push('NetworkCheck');
-    // $httpProvider.interceptors.push('CookieInjector');
+
+	$httpProvider.defaults.transformRequest = [function(data) {
+
+		var param = function(obj){
+			var query = '';
+			var name, value, fullSubName, subValue, innerObj, i;
+
+			for(name in obj){
+				value = obj[name];
+
+				if(value instanceof Array){
+					for(i=0; i<value.length; ++i){
+						subValue = value[i];
+						fullSubName = name + '[' + i + ']';
+						innerObj = {};
+						innerObj[fullSubName] = subValue;
+						query += param(innerObj) + '&';
+					}
+				}
+				else if(value instanceof Object){
+					for(subName in value){
+						subValue = value[subName];
+						fullSubName = name + '[' + subName + ']';
+						innerObj = {};
+						innerObj[fullSubName] = subValue;
+						query += param(innerObj) + '&';
+					}
+				}
+				else if(value !== undefined && value !== null){
+					query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+				}
+			}
+
+			return query.length ? query.substr(0, query.length - 1) : query;
+		};
+
+		return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
+	}];
+	
+	
+	$httpProvider.interceptors.push('NetworkCheck');
+	// $httpProvider.interceptors.push('CookieInjector');
+
 }]);

@@ -1,7 +1,7 @@
-angular.module('minyawns.login', [])
+angular.module('minyawns.login', ['ngUnderscore'])
 
-.controller('LoginController', ['$scope', '$state', '$http', '$ionicPopup', 'Storage'
-	, function($scope, $state, $http, $ionicPopup, Storage) {
+.controller('LoginController', ['$scope', '$state', '$http', '$ionicPopup', 'Storage', '_'
+	, function($scope, $state, $http, $ionicPopup, Storage, _) {
 
 	//Default
 	$scope.showLoader = false;
@@ -26,14 +26,13 @@ angular.module('minyawns.login', [])
 		}
 		else $scope.errorPopUp('Please enter Username/Password');
 	};
-	
 
 
 	$scope.authenticate = function(){
 
 		var url = 'http://www.minyawns.ajency.in/wp-admin/admin-ajax.php?action=popup_userlogin';
 
-	    $http.post(url, $.param($scope.data))
+	    $http.post(url, $scope.data)
 	    .then(function(resp, status, headers, config){
 
 			if(resp.data.success){
