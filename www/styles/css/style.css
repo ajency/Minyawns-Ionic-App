@@ -154,3 +154,44 @@ body .item-divider {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
+/**** Job List Styles ****/
+.job-list {
+  background: #f1f1f1;
+  padding: 10px;
+}
+.job-list .job {
+  background: #ffffff;
+  margin-bottom: 10px;
+  border-radius: 1px;
+  border: 0;
+  border-bottom: 2px solid #e4e4e4;
+  border-left: 2px solid #88d816;
+  padding: 10px;
+}
+.job-list .job .job-details .job-title {
+  font-family: 'Light', sans-serif;
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+.job-list .job .job-details .detail {
+  margin-bottom: 5px;
+  font-size: 0.92rem;
+}
+.job-list .job .job-details .detail .icon {
+  color: #cbcbcb;
+  font-size: 0.8rem;
+}
+.job-list .job .job-details .location {
+  font-family: 'Light', sans-serif;
+  font-size: 0.8rem;
+}
+.job-list .job .job-details .location .icon {
+  color: #cbcbcb;
+  margin-right: 5px;
+}
+.job-list .job .job-price {
+  text-align: center;
+  font-size: 2rem;
+  color: #88d816;
+  font-family: 'light', sans-serif;
+}
