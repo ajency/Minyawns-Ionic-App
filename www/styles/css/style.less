@@ -153,3 +153,47 @@ body {
 		}
 	}
 }
+
+/**** Job List Styles ****/
+.job-list {
+	background: lighten(@grey, 25%);
+	padding: 10px;
+	.job {
+		background: @white;
+		margin-bottom: 10px;
+		border-radius: 1px;
+		border: 0;
+		border-bottom: 2px solid lighten(@grey, 20%);
+		border-left: 2px solid @green;
+		padding: 10px;
+		.job-details {
+			.job-title {
+				font-family: 'Light', sans-serif;
+				font-size: 1.3rem;
+				margin-bottom: 5px;
+			}
+			.detail {
+				margin-bottom: 5px;
+				font-size: 0.92rem;
+				.icon {
+					color: lighten(@grey, 10%);
+					font-size: 0.8rem;
+				}
+			}
+			.location {
+				font-family: 'Light', sans-serif;
+				font-size: 0.8rem;
+				.icon {
+					color: lighten(@grey, 10%);
+					margin-right: 5px;
+				}
+			}
+		}
+		.job-price {
+			text-align: center;
+			font-size: 2rem;
+			color: @green;
+			font-family: 'light', sans-serif;
+		}
+	}
+}
