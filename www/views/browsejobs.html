@@ -11,7 +11,7 @@
 
     <ion-item ng-show="tryAgain" ng-click="onTryAgain()">Connection error. Click to try again</ion-item>
 
-		<ion-item class="job" ng-repeat="job in jobs">
+		<ion-item class="job" ng-repeat="job in jobs" ng-model="jobsList">
 
 			<div class="row">
 				<div class="col">

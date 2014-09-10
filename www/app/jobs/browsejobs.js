@@ -41,6 +41,9 @@ angular.module('minyawns.jobs', [])
 				$scope.noMoreJobs = true;
 			}
 
+			console.log('Jobs list');
+			console.log($scope.jobsList);
+
 		},
 
 		function(error){
