@@ -1,43 +1,54 @@
 <ion-view title="BROWSE JOBS">
   <ion-content>
 
+	<ion-refresher ng-if="showRefresher"
+		pulling-text="Pull to refresh..."
+		refreshing-icon="ion-refreshing"
+		on-refresh="onRefresh()">
+	</ion-refresher>
+
 	<div class="list job-list">
 
-		<ion-item ng-repeat="job in jobs" class="job">
+    <ion-item ng-show="tryAgain" ng-click="onTryAgain()">Connection error. Click to try again</ion-item>
+
+		<ion-item class="job" ng-repeat="job in jobs">
 
 			<div class="row">
 				<div class="col">
-          <div class="job-details">
-  					<h2 class="job-title">Post ID: {{ job.post_id }}</h2>
-  					<div class="detail">
-              <i class="icon ion-person"></i> {{ job.job_author }}
-            </div>
-  					<div class="detail">
-              <i class="icon ion-calendar"></i> {{ job.job_company }}
-            </div>
-            <div class="location">
-              <i class="icon ion-location"></i> {{ job.job_location }}
-            </div>
-          </div>
-				</div>
-        <div class="col col-20">
-          <div class="job-price">
-            $18
-          </div>
-        </div>
+		  <div class="job-details">
+					<h2 class="job-title">Post ID: {{ job.post_id }}</h2>
+					<div class="detail">
+			  <i class="icon ion-person"></i> {{ job.job_author }}
 			</div>
-      <div class="job-actions">
+					<div class="detail">
+			  <i class="icon ion-calendar"></i> {{ job.job_company }}
+			</div>
+			<div class="location">
+			  <i class="icon ion-location"></i> {{ job.job_location }}
+			</div>
+		  </div>
+				</div>
+		<div class="col col-20">
+		  <div class="job-price">
+			$18
+		  </div>
+		</div>
+			</div>
+	  <div class="job-actions">
 
-      </div>
+	  </div>
 
 		</ion-item>
 
+		<ion-item ng-show="noMoreJobs">No more jobs to be displayed</ion-item>
+
 	</div>
 
-	<ion-infinite-scroll icon="ion-refreshing" distance="5%" ng-if="canLoadMore()" on-infinite="fetchJobs()">
+	<ion-infinite-scroll icon="ion-refreshing" distance="5%" ng-if="canLoadMore" on-infinite="browseJobs()">
 	</ion-infinite-scroll>
 
-  </ion-content>
+   </ion-content>
+
 </ion-view>
 
 

@@ -25,8 +25,11 @@ angular.module('minyawns.interceptor', [])
 //Interceptor to check if network is available for every online request.
 .factory('NetworkCheck', ['$q', 'Method', '$cordovaNetwork', function($q, Method, $cordovaNetwork) {
 
-	var online = true;
-	if (ionic.Platform.isWebView()) online = ($cordovaNetwork.isOnline()) ? true : false;
+	var isOnline = function(){
+
+		if(ionic.Platform.isWebView()) return ($cordovaNetwork.isOnline()) ? true : false;
+		else return true; //When Browser
+	}
 	
 	var network = {
 
@@ -34,12 +37,11 @@ angular.module('minyawns.interceptor', [])
 
 			if(Method.isGET(config) || Method.isPOST(config)){
 
-				if(online) return config;
+				if(isOnline()) return config;
 				else return $q.reject('NetworkNotAvailable');
-
 			}
 
-			else return (config);
+			else return config;
 		}
 	};
 
