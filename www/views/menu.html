@@ -11,36 +11,38 @@
 		<ion-nav-view name="menuContent" nav-router animation="no-animation"></ion-nav-view>
 	</ion-pane>
 
-	<ion-side-menu side="left">
+	<ion-side-menu side="left" ng-controller="MenuController">
 
-    <ion-header-bar class="menu-header">
-      <div class="item-avatar">
-        <img src="./img/venkman.jpg">
-        <h2>Pete Venkman</h2>
-        <p>Minions</p>
-      </div>
-    </ion-header-bar>
-		
-	<ion-content>
-		<ion-list>
-			<ion-item menu-close ui-sref="menu.browsejobs">
-				Browse
-			</ion-item>
-			<ion-item>
-				Minions Directory
-			</ion-item>
-			<ion-item menu-close ui-sref="menu.blog">
-				Blog
-			</ion-item>
-			<ion-item>
-				Create Job
-			</ion-item>
-			<ion-item nav-clear ui-sref="login">
-				Logout
-			</ion-item>
+	    <ion-header-bar class="menu-header">
+	      <div class="item-avatar" ng-show="menuHeader">
+	        <img src="./img/venkman.jpg">
+	        <h2> {{ minyawnUserName }} </h2>
+	        <p>Minions</p>
+	      </div>
 
-		</ion-list>
-	</ion-content>
+	      <div class="item-avatar" ng-hide="menuHeader">
+	        <h2>Sign-in to Minyawns</h2>
+	      </div>
+	    </ion-header-bar>
+			
+		<ion-content>
+			<ion-list>
+
+				<ion-item menu-close ui-sref="menu.browsejobs">
+					Browse
+				</ion-item>
+				<ion-item menu-close href="http://www.minyawns.com/blog/">
+					Blog
+				</ion-item>
+				<ion-item menu-close nav-clear ng-show="logInOutMenu" ui-sref="login">
+					Login
+				</ion-item>
+				<ion-item menu-close nav-clear ng-hide="logInOutMenu" ng-click="onLogout()">
+					Logout
+				</ion-item>
+
+			</ion-list>
+		</ion-content>
 
 	</ion-side-menu>
 
