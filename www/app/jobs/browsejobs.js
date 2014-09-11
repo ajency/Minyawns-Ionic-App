@@ -1,8 +1,8 @@
 angular.module('minyawns.jobs', [])
 
-.controller('BrowseController', ['$scope', '$http', function($scope, $http) {
+.controller('BrowseController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
-	
+
 	$scope.showRefresher = false;
 
 	$scope.init = function(){
@@ -22,7 +22,8 @@ angular.module('minyawns.jobs', [])
 		console.log("fetching");
 
 		$http.get('http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/'
-		+'fetchjobs?offset='+$scope.offset)
+			+'fetchjobs?offset='+$scope.offset)
+		
 		.then(function(resp, status, headers, config){
 
 			$scope.totalJobs = resp.data.length;
@@ -40,9 +41,6 @@ angular.module('minyawns.jobs', [])
 				$scope.canLoadMore = false;
 				$scope.noMoreJobs = true;
 			}
-
-			console.log('Jobs list');
-			console.log($scope.jobsList);
 
 		},
 
@@ -65,7 +63,7 @@ angular.module('minyawns.jobs', [])
 		if($scope.totalJobs == 1){
 			//Timeout is needed for the very first request 
 			//as cordova navigator.connection is undefined.
-			setTimeout(function(){
+			$timeout(function(){
 				fetchJobs();
 			}, 500);
 		}

@@ -1,7 +1,7 @@
-angular.module('minyawns.storage', ['ngUnderscore'])
+angular.module('minyawns.storage', [])
 
 
-.factory('Storage', ['_', function(_) {
+.factory('Storage', [function() {
 
 
 	var LS = window.localStorage;
@@ -9,14 +9,25 @@ angular.module('minyawns.storage', ['ngUnderscore'])
 	var localStorage =  {
 
 		setUserName: function(name) {
+
 			LS.setItem("minyawns_username", name);
 		},
 
-		getUserName: function() {
+		setLoginStatus: function(status) {
+
+			LS.setItem("minyawns_login_status", status);
+		},
+
+		getUserDetails : function(){
 
 			var userName = LS.getItem("minyawns_username");
-			if(_.isNull(userName) || userName==='null') return "";
-			else return userName;
+			var loginStatus = LS.getItem("minyawns_login_status");
+
+			return details = {
+
+				userName : (userName === null || userName === 'null') ? "" : userName,
+				isLoggedIn : (loginStatus === 'signed-in') ? true : false
+			}
 		}
 
 	};

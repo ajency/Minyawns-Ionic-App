@@ -5,13 +5,14 @@
 		pulling-text="Pull to refresh..."
 		refreshing-icon="ion-refreshing"
 		on-refresh="onRefresh()">
+		
 	</ion-refresher>
 
 	<div class="list job-list">
 
     <ion-item ng-show="tryAgain" ng-click="onTryAgain()">Connection error. Click to try again</ion-item>
 
-		<ion-item class="job" ng-repeat="job in jobs" ng-model="jobsList">
+		<ion-item class="job" ng-repeat="job in jobs" >
 
 			<div class="row">
 				<div class="col">
