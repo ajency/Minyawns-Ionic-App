@@ -4,7 +4,7 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 	, 'minyawns.login', 'minyawns.jobs', 'minyawns.test'])
 
 
-.run(function($ionicPlatform, $cordovaSplashscreen) {
+.run(function($ionicPlatform, $timeout, $cordovaSplashscreen, $rootScope) {
 
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -19,7 +19,7 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 		//Hide splash screen
 		if(ionic.Platform.isWebView()){
 
-			setTimeout(function(){
+			$timeout(function(){
 				$cordovaSplashscreen.hide();
 			}, 1000)
 		}
@@ -28,7 +28,7 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 })
 
 
-.config(function($stateProvider, $httpProvider) {
+.config(function($stateProvider) {
 	
 	
 	$stateProvider
