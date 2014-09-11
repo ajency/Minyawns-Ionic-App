@@ -26,6 +26,12 @@ angular.module('minyawns.menu', [])
 	init();
 
 
+	$scope.openBlogLink = function(){
+
+		window.open('http://www.minyawns.com/blog/', '_system', 'location=yes')
+	}
+
+
 	$scope.onLogout = function(){
 
 		Storage.setLoginStatus('signed-out');
