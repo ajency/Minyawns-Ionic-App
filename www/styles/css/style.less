@@ -21,6 +21,9 @@ body {
 	h1, h2, h3, h4, h5, h6, p, input, button, select, textarea, .h1, .h2, .h3, .h4, .h5, .h6 .item, .item-divider {
 		font-family: 'Regular', sans-serif;
 	}
+	.pane {
+		background: lighten(@grey, 25%);
+	}
 }
 
 /**** Button Styles ****/
@@ -156,8 +159,7 @@ body {
 
 /**** Job List Styles ****/
 .job-list {
-	background: lighten(@grey, 25%);
-	padding: 10px;
+	background: transparent;
 	.job {
 		background: @white;
 		margin-bottom: 10px;
@@ -196,4 +198,23 @@ body {
 			font-family: 'light', sans-serif;
 		}
 	}
+
+	.no-more {
+		margin-bottom: 10px !important;
+		text-align: center;
+		color: lighten(@dark-grey, 20%);
+		background: transparent;
+		border: 1px dashed @grey;
+		.icon {
+			display: block;
+			font-size: 3rem;
+			color: @grey;
+			margin-bottom: 0.2rem;
+		}
+	}
+}
+
+/**** Scroll Refresher Styles ****/
+.scroll-refresher {
+	top: -64px;
 }

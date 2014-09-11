@@ -29,6 +29,9 @@ body .h6 .item,
 body .item-divider {
   font-family: 'Regular', sans-serif;
 }
+body .pane {
+  background: #f1f1f1;
+}
 /**** Button Styles ****/
 .button.button-green {
   background: #88d816;
@@ -156,8 +159,7 @@ body .item-divider {
 }
 /**** Job List Styles ****/
 .job-list {
-  background: #f1f1f1;
-  padding: 10px;
+  background: transparent;
 }
 .job-list .job {
   background: #ffffff;
@@ -194,4 +196,21 @@ body .item-divider {
   font-size: 2rem;
   color: #88d816;
   font-family: 'light', sans-serif;
+}
+.job-list .no-more {
+  margin-bottom: 10px !important;
+  text-align: center;
+  color: #777777;
+  background: transparent;
+  border: 1px dashed #b1b1b1;
+}
+.job-list .no-more .icon {
+  display: block;
+  font-size: 3rem;
+  color: #b1b1b1;
+  margin-bottom: 0.2rem;
+}
+/**** Scroll Refresher Styles ****/
+.scroll-refresher {
+  top: -64px;
 }
