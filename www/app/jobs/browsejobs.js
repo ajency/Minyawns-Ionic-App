@@ -114,6 +114,6 @@ angular.module('minyawns.jobs', [])
 	    })
 
 		//Default state. If no states are matched, this will be used as fallback.
-	    $urlRouterProvider.otherwise('/menu/browsejobs');
+	     $urlRouterProvider.otherwise('/menu/browsejobs');
 
 });
