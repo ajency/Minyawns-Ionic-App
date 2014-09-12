@@ -1,7 +1,7 @@
 angular.module('minyawns.jobs', [])
 
-.controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout'
-	, function($scope, $rootScope, $http, $timeout) {
+.controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
+	, function($scope, $rootScope, $http, $timeout, $state) {
 
 	
 	$scope.reSet = function(){
@@ -133,6 +133,12 @@ angular.module('minyawns.jobs', [])
 		$scope.$broadcast('scroll.infiniteScrollComplete');
 		$scope.$broadcast('scroll.refreshComplete');
 	};
+
+
+	$scope.onSingleJobClick = function(postID){
+		
+		$state.go('menu.singlejob', {postID: postID});
+	};
 	
 }])
 
@@ -142,14 +148,14 @@ angular.module('minyawns.jobs', [])
 	$stateProvider
 
 		.state('menu.browsejobs', {
-	      url: "/browsejobs",
-	      views: {
-	        'menuContent' :{
-	          templateUrl: "views/browsejobs.html",
-	          controller: 'BrowseController'
-	        }
-	      }
-	    })
+			url: "/browsejobs",
+			views: {
+				'menuContent' :{
+					templateUrl: "views/browsejobs.html",
+					controller: 'BrowseController'
+				}
+			}
+		})
 
 		//Default state. If no states are matched, this will be used as fallback.
 	    $urlRouterProvider.otherwise('/menu/browsejobs');

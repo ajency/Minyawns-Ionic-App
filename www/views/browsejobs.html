@@ -16,7 +16,7 @@
 	    Connection error. Click to try again.
 	  </ion-item>
 
-		<ion-item class="job" ng-repeat="job in jobs" >
+		<ion-item class="job" ng-repeat="job in jobs" ng-click="onSingleJobClick(job.post_id)">
 
 			<div class="row">
 				<div class="col">
