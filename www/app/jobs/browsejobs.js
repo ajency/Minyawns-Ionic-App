@@ -1,68 +1,104 @@
 angular.module('minyawns.jobs', [])
 
-.controller('BrowseController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+.controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout'
+	, function($scope, $rootScope, $http, $timeout) {
 
 	
-	$scope.reset = function(){
+	$scope.reSet = function(){
 
-		$scope.offset = 0;
-		$scope.jobs = [];
-		
 		$scope.showNoMoreJobs = false;
 		$scope.showConnectionError = false;
 		$scope.canLoadMore = true;
 	};
 
 
-	$scope.reset();
+	$scope.resetRootScope = function(){
+
+		$rootScope.jobs = { offset: 0, allJobs: [] };
+	};
+
 
 
 	$scope.fetchJobs = function(){
 
+		//Make only one request at a time.
 		if(!$scope.requestPending){
 
 			$scope.requestPending = true;
 
 			$http.get('http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/'
-				+'fetchjobs?offset='+$scope.offset)
+				+'fetchjobs?offset='+$rootScope.jobs.offset)
 
 			.then(function(resp, status, headers, config){
 
-				$scope.requestPending = false;
-				
-				$scope.offset = $scope.offset + 5;
-
-				$scope.jobs = $scope.jobs.concat(resp.data);
-
-				$scope.fetchComplete();
-				$scope.showRefresher = true;
-
-				if(resp.data.length == 0){
-
-					$scope.canLoadMore = false;
-					$scope.showNoMoreJobs = true;
-				}
-
+				$scope.onSuccessResponse(resp.data);
 			},
 
 			function(error){
 
-				console.log('ERROR: '+error);
-
-				if(error === "NetworkNotAvailable"){
-
-					$scope.canLoadMore = false;
-					$scope.showRefresher = false;
-					$scope.showConnectionError = true;
-				}
+				$scope.onErrorResponse(error);
 			});
 		}
 	};
+
+
+	//On view load.
+	if($rootScope.jobs.allJobs.length == 0){ 
+
+		$scope.reSet();
+		$scope.jobs = $rootScope.jobs.allJobs; 
+	}
+	else{
+
+		$scope.showRefresher = true;
+		$scope.reSet();
+		$scope.jobs = $rootScope.jobs.allJobs;
+		$scope.resetRootScope();
+		$scope.fetchJobs();
+	}
+
+
+	$scope.onSuccessResponse = function(data){
+
+		$scope.requestPending = false;
+
+		$scope.fetchComplete();
+		$scope.showRefresher = true;
+
+		if(data.length == 0){
+
+			$scope.canLoadMore = false;
+			$scope.showNoMoreJobs = true;
+		}
+		
+		$rootScope.jobs.offset = $rootScope.jobs.offset + 5;
+		$rootScope.jobs.allJobs = $rootScope.jobs.allJobs.concat(data)
+		$scope.jobs = [];
+		$scope.jobs = $rootScope.jobs.allJobs;
+	};
+
+
+
+	$scope.onErrorResponse = function(error){
+
+		$scope.requestPending = false;
+
+		console.log('ERROR');
+		console.log(error);
+
+		$rootScope.jobs.allJobs = $scope.jobs;
+
+		$scope.fetchComplete();
+		$scope.showRefresher = true;
+		$scope.canLoadMore = false;
+		$scope.showConnectionError = true;
+	};
+
 	
 	
 	$scope.onInfiniteScroll = function(){
 
-		if($scope.jobs.length == 0){
+		if($rootScope.jobs.allJobs.length == 0){
 			//Timeout is needed for the very first request 
 			//as cordova navigator.connection is undefined.
 			$timeout(function(){
@@ -74,11 +110,22 @@ angular.module('minyawns.jobs', [])
 	};
 
 
+
 	$scope.onPullToRefresh = function(){
 
-		$scope.reset();
+		$scope.reSet();
+		$scope.resetRootScope();
 		$scope.fetchJobs();
 	};
+
+
+
+	$scope.onRetry = function(){
+
+		$scope.reSet();
+		$scope.fetchjobs();
+	};
+
 
 
 	$scope.fetchComplete = function(){
