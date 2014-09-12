@@ -1,16 +1,17 @@
 <ion-view title="BROWSE JOBS">
+
   <ion-content ng-init="requestPending=false">
 
-	<ion-refresher ng-init="showRefresher=false" ng-if="showRefresher"
+	<!-- <ion-refresher ng-init="showRefresher=false" ng-if="showRefresher"
 		pulling-text="Pull to refresh..."
 		refreshing-icon="ion-refreshing"
 		on-refresh="onPullToRefresh()">
 		
-	</ion-refresher>
+	</ion-refresher> -->
 
 	<div class="list list-inset job-list">
 
-    <ion-item ng-show="showConnectionError" ng-click="onTryAgain()">Connection error. Click to try again</ion-item>
+    <!-- <ion-item ng-show="showConnectionError" ng-click="reset()">Connection error. Click to try again</ion-item> -->
 
 		<ion-item class="job" ng-repeat="job in jobs" >
 
@@ -48,8 +49,8 @@
 
 	</div>
 
-	<ion-infinite-scroll icon="ion-refreshing" distance="5%" ng-if="canLoadMore" on-infinite="onInfiniteScroll()">
-	</ion-infinite-scroll>
+	<!-- <ion-infinite-scroll icon="ion-refreshing" distance="5%" ng-if="canLoadMore" on-infinite="onInfiniteScroll()">
+	</ion-infinite-scroll> -->
 
    </ion-content>
 

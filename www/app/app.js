@@ -4,7 +4,10 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 	, 'minyawns.login', 'minyawns.jobs', 'minyawns.test'])
 
 
-.run(function($ionicPlatform, $timeout, $cordovaSplashscreen, $rootScope) {
+.run(function($ionicPlatform, $rootScope, $timeout, $cordovaSplashscreen) {
+
+	//Initialize jobs object to $rootScope
+	$rootScope.jobs = { offset: 0, allJobs: [] };
 
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

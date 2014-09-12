@@ -3,7 +3,7 @@ angular.module('minyawns.jobs', [])
 .controller('BrowseController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
 	
-	$scope.init = function(){
+	$scope.reset = function(){
 
 		$scope.offset = 0;
 		$scope.jobs = [];
@@ -14,7 +14,7 @@ angular.module('minyawns.jobs', [])
 	};
 
 
-	$scope.init();
+	$scope.reset();
 
 
 	$scope.fetchJobs = function(){
@@ -34,8 +34,7 @@ angular.module('minyawns.jobs', [])
 
 				$scope.jobs = $scope.jobs.concat(resp.data);
 
-				$scope.infiniteScrollComplete();
-				$scope.pullToRefreshComplete();
+				$scope.fetchComplete();
 				$scope.showRefresher = true;
 
 				if(resp.data.length == 0){
@@ -77,25 +76,14 @@ angular.module('minyawns.jobs', [])
 
 	$scope.onPullToRefresh = function(){
 
-		$scope.init();
+		$scope.reset();
 		$scope.fetchJobs();
 	};
 
 
-	$scope.onTryAgain = function(){
-
-		$scope.init();
-	};
-
-	
-	$scope.infiniteScrollComplete = function(){
+	$scope.fetchComplete = function(){
 
 		$scope.$broadcast('scroll.infiniteScrollComplete');
-	};
-
-
-	$scope.pullToRefreshComplete = function(){
-
 		$scope.$broadcast('scroll.refreshComplete');
 	};
 	
