@@ -69,9 +69,6 @@ angular.module('minyawns.interceptor', [])
 }])
 
 
-
-
-
 .config(['$httpProvider', function($httpProvider) {
 
 	$httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
