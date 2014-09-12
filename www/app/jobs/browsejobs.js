@@ -1,7 +1,7 @@
 angular.module('minyawns.jobs', [])
 
-.controller('BrowseController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
-
+.controller('BrowseController', ['$scope', '$http', '$timeout'
+	, function($scope, $http, $timeout) {
 
 	$scope.showRefresher = false;
 
@@ -23,7 +23,7 @@ angular.module('minyawns.jobs', [])
 
 		$http.get('http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/'
 			+'fetchjobs?offset='+$scope.offset)
-		
+
 		.then(function(resp, status, headers, config){
 
 			$scope.totalJobs = resp.data.length;

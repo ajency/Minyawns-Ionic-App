@@ -8,7 +8,7 @@
 		
 	</ion-refresher>
 
-	<div class="list job-list">
+	<div class="list list-inset job-list">
 
     <ion-item ng-show="tryAgain" ng-click="onTryAgain()">Connection error. Click to try again</ion-item>
 
@@ -41,7 +41,10 @@
 
 		</ion-item>
 
-		<ion-item ng-show="noMoreJobs">No more jobs to be displayed</ion-item>
+		<ion-item ng-show="noMoreJobs" class="no-more">
+	      <i class="icon ion-eye-disabled"></i>
+	      That's all folks! No more jobs to be displayed.
+	    </ion-item>
 
 	</div>
 
