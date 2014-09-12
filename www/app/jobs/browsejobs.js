@@ -1,99 +1,143 @@
 angular.module('minyawns.jobs', [])
 
-.controller('BrowseController', ['$scope', '$http', '$timeout'
-	, function($scope, $http, $timeout) {
+.controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
+	, function($scope, $rootScope, $http, $timeout, $state) {
 
-	$scope.showRefresher = false;
+	
+	$scope.reSet = function(){
 
-	$scope.init = function(){
-		
-		$scope.noMoreJobs = false;
-		$scope.tryAgain = false;
+		$scope.showNoMoreJobs = false;
+		$scope.showConnectionError = false;
 		$scope.canLoadMore = true;
-		$scope.offset = 0;
+	};
+
+
+	$scope.resetRootScope = function(){
+
+		$rootScope.jobs = { offset: 0, allJobs: [] };
+	};
+
+
+
+	$scope.fetchJobs = function(){
+
+		//Make only one request at a time.
+		if(!$scope.requestPending){
+
+			$scope.requestPending = true;
+
+			$http.get('http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/'
+				+'fetchjobs?offset='+$rootScope.jobs.offset)
+
+			.then(function(resp, status, headers, config){
+
+				$scope.onSuccessResponse(resp.data);
+			},
+
+			function(error){
+
+				$scope.onErrorResponse(error);
+			});
+		}
+	};
+
+
+	//On view load.
+	if($rootScope.jobs.allJobs.length == 0){ 
+
+		$scope.reSet();
+		$scope.jobs = $rootScope.jobs.allJobs; 
+	}
+	else{
+
+		$scope.showRefresher = true;
+		$scope.reSet();
+		$scope.jobs = $rootScope.jobs.allJobs;
+		$scope.resetRootScope();
+		$scope.fetchJobs();
+	}
+
+
+	$scope.onSuccessResponse = function(data){
+
+		$scope.requestPending = false;
+
+		$scope.fetchComplete();
+		$scope.showRefresher = true;
+
+		if(data.length == 0){
+
+			$scope.canLoadMore = false;
+			$scope.showNoMoreJobs = true;
+		}
+		
+		$rootScope.jobs.offset = $rootScope.jobs.offset + 5;
+		$rootScope.jobs.allJobs = $rootScope.jobs.allJobs.concat(data)
 		$scope.jobs = [];
-		$scope.totalJobs = 1;
+		$scope.jobs = $rootScope.jobs.allJobs;
 	};
 
-	$scope.init();
 
-	var fetchJobs = function(){
 
-		console.log("fetching");
+	$scope.onErrorResponse = function(error){
 
-		$http.get('http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/'
-			+'fetchjobs?offset='+$scope.offset)
+		$scope.requestPending = false;
 
-		.then(function(resp, status, headers, config){
+		console.log('ERROR');
+		console.log(error);
 
-			$scope.totalJobs = resp.data.length;
-			
-			$scope.offset = $scope.offset + 5;
+		$rootScope.jobs.allJobs = $scope.jobs;
 
-			$scope.jobs = $scope.jobs.concat(resp.data);
-
-			$scope.scrollComplete();
-			$scope.refreshComplete();
-			$scope.showRefresher = true;
-
-			if($scope.totalJobs==0){
-
-				$scope.canLoadMore = false;
-				$scope.noMoreJobs = true;
-			}
-
-		},
-
-		function(error){
-
-			console.log('ERROR: '+error);
-
-			if(error === "NetworkNotAvailable"){
-
-				$scope.canLoadMore = false;
-				$scope.showRefresher = false;
-				$scope.tryAgain = true;
-			}
-		});
+		$scope.fetchComplete();
+		$scope.showRefresher = true;
+		$scope.canLoadMore = false;
+		$scope.showConnectionError = true;
 	};
-	
-	
-	$scope.browseJobs = function(){
 
-		if($scope.totalJobs == 1){
+	
+	
+	$scope.onInfiniteScroll = function(){
+
+		if($rootScope.jobs.allJobs.length == 0){
 			//Timeout is needed for the very first request 
 			//as cordova navigator.connection is undefined.
 			$timeout(function(){
-				fetchJobs();
+				$scope.fetchJobs();
 			}, 500);
 		}
 
-		else fetchJobs();
+		else $scope.fetchJobs();
 	};
 
 
-	$scope.onRefresh = function(){
 
-		$scope.init();
-		fetchJobs();
+	$scope.onPullToRefresh = function(){
+
+		$scope.reSet();
+		$scope.resetRootScope();
+		$scope.fetchJobs();
 	};
 
 
-	$scope.onTryAgain = function(){
 
-		$scope.init();
+	$scope.onRetry = function(){
+
+		$scope.reSet();
+		$scope.fetchjobs();
 	};
 
-	
-	$scope.scrollComplete = function(){
+
+
+	$scope.fetchComplete = function(){
 
 		$scope.$broadcast('scroll.infiniteScrollComplete');
+		$scope.$broadcast('scroll.refreshComplete');
 	};
 
 
-	$scope.refreshComplete = function(){
-
-		$scope.$broadcast('scroll.refreshComplete');
+	$scope.onSingleJobClick = function(postID){
+		
+		$state.go('menu.singlejob', {postID: postID});
 	};
 	
 }])
@@ -104,14 +148,14 @@ angular.module('minyawns.jobs', [])
 	$stateProvider
 
 		.state('menu.browsejobs', {
-	      url: "/browsejobs",
-	      views: {
-	        'menuContent' :{
-	          templateUrl: "views/browsejobs.html",
-	          controller: 'BrowseController'
-	        }
-	      }
-	    })
+			url: "/browsejobs",
+			views: {
+				'menuContent' :{
+					templateUrl: "views/browsejobs.html",
+					controller: 'BrowseController'
+				}
+			}
+		})
 
 		//Default state. If no states are matched, this will be used as fallback.
 	     $urlRouterProvider.otherwise('/menu/browsejobs');
