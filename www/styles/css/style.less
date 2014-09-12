@@ -198,18 +198,24 @@ body {
 			font-family: 'light', sans-serif;
 		}
 	}
-
-	.no-more {
-		margin-bottom: 10px !important;
+	.message {
 		text-align: center;
-		color: lighten(@dark-grey, 20%);
-		background: transparent;
+		color: @grey;
 		border: 1px dashed @grey;
 		.icon {
 			display: block;
 			font-size: 3rem;
 			color: @grey;
 			margin-bottom: 0.2rem;
+		}
+		&.connection-error {
+			background: transparent;
+			border: 0;
+		}
+		&.no-more {
+			margin-bottom: 10px !important;
+			color: lighten(@dark-grey, 20%);
+			background: transparent;
 		}
 	}
 }
