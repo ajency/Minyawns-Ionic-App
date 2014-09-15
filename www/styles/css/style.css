@@ -197,18 +197,25 @@ body .pane {
   color: #88d816;
   font-family: 'light', sans-serif;
 }
-.job-list .no-more {
-  margin-bottom: 10px !important;
+.job-list .message {
   text-align: center;
-  color: #777777;
-  background: transparent;
+  color: #b1b1b1;
   border: 1px dashed #b1b1b1;
 }
-.job-list .no-more .icon {
+.job-list .message .icon {
   display: block;
   font-size: 3rem;
   color: #b1b1b1;
   margin-bottom: 0.2rem;
+}
+.job-list .message.connection-error {
+  background: transparent;
+  border: 0;
+}
+.job-list .message.no-more {
+  margin-bottom: 10px !important;
+  color: #777777;
+  background: transparent;
 }
 /**** Scroll Refresher Styles ****/
 .scroll-refresher {
