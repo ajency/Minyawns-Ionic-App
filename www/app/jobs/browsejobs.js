@@ -1,13 +1,12 @@
 angular.module('minyawns.jobs', [])
 
-.controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, function($scope, $rootScope, $http, $timeout, $state) {
+.controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state', '$materialToast'
+	, function($scope, $rootScope, $http, $timeout, $state, $materialToast) {
 
 	
 	$scope.reSet = function(){
 
 		$scope.showNoMoreJobs = false;
-		$scope.showConnectionError = false;
 		$scope.canLoadMore = true;
 	};
 
@@ -81,17 +80,18 @@ angular.module('minyawns.jobs', [])
 
 	$scope.onErrorResponse = function(error){
 
-		$scope.requestPending = false;
-
 		console.log('ERROR');
 		console.log(error);
+
+		$scope.showToast();
+
+		$scope.requestPending = false;
 
 		$rootScope.jobs.allJobs = $scope.jobs;
 
 		$scope.fetchComplete();
 		$scope.showRefresher = true;
 		$scope.canLoadMore = false;
-		$scope.showConnectionError = true;
 	};
 
 	
@@ -120,14 +120,6 @@ angular.module('minyawns.jobs', [])
 
 
 
-	$scope.onRetry = function(){
-
-		$scope.reSet();
-		$scope.fetchjobs();
-	};
-
-
-
 	$scope.fetchComplete = function(){
 
 		$scope.$broadcast('scroll.infiniteScrollComplete');
@@ -139,25 +131,52 @@ angular.module('minyawns.jobs', [])
 		
 		$state.go('menu.singlejob', {postID: postID});
 	};
+
+
+	$scope.showToast = function(){
+
+		$materialToast({
+			controller: 'ToastController',
+			templateUrl: 'views/material-toast.html',
+			duration: 0,
+			position: 'bottom'
+		});
+	};
+
+
+	$rootScope.$on("onRetry", function(event, args) {
+
+		
+	});
 	
 }])
+
+
+.controller('ToastController', function($scope, $rootScope, $hideToast) {
+
+	$scope.closeToast = function() {
+
+		$hideToast();
+		$rootScope.$broadcast("onRetry", {});
+	};
+})
 
 
 .config(function($stateProvider, $urlRouterProvider) {
 	
 	$stateProvider
 
-		.state('menu.browsejobs', {
-			url: "/browsejobs",
-			views: {
-				'menuContent' :{
-					templateUrl: "views/browsejobs.html",
-					controller: 'BrowseController'
-				}
+	.state('menu.browsejobs', {
+		url: "/browsejobs",
+		views: {
+			'menuContent' :{
+				templateUrl: "views/browsejobs.html",
+				controller: 'BrowseController'
 			}
-		})
+		}
+	})
 
-		//Default state. If no states are matched, this will be used as fallback.
-	    $urlRouterProvider.otherwise('/menu/browsejobs');
+	//Default state. If no states are matched, this will be used as fallback.
+    $urlRouterProvider.otherwise('/menu/browsejobs');
 
 });

@@ -18,14 +18,14 @@ angular.module('minyawns.singlejob', [])
 	
 	$stateProvider
 
-		.state('menu.singlejob', {
-			url: "/singlejob:postID",
-			views: {
-				'menuContent' :{
-					templateUrl: "views/singlejob.html",
-					controller: 'SinglejobController'
-				}
+	.state('menu.singlejob', {
+		url: "/singlejob:postID",
+		views: {
+			'menuContent' :{
+				templateUrl: "views/singlejob.html",
+				controller: 'SinglejobController'
 			}
-		})
+		}
+	})
 
 });
