@@ -10,8 +10,7 @@
 	</ion-refresher>
 
 	<div class="list list-inset job-list">
-
-    <ion-item ng-show="showConnectionError" ng-click="reSet()">Connection error. Click to try again</ion-item>
+    
 
 		<ion-item class="job" ng-repeat="job in jobs" ng-click="onSingleJobClick(job.post_id)">
 
