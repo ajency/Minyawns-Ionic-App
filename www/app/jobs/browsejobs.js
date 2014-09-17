@@ -6,11 +6,13 @@ angular.module('minyawns.jobs', [])
 	
 	$scope.reSet = function(){
 
+		$scope.showConnectionError = false;
 		$scope.showNoMoreJobs = false;
 		$scope.canLoadMore = true;
 	};
 
 
+	
 	$scope.resetRootScope = function(){
 
 		$rootScope.jobs = { offset: 0, allJobs: [] };
@@ -41,20 +43,25 @@ angular.module('minyawns.jobs', [])
 	};
 
 
-	//On view load.
-	if($rootScope.jobs.allJobs.length == 0){ 
+	$scope.onViewLoad = function(){
+		//On view load.
+		if($rootScope.jobs.allJobs.length == 0){ 
 
-		$scope.reSet();
-		$scope.jobs = $rootScope.jobs.allJobs; 
-	}
-	else{
+			$scope.reSet();
+			$scope.jobs = $rootScope.jobs.allJobs; 
+		}
+		else{
 
-		$scope.showRefresher = true;
-		$scope.reSet();
-		$scope.jobs = $rootScope.jobs.allJobs;
-		$scope.resetRootScope();
-		$scope.fetchJobs();
-	}
+			$scope.showRefresher = true;
+			$scope.reSet();
+			$scope.jobs = $rootScope.jobs.allJobs;
+			$scope.resetRootScope();
+			$scope.fetchJobs();
+		}
+	};
+
+
+	$scope.onViewLoad();
 
 
 	$scope.onSuccessResponse = function(data){
@@ -83,14 +90,21 @@ angular.module('minyawns.jobs', [])
 		console.log('ERROR');
 		console.log(error);
 
-		$scope.showToast();
-
 		$scope.requestPending = false;
 
 		$rootScope.jobs.allJobs = $scope.jobs;
 
 		$scope.fetchComplete();
-		$scope.showRefresher = true;
+
+		if($rootScope.jobs.allJobs.length == 0){
+			$scope.showRefresher = false;
+			$scope.showConnectionError = true;
+		}
+		else{
+			$scope.showRefresher = true;
+			$scope.showToast();
+		}
+
 		$scope.canLoadMore = false;
 	};
 
@@ -137,15 +151,21 @@ angular.module('minyawns.jobs', [])
 		$materialToast({
 			controller: 'ToastController',
 			templateUrl: 'views/material-toast.html',
-			duration: 0,
+			duration: 5000,
 			position: 'bottom'
 		});
 	};
 
 
+	$scope.onRetry = function(){
+
+		$scope.onViewLoad();
+	};
+
+
 	$rootScope.$on("onRetry", function(event, args) {
 
-		
+		$scope.onViewLoad();
 	});
 	
 }])
