@@ -4,6 +4,7 @@ angular.module('minyawns.jobs', [])
 	, function($scope, $rootScope, $http, $timeout, $state, $materialToast) {
 
 	
+	
 	$scope.reSet = function(){
 
 		$scope.showConnectionError = false;
@@ -43,6 +44,7 @@ angular.module('minyawns.jobs', [])
 	};
 
 
+
 	$scope.onViewLoad = function(){
 		//On view load.
 		if($rootScope.jobs.allJobs.length == 0){ 
@@ -59,7 +61,6 @@ angular.module('minyawns.jobs', [])
 			$scope.fetchJobs();
 		}
 	};
-
 
 	$scope.onViewLoad();
 
@@ -163,8 +164,8 @@ angular.module('minyawns.jobs', [])
 	};
 
 
-	$rootScope.$on("onRetry", function(event, args) {
-
+	$rootScope.$on("onRetry", function(){
+		
 		$scope.onViewLoad();
 	});
 	
@@ -176,7 +177,7 @@ angular.module('minyawns.jobs', [])
 	$scope.closeToast = function() {
 
 		$hideToast();
-		$rootScope.$broadcast("onRetry", {});
+		$rootScope.$emit("onRetry");
 	};
 })
 

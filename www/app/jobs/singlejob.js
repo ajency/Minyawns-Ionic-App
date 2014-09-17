@@ -8,7 +8,12 @@ angular.module('minyawns.singlejob', [])
 	
 	console.log('Post ID: '+$stateParams.postID);
 	console.log('All jobs');
-	console.log($rootScope.jobs.allJobs);
+
+	setTimeout(function(){
+
+		console.log($rootScope.jobs.allJobs);
+
+	}, 3000);
 
 
 }])
