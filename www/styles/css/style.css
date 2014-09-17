@@ -32,6 +32,9 @@ body .item-divider {
 body .pane {
   background: #f1f1f1;
 }
+body .pane .has-header {
+  top: 50px;
+}
 /**** Button Styles ****/
 .button.button-green {
   background: #88d816;
@@ -50,9 +53,9 @@ body .pane {
 }
 /**** Login View Styles ****/
 .login-view {
-  background: url("../../img/background.jpg") no-repeat center bottom;
+  background: url("../../img/background.jpg") no-repeat center bottom !important;
   background-color: #444444;
-  background-size: cover;
+  background-size: cover !important;
   text-align: center;
 }
 .login-view #logo-cover {
@@ -219,5 +222,92 @@ body .pane {
 }
 /**** Scroll Refresher Styles ****/
 .scroll-refresher {
-  top: -64px;
+  top: -70px;
+}
+/**** Single Job Styles ****/
+.single-job-card .item {
+  white-space: normal;
+  overflow: visible;
+  border: 0;
+}
+.single-job-card .item * {
+  white-space: normal;
+}
+.single-job-card .item .job-title {
+  color: #7e7e7e;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+.single-job-card .item .job-details {
+  padding: 0;
+  margin: 0 0 0.5rem;
+}
+.single-job-card .item .job-details .col {
+  padding: 0;
+}
+.single-job-card .item .job-details .detail-header {
+  color: #b1b1b1;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  padding-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #b1b1b1;
+}
+.single-job-card .item .job-details .job-price {
+  font-size: 2rem;
+  color: #88d816;
+  font-family: 'light', sans-serif;
+}
+.single-job-card .item .job-details .job-time {
+  padding-right: 0.5rem;
+}
+.single-job-card .item .job-details .job-time .time {
+  font-size: 1.1rem;
+  display: inline-block;
+}
+.single-job-card .item .job-details .job-time .date {
+  font-size: 0.8rem;
+  color: #88d816;
+}
+.single-job-card .item .job-details .job-time .date:after {
+  display: block;
+  content: "";
+}
+.single-job-card .item .job-details .job-location {
+  color: #444444;
+  font-size: 0.9rem;
+  font-family: 'light', sans-serif;
+}
+.single-job-card .item .job-details .job-description {
+  font-size: 0.8rem;
+  color: #5e5e5e;
+  margin-bottom: 1rem;
+}
+.single-job-card .item .job-details .job-snippets {
+  font-size: 0.8rem;
+  color: #989898;
+}
+.single-job-apply {
+  margin: 20px 10px;
+}
+.single-job-apply .col {
+  padding: 0;
+}
+.single-job-apply .detail-header {
+  text-transform: uppercase;
+  color: #88d816;
+  margin-bottom: 0;
+  border-bottom: 1px solid #b1b1b1;
+}
+.single-job-apply .helper-text {
+  font-size: 0.8rem;
+  color: #b1b1b1;
+  font-style: italic;
+  margin: 0.5rem 0;
+}
+.single-job-apply .pic-upload {
+  border: 1px solid #7e7e7e;
+  text-align: center;
+  font-size: 3rem;
+  color: #88d816;
 }

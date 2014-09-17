@@ -23,6 +23,9 @@ body {
 	}
 	.pane {
 		background: lighten(@grey, 25%);
+		.has-header {
+			top: 50px;
+		}
 	}
 }
 
@@ -49,9 +52,9 @@ body {
 
 /**** Login View Styles ****/
 .login-view {
-    background: url("../../img/background.jpg") no-repeat center bottom;
+    background: url("../../img/background.jpg") no-repeat center bottom !important;
     background-color: @dark-grey;
-    background-size: cover;
+    background-size: cover !important;
     text-align: center;
     #logo-cover {
     	width: 100%;
@@ -222,5 +225,95 @@ body {
 
 /**** Scroll Refresher Styles ****/
 .scroll-refresher {
-	top: -64px;
+	top: -70px;
+}
+
+/**** Single Job Styles ****/
+.single-job-card {
+	.item {
+		white-space: normal;
+		overflow: visible;
+		border: 0;
+		* {
+			white-space: normal;
+		}
+		.job-title {
+			color: darken(@grey, 20%);
+			font-size: 1.6rem;
+			margin-bottom: 1rem;
+		}
+		.job-details {
+			padding: 0;
+			margin: 0 0 0.5rem;
+			.col {
+				padding: 0;
+			}
+			.detail-header {
+				color: @grey;
+				text-transform: uppercase;
+				font-size: 0.7rem;
+				padding-bottom: 0.2rem;
+				margin-bottom: 0.5rem;
+				border-bottom: 1px solid @grey;
+			}
+			.job-price {
+				font-size: 2rem;
+				color: @green;
+				font-family: 'light', sans-serif;
+			}
+			.job-time {
+				padding-right: 0.5rem;
+				.time {
+					font-size: 1.1rem;
+					display: inline-block;
+				}
+				.date {
+					font-size: 0.8rem;
+					color: @green;
+					&:after {
+						display: block;
+						content: "";
+					}
+				}
+			}
+			.job-location {
+				color: @dark-grey;
+				font-size: 0.9rem;
+				font-family: 'light', sans-serif;
+			}
+			.job-description {
+				font-size: 0.8rem;
+				color: lighten(@dark-grey, 10%);
+				margin-bottom: 1rem;
+			}
+			.job-snippets {
+				font-size: 0.8rem;
+				color: darken(@grey, 10%);
+			}
+		}
+	}
+}
+.single-job-apply {
+	margin: 20px 10px;
+	.col {
+		padding: 0;
+	}
+	.detail-header {
+		text-transform: uppercase;
+		color: @green;
+		margin-bottom: 0;
+		border-bottom: 1px solid @grey;
+	}
+	.helper-text {
+		font-size: 0.8rem;
+		color: @grey;
+		font-style: italic;
+		margin: 0.5rem 0;
+	}
+	.pic-upload {
+		border: 1px solid darken(@grey, 20%);
+		text-align: center;
+		font-size: 3rem;
+		color: @green;
+	}
 }
