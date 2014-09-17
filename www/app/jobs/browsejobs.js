@@ -119,7 +119,6 @@ angular.module('minyawns.jobs', [])
 	};
 
 
-
 	$scope.fetchComplete = function(){
 
 		$scope.$broadcast('scroll.infiniteScrollComplete');
