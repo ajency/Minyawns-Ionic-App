@@ -1,8 +1,8 @@
 .animate-switch-container {
   position:relative;
-  background:white;
-  border:1px solid black;
-  height:40px;
+ /* background:white;
+  border:1px solid black;*/
+  height:100px;
   overflow:hidden;
 }
 

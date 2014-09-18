@@ -32,7 +32,9 @@ angular.module('minyawns.singlejob', [])
 		$scope.jobTitle = data.post_name;
 
 		var startDate = moment(data.job_start_date).format('MMMM DD, YYYY');
-		$scope.noOfDays = moment(startDate).diff(moment().format('MMMM DD, YYYY'), 'days');
+		var difference = moment(startDate).diff(moment().format('MMMM DD, YYYY'), 'days');
+		if(difference < 0) $scope.noOfDays = 0;
+		else $scope.noOfDays = difference;
 		$scope.startDate = startDate;
 
 		$scope.startTime = data.job_start_time;
@@ -47,13 +49,10 @@ angular.module('minyawns.singlejob', [])
 		$scope.postedBy = data.job_company;
 		$scope.category = data.job_categories.join(', ');
 		$scope.jobTags = data.tags.join(', ');
-
 	}
 
 
 }])
-
-
 
 
 .config(function($stateProvider) {
