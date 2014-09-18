@@ -1,6 +1,6 @@
 // Minyawns app
 angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate', 'ngMaterial'
-	, 'minyawns.storage', 'minyawns.interceptor', 'minyawns.menu'
+	, 'minyawns.storage', 'minyawns.network', 'minyawns.interceptor', 'minyawns.menu'
 	, 'minyawns.login', 'minyawns.jobs', 'minyawns.singlejob', 'minyawns.test'])
 
 

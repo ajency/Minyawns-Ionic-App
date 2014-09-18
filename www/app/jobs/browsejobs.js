@@ -1,7 +1,8 @@
 angular.module('minyawns.jobs', [])
 
-.controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state', '$materialToast'
-	, function($scope, $rootScope, $http, $timeout, $state, $materialToast) {
+.controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
+	, '$materialToast', 'Network'
+	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network) {
 
 	
 	
@@ -60,9 +61,7 @@ angular.module('minyawns.jobs', [])
 			$scope.resetRootScope();
 			$scope.fetchJobs();
 		}
-	};
-
-	$scope.onViewLoad();
+	}();
 
 
 	$scope.onSuccessResponse = function(data){
@@ -143,43 +142,25 @@ angular.module('minyawns.jobs', [])
 
 	$scope.onSingleJobClick = function(postID){
 		
-		$state.go('menu.singlejob',  { postID: postID });
+		if(Network.isOnline())
+			$state.go('menu.singlejob',  { postID: postID });
+		else
+			$scope.showToast();
+
 	};
 
 
 	$scope.showToast = function(){
 
 		$materialToast({
-			controller: 'ToastController',
 			templateUrl: 'views/material-toast.html',
-			duration: 5000,
+			duration: 3000,
 			position: 'bottom'
 		});
 	};
-
-
-	$scope.onRetry = function(){
-
-		$scope.onViewLoad();
-	};
-
-
-	$rootScope.$on("onRetry", function(){
-		
-		$scope.onViewLoad();
-	});
 	
 }])
 
-
-.controller('ToastController', function($scope, $rootScope, $hideToast) {
-
-	$scope.closeToast = function() {
-
-		$hideToast();
-		$rootScope.$emit("onRetry");
-	};
-})
 
 
 .config(function($stateProvider, $urlRouterProvider) {

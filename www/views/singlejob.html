@@ -1,28 +1,35 @@
-<ion-view title="JOB DETAILS">
-  <ion-content>
+<ion-view title="JOB DETAILS" ng-init="loading=true">
+
+  <ion-content  ng-show="loading">
+  	<div class="padding loader">
+		<i class="icon ion-loading-c"></i>
+	</div>
+  </ion-content>
+
+  <ion-content ng-hide="loading">
   	<div class="list list-inset single-job-card">
   		<div class="item">
-	  		<h2 class="job-title">Parking Attendant and Staff for Car Festival 3 Days</h2>
+	  		<h2 class="job-title">{{jobTitle}}</h2>
 	  		<div class="row job-details">
 	  			<div class="col">
 	  				<h4 class="detail-header">When</h4>
 	  				<div class="job-time">
-	  					<span class="time">5 DAYS TO GO</span>
-	  					<span class="date">August 30, 2014</span>
-	  					<span class="time">3:30pm to 9:30pm</span>
+	  					<span class="time">{{noOfDays}} DAYS TO GO</span>
+	  					<span class="date">{{startDate}}</span>
+	  					<span class="time">{{startTime}} {{startMeridiem}} to {{endTime}} {{endMeridiem}}</span>
 	  				</div>
 	  			</div>
 	  			<div class="col col-20">
 	  				<h4 class="detail-header">Wages</h4>
 	  				<div class="job-price">
-	  					$72
+	  					${{wages}}
 	  				</div>
 	  			</div>
 	  		</div>
 	  		<div class="job-details">
 	  			<h4 class="detail-header">Where</h4>
 	  			<div class="job-location">
-	  				4705 University Way NE, Suite 208, Seattle, WA  98125
+	  				{{jobLocation}}
 	  			</div>
 	  		</div>
 	  	</div>
@@ -57,26 +64,26 @@
 	  		<div class="job-details">
 	  			<h4 class="detail-header">More about the Job</h4>
 	  			<div class="job-description">
-	  				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. 
+	  				{{jobDetails}} 
 	  			</div>
 	  		</div>
 	  		<div class="row job-details">
 	  			<div class="col">
 	  				<h4 class="detail-header">Posted By</h4>
 	  				<div class="job-snippets">
-		  				Optimal
+		  				{{postedBy}}
 		  			</div>
 	  			</div>
 	  			<div class="col">
 	  				<h4 class="detail-header">Category</h4>
 	  				<div class="job-snippets">
-		  				Jobs, Parking, Minion
+		  				{{category}}
 		  			</div>
 	  			</div>
 	  			<div class="col">
 	  				<h4 class="detail-header">Tags</h4>
 	  				<div class="job-snippets">
-		  				Optimal, tag1, tag2
+		  				{{jobTags}}
 		  			</div>
 	  			</div>
 	  		</div>
