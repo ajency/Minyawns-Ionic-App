@@ -1,5 +1,5 @@
 // Minyawns app
-angular.module('minyawns', ['ionic', 'ngCordova'
+angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate', 'ngMaterial'
 	, 'minyawns.storage', 'minyawns.interceptor', 'minyawns.menu'
 	, 'minyawns.login', 'minyawns.jobs', 'minyawns.singlejob', 'minyawns.test','minyawns.camera'])
 
@@ -36,19 +36,19 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 	
 	$stateProvider
 
-		//Login
-		.state('login', {
-			url: "/login",
-			templateUrl: 'views/login.html',
-			controller: 'LoginController'
-		})
+	//Login
+	.state('login', {
+		url: "/login",
+		templateUrl: 'views/login.html',
+		controller: 'LoginController'
+	})
 
-		
-		//Menu
-		.state('menu', {
-			url: "/menu",
-			abstract: true,
-			templateUrl: "views/menu.html"
-		})
+	
+	//Menu
+	.state('menu', {
+		url: "/menu",
+		abstract: true,
+		templateUrl: "views/menu.html"
+	})
 
 });

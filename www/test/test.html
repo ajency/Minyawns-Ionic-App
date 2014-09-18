@@ -1,5 +1,47 @@
-<ion-view title="Test">
+<ion-view title="Test list" ng-animate="'animate'">
+
   <ion-content>
-  	<h2>Test content</h2>
-  </ion-content>
- </ion-view>
+
+  <material-button class="material-button-colored">Button</material-button>
+
+	<div class="list list-inset job-list">
+
+    
+		<ion-item class="job" ng-repeat="job in jobs" ng-click="onItemClick($event)">
+
+			<div class="row">
+				<div class="col">
+		  <div class="job-details">
+					<h2 class="job-title">Post ID: {{ job.post_id }}</h2>
+					<div class="detail">
+			  <i class="icon ion-person"></i> {{ job.job_author }}
+			</div>
+					<div class="detail">
+			  <i class="icon ion-calendar"></i> {{ job.job_company }}
+			</div>
+			<div class="location">
+			  <i class="icon ion-location"></i> {{ job.job_location }}
+			</div>
+		  </div>
+				</div>
+		<div class="col col-20">
+		  <div class="job-price">
+			$18
+		  </div>
+		</div>
+			</div>
+	  <div class="job-actions">
+
+	  </div>
+
+		</ion-item>
+		
+
+	</div>
+
+
+   </ion-content>
+
+</ion-view>
+
+

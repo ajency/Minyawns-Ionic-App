@@ -1,17 +1,18 @@
 angular.module('minyawns.jobs', [])
 
-.controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, function($scope, $rootScope, $http, $timeout, $state) {
+.controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state', '$materialToast'
+	, function($scope, $rootScope, $http, $timeout, $state, $materialToast) {
 
 	
 	$scope.reSet = function(){
 
-		$scope.showNoMoreJobs = false;
 		$scope.showConnectionError = false;
+		$scope.showNoMoreJobs = false;
 		$scope.canLoadMore = true;
 	};
 
 
+	
 	$scope.resetRootScope = function(){
 
 		$rootScope.jobs = { offset: 0, allJobs: [] };
@@ -42,20 +43,25 @@ angular.module('minyawns.jobs', [])
 	};
 
 
-	//On view load.
-	if($rootScope.jobs.allJobs.length == 0){ 
+	$scope.onViewLoad = function(){
+		//On view load.
+		if($rootScope.jobs.allJobs.length == 0){ 
 
-		$scope.reSet();
-		$scope.jobs = $rootScope.jobs.allJobs; 
-	}
-	else{
+			$scope.reSet();
+			$scope.jobs = $rootScope.jobs.allJobs; 
+		}
+		else{
 
-		$scope.showRefresher = true;
-		$scope.reSet();
-		$scope.jobs = $rootScope.jobs.allJobs;
-		$scope.resetRootScope();
-		$scope.fetchJobs();
-	}
+			$scope.showRefresher = true;
+			$scope.reSet();
+			$scope.jobs = $rootScope.jobs.allJobs;
+			$scope.resetRootScope();
+			$scope.fetchJobs();
+		}
+	};
+
+
+	$scope.onViewLoad();
 
 
 	$scope.onSuccessResponse = function(data){
@@ -81,17 +87,25 @@ angular.module('minyawns.jobs', [])
 
 	$scope.onErrorResponse = function(error){
 
-		$scope.requestPending = false;
-
 		console.log('ERROR');
 		console.log(error);
+
+		$scope.requestPending = false;
 
 		$rootScope.jobs.allJobs = $scope.jobs;
 
 		$scope.fetchComplete();
-		$scope.showRefresher = true;
+
+		if($rootScope.jobs.allJobs.length == 0){
+			$scope.showRefresher = false;
+			$scope.showConnectionError = true;
+		}
+		else{
+			$scope.showRefresher = true;
+			$scope.showToast();
+		}
+
 		$scope.canLoadMore = false;
-		$scope.showConnectionError = true;
 	};
 
 	
@@ -119,15 +133,6 @@ angular.module('minyawns.jobs', [])
 	};
 
 
-
-	$scope.onRetry = function(){
-
-		$scope.reSet();
-		$scope.fetchjobs();
-	};
-
-
-
 	$scope.fetchComplete = function(){
 
 		$scope.$broadcast('scroll.infiniteScrollComplete');
@@ -139,25 +144,58 @@ angular.module('minyawns.jobs', [])
 		
 		$state.go('menu.singlejob', {postID: postID});
 	};
+
+
+	$scope.showToast = function(){
+
+		$materialToast({
+			controller: 'ToastController',
+			templateUrl: 'views/material-toast.html',
+			duration: 5000,
+			position: 'bottom'
+		});
+	};
+
+
+	$scope.onRetry = function(){
+
+		$scope.onViewLoad();
+	};
+
+
+	$rootScope.$on("onRetry", function(event, args) {
+
+		$scope.onViewLoad();
+	});
 	
 }])
+
+
+.controller('ToastController', function($scope, $rootScope, $hideToast) {
+
+	$scope.closeToast = function() {
+
+		$hideToast();
+		$rootScope.$broadcast("onRetry", {});
+	};
+})
 
 
 .config(function($stateProvider, $urlRouterProvider) {
 	
 	$stateProvider
 
-		.state('menu.browsejobs', {
-			url: "/browsejobs",
-			views: {
-				'menuContent' :{
-					templateUrl: "views/browsejobs.html",
-					controller: 'BrowseController'
-				}
+	.state('menu.browsejobs', {
+		url: "/browsejobs",
+		views: {
+			'menuContent' :{
+				templateUrl: "views/browsejobs.html",
+				controller: 'BrowseController'
 			}
-		})
+		}
+	})
 
-		//Default state. If no states are matched, this will be used as fallback.
-	     $urlRouterProvider.otherwise('/menu/browsejobs');
+	//Default state. If no states are matched, this will be used as fallback.
+    $urlRouterProvider.otherwise('/menu/browsejobs');
 
 });
