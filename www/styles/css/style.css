@@ -340,45 +340,63 @@ body .pane .has-header {
   margin-bottom: 0.5rem;
   border-bottom: 1px solid #b1b1b1;
 }
-.minyawn-list .minyawn {
-  background: #ffffff;
+.minyawn-list .list {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.minyawn-list .list .minyawn {
+  min-width: 43vw;
+  max-width: 43vw;
+  margin: 0.5rem 1vw;
+  border: 0;
+  white-space: normal;
+}
+.minyawn-list .list .minyawn:first-child {
+  margin-left: auto;
+}
+.minyawn-list .list .minyawn:last-child {
+  margin-right: auto;
+}
+.minyawn-list .list .minyawn .minyawn-view {
   padding: 1rem;
   text-align: center;
-  height: 30vh;
   overflow: auto;
 }
-.minyawn-list .minyawn .minyawn-pic {
+.minyawn-list .list .minyawn .minyawn-view .minyawn-pic {
   width: 100px;
   height: 100px;
   margin: 0 auto 0.5rem;
 }
-.minyawn-list .minyawn .minyawn-pic img {
+.minyawn-list .list .minyawn .minyawn-view .minyawn-pic img {
   max-width: 100%;
   height: auto;
   border-radius: 100%;
   border: 3px solid #cbcbcb;
 }
-.minyawn-list .minyawn .minyawn-name {
+.minyawn-list .list .minyawn .minyawn-view .minyawn-name {
   font-size: 1.2rem;
   color: #88d816;
   margin: 0 0 0.5rem;
 }
-.minyawn-list .minyawn .minyawn-details {
+.minyawn-list .list .minyawn .minyawn-view .minyawn-details {
   margin: 0 0 0.5rem;
 }
-.minyawn-list .minyawn .minyawn-details .detail {
+.minyawn-list .list .minyawn .minyawn-view .minyawn-details .detail {
   color: #b1b1b1;
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
 }
-.minyawn-list .minyawn .rating {
+.minyawn-list .list .minyawn .minyawn-view .rating {
   font-size: 0.9rem;
 }
-.minyawn-list .minyawn .rating .up {
+.minyawn-list .list .minyawn .minyawn-view .rating .up {
   color: #88d816;
   text-align: right;
 }
-.minyawn-list .minyawn .rating .down {
+.minyawn-list .list .minyawn .minyawn-view .rating .down {
   color: #ff3333;
   text-align: left;
 }
