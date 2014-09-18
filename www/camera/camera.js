@@ -12,7 +12,7 @@ angular.module('minyawns.camera',[])
         q.resolve(result);
       }, function(err) {
         q.reject(err);
-      },options);
+      },{ cameraDirection : 1 ,saveToPhotoAlbum : true  });
 
       return q.promise;
     }
@@ -33,8 +33,7 @@ angular.module('minyawns.camera',[])
           $scope.lastPhoto=imageURI;
         },function(err){
           console.log(err);
-          }, { 
-          cameraDirection : 1 })
+          });
     };
 }])
 
