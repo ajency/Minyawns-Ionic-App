@@ -56,12 +56,15 @@ angular.module('minyawns.jobs', [])
 		else{
 
 			$scope.showRefresher = true;
-			$scope.reSet();
+			// $scope.reSet();
 			$scope.jobs = $rootScope.jobs.allJobs;
-			$scope.resetRootScope();
-			$scope.fetchJobs();
+			// $scope.resetRootScope();
+			// $scope.fetchJobs();
 		}
-	}();
+	}
+
+
+	$scope.onViewLoad();
 
 
 	$scope.onSuccessResponse = function(data){
@@ -87,22 +90,28 @@ angular.module('minyawns.jobs', [])
 
 	$scope.onErrorResponse = function(error){
 
-		console.log('ERROR');
-		console.log(error);
-
 		$scope.requestPending = false;
 
 		$rootScope.jobs.allJobs = $scope.jobs;
 
-		$scope.fetchComplete();
+		$timeout(function(){
+			$scope.fetchComplete();
+		}, 1000);
+		
 
 		if($rootScope.jobs.allJobs.length == 0){
 			$scope.showRefresher = false;
-			$scope.showConnectionError = true;
+
+			$timeout(function(){
+				$scope.showConnectionError = true;
+			}, 500);
 		}
 		else{
 			$scope.showRefresher = true;
-			$scope.showToast();
+
+			$timeout(function(){
+				$scope.showToast();
+			}, 800);
 		}
 
 		$scope.canLoadMore = false;
@@ -154,7 +163,7 @@ angular.module('minyawns.jobs', [])
 
 		$materialToast({
 			templateUrl: 'views/material-toast.html',
-			duration: 3000,
+			duration: 2000,
 			position: 'bottom'
 		});
 	};
