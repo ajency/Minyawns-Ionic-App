@@ -4,16 +4,7 @@ angular.module('minyawns.singlejob', [])
 .controller('SinglejobController', ['$scope', '$rootScope', '$stateParams'
 	, function($scope, $rootScope, $stateParams) {
 
-
-	
-	console.log('Post ID: '+$stateParams.postID);
-	console.log('All jobs');
-
-	setTimeout(function(){
-
-		console.log($rootScope.jobs.allJobs);
-
-	}, 3000);
+		console.log('Post ID: '+$stateParams.postID);
 
 
 }])

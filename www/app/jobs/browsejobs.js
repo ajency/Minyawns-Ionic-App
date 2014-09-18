@@ -143,7 +143,7 @@ angular.module('minyawns.jobs', [])
 
 	$scope.onSingleJobClick = function(postID){
 		
-		$state.go('menu.singlejob', {postID: postID});
+		$state.go('menu.singlejob',  { postID: postID });
 	};
 
 
