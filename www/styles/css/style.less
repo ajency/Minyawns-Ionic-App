@@ -14,6 +14,7 @@ Version:        0.1.0
 @green: #88D816;
 @grey: #B1B1B1;
 @dark-grey: #444444;
+@red: #ff3333;
 @white: #ffffff;
 
 /**** Body Styles ****/
@@ -302,18 +303,78 @@ body {
 		text-transform: uppercase;
 		color: @green;
 		margin-bottom: 0;
-		border-bottom: 1px solid @grey;
 	}
 	.helper-text {
 		font-size: 0.8rem;
 		color: @grey;
 		font-style: italic;
-		margin: 0.5rem 0;
+		margin: 0 0 0.5rem;
+		padding-right: 0.2rem;
+		border-top: 1px solid @grey;
 	}
-	.pic-upload {
-		border: 1px solid darken(@grey, 20%);
+	.squared {
+		position: relative;
+		&:before {
+			content: "";
+			display: block;
+			padding-top: 100%;
+		}
+		.pic-upload {
+			border: 1px solid darken(@grey, 20%);
+			text-align: center;
+			font-size: 3rem;
+			color: @green;
+			padding-top: 20%;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+	}
+}
+
+/**** Minyawn List Styles ****/
+.minyawn-list {
+	margin: 20px 10px;
+	.detail-header {
+		color: @grey;
+		text-transform: uppercase;
+		font-size: 0.7rem;
+		padding-bottom: 0.2rem;
+		margin-bottom: 0.5rem;
+		border-bottom: 1px solid @grey;
+	}
+	.minyawn {
+		background: @white;
+		padding: 1rem;
 		text-align: center;
-		font-size: 3rem;
-		color: @green;
+		.minyawn-pic {
+			width: 100px;
+			height: 100px;
+			margin: 0 auto 1rem;
+			img {
+				max-width: 100%;
+				height: auto;
+				border-radius: 100%;
+				border: 3px solid lighten(@grey, 10%);
+			}
+		}
+		.minyawn-name {
+			font-size: 1.2rem;
+			color: @green;
+			margin: 0.5rem 0;
+		}
+		.rating {
+			font-size: 0.9rem;
+			.up {
+				color: @green;
+				text-align: right;
+			}
+			.down {
+				color: @red;
+				text-align: left;
+			}
+		}
 	}
 }

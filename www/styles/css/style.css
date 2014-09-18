@@ -297,17 +297,76 @@ body .pane .has-header {
   text-transform: uppercase;
   color: #88d816;
   margin-bottom: 0;
-  border-bottom: 1px solid #b1b1b1;
 }
 .single-job-apply .helper-text {
   font-size: 0.8rem;
   color: #b1b1b1;
   font-style: italic;
-  margin: 0.5rem 0;
+  margin: 0 0 0.5rem;
+  padding-right: 0.2rem;
+  border-top: 1px solid #b1b1b1;
 }
-.single-job-apply .pic-upload {
+.single-job-apply .squared {
+  position: relative;
+}
+.single-job-apply .squared:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+.single-job-apply .squared .pic-upload {
   border: 1px solid #7e7e7e;
   text-align: center;
   font-size: 3rem;
   color: #88d816;
+  padding-top: 20%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+/**** Minyawn List Styles ****/
+.minyawn-list {
+  margin: 20px 10px;
+}
+.minyawn-list .detail-header {
+  color: #b1b1b1;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  padding-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #b1b1b1;
+}
+.minyawn-list .minyawn {
+  background: #ffffff;
+  padding: 1rem;
+  text-align: center;
+}
+.minyawn-list .minyawn .minyawn-pic {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1rem;
+}
+.minyawn-list .minyawn .minyawn-pic img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 100%;
+  border: 3px solid #cbcbcb;
+}
+.minyawn-list .minyawn .minyawn-name {
+  font-size: 1.2rem;
+  color: #88d816;
+  margin: 0.5rem 0;
+}
+.minyawn-list .minyawn .rating {
+  font-size: 0.9rem;
+}
+.minyawn-list .minyawn .rating .up {
+  color: #88d816;
+  text-align: right;
+}
+.minyawn-list .minyawn .rating .down {
+  color: #ff3333;
+  text-align: left;
 }
