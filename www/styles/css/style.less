@@ -229,6 +229,13 @@ body {
 	top: -70px;
 }
 
+/**** Loader Styles ****/
+.loader {
+	text-align: center;
+	font-size: 2rem;
+	margin-top: 41vh;
+}
+
 /**** Single Job Styles ****/
 .single-job-card {
 	.item {
@@ -307,30 +314,26 @@ body {
 	.helper-text {
 		font-size: 0.8rem;
 		color: @grey;
-		font-style: italic;
+		font-family: 'italic', sans-serif;
 		margin: 0 0 0.5rem;
 		padding-right: 0.2rem;
+		padding-top: 0.5rem;
 		border-top: 1px solid @grey;
 	}
-	.squared {
-		position: relative;
-		&:before {
-			content: "";
-			display: block;
-			padding-top: 100%;
-		}
-		.pic-upload {
-			border: 1px solid darken(@grey, 20%);
-			text-align: center;
-			font-size: 3rem;
-			color: @green;
-			padding-top: 20%;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-		}
+	.apply-btn {
+		border: 0;
+		text-transform: uppercase;
+		padding: 0 2rem;
+		font-family: 'Semibold', sans-serif;
+		line-height: 1rem;
+		border-radius: 1px;
+	}
+	.pic-upload {
+		border: 1px solid darken(@grey, 15%);
+		text-align: center;
+		font-size: 3rem;
+		color: @green;
+		line-height: 4rem;
 	}
 }
 
@@ -349,10 +352,12 @@ body {
 		background: @white;
 		padding: 1rem;
 		text-align: center;
+		height: 30vh;
+		overflow: auto;
 		.minyawn-pic {
 			width: 100px;
 			height: 100px;
-			margin: 0 auto 1rem;
+			margin: 0 auto 0.5rem;
 			img {
 				max-width: 100%;
 				height: auto;
@@ -363,7 +368,15 @@ body {
 		.minyawn-name {
 			font-size: 1.2rem;
 			color: @green;
-			margin: 0.5rem 0;
+			margin: 0 0 0.5rem;
+		}
+		.minyawn-details {
+			margin: 0 0 0.5rem;
+			.detail {
+				color: @grey;
+				font-size: 0.8rem;
+				margin-bottom: 0.5rem;
+			}
 		}
 		.rating {
 			font-size: 0.9rem;

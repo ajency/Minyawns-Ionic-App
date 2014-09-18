@@ -224,6 +224,12 @@ body .pane .has-header {
 .scroll-refresher {
   top: -70px;
 }
+/**** Loader Styles ****/
+.loader {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 41vh;
+}
 /**** Single Job Styles ****/
 .single-job-card .item {
   white-space: normal;
@@ -301,30 +307,26 @@ body .pane .has-header {
 .single-job-apply .helper-text {
   font-size: 0.8rem;
   color: #b1b1b1;
-  font-style: italic;
+  font-family: 'italic', sans-serif;
   margin: 0 0 0.5rem;
   padding-right: 0.2rem;
+  padding-top: 0.5rem;
   border-top: 1px solid #b1b1b1;
 }
-.single-job-apply .squared {
-  position: relative;
+.single-job-apply .apply-btn {
+  border: 0;
+  text-transform: uppercase;
+  padding: 0 2rem;
+  font-family: 'Semibold', sans-serif;
+  line-height: 1rem;
+  border-radius: 1px;
 }
-.single-job-apply .squared:before {
-  content: "";
-  display: block;
-  padding-top: 100%;
-}
-.single-job-apply .squared .pic-upload {
-  border: 1px solid #7e7e7e;
+.single-job-apply .pic-upload {
+  border: 1px solid #8b8b8b;
   text-align: center;
   font-size: 3rem;
   color: #88d816;
-  padding-top: 20%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  line-height: 4rem;
 }
 /**** Minyawn List Styles ****/
 .minyawn-list {
@@ -342,11 +344,13 @@ body .pane .has-header {
   background: #ffffff;
   padding: 1rem;
   text-align: center;
+  height: 30vh;
+  overflow: auto;
 }
 .minyawn-list .minyawn .minyawn-pic {
   width: 100px;
   height: 100px;
-  margin: 0 auto 1rem;
+  margin: 0 auto 0.5rem;
 }
 .minyawn-list .minyawn .minyawn-pic img {
   max-width: 100%;
@@ -357,7 +361,15 @@ body .pane .has-header {
 .minyawn-list .minyawn .minyawn-name {
   font-size: 1.2rem;
   color: #88d816;
-  margin: 0.5rem 0;
+  margin: 0 0 0.5rem;
+}
+.minyawn-list .minyawn .minyawn-details {
+  margin: 0 0 0.5rem;
+}
+.minyawn-list .minyawn .minyawn-details .detail {
+  color: #b1b1b1;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
 }
 .minyawn-list .minyawn .rating {
   font-size: 0.9rem;
