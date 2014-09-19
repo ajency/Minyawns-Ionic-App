@@ -3,7 +3,6 @@ angular.module('minyawns.jobs', [])
 .controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
 	, '$materialToast', 'Network'
 	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network) {
-
 	
 	
 	$scope.reSet = function(){

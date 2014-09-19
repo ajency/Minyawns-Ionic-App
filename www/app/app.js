@@ -6,8 +6,9 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate', 'ngMaterial'
 
 .run(function($ionicPlatform, $rootScope, $timeout, $cordovaSplashscreen) {
 
-	//Initialize jobs object to $rootScope
+	//Initialize jobs and minionDetails to $rootScope
 	$rootScope.jobs = { offset: 0, allJobs: [] };
+	$rootScope.minionDetails = [];
 
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

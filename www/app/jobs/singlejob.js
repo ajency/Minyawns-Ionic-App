@@ -1,14 +1,17 @@
-angular.module('minyawns.singlejob', [])
+angular.module('minyawns.singlejob', ['ngUnderscore'])
 
 
-.controller('SinglejobController', ['$scope', '$stateParams', '$http'
-	, function($scope, $stateParams, $http) {
+.controller('SinglejobController', ['$scope', '$rootScope','$stateParams', '$http'
+		, '$q', '$ionicSideMenuDelegate'
+	, function($scope, $rootScope, $stateParams, $http, $q, $ionicSideMenuDelegate) {
 
+
+	$rootScope.postID = $stateParams.postID;
 	
 	$scope.getSingleJobDetails = function(){
 
 		$http.get('http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/'
-			+'fetchjobs?offset=0&single_job='+$stateParams.postID)
+			+'fetchjobs?offset=0&single_job='+$rootScope.postID)
 
 		.then(function(resp, status, headers, config){
 
@@ -17,7 +20,7 @@ angular.module('minyawns.singlejob', [])
 
 		function(error){
 
-			console.log('Error');
+			console.log('getSingleJobDetails Error');
 		});
 
 	}();
@@ -26,6 +29,7 @@ angular.module('minyawns.singlejob', [])
 	$scope.onSuccessResponse = function(data){
 
 		$scope.loading = false;
+		console.log('getSingleJobDetails Response');
 		console.log(data);
 
 		//Populate single job data.
@@ -49,10 +53,113 @@ angular.module('minyawns.singlejob', [])
 		$scope.postedBy = data.job_company;
 		$scope.category = data.job_categories.join(', ');
 		$scope.jobTags = data.tags.join(', ');
-	}
 
+		$scope.applicants = data.applied_user_id;
+	};
+
+
+	$scope.disableMenuDrag = function(){
+
+		$ionicSideMenuDelegate.canDragContent(false);
+	};
+
+	
+	$scope.enableMenuDrag = function(){
+
+		$ionicSideMenuDelegate.canDragContent(true);
+	};
 
 }])
+
+
+.controller('ApplicantController', ['$scope', '$rootScope', '$http', '$ionicModal', '_'
+	, function($scope, $rootScope, $http, $ionicModal, _){
+
+
+	$scope.getMinionDetails = function(){
+
+		$http.get('http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/'
+			+'jobminions?minion_id='+$scope.minion+'&job_id='+$rootScope.postID)
+
+		.then(function(resp, status, headers, config){
+
+			console.log('getMinionDetails Response');
+			console.log(resp);
+			$scope.showLoader=false;
+			$scope.details = resp.data[0];
+			$rootScope.minionDetails = $rootScope.minionDetails.concat($scope.details);
+		},
+
+		function(error){
+
+			console.log('getMinionDetails Error');
+		});
+
+	}();
+
+
+	//Modal showing minion details
+	$ionicModal.fromTemplateUrl('views/minion-modal.html', { 
+		scope: $scope, 
+		animation: 'slide-in-up'
+	})
+	.then(function(modal) {
+		$scope.modal = modal;
+	});
+
+	$scope.openModal = function(minionID) {
+
+		$scope.activeSlide = _.indexOf($scope.applicants, minionID);
+		console.log($scope.activeSlide);
+		$scope.modal.show();
+	};
+
+	$scope.closeModal = function() {
+		$scope.modal.hide();
+	};
+	
+	$scope.$on('$destroy', function() {
+		$scope.modal.remove();
+	});
+
+	$scope.$on('modal.hidden', function() {
+		// $scope.modal.remove();
+	});
+
+}])
+
+
+.controller('MinionModalController', ['$scope', '$rootScope', '$ionicSlideBoxDelegate', '_'
+	, function($scope, $rootScope, $ionicSlideBoxDelegate, _){
+
+	
+	$scope.gotoPreviousMinion = function(){
+
+		$ionicSlideBoxDelegate.previous();
+	};
+
+	$scope.gotoNextMinion = function(){
+
+		$ionicSlideBoxDelegate.next();
+	};
+	
+
+	$scope.$watchCollection("minionDetails"
+		, function(newValue, oldValue) {
+
+			var sortedArray  = _.sortBy(newValue, function(num){
+
+				return _.indexOf($scope.applicants, num.user_id);
+			})
+
+            $rootScope.minionDetails = sortedArray;
+
+            $ionicSlideBoxDelegate.update();
+        }
+    );
+	
+}])
+
 
 
 .config(function($stateProvider) {
