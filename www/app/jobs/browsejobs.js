@@ -1,8 +1,9 @@
 angular.module('minyawns.jobs', [])
 
-.controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state', '$materialToast'
-	, function($scope, $rootScope, $http, $timeout, $state, $materialToast) {
-
+.controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
+	, '$materialToast', 'Network'
+	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network) {
+	
 	
 	$scope.reSet = function(){
 
@@ -43,6 +44,7 @@ angular.module('minyawns.jobs', [])
 	};
 
 
+
 	$scope.onViewLoad = function(){
 		//On view load.
 		if($rootScope.jobs.allJobs.length == 0){ 
@@ -53,12 +55,12 @@ angular.module('minyawns.jobs', [])
 		else{
 
 			$scope.showRefresher = true;
-			$scope.reSet();
+			// $scope.reSet();
 			$scope.jobs = $rootScope.jobs.allJobs;
-			$scope.resetRootScope();
-			$scope.fetchJobs();
+			// $scope.resetRootScope();
+			// $scope.fetchJobs();
 		}
-	};
+	}
 
 
 	$scope.onViewLoad();
@@ -87,22 +89,28 @@ angular.module('minyawns.jobs', [])
 
 	$scope.onErrorResponse = function(error){
 
-		console.log('ERROR');
-		console.log(error);
-
 		$scope.requestPending = false;
 
 		$rootScope.jobs.allJobs = $scope.jobs;
 
-		$scope.fetchComplete();
+		$timeout(function(){
+			$scope.fetchComplete();
+		}, 1000);
+		
 
 		if($rootScope.jobs.allJobs.length == 0){
 			$scope.showRefresher = false;
-			$scope.showConnectionError = true;
+
+			$timeout(function(){
+				$scope.showConnectionError = true;
+			}, 500);
 		}
 		else{
 			$scope.showRefresher = true;
-			$scope.showToast();
+
+			$timeout(function(){
+				$scope.showToast();
+			}, 800);
 		}
 
 		$scope.canLoadMore = false;
@@ -142,43 +150,25 @@ angular.module('minyawns.jobs', [])
 
 	$scope.onSingleJobClick = function(postID){
 		
-		$state.go('menu.singlejob', {postID: postID});
+		if(Network.isOnline())
+			$state.go('menu.singlejob',  { postID: postID });
+		else
+			$scope.showToast();
+
 	};
 
 
 	$scope.showToast = function(){
 
 		$materialToast({
-			controller: 'ToastController',
 			templateUrl: 'views/material-toast.html',
-			duration: 5000,
+			duration: 2000,
 			position: 'bottom'
 		});
 	};
-
-
-	$scope.onRetry = function(){
-
-		$scope.onViewLoad();
-	};
-
-
-	$rootScope.$on("onRetry", function(event, args) {
-
-		$scope.onViewLoad();
-	});
 	
 }])
 
-
-.controller('ToastController', function($scope, $rootScope, $hideToast) {
-
-	$scope.closeToast = function() {
-
-		$hideToast();
-		$rootScope.$broadcast("onRetry", {});
-	};
-})
 
 
 .config(function($stateProvider, $urlRouterProvider) {

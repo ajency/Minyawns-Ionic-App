@@ -1,0 +1,48 @@
+<ion-modal-view>
+    <ion-content ng-controller="MinionModalController">
+
+    	<a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="gotoPreviousMinion()">Previous</a>
+		<a class="button icon-left ion-chevron-right button-clear button-dark" ng-click="gotoNextMinion()">Next</a>
+
+    	<ion-slide-box show-pager="false" active-slide="activeSlide">
+
+			<ion-slide class="minyawn"
+				ng-repeat="details in minionDetails">
+
+				<div class="minyawn-view">
+					<div class="minyawn-pic">
+						<!-- <img src="./img/venkman.jpg"> -->
+						<div ng-bind-html="details.user_image"></div>
+					</div>
+					<h5 class="minyawn-name">{{details.name}}</h5>
+
+					<div class="minyawn-details">
+						<div class="detail">
+							{{details.user_email}}
+						</div>
+						<div class="detail">
+							{{details.linkedin}}
+						</div>
+						<div class="detail">
+							{{details.college}}<br>
+							{{details.major}}
+						</div>
+					</div>
+
+					<div class="row rating">
+						<div class="col up">
+							<i class="icon ion-thumbsup"></i> <span class="count">{{details.rating_positive}}</span>
+						</div>
+						<div class="col down">
+							<i class="icon ion-thumbsdown"></i> <span class="count">{{details.rating_negative}}</span>
+						</div>
+					</div>
+					
+				</div>
+
+			</ion-slide>
+
+		</ion-slide-box>
+
+    </ion-content>
+ </ion-modal-view>
