@@ -1,25 +1,5 @@
 angular.module('minyawns.camera',[])
 
-/*
-.factory('Camera', ['$q', function($q) {
-
-  return {
-    getPicture: function(options) {
-      var q = $q.defer();
-
-      navigator.camera.getPicture(function(result) {
-        // Do any magic you need
-        q.resolve(result);
-      }, function(err) {
-        q.reject(err);
-      },{ cameraDirection : 1 ,saveToPhotoAlbum : true  });
-
-      return q.promise;
-    }
-  }
-}])
-*/
-
 .controller('CameraController' ,['$scope','$cordovaCamera' , function($scope, $cordovaCamera){
 
     $scope.getPhoto = function(){

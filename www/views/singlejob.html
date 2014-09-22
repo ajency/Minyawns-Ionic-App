@@ -35,30 +35,32 @@
 	  	</div>
 	</div>
 
-	<button class="button button-small button-positive apply-btn" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[!toggle]" ng-click="toggle=!toggle">
-				  Apply
-	</button>
-	<div class="single-job-apply cssSlideUp" ng-init="toggle=true" ng-hide="toggle">
-		<div class="row">
-			<div class="col">
-				<h3 class="detail-header">Apply Now</h3>
-			</div>
-			<div class="col col-20">
-				&nbsp;
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<div class="helper-text">
-					To apply, take a picture or upload one, and when done, just hit the button below.
+	<div ng-controller="ApplyJobController">
+		<button class="button button-small button-positive apply-btn" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[!toggle]" ng-click="toggle=!toggle">
+					  Apply
+		</button>
+		<div class="single-job-apply cssSlideUp" ng-init="toggle=true" ng-hide="toggle">
+			<div class="row">
+				<div class="col">
+					<h3 class="detail-header">Apply Now</h3>
 				</div>
-				<button class="button button-small button-positive apply-btn">
-				  Apply
-				</button>
+				<div class="col col-20">
+					&nbsp;
+				</div>
 			</div>
-			<div class="col col-20">
-				<div class="pic-upload">
-					<i class="icon ion-camera"></i>
+			<div class="row">
+				<div class="col">
+					<div class="helper-text">
+						To apply, take a picture or upload one, and when done, just hit the button below.
+					</div>
+					<button class="button button-small button-positive apply-btn">
+					  Apply
+					</button>
+				</div>
+				<div class="col col-20">
+					<div class="pic-upload">
+						<i class="icon ion-camera"></i>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -72,6 +72,13 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 }])
 
 
+.controller('ApplyJobController', ['$scope', function($scope){
+
+
+
+}])
+
+
 .controller('ApplicantController', ['$scope', '$rootScope', '$http', '$ionicModal', '_'
 	, function($scope, $rootScope, $http, $ionicModal, _){
 
@@ -160,7 +167,9 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 
 
 
-.config(function($stateProvider) {
+.config(function($stateProvider, $compileProvider) {
+
+	$compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 	
 	$stateProvider
 
