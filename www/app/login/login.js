@@ -1,4 +1,5 @@
-angular.module('minyawns.login', [])
+angular.module('minyawns.login', ['minyawns.storage'])
+
 
 .controller('LoginController', ['$scope', '$state', '$http', '$ionicPopup', 'Storage'
 	, function($scope, $state, $http, $ionicPopup, Storage) {

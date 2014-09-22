@@ -2,10 +2,11 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 
 
 .controller('SinglejobController', ['$scope', '$rootScope','$stateParams', '$http'
-		, '$q', '$ionicSideMenuDelegate'
+	, '$q', '$ionicSideMenuDelegate'
 	, function($scope, $rootScope, $stateParams, $http, $q, $ionicSideMenuDelegate) {
 
 
+	$rootScope.minionDetails = [];
 	$rootScope.postID = $stateParams.postID;
 	
 	$scope.getSingleJobDetails = function(){
@@ -68,7 +69,6 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 
 		$ionicSideMenuDelegate.canDragContent(true);
 	};
-
 }])
 
 
@@ -110,7 +110,6 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 	$scope.openModal = function(minionID) {
 
 		$scope.activeSlide = _.indexOf($scope.applicants, minionID);
-		console.log($scope.activeSlide);
 		$scope.modal.show();
 	};
 
@@ -131,8 +130,8 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 
 .controller('MinionModalController', ['$scope', '$rootScope', '$ionicSlideBoxDelegate', '_'
 	, function($scope, $rootScope, $ionicSlideBoxDelegate, _){
-
 	
+
 	$scope.gotoPreviousMinion = function(){
 
 		$ionicSlideBoxDelegate.previous();
@@ -144,8 +143,7 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 	};
 	
 
-	$scope.$watchCollection("minionDetails"
-		, function(newValue, oldValue) {
+	$scope.$watchCollection("minionDetails", function(newValue, oldValue) {
 
 			var sortedArray  = _.sortBy(newValue, function(num){
 

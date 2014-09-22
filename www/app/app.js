@@ -1,14 +1,13 @@
 // Minyawns app
-angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate', 'ngMaterial'
-	, 'minyawns.storage', 'minyawns.network', 'minyawns.interceptor', 'minyawns.menu'
-	, 'minyawns.login', 'minyawns.jobs', 'minyawns.singlejob', 'minyawns.test'])
+angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
+	, 'minyawns.interceptor', 'minyawns.menu'
+	, 'minyawns.login', 'minyawns.jobs', 'minyawns.test'])
 
 
 .run(function($ionicPlatform, $rootScope, $timeout, $cordovaSplashscreen) {
 
-	//Initialize jobs and minionDetails to $rootScope
+	//Initialize jobs object to $rootScope
 	$rootScope.jobs = { offset: 0, allJobs: [] };
-	$rootScope.minionDetails = [];
 
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

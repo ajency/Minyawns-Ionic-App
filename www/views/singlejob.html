@@ -34,7 +34,11 @@
 	  		</div>
 	  	</div>
 	</div>
-	<div class="single-job-apply">
+
+	<button class="button button-small button-positive apply-btn" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[!toggle]" ng-click="toggle=!toggle">
+				  Apply
+	</button>
+	<div class="single-job-apply cssSlideUp" ng-init="toggle=true" ng-hide="toggle">
 		<div class="row">
 			<div class="col">
 				<h3 class="detail-header">Apply Now</h3>
@@ -59,6 +63,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="list list-inset single-job-card">
   		<div class="item">
 	  		<div class="job-details">

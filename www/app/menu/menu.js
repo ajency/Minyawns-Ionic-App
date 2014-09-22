@@ -1,4 +1,4 @@
-angular.module('minyawns.menu', [])
+angular.module('minyawns.menu', ['minyawns.storage'])
 
 
 .controller('MenuController', ['$scope', 'Storage', function($scope, Storage) {

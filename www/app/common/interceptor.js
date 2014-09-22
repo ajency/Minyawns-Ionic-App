@@ -1,4 +1,4 @@
-angular.module('minyawns.interceptor', [])
+angular.module('minyawns.interceptor', ['minyawns.network'])
 
 
 .factory('Method', [function() {

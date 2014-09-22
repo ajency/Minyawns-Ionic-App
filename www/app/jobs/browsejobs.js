@@ -1,8 +1,8 @@
-angular.module('minyawns.jobs', [])
+angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns.singlejob'])
 
 .controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, '$materialToast', 'Network'
-	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network) {
+	, '$materialToast', 'Network', 'Toast'
+	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network, Toast){
 	
 	
 	$scope.reSet = function(){
@@ -109,7 +109,8 @@ angular.module('minyawns.jobs', [])
 			$scope.showRefresher = true;
 
 			$timeout(function(){
-				$scope.showToast();
+				if(error === 'NetworkNotAvailable') Toast.connectionError();
+				else Toast.responseError();
 			}, 800);
 		}
 
@@ -152,19 +153,8 @@ angular.module('minyawns.jobs', [])
 		
 		if(Network.isOnline())
 			$state.go('menu.singlejob',  { postID: postID });
-		else
-			$scope.showToast();
-
-	};
-
-
-	$scope.showToast = function(){
-
-		$materialToast({
-			templateUrl: 'views/material-toast.html',
-			duration: 2000,
-			position: 'bottom'
-		});
+		else 
+			Toast.connectionError();
 	};
 	
 }])
