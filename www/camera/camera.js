@@ -1,6 +1,6 @@
 angular.module('minyawns.camera',[])
 
-
+/*
 .factory('Camera', ['$q', function($q) {
 
   return {
@@ -18,18 +18,23 @@ angular.module('minyawns.camera',[])
     }
   }
 }])
+*/
 
-
-.controller('CameraController' ,['$scope', 'Camera', function($scope, Camera){
-
-    $scope.onUploadClick = function(){
-          console.log('UPLOAD CLICKED');
-    };
+.controller('CameraController' ,['$scope','$cordovaCamera' , function($scope, $cordovaCamera){
 
     $scope.getPhoto = function(){
+
+        var options = { 
+          cameraDirection : 1 ,  
+          targetWidth: 1000,
+          targetHeight: 1000,
+          allowEdit : true
         
-        Camera.getPicture().then(function(imageURI){
+        
+        };
+        $cordovaCamera.getPicture(options).then(function(imageURI){
           console.log(imageURI);
+        
           $scope.lastPhoto=imageURI;
         },function(err){
           console.log(err);
