@@ -11,10 +11,10 @@
 
 	<div class="list list-inset job-list">
 
-    <ion-item ng-show="showConnectionError" ng-click="onViewLoad()" class="message connection-error">
-    	<i class="icon ion-alert-circled"></i>
-	    Connection error. Try again.
-	  </ion-item>
+	    <ion-item ng-show="showConnectionError" ng-click="onViewLoad()" class="message connection-error">
+	    	<i class="icon ion-alert-circled"></i>
+		    Connection error. Try again.
+		</ion-item>
 
 		<ion-item class="job" ng-repeat="job in jobs" ng-click="onSingleJobClick(job.post_id)">
 

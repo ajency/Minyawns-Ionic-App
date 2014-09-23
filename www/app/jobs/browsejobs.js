@@ -156,7 +156,6 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 		else 
 			Toast.connectionError();
 	};
-	
 }])
 
 

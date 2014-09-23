@@ -1,7 +1,7 @@
 angular.module('minyawns.menu', ['minyawns.storage'])
 
 
-.controller('MenuController', ['$scope', 'Storage', function($scope, Storage) {
+.controller('MenuController', ['$scope', '$rootScope', 'Storage', function($scope, $rootScope, Storage){
 
 	$scope.menuHeader = false;
 
@@ -36,6 +36,17 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 		Storage.setLoginStatus('signed-out');
 		init();
+
+		//Event handler in singlejob.js
+		$rootScope.$emit('onUserLogout', {});
 	};
+
+
+	//Keep track of current & previous state in abstract menu state.
+	$rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
+
+	    $rootScope.previousState = from.name;
+	    $rootScope.currentState = to.name;
+	});
 
 }])

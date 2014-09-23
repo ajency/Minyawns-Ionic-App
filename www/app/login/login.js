@@ -1,8 +1,8 @@
 angular.module('minyawns.login', ['minyawns.storage'])
 
 
-.controller('LoginController', ['$scope', '$state', '$http', '$ionicPopup', 'Storage'
-	, function($scope, $state, $http, $ionicPopup, Storage) {
+.controller('LoginController', ['$scope', '$rootScope', '$state', '$http', '$ionicPopup', 'Storage'
+	, function($scope, $rootScope, $state, $http, $ionicPopup, Storage) {
 
 	//Default
 	$scope.showLoader = false;
@@ -35,9 +35,10 @@ angular.module('minyawns.login', ['minyawns.storage'])
 
 			if(resp.data.success){
 
+				Storage.setUserID(resp.data.userdata.user_id);
             	Storage.setUserName(resp.data.userdata.user_login);
             	Storage.setLoginStatus('signed-in');
-            	$state.go('menu.browsejobs');
+            	$scope.gotoState();
             }
             else{
 
@@ -57,6 +58,16 @@ angular.module('minyawns.login', ['minyawns.storage'])
 
 		});
 	};
+
+
+	
+	$scope.gotoState = function(){
+
+		if($rootScope.previousState === 'menu.singlejob')
+			$state.go('menu.singlejob');
+		else	
+        	$state.go('menu.browsejobs');
+	}
 
 
 	$scope.errorPopUp = function(message){

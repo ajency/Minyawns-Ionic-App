@@ -1,12 +1,11 @@
-angular.module('minyawns.singlejob', ['ngUnderscore'])
+angular.module('minyawns.singlejob', ['minyawns.storage', 'ngUnderscore'])
 
 
 .controller('SinglejobController', ['$scope', '$rootScope','$stateParams', '$http'
-	, '$q', '$ionicSideMenuDelegate'
-	, function($scope, $rootScope, $stateParams, $http, $q, $ionicSideMenuDelegate) {
+	, '$ionicSideMenuDelegate'
+	, function($scope, $rootScope, $stateParams, $http, $ionicSideMenuDelegate) {
 
-
-	$rootScope.minionDetails = [];
+	
 	$rootScope.postID = $stateParams.postID;
 	
 	$scope.getSingleJobDetails = function(){
@@ -16,7 +15,8 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 
 		.then(function(resp, status, headers, config){
 
-			$scope.onSuccessResponse(resp.data[0]);
+			$rootScope.singleJobData = resp.data[0];
+			$scope.populateSingleJobData(resp.data[0]);
 		},
 
 		function(error){
@@ -24,16 +24,13 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 			console.log('getSingleJobDetails Error');
 		});
 
-	}();
+	};
 
 	
-	$scope.onSuccessResponse = function(data){
+	$scope.populateSingleJobData = function(data){
 
 		$scope.loading = false;
-		console.log('getSingleJobDetails Response');
-		console.log(data);
 
-		//Populate single job data.
 		$scope.jobTitle = data.post_name;
 
 		var startDate = moment(data.job_start_date).format('MMMM DD, YYYY');
@@ -59,6 +56,18 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 	};
 
 
+	$scope.onViewLoad = function(){
+
+		$scope.loading = true;
+
+		if($rootScope.previousState === 'menu.singlejob')
+			$scope.populateSingleJobData($rootScope.singleJobData);
+
+		else $scope.getSingleJobDetails();
+
+	}();
+
+
 	$scope.disableMenuDrag = function(){
 
 		$ionicSideMenuDelegate.canDragContent(false);
@@ -72,16 +81,33 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 }])
 
 
-.controller('ApplyJobController', ['$scope', function($scope){
 
+.controller('ApplyJobController', ['$scope', '$rootScope', 'Storage'
+	, function($scope, $rootScope, Storage){
 
+	var init = function(){
+
+		var user = Storage.getUserDetails();
+
+		if(user.isLoggedIn) $scope.applyButton = 'Apply';
+		else $scope.applyButton = 'Login to apply';
+	};
+
+	init();
+
+	$rootScope.$on('onUserLogout', function(event, args) {
+
+		init();
+    });
 
 }])
+
 
 
 .controller('ApplicantController', ['$scope', '$rootScope', '$http', '$ionicModal', '_'
 	, function($scope, $rootScope, $http, $ionicModal, _){
 
+	$rootScope.minionDetails = [];
 
 	$scope.getMinionDetails = function(){
 
@@ -90,8 +116,6 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 
 		.then(function(resp, status, headers, config){
 
-			console.log('getMinionDetails Response');
-			console.log(resp);
 			$scope.showLoader=false;
 			$scope.details = resp.data[0];
 			$rootScope.minionDetails = $rootScope.minionDetails.concat($scope.details);
@@ -113,6 +137,7 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 	.then(function(modal) {
 		$scope.modal = modal;
 	});
+	
 
 	$scope.openModal = function(minionID) {
 
@@ -120,19 +145,23 @@ angular.module('minyawns.singlejob', ['ngUnderscore'])
 		$scope.modal.show();
 	};
 
+
 	$scope.closeModal = function() {
 		$scope.modal.hide();
 	};
+
 	
 	$scope.$on('$destroy', function() {
 		$scope.modal.remove();
 	});
+
 
 	$scope.$on('modal.hidden', function() {
 		// $scope.modal.remove();
 	});
 
 }])
+
 
 
 .controller('MinionModalController', ['$scope', '$rootScope', '$ionicSlideBoxDelegate', '_'
