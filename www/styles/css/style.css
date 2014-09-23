@@ -8,6 +8,16 @@ Author URI:     http://ajency.in/
 Version:        0.1.0
 *//**** Fonts ****/
 /****Colors****/
+/****Clearfix****/
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:after,
+.clearfix:before {
+  clear: both;
+  content: "";
+  display: table;
+}
 /**** Body Styles ****/
 body h1,
 body h2,
@@ -163,6 +173,7 @@ body .pane .has-header {
 /**** Job List Styles ****/
 .job-list {
   background: transparent;
+  margin: 10px;
 }
 .job-list .job {
   background: #ffffff;
@@ -175,30 +186,82 @@ body .pane .has-header {
 }
 .job-list .job .job-details .job-title {
   font-family: 'Light', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   margin-bottom: 5px;
+  color: #b1b1b1;
 }
 .job-list .job .job-details .detail {
   margin-bottom: 5px;
   font-size: 0.92rem;
-}
-.job-list .job .job-details .detail .icon {
-  color: #cbcbcb;
-  font-size: 0.8rem;
+  font-family: 'Semibold', sans-serif;
 }
 .job-list .job .job-details .location {
-  font-family: 'Light', sans-serif;
+  font-family: 'Regular', sans-serif;
   font-size: 0.8rem;
 }
-.job-list .job .job-details .location .icon {
+.job-list .job .job-details .icon {
   color: #cbcbcb;
-  margin-right: 5px;
+  width: 15px;
+  display: inline-block;
+  text-align: center;
 }
 .job-list .job .job-price {
   text-align: center;
   font-size: 2rem;
   color: #88d816;
   font-family: 'light', sans-serif;
+}
+.job-list .job .job-actions {
+  background: url('../../img/action-bg.png');
+  margin: 0 -10px -10px;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  *zoom: 1;
+}
+.job-list .job .job-actions:after,
+.job-list .job .job-actions:before {
+  clear: both;
+  content: "";
+  display: table;
+}
+.job-list .job .job-actions .apply-button {
+  float: left;
+  position: relative;
+  line-height: 40px;
+}
+.job-list .job .job-actions .apply-button .minyawn-head {
+  background: url('../../img/minion-vector-head.png') no-repeat;
+  height: 20px;
+  width: 20px;
+  background-size: 20px 20px;
+  position: absolute;
+  top: 0;
+  right: -30px;
+}
+.job-list .job .job-actions .applicants {
+  float: right;
+  text-align: right;
+}
+.job-list .job .job-actions .applicants .min-icon {
+  display: inline-block;
+  width: 22px;
+  height: 38px;
+  background: url('../../img/minion-vector-grey.png') no-repeat;
+  background-size: 22px 38px;
+}
+.job-list .job .job-actions .applicants .min-icon.minyawn-applied {
+  background: url('../../img/minion-vector.png') no-repeat;
+  background-size: 22px 38px;
+}
+.job-list .job .job-actions .applicants .min-icon.minyawn-empty {
+  background: url('../../img/minion-vector-body.png') no-repeat center bottom;
+  background-size: 22px 20px;
+}
+.job-list .job.not-applicable {
+  border-left-color: #ff3333;
+}
+.job-list .job.not-applicable .job-actions {
+  color: #b1b1b1;
 }
 .job-list .message {
   text-align: center;
@@ -360,43 +423,43 @@ body .pane .has-header {
 .minyawn-list .list .minyawn:last-child {
   margin-right: auto;
 }
-.minyawn-list .list .minyawn .minyawn-view {
+.minyawn .minyawn-view {
   padding: 1rem;
   text-align: center;
   overflow: auto;
 }
-.minyawn-list .list .minyawn .minyawn-view .minyawn-pic {
+.minyawn .minyawn-view .minyawn-pic {
   width: 100px;
   height: 100px;
   margin: 0 auto 0.5rem;
 }
-.minyawn-list .list .minyawn .minyawn-view .minyawn-pic img {
+.minyawn .minyawn-view .minyawn-pic img {
   max-width: 100%;
   height: auto;
   border-radius: 100%;
   border: 3px solid #cbcbcb;
 }
-.minyawn-list .list .minyawn .minyawn-view .minyawn-name {
+.minyawn .minyawn-view .minyawn-name {
   font-size: 1.2rem;
   color: #88d816;
   margin: 0 0 0.5rem;
 }
-.minyawn-list .list .minyawn .minyawn-view .minyawn-details {
+.minyawn .minyawn-view .minyawn-details {
   margin: 0 0 0.5rem;
 }
-.minyawn-list .list .minyawn .minyawn-view .minyawn-details .detail {
+.minyawn .minyawn-view .minyawn-details .detail {
   color: #b1b1b1;
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
 }
-.minyawn-list .list .minyawn .minyawn-view .rating {
+.minyawn .minyawn-view .rating {
   font-size: 0.9rem;
 }
-.minyawn-list .list .minyawn .minyawn-view .rating .up {
+.minyawn .minyawn-view .rating .up {
   color: #88d816;
   text-align: right;
 }
-.minyawn-list .list .minyawn .minyawn-view .rating .down {
+.minyawn .minyawn-view .rating .down {
   color: #ff3333;
   text-align: left;
 }
