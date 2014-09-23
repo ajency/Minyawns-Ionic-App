@@ -130,40 +130,64 @@ body .pane .has-header {
   color: #ffffff;
 }
 /**** Left Menu Styles ****/
-.menu-left .menu-header {
-  height: auto;
-  box-shadow: 0 1px 1px 0 #e4e4e4;
-}
-.menu-left .menu-header .item-avatar {
+.menu-left .log-view {
   padding: 0 16px;
-  padding-left: 72px;
-  text-transform: capitalize;
+  width: 100%;
+  text-align: center;
   min-height: initial;
-  max-height: 52px;
 }
-.menu-left .menu-header .item-avatar img {
+.menu-left .log-view img {
   border-radius: 100%;
   top: auto;
+  width: 120px;
+  height: 120px;
+  margin: 0.5rem auto;
 }
-.menu-left .menu-header .item-avatar h2 {
-  color: #b1b1b1;
+.menu-left .log-view h2 {
+  color: #444444;
   margin-top: 0;
   margin-bottom: 0.25rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-family: 'Semibold', sans-serif;
 }
-.menu-left .menu-header .item-avatar p {
+.menu-left .log-view h2 span {
   color: #88d816;
-  margin-bottom: 0;
 }
-.menu-left .has-header {
-  top: 53px;
+.menu-left .log-view .desc {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Light', sans-serif;
 }
-.menu-left .has-header .list .item {
-  color: #b1b1b1;
+.menu-left .log-view .details {
+  text-align: left;
+}
+.menu-left .log-view .details p {
+  color: #444444;
+  margin-bottom: 0.5rem;
+}
+.menu-left .log-view .details p .number {
+  font-size: 2rem;
+  font-family: 'Semibold', sans-serif;
+  color: #88d816;
+}
+.menu-left .log-view .details p .sign-in {
+  font-family: 'Semibold', sans-serif;
+  color: #88d816;
+}
+.menu-left .menu-sep {
+  margin: 0.5rem 0 -1px;
+  border-bottom: 2px solid #88d816;
+  padding: 5px 16px;
+  font-size: 1rem;
+  color: #444444;
   text-transform: uppercase;
+  font-family: 'Semibold', sans-serif;
+}
+.menu-left .list .item {
+  color: #b1b1b1;
   font-size: 0.8rem;
 }
-.menu-left .has-header .list .item.item-divider {
+.menu-left .list .item.item-divider {
   background: #ffffff;
   color: #444444;
   font-size: 1rem;

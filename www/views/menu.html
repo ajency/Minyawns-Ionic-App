@@ -12,20 +12,30 @@
 	</ion-pane>
 
 	<ion-side-menu side="left" ng-controller="MenuController">
-
-	    <ion-header-bar class="menu-header">
-	      <div class="item-avatar" ng-show="menuHeader">
-	        <img src="./img/venkman.jpg">
-	        <h2> {{ minyawnUserName }} </h2>
-	        <p>Minions</p>
-	      </div>
-
-	      <div class="item-avatar" ng-hide="menuHeader">
-	        <h2>Sign-in to Minyawns</h2>
-	      </div>
-	    </ion-header-bar>
 			
 		<ion-content>
+			<div class="log-view" ng-hide="menuHeader">
+        <img src="./img/venkman.jpg">
+        <h2>Hello, <span>Johanna Doe</span></h2>
+        <h2>Hello There!</h2>
+        <div class="desc">You are logged in as: A Minion</div>
+        <div class="desc">You are not signed in.</div>
+        <div class="details">
+        	<p>Total number of Jobs</p>
+        	<p>You have applied to: <span class="number">12</span></p>
+        	<p>You have been hired for: <span class="number">4</span></p>
+        </div>
+        <div class="details">
+        	<p>Sadly, you are missing out on a lot of action! To apply to Jobs, update your profile and do a lot more you will need to 
+        		<span class="sign-in">
+						  Sign In
+						</span>
+					</p>
+        </div>
+      </div>
+      <div class="menu-sep">
+      	Go To / Do More
+      </div>
 			<ion-list>
 
 				<ion-item menu-close ui-sref="menu.browsejobs">
