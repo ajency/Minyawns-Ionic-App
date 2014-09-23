@@ -6,7 +6,7 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 
 .run(function($ionicPlatform, $rootScope, $timeout, $cordovaSplashscreen) {
 
-	//Initialize jobs object to $rootScope
+	//Initialize $rootScope variables
 	$rootScope.jobs = { offset: 0, allJobs: [] };
 
 	$ionicPlatform.ready(function() {

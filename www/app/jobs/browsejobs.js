@@ -3,6 +3,9 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 .controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
 	, '$materialToast', 'Network', 'Toast'
 	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network, Toast){
+
+	
+	$rootScope.profilePicture = '';
 	
 	
 	$scope.reSet = function(){

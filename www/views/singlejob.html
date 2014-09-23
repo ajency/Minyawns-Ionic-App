@@ -1,12 +1,12 @@
 <ion-view title="JOB DETAILS">
 
-  <ion-content  ng-show="loading">
+  <ion-content  ng-show="mainLoader">
   	<div class="padding loader">
 		<i class="icon ion-loading-c"></i>
 	</div>
   </ion-content>
 
-  <ion-content ng-hide="loading">
+  <ion-content ng-hide="mainLoader">
   	<div class="list list-inset single-job-card">
   		<div class="item">
 	  		<h2 class="job-title">{{jobTitle}}</h2>
@@ -35,11 +35,11 @@
 	  	</div>
 	</div>
 
-	<div ng-controller="ApplyJobController">
-		<button class="button button-small button-positive apply-btn" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[!toggle]" ng-click="toggle=!toggle">
+	<div>
+		<!-- <button class="button button-small button-positive apply-btn" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[!toggle]" ng-click="toggle=!toggle">
 					  Apply
-		</button>
-		<div class="single-job-apply cssSlideUp" ng-init="toggle=true" ng-hide="toggle">
+		</button> -->
+		<div class="single-job-apply cssSlideUp">
 			<div class="row">
 				<div class="col">
 					<h3 class="detail-header">Apply Now</h3>
@@ -53,13 +53,17 @@
 					<div class="helper-text">
 						To apply, take a picture or upload one, and when done, just hit the button below.
 					</div>
-					<button class="button button-small button-positive apply-btn">
+					<button class="button button-small button-positive apply-btn" ng-click="onApply()">
 					  {{applyButton}}
 					</button>
+					<div ng-init="applyLoader=false" ng-show="applyLoader">
+						<i class="icon ion-loading-c"></i>
+					</div>
 				</div>
 				<div class="col col-20">
-					<div class="pic-upload">
-						<i class="icon ion-camera"></i>
+					<div class="pic-upload" ng-click="takePicture()">
+						<!-- <i class="icon ion-camera"></i> -->
+						<img ng-src="{{profilePicture}}" ></img>
 					</div>
 				</div>
 			</div>
@@ -105,13 +109,13 @@
 					ng-repeat="minion in applicants"
 					ng-click="openModal(minion)"
 					ng-controller="ApplicantController"
-					ng-init="showLoader=true">
+					ng-init="minionLoader=true">
 
-					<div class="padding loader" ng-show="showLoader">
+					<div class="padding loader" ng-show="minionLoader">
 						<i class="icon ion-loading-c"></i>
 					</div>
 					
-					<div ng-hide="showLoader">
+					<div ng-hide="minionLoader">
 
 						<div class="minyawn-view">
 							<div class="minyawn-pic">
@@ -128,30 +132,6 @@
 								</div>
 							</div>
 						</div>
-
-						<!-- <div class="minyawn-view">
-							<h5 class="minyawn-name">{{details.name}}</h5>
-							<div class="minyawn-details">
-								<div class="detail">
-									{{details.user_email}}
-								</div>
-								<div class="detail">
-									{{details.linkedin}}
-								</div>
-								<div class="detail">
-									{{details.college}}<br>
-									{{details.major}}
-								</div>
-							</div>
-							<div class="row rating">
-								<div class="col up">
-									<i class="icon ion-thumbsup"></i> <span class="count">{{details.rating_positive}}</span>
-								</div>
-								<div class="col down">
-									<i class="icon ion-thumbsdown"></i> <span class="count">{{details.rating_negative}}</span>
-								</div>
-							</div>
-						</div> -->
 
 					</div>
 
