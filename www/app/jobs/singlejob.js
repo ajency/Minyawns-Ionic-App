@@ -9,6 +9,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'ngUnderscore'])
 	
 	$rootScope.minionDetails = [];
 	$rootScope.postID = $stateParams.postID;
+	$scope.applyLoader = false;
 	
 	$scope.getSingleJobDetails = function(){
 
@@ -31,10 +32,17 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'ngUnderscore'])
 
 	$scope.setApplyButtonText = function(){
 
+		$scope.applyLoader = false;
+
 		var user = Storage.getUserDetails();
 
 		if(user.isLoggedIn){
-			$scope.applyButton = 'Apply';
+
+			var applied = false;
+			if($scope.applicants.indexOf(user.userID) != -1) applied = true;
+
+			if(!applied) $scope.applyButton = 'Apply';
+			else $scope.applyButton = 'Un-apply';
 		}
 		else $scope.applyButton = 'Login to apply';
 
@@ -44,7 +52,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'ngUnderscore'])
 	$scope.populateSingleJobData = function(data){
 
 		$scope.mainLoader = false;
-		$scope.setApplyButtonText();
 
 		$scope.jobTitle = data.post_name;
 		$scope.noOfDays = data.days_to_job_expired;
@@ -64,6 +71,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'ngUnderscore'])
 		$scope.jobTags = data.tags.join(', ');
 
 		$scope.applicants = data.applied_user_id;
+
+		$scope.setApplyButtonText();
 	};
 
 
@@ -84,43 +93,38 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'ngUnderscore'])
     	if($scope.applyButton === 'Apply'){
 
     		if($rootScope.profilePicture === '') console.log('Upload picture');
-    		else console.log('Apply');
+    		else $scope.minyawnJobAction('minyawn_job_apply');
     	}
 
     	else if($scope.applyButton === 'Un-apply')
-    		console.log('')
+    		$scope.minyawnJobAction('minyawn_job_unapply');
 
     	else if($scope.applyButton === 'Login to apply')
     		$state.go('login');
     };
 
 
-    $scope.minyawnJobAction = function(jobAction){
+    $scope.minyawnJobAction = function(action){
 
-    	var action = ''
-    	if(jobAction === 'apply') action = 'minyawn_job_apply';
-    	else if(jobAction === 'un-apply') action = 'minyawn_job_unapply';
+    	$scope.applyLoader = true;
 
-    	var data = {
-    		action: action,
-    		job_id: 
-    	}
+    	var data = { action: action, job_id: $rootScope.postID };
 
-    	$http.post('http://www.minyawns.ajency.in/wp-admin/admin-ajax.php', $scope.data)
+    	$http.post('http://www.minyawns.ajency.in/wp-admin/admin-ajax.php', data)
 
 	    .then(function(resp, status, headers, config){
 
-			
+	    	console.log('minyawnJobAction response')
+	    	console.log(resp);
 
+	    	$scope.getSingleJobDetails();
 		},
 
 		function(error){
 
-			console.log('LOGIN ERROR');
+			console.log('minyawnJobAction error');
 			console.log(error);
 		});
-
-
     };
 
 
