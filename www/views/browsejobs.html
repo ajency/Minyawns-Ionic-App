@@ -20,28 +20,62 @@
 
 			<div class="row">
 				<div class="col">
-		  <div class="job-details">
-					<h2 class="job-title">Post ID: {{ job.post_id }}</h2>
-					<div class="detail">
-			  <i class="icon ion-person"></i> {{ job.job_author }}
-			</div>
-					<div class="detail">
-			  <i class="icon ion-calendar"></i> {{ job.job_company }}
-			</div>
-			<div class="location">
-			  <i class="icon ion-location"></i> {{ job.job_location }}
-			</div>
-		  </div>
+				  <div class="job-details">
+						<h2 class="job-title">Post ID: {{ job.post_id }}</h2>
+						<div class="detail">
+						  <i class="icon ion-person"></i> {{ job.job_author }}
+						</div>
+								<div class="detail">
+						  <i class="icon ion-calendar"></i> {{ job.job_company }}
+						</div>
+						<div class="location">
+						  <i class="icon ion-location"></i> {{ job.job_location }}
+						</div>
+				  </div>
 				</div>
-		<div class="col col-20">
-		  <div class="job-price">
-			$18
-		  </div>
-		</div>
+				<div class="col col-20">
+				  <div class="job-price">
+					$18
+				  </div>
+				</div>
 			</div>
-	  <div class="job-actions">
+		  <div class="job-actions">
+		  	<div class="apply-button">
+		  		Apply Now 
+		  		<div class="minyawn-head">&nbsp;</div>
+		  	</div>
+		  	<div class="applicants">
+		  		<div class="min-icon minyawn-empty">&nbsp;</div>
+		  		<div class="min-icon minyawn-applied">&nbsp;</div>
+		  		<div class="min-icon minyawn-applied">&nbsp;</div>
+		  		<div class="min-icon">&nbsp;</div>
+		  	</div>
+		  </div>
 
-	  </div>
+		</ion-item>
+
+		<ion-item class="job not-applicable" ng-click="onSingleJobClick(job.post_id)">
+
+			<div class="row">
+				<div class="col">
+				  <div class="job-details">
+						<h2 class="job-title">Cannot Apply</h2>
+				  </div>
+				</div>
+				<div class="col col-20">
+				  
+				</div>
+			</div>
+		  <div class="job-actions">
+		  	<div class="apply-button">
+		  		You cannot Apply
+		  	</div>
+		  	<div class="applicants">
+		  		<div class="min-icon minyawn-applied">&nbsp;</div>
+		  		<div class="min-icon minyawn-applied">&nbsp;</div>
+		  		<div class="min-icon minyawn-applied">&nbsp;</div>
+		  	</div>
+		  </div>
 
 		</ion-item>
 
