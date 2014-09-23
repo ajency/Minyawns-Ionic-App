@@ -97,28 +97,28 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'ngUnderscore'])
 
     $scope.minyawnJobAction = function(jobAction){
 
-    	var action = ''
-    	if(jobAction === 'apply') action = 'minyawn_job_apply';
-    	else if(jobAction === 'un-apply') action = 'minyawn_job_unapply';
+  //   	var action = ''
+  //   	if(jobAction === 'apply') action = 'minyawn_job_apply';
+  //   	else if(jobAction === 'un-apply') action = 'minyawn_job_unapply';
 
-    	var data = {
-    		action: action,
-    		job_id: 
-    	}
+  //   	var data = {
+  //   		action: action,
+  //   		job_id: 
+  //   	}
 
-    	$http.post('http://www.minyawns.ajency.in/wp-admin/admin-ajax.php', $scope.data)
+  //   	$http.post('http://www.minyawns.ajency.in/wp-admin/admin-ajax.php', $scope.data)
 
-	    .then(function(resp, status, headers, config){
+	 //    .then(function(resp, status, headers, config){
 
 			
 
-		},
+		// },
 
-		function(error){
+		// function(error){
 
-			console.log('LOGIN ERROR');
-			console.log(error);
-		});
+		// 	console.log('LOGIN ERROR');
+		// 	console.log(error);
+		// });
 
 
     };
