@@ -4,7 +4,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'ngUnderscore'])
 .controller('SinglejobController', ['$scope', '$rootScope','$stateParams', '$http'
 	, '$ionicSideMenuDelegate', 'Storage', '$state', '$cordovaCamera', '_'
 	, function($scope, $rootScope, $stateParams, $http, $ionicSideMenuDelegate
-		, Storage, $state, $cordovaCamera, _) {
+	, Storage, $state, $cordovaCamera, _) {
 
 	
 	$rootScope.minionDetails = [];
@@ -13,8 +13,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'ngUnderscore'])
 	
 	$scope.getSingleJobDetails = function(){
 
-		$http.get('http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/'
-			+'fetchjobs?offset=0&single_job='+$rootScope.postID)
+		$http.get($rootScope.GETURL+'fetchjobs?offset=0&single_job='+$rootScope.postID)
 
 		.then(function(resp, status, headers, config){
 
@@ -110,7 +109,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'ngUnderscore'])
 
     	var data = { action: action, job_id: $rootScope.postID };
 
-    	$http.post('http://www.minyawns.ajency.in/wp-admin/admin-ajax.php', data)
+    	$http.post($rootScope.AJAXURL, data)
 
 	    .then(function(resp, status, headers, config){
 
@@ -174,8 +173,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'ngUnderscore'])
 
 	$scope.getMinionDetails = function(){
 
-		$http.get('http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/'
-			+'jobminions?minion_id='+$scope.minion+'&job_id='+$rootScope.postID)
+		$http.get($rootScope.GETURL+'jobminions?minion_id='+$scope.minion+'&job_id='+$rootScope.postID)
 
 		.then(function(resp, status, headers, config){
 

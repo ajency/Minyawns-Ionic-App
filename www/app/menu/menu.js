@@ -1,9 +1,8 @@
 angular.module('minyawns.menu', ['minyawns.storage'])
 
 
-.controller('MenuController', ['$scope', '$rootScope', 'Storage', function($scope, $rootScope, Storage){
-
-	$scope.menuHeader = false;
+.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window'
+	, function($scope, $rootScope, Storage, $window){
 
 	var init = function(){
 
@@ -11,15 +10,13 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 		if(user.isLoggedIn){
 
-			$scope.minyawnUserName = user.userName;
-
+			$scope.menuTitle = 'Do More';
 			$scope.logInOutMenu = false;
-			$scope.menuHeader = true;
 		}
 		else{
 
+			$scope.menuTitle = 'Go To';
 			$scope.logInOutMenu = true;
-			$scope.menuHeader = false;
 		}
 	};
 
@@ -28,7 +25,7 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 	$scope.openBlogLink = function(){
 
-		window.open('http://www.minyawns.com/blog/', '_system', 'location=yes')
+		$window.open('http://www.minyawns.com/blog/', '_system', 'location=yes')
 	}
 
 

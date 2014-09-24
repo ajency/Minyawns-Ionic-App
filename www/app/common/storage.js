@@ -1,10 +1,10 @@
 angular.module('minyawns.storage', [])
 
 
-.factory('Storage', [function() {
+.factory('Storage', ['$window', function($window) {
 
 
-	var LS = window.localStorage;
+	var LS = $window.localStorage;
 
 	var localStorage =  {
 

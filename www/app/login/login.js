@@ -1,8 +1,9 @@
 angular.module('minyawns.login', ['minyawns.storage'])
 
 
-.controller('LoginController', ['$scope', '$rootScope', '$state', '$http', '$ionicPopup', 'Storage'
-	, function($scope, $rootScope, $state, $http, $ionicPopup, Storage) {
+.controller('LoginController', ['$scope', '$rootScope', '$state', '$http', '$ionicPopup'
+	, 'Storage', '$window'
+	, function($scope, $rootScope, $state, $http, $ionicPopup, Storage, $window) {
 
 	//Default
 	$scope.showLoader = false;
@@ -20,7 +21,7 @@ angular.module('minyawns.login', ['minyawns.storage'])
 		else{
 
 			$scope.showLoader = true;
-			$scope.data = { pdemail: username, pdpass: password };
+			$scope.data = { action: 'popup_userlogin', pdemail: username, pdpass: password };
 			$scope.authenticate();
 		}
 	};
@@ -28,8 +29,7 @@ angular.module('minyawns.login', ['minyawns.storage'])
 
 	$scope.authenticate = function(){
 
-	    $http.post('http://www.minyawns.ajency.in/wp-admin/admin-ajax.php?'
-	    	+'action=popup_userlogin', $scope.data)
+	    $http.post($rootScope.AJAXURL, $scope.data)
 
 	    .then(function(resp, status, headers, config){
 
@@ -38,7 +38,7 @@ angular.module('minyawns.login', ['minyawns.storage'])
 				Storage.setUserID(resp.data.userdata.user_id);
             	Storage.setUserName(resp.data.userdata.user_login);
             	Storage.setLoginStatus('signed-in');
-            	$scope.gotoState();
+            	$window.history.back();
             }
             else{
 
@@ -58,16 +58,6 @@ angular.module('minyawns.login', ['minyawns.storage'])
 
 		});
 	};
-
-
-	
-	$scope.gotoState = function(){
-
-		if($rootScope.previousState === 'menu.singlejob')
-			$state.go('menu.singlejob');
-		else	
-        	$state.go('menu.browsejobs');
-	}
 
 
 	$scope.errorPopUp = function(message){

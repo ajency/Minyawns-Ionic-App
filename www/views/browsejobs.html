@@ -16,9 +16,9 @@
 		    Connection error. Try again.
 		</ion-item>
 
-		<ion-item class="job" ng-repeat="job in jobs" ng-click="onSingleJobClick(job.post_id)">
+		<ion-item class="job" ng-repeat="job in jobs">
 
-			<div class="row">
+			<div class="row" ng-click="onSingleJobClick(job.post_id)">
 				<div class="col">
 				  <div class="job-details">
 						<h2 class="job-title">Post ID: {{ job.post_id }}</h2>
@@ -39,11 +39,13 @@
 				  </div>
 				</div>
 			</div>
+
 		  <div class="job-actions">
-		  	<div class="apply-button">
+		  	<!-- <div class="apply-button">
 		  		Apply Now 
 		  		<div class="minyawn-head">&nbsp;</div>
-		  	</div>
+		  	</div> -->
+		  	<draggable on-touch="disableMenuDrag()" on-release="enableMenuDrag()"> </draggable>
 		  	<div class="applicants">
 		  		<div class="min-icon minyawn-empty">&nbsp;</div>
 		  		<div class="min-icon minyawn-applied">&nbsp;</div>

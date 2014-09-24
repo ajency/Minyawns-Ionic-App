@@ -1,8 +1,9 @@
-angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns.singlejob'])
+angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns.singlejob', 'drag'])
 
 .controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, '$materialToast', 'Network', 'Toast'
-	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network, Toast){
+	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate'
+	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network
+	, Toast, $ionicSideMenuDelegate){
 
 	
 	$rootScope.profilePicture = '';
@@ -31,8 +32,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
 			$scope.requestPending = true;
 
-			$http.get('http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/'
-				+'fetchjobs?offset='+$rootScope.jobs.offset)
+			$http.get($rootScope.GETURL+'fetchjobs?offset='+$rootScope.jobs.offset)
 
 			.then(function(resp, status, headers, config){
 
@@ -158,6 +158,18 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 			$state.go('menu.singlejob',  { postID: postID });
 		else 
 			Toast.connectionError();
+	};
+
+
+	$scope.disableMenuDrag = function(){
+
+		$ionicSideMenuDelegate.canDragContent(false);
+	};
+
+	
+	$scope.enableMenuDrag = function(){
+
+		$ionicSideMenuDelegate.canDragContent(true);
 	};
 }])
 

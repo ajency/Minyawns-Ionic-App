@@ -1,6 +1,6 @@
 <ion-side-menus>
 
-	<ion-pane drag-content="false" ion-side-menu-content>
+	<ion-pane ion-side-menu-content>
 		<ion-nav-bar class="bar-green" animation="nav-title-slide-ios7">
 		</ion-nav-bar>
 
@@ -14,28 +14,38 @@
 	<ion-side-menu side="left" ng-controller="MenuController">
 			
 		<ion-content>
-			<div class="log-view" ng-hide="menuHeader">
-        <img src="./img/venkman.jpg">
-        <h2>Hello, <span>Johanna Doe</span></h2>
-        <h2>Hello There!</h2>
-        <div class="desc">You are logged in as: A Minion</div>
-        <div class="desc">You are not signed in.</div>
-        <div class="details">
-        	<p>Total number of Jobs</p>
-        	<p>You have applied to: <span class="number">12</span></p>
-        	<p>You have been hired for: <span class="number">4</span></p>
-        </div>
-        <div class="details">
-        	<p>Sadly, you are missing out on a lot of action! To apply to Jobs, update your profile and do a lot more you will need to 
-        		<span class="sign-in">
-						  Sign In
+
+			<div class="log-view">
+				<img src="./img/venkman.jpg">
+
+				<div ng-hide="logInOutMenu">
+					<h2>Hello, <span>Johanna Doe</span></h2>
+					<div class="desc">You are logged in as: A Minion</div>
+					<div class="details">
+						<p>Total number of Jobs</p>
+						<p>You have applied to: <span class="number">12</span></p>
+						<p>You have been hired for: <span class="number">4</span></p>
+					</div>
+				</div>
+
+				<div ng-show="logInOutMenu">
+					<h2>Hello There!</h2>
+					<div class="desc">You are not signed in.</div>
+					<div class="details">
+						<p>Sadly, you are missing out on a lot of action! To apply to Jobs, update your profile and do a lot more you will need to 
+						<span class="sign-in">
+						Sign In
 						</span>
-					</p>
-        </div>
-      </div>
-      <div class="menu-sep">
-      	Go To / Do More
-      </div>
+						</p>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="menu-sep">
+				{{menuTitle}}
+			</div>
+
 			<ion-list>
 
 				<ion-item menu-close ui-sref="menu.browsejobs">
@@ -53,7 +63,9 @@
 				<ion-item menu-close ui-sref="menu.test">
 					Test
 				</ion-item> 
+				
 			</ion-list>
+
 		</ion-content>
 
 	</ion-side-menu>

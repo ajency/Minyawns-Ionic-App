@@ -4,18 +4,22 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 	, 'minyawns.login', 'minyawns.jobs', 'minyawns.test'])
 
 
-.run(function($ionicPlatform, $rootScope, $timeout, $cordovaSplashscreen) {
+.run(function($ionicPlatform, $rootScope, $timeout, $cordovaSplashscreen, $window) {
 
 	//Initialize $rootScope variables
+	$rootScope.AJAXURL = "http://www.minyawns.ajency.in/wp-admin/admin-ajax.php";
+	$rootScope.GETURL = "http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/";
+
 	$rootScope.jobs = { offset: 0, allJobs: [] };
 
+	
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
-		if(window.cordova && window.cordova.plugins.Keyboard) {
+		if($window.cordova && $window.cordova.plugins.Keyboard) {
 			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 		}
-		if(window.StatusBar) {
+		if($window.StatusBar) {
 			StatusBar.styleDefault();
 		}
 
