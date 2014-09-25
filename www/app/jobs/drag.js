@@ -20,7 +20,7 @@ angular.module('drag', [])
 				cursor: 'pointer'
 			});
  			
- 			//Browser
+ 			//Browser Events
 			element.on('mousedown', function(event){
 				
 				event.preventDefault();
@@ -59,7 +59,7 @@ angular.module('drag', [])
 			}
 
 
-			//Device
+			//Device Events
 			element.on('touchstart', function(event){
 				
 				event.preventDefault();
