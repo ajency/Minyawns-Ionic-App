@@ -1,4 +1,5 @@
-angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns.singlejob', 'drag'])
+angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns.singlejob'
+	, 'minyawns.draggable'])
 
 .controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
 	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate'
@@ -158,6 +159,12 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 			$state.go('menu.singlejob',  { postID: postID });
 		else 
 			Toast.connectionError();
+	};
+
+
+	$scope.applyForJob = function(jobID){
+
+		console.log('applyForJob: '+jobID);
 	};
 
 

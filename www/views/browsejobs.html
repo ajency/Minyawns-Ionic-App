@@ -45,7 +45,12 @@
 		  		Apply Now 
 		  		<div class="minyawn-head">&nbsp;</div>
 		  	</div> -->
-		  	<draggable on-touch="disableMenuDrag()" on-release="enableMenuDrag()"> </draggable>
+		  	
+		  	<div id="draggableContainer" >
+			  	<m-draggable on-apply-job="applyForJob($jobID)" job-post-id="{{job.post_id}}" on-touch="disableMenuDrag()" on-release="enableMenuDrag()">
+			  	</m-draggable>
+			</div>
+
 		  	<div class="applicants">
 		  		<div class="min-icon minyawn-empty">&nbsp;</div>
 		  		<div class="min-icon minyawn-applied">&nbsp;</div>
@@ -56,7 +61,7 @@
 
 		</ion-item>
 
-		<ion-item class="job not-applicable" ng-click="onSingleJobClick(job.post_id)">
+		<ion-item class="job not-applicable">
 
 			<div class="row">
 				<div class="col">
