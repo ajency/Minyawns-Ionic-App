@@ -44,15 +44,18 @@ angular.module('minyawns.interceptor', ['minyawns.network'])
 
 
 //TODO: Interceptor to inject cookies in every request.
-.factory('CookieInjector', ['Method', function(Method) {
+.factory('CookieInjector', ['Method', 'Storage', function(Method, Storage) {
 	
 	var cookieInjector = {
 
 		request: function(config) {
 
 			if(Method.isGET(config) || Method.isPOST(config)){
-					
-				   return config;
+
+				var user = Storage.getUserDetails();
+				
+				config.headers['Set-Cookie'] = user.cookie;
+				return config;
 			}
 
 			else return config;
@@ -67,6 +70,7 @@ angular.module('minyawns.interceptor', ['minyawns.network'])
 
 	$httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+	$httpProvider.defaults.withCredentials = true;
 
 	$httpProvider.defaults.transformRequest = [function(data) {
 
@@ -108,6 +112,6 @@ angular.module('minyawns.interceptor', ['minyawns.network'])
 	
 	
 	$httpProvider.interceptors.push('NetworkCheck');
-	// $httpProvider.interceptors.push('CookieInjector');
+	$httpProvider.interceptors.push('CookieInjector');
 
 }]);

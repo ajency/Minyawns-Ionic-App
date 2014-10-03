@@ -21,22 +21,28 @@ angular.module('minyawns.login', ['minyawns.storage'])
 		else{
 
 			$scope.showLoader = true;
-			$scope.data = { action: 'popup_userlogin', pdemail: username, pdpass: password };
-			$scope.authenticate();
+
+			$scope.authenticate(username, password);
 		}
 	};
 
 
-	$scope.authenticate = function(){
-
-	    $http.post($rootScope.AJAXURL, $scope.data)
+	$scope.authenticate = function(username, password){
+	    
+	    $http.get('http://www.minyawns.ajency.in/api/login/username/'+username
+	    	+'/password/'+password)
 
 	    .then(function(resp, status, headers, config){
 
-			if(resp.data.success){
+	    	var data = resp.data;
 
-				Storage.setUserID(resp.data.userdata.user_id);
-            	Storage.setUserName(resp.data.userdata.user_login);
+			if(data.status){
+
+				Storage.setUserID(data.id);
+            	Storage.setUserName(data.user_login);
+            	Storage.setDisplayName(data.display_name);
+            	Storage.setAuthCookie(data.logged_in_cookie);
+            	Storage.setProfileImageSrc(data.avatar_url)
             	Storage.setLoginStatus('signed-in');
             	$window.history.back();
             }

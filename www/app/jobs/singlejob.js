@@ -54,7 +54,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'ngUnderscore'])
 
 		$scope.jobTitle = data.post_name;
 		$scope.noOfDays = data.days_to_job_expired;
-		$scope.startDate = moment(data.job_start_date).format('MMMM DD, YYYY');;
+		$scope.startDate = moment(data.job_start_date).format('LL');;
 
 		$scope.startTime = data.job_start_time;
 		$scope.startMeridiem = data.job_start_meridiem;

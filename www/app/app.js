@@ -1,7 +1,7 @@
 // Minyawns app
 angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 	, 'minyawns.interceptor', 'minyawns.menu'
-	, 'minyawns.login', 'minyawns.jobs', 'minyawns.test'])
+	, 'minyawns.login', 'minyawns.jobs'])
 
 
 .run(function($ionicPlatform, $rootScope, $timeout, $cordovaSplashscreen, $window) {
