@@ -5,35 +5,50 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 	, function($scope, $rootScope, Storage, $window, _, $http, $timeout){
 
 
+	var myJobs = []; 
+	var offset = 0;
+		
 	$scope.updateHiredAndAppliedCount = function(userID){
 
-		$http.get($rootScope.GETURL+'fetchjobs?my_jobs=1&offset=0&filter_my=0&logged_in_user_id='
-			+userID)
+		$http.get($rootScope.GETURL+'fetchjobs?my_jobs=1&offset='+offset+'&filter_my=0&'+
+			'logged_in_user_id='+userID)
 
 		.then(function(resp, status, headers, config){
 
 			var data = resp.data;
 
-			if(data.length == 0) $scope.applied_to = $scope.hired_for = 0;
+			if(data.length == 0 && myJobs.length == 0) $scope.applied_to = $scope.hired_for = 0;
 			else{
 
-				$scope.applied_to = data.length
+				if(data.length == 0){
 
-				var totalHired = 0;
+					$scope.applied_to = myJobs.length
 
-				_.each(data, function(job){
+					var totalHired = 0;
 
-					var appliedUsers = job.applied_user_id;
+					_.each(myJobs, function(job){
 
-					var index = appliedUsers.indexOf(userID);
+						var appliedUsers = job.applied_user_id;
 
-					if(job.user_to_job_status[index] === 'hired')
-						totalHired = totalHired + 1;
+						var index = appliedUsers.indexOf(userID);
 
-				});
+						if(job.user_to_job_status[index] === 'hired')
+							totalHired = totalHired + 1;
 
-				$scope.hired_for = totalHired;
+					});
+
+					$scope.hired_for = totalHired;
+
+				}
+
+				else{
+					myJobs = myJobs.concat(data);
+					offset = offset + 5;
+					$scope.updateHiredAndAppliedCount(userID);
+				}
 			}
+
+			
 		},
 
 		function(error){
@@ -56,6 +71,8 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 			$scope.logInOutMenu = false;
 
 			$timeout(function(){
+				myJobs = [];
+				offset = 0;
 				$scope.updateHiredAndAppliedCount(user.userID);
 			}, 500);
 			
@@ -74,6 +91,12 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 		$window.open('http://www.minyawns.com/blog/', '_system', 'location=yes')
 	}
+
+
+	$rootScope.$on('onMinyawnJobAction', function(event, args) {
+
+		$scope.init();
+    });
 
 
 	$scope.onLogout = function(){

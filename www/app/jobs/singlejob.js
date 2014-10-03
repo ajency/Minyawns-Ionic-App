@@ -117,6 +117,9 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'ngUnderscore'])
 	    	console.log(resp);
 
 	    	$scope.getSingleJobDetails();
+
+	    	//Event handler in menu.js
+	    	$rootScope.$emit('onMinyawnJobAction', {});
 		},
 
 		function(error){
