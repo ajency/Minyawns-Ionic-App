@@ -6,7 +6,7 @@
 	</div>
   </ion-content>
 
-  <ion-content ng-hide="mainLoader">
+  <ion-content ng-hide="mainContent">
   	<div class="list list-inset single-job-card">
   		<div class="item">
 	  		<h2 class="job-title">{{jobTitle}}</h2>
@@ -56,9 +56,6 @@
 					<button class="button button-small button-positive apply-btn" ng-click="onApply()">
 					  {{applyButton}}
 					</button>
-					<div ng-show="applyLoader">
-						<i class="icon ion-loading-c"></i>
-					</div>
 				</div>
 				<div class="col col-20">
 					<div class="pic-upload" ng-click="takePicture()">

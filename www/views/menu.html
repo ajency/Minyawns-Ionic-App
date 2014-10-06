@@ -16,15 +16,23 @@
 		<ion-content>
 
 			<div class="log-view">
-				<img src="./img/venkman.jpg">
+				<img src="{{display_image}}">
 
 				<div ng-hide="logInOutMenu">
 					<h2>Hello, <span>{{display_name}}</span></h2>
 					<div class="desc">You are logged in as: A Minion</div>
 					<div class="details">
+
 						<p>Total number of Jobs</p>
-						<p>You have applied to: <span class="number">{{applied_to}}</span></p>
-						<p>You have been hired for: <span class="number">{{hired_for}}</span></p>
+
+						<div ng-show="menuLoader">
+							<i class="icon ion-loading-c"></i>
+						</div>
+
+						<div ng-hide="menuLoader">
+							<p>You have applied to: <span class="number">{{applied_to}}</span></p>
+							<p>You have been hired for: <span class="number">{{hired_for}}</span></p>
+						</div>
 					</div>
 				</div>
 

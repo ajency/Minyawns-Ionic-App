@@ -1,7 +1,8 @@
 angular.module('minyawns.menu', ['minyawns.storage'])
 
 
-.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http', '$timeout'
+.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http'
+	, '$timeout'
 	, function($scope, $rootScope, Storage, $window, _, $http, $timeout){
 
 
@@ -17,7 +18,11 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 			var data = resp.data;
 
-			if(data.length == 0 && myJobs.length == 0) $scope.applied_to = $scope.hired_for = 0;
+			if(data.length == 0 && myJobs.length == 0){
+
+				$scope.applied_to = $scope.hired_for = 0;
+				$scope.menuLoader = false;
+			}
 			else{
 
 				if(data.length == 0){
@@ -38,6 +43,7 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 					});
 
 					$scope.hired_for = totalHired;
+					$scope.menuLoader = false;
 
 				}
 
@@ -65,7 +71,9 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 		if(user.isLoggedIn){
 
+			$scope.menuLoader = true;
 			$scope.display_name = user.displayName;
+			$scope.display_image = user.profileImgSrc;
 
 			$scope.menuTitle = 'Do More';
 			$scope.logInOutMenu = false;
@@ -79,6 +87,7 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 		}
 		else{
 
+			$scope.display_image = "./img/user.png";
 			$scope.menuTitle = 'Go To';
 			$scope.logInOutMenu = true;
 		}
@@ -102,6 +111,7 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 	$scope.onLogout = function(){
 
 		Storage.setLoginStatus('signed-out');
+		Storage.setAuthCookie(null);
 		$scope.init();
 
 		//Event handler in singlejob.js
