@@ -82,7 +82,7 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 				myJobs = [];
 				offset = 0;
 				$scope.updateHiredAndAppliedCount(user.userID);
-			}, 500);
+			}, 1000);
 			
 		}
 		else{

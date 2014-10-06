@@ -17,7 +17,6 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 		$scope.canLoadMore = true;
 	};
 
-
 	
 	$scope.resetRootScope = function(){
 
@@ -130,7 +129,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 			//as cordova navigator.connection is undefined.
 			$timeout(function(){
 				$scope.fetchJobs();
-			}, 500);
+			}, 1000);
 		}
 
 		else $scope.fetchJobs();

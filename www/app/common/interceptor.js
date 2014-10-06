@@ -71,13 +71,13 @@ angular.module('minyawns.interceptor', ['minyawns.network'])
 	$httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 	
-	// $httpProvider.defaults.withCredentials = true;
+	$httpProvider.defaults.withCredentials = true;
 
-	$httpProvider.defaults.useXDomain = true;
-	delete $httpProvider.defaults.headers.common['X-Requested-With'];
+	// $httpProvider.defaults.useXDomain = true;
+	// delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 	$httpProvider.interceptors.push('NetworkCheck');
-	// $httpProvider.interceptors.push('CookieInjector');
+	$httpProvider.interceptors.push('CookieInjector');
     
 
 	// $httpProvider.defaults.transformRequest = [function(data) {
