@@ -58,7 +58,7 @@ angular.module('minyawns.storage', ['ngUnderscore'])
 				displayName 	: (_.isNull(displayName)) ? "" : displayName,
 				isLoggedIn 		: (loginStatus === 'signed-in') ? true : false,
 				cookie 			: (_.isNull(cookie)) ? "" : cookie,
-				profileImgSrc 	: (_.isNull(profileImg)) ? defaultImg : profileImg
+				profileImgSrc 	: (_.isNull(profileImg) || profileImg === 'null') ? defaultImg : profileImg
 			};
 		},
 
