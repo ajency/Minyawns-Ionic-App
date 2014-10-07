@@ -1,7 +1,7 @@
-angular.module('minyawns.storage', [])
+angular.module('minyawns.storage', ['ngUnderscore'])
 
 
-.factory('Storage', ['$window', function($window) {
+.factory('Storage', ['$window', '_', function($window, _) {
 
 
 	var LS = $window.localStorage;
@@ -28,9 +28,9 @@ angular.module('minyawns.storage', [])
 			LS.setItem("minyawns_login_status", status);
 		},
 
-		setAuthCookie: function(cookie) {
+		setLoginCookie: function(cookie) {
 
-			LS.setItem("minyawns_auth_cookie", cookie);
+			LS.setItem("minyawns_login_cookie", cookie);
 		},
 
 		setProfileImageSrc: function(src) {
@@ -39,24 +39,38 @@ angular.module('minyawns.storage', [])
 		},
 
 		
+		
 		getUserDetails : function(){
 
 			var userID = LS.getItem("minyawns_userid");
 			var userName = LS.getItem("minyawns_username");
 			var displayName = LS.getItem("minyawns_display_name");
 			var loginStatus = LS.getItem("minyawns_login_status");
-			var cookie = LS.getItem("minyawns_auth_cookie");
-			var profileImgSrc = LS.getItem("minyawns_profile_image_src");
+			var cookie = LS.getItem("minyawns_login_cookie");
+
+			var profileImg = LS.getItem("minyawns_profile_image_src");
+			var defaultImg = "./img/applicants.png";
 
 			return details = {
 
-				userID : (userID === null || userID === 'null') ? "" : userID,
-				userName : (userName === null || userName === 'null') ? "" : userName,
-				displayName : (displayName === null || displayName === 'null') ? "" : displayName,
-				isLoggedIn : (loginStatus === 'signed-in') ? true : false,
-				cookie : (cookie === null || cookie === 'null') ? "" : cookie,
-				profileImgSrc : (profileImgSrc === null || profileImgSrc === 'null') ? "" : profileImgSrc
-			}
+				userID 			: (_.isNull(userID)) ? "" : userID,
+				userName 		: (_.isNull(userName)) ? "" : userName,
+				displayName 	: (_.isNull(displayName)) ? "" : displayName,
+				isLoggedIn 		: (loginStatus === 'signed-in') ? true : false,
+				cookie 			: (_.isNull(cookie)) ? "" : cookie,
+				profileImgSrc 	: (_.isNull(profileImg)) ? defaultImg : profileImg
+			};
+		},
+
+		
+		
+		clear : function(){
+
+			LS.removeItem("minyawns_userid");
+			LS.removeItem("minyawns_display_name");
+			LS.removeItem("minyawns_login_status");
+			LS.removeItem("minyawns_login_cookie");
+			LS.removeItem("minyawns_profile_image_src");
 		}
 
 	};

@@ -7,7 +7,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	, Toast, $ionicSideMenuDelegate){
 
 	
-	$rootScope.profilePicture = '';
+	$rootScope.profileImage = "";
 	
 	
 	$scope.reSet = function(){

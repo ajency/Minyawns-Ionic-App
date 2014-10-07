@@ -110,8 +110,8 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 	$scope.onLogout = function(){
 
-		Storage.setLoginStatus('signed-out');
-		Storage.setAuthCookie(null);
+		Storage.clear();
+		
 		$scope.init();
 
 		//Event handler in singlejob.js

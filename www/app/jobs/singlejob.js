@@ -35,7 +35,9 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	};
 
 
-	$scope.setApplyButtonText = function(){
+	$scope.updateApplySectionDetails = function(){
+
+		//Set(or Reset) apply header and apply button text.
 
 		var user = Storage.getUserDetails();
 
@@ -44,11 +46,19 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			var applied = false;
 			if($scope.applicants.indexOf(user.userID) != -1) applied = true;
 
-			if(!applied) $scope.applyButton = 'Apply';
-			else $scope.applyButton = 'Un-apply';
+			if(!applied){
+				$scope.applyHeader = 'Apply now';
+				$scope.applyButton = 'Apply';
+			}
+			else{
+				$scope.applyHeader = 'Applied successfully';
+				$scope.applyButton = 'Un-apply';
+			}
 		}
-		else $scope.applyButton = 'Login to apply';
-
+		else{
+			$scope.applyHeader = 'Apply now';
+			$scope.applyButton = 'Login to apply';
+		}
 	};
 
 	
@@ -77,7 +87,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		$scope.applicants = data.applied_user_id;
 
-		$scope.setApplyButtonText();
+		$scope.updateApplySectionDetails();
 	};
 
 
@@ -97,7 +107,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
     	if($scope.applyButton === 'Apply'){
 
-    		if($rootScope.profilePicture === '') console.log('Upload picture');
+    		if($rootScope.profileImage === "") console.log('Upload picture');
     		else $scope.minyawnJobAction('minyawn_job_apply');
     	}
 
@@ -152,7 +162,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		$cordovaCamera.getPicture(options)
 		.then(function(imageURI){
 
-			$rootScope.profilePicture = imageURI;
+			$rootScope.profileImage = imageURI;
 		}
 		,function(err){
 			console.log(err);
@@ -162,7 +172,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
     
     $rootScope.$on('onUserLogout', function(event, args) {
 
-		$scope.setApplyButtonText();
+		$scope.updateApplySectionDetails();
     });
 
 

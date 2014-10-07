@@ -4,7 +4,7 @@
 
 	<ion-refresher ng-init="showRefresher=false" ng-if="showRefresher"
 		pulling-text="Pull to refresh..."
-		refreshing-icon="ion-refreshing"
+		refreshing-icon="ion-loading-c"
 		on-refresh="onPullToRefresh()">
 		
 	</ion-refresher>
@@ -93,7 +93,7 @@
 
 	</div>
 
-	<ion-infinite-scroll icon="ion-refreshing" distance="5%" ng-if="canLoadMore" on-infinite="onInfiniteScroll()">
+	<ion-infinite-scroll icon="ion-loading-c" distance="5%" ng-if="canLoadMore" on-infinite="onInfiniteScroll()">
 	</ion-infinite-scroll>
 
    </ion-content>

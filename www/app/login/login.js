@@ -1,9 +1,9 @@
-angular.module('minyawns.login', ['minyawns.storage'])
+angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
 
-.controller('LoginController', ['$scope', '$rootScope', '$state', '$http', '$ionicPopup'
-	, 'Storage', '$window'
-	, function($scope, $rootScope, $state, $http, $ionicPopup, Storage, $window) {
+.controller('LoginController', ['$scope', '$rootScope', '$state', '$http'
+	, 'Storage', 'Toast', '$window'
+	, function($scope, $rootScope, $state, $http, Storage, Toast, $window) {
 
 	//Default
 	$scope.showLoader = false;
@@ -16,7 +16,7 @@ angular.module('minyawns.login', ['minyawns.storage'])
 		if(angular.isUndefined(username) || angular.isUndefined(password) 
 			|| username.trim() === "" || password.trim() === "")
 
-			$scope.errorPopUp('Please enter Username/Password');
+			Toast.emptyUsernamePassword();
 		
 		else{
 
@@ -38,10 +38,12 @@ angular.module('minyawns.login', ['minyawns.storage'])
 
 			if(data.status){
 
+				var cookie = data.logged_in_cookie_key + '=' + data.logged_in_cookie_value;
+
 				Storage.setUserID(data.id);
             	Storage.setUserName(data.user_login);
             	Storage.setDisplayName(data.display_name);
-            	Storage.setAuthCookie(data.logged_in_cookie);
+            	Storage.setLoginCookie(cookie);
             	Storage.setProfileImageSrc(data.avatar_url)
             	Storage.setLoginStatus('signed-in');
             	$window.history.back();
@@ -49,7 +51,7 @@ angular.module('minyawns.login', ['minyawns.storage'])
             else{
 
             	$scope.showLoader = false;
-            	$scope.errorPopUp('Invalid Username/Password');
+            	Toast.invalidUsernamePassword();
             } 
 
 		},
@@ -60,17 +62,10 @@ angular.module('minyawns.login', ['minyawns.storage'])
 			console.log(error);
 
 			$scope.showLoader = false;
-            $scope.errorPopUp('Network not available');
 
-		});
-	};
+            if(error === 'NetworkNotAvailable') Toast.connectionError();
+			else Toast.responseError();
 
-
-	$scope.errorPopUp = function(message){
-
-		$ionicPopup.alert({
-			title: 'ERROR',
-			template: message
 		});
 	};
 	
