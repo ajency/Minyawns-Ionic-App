@@ -128,6 +128,7 @@ body .pane .has-header {
   background: #88d816;
   height: 50px;
   color: #ffffff;
+  border-bottom: 3px solid #82b42f;
 }
 .bar-green .main-menu-toggle {
   color: rgba(0, 0, 0, 0.33);
@@ -210,15 +211,17 @@ body .pane .has-header {
 /**** Job List Styles ****/
 .job-list {
   background: transparent;
-  margin: 10px;
+  overflow: visible;
 }
 .job-list .job {
   background: #ffffff;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 1px;
   border: 0;
-  border-bottom: 2px solid #e4e4e4;
   border-left: 2px solid #88d816;
+  box-shadow: 0px 0px 6px #888888;
+  -moz-box-shadow: 0px 0px 6px #888888;
+  -webkit-box-shadow: 0px 0px 6px #888888;
   padding: 10px;
 }
 .job-list .job .job-details .job-title {
@@ -228,9 +231,9 @@ body .pane .has-header {
   color: #b1b1b1;
 }
 .job-list .job .job-details .detail {
-  margin-bottom: 5px;
-  font-size: 0.92rem;
-  font-family: 'Semibold', sans-serif;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 .job-list .job .job-details .location {
   font-family: 'Regular', sans-serif;
@@ -241,6 +244,7 @@ body .pane .has-header {
   width: 15px;
   display: inline-block;
   text-align: center;
+  margin-right: 5px;
 }
 .job-list .job .job-price {
   text-align: center;
@@ -266,6 +270,7 @@ body .pane .has-header {
   float: left;
   position: relative;
   line-height: 40px;
+  width: 103px;
 }
 .job-list .job .job-actions .apply-button .minyawn-head {
   background: url('../../img/minion-vector-head.png') no-repeat;
@@ -274,7 +279,7 @@ body .pane .has-header {
   background-size: 20px 20px;
   position: absolute;
   top: 0;
-  right: -30px;
+  right: 0;
 }
 .job-list .job .job-actions .applicants {
   float: right;
@@ -320,6 +325,12 @@ body .pane .has-header {
   margin-bottom: 10px !important;
   color: #777777;
   background: transparent;
+}
+.single-job-card {
+  box-shadow: 0px 0px 6px #888888;
+  -moz-box-shadow: 0px 0px 6px #888888;
+  -webkit-box-shadow: 0px 0px 6px #888888;
+  border-left: 2px solid #88d816;
 }
 /**** Scroll Refresher Styles ****/
 .scroll-refresher {
@@ -454,6 +465,9 @@ body .pane .has-header {
   margin: 0.5rem 1vw;
   border: 0;
   white-space: normal;
+  box-shadow: 0px 0px 6px #888888;
+  -moz-box-shadow: 0px 0px 6px #888888;
+  -webkit-box-shadow: 0px 0px 6px #888888;
 }
 .minyawn-list .list .minyawn:first-child {
   margin-left: auto;
@@ -511,4 +525,12 @@ body .pane .has-header {
 /*Modal-popup*/
 .modal-backdrop .scroll-content {
   top: 15% !important;
+}
+.modal {
+  width: 90%;
+}
+#draggableContainer {
+  display: block;
+  overflow: hidden;
+  padding-right: 4px;
 }
