@@ -12,6 +12,7 @@ Version:        0.1.0
 
 /****Colors****/
 @green: #88D816;
+@light-green: #A2FF1D;
 @grey: #B1B1B1;
 @dark-grey: #444444;
 @red: #ff3333;
@@ -26,7 +27,12 @@ Version:        0.1.0
 		display: table;
 	}
 }
-
+.pull-center{
+	text-align:center;
+}
+.p-20{
+	padding:20px;
+}
 /**** Body Styles ****/
 body {
 	h1, h2, h3, h4, h5, h6, p, input, button, select, textarea, .h1, .h2, .h3, .h4, .h5, .h6 .item, .item-divider {
@@ -116,6 +122,7 @@ body {
 	background: @green;
 	height: 50px;
 	color: @white;
+	border-bottom: 3px solid #82b42f;
 	.main-menu-toggle {
 		color: rgba(0, 0, 0, 0.33);
 		text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.33);
@@ -126,36 +133,42 @@ body {
 }
 
 /**** Left Menu Styles ****/
+
 .menu-left {
 	.log-view {
 		padding: 0 16px;
 		width: 100%;
 		text-align: center;
 		min-height: initial;
+		background: url('../../img/color.jpg') center bottom no-repeat;
 		img {
 			border-radius: 100%;
 			top: auto;
-			width: 120px;
-			height: 120px;
-			margin: 0.5rem auto;
+			width: 70px;
+			height: 70px;
+			margin: 0.5rem auto 0px;
+			border: 3px solid #fff;
 		}
 		h2 {
-			color: @dark-grey;
+			color: @white;
 			margin-top: 0;
 			margin-bottom: 0.25rem;
 			font-size: 1.2rem;
 			font-family: 'Semibold', sans-serif;
 			span {
-				color: @green;
+				color: @light-green
 			}
 		}
 		.desc {
 			font-size: 0.8rem;
 			margin-bottom: 0.5rem;
 			font-family: 'Light', sans-serif;
+			color: @white;
 		}
-		.details {
-			text-align: left;
+	
+	}
+	.details {
+			
 			p {
 				color: @dark-grey;
 				margin-bottom: 0.5rem;
@@ -163,14 +176,15 @@ body {
 					font-size: 2rem;
 					font-family: 'Semibold', sans-serif;
 					color: @green;
+					margin-top:0.5rem;
+					display:block;
 				}
 				.sign-in {
 					font-family: 'Semibold', sans-serif;
 					color: @green;
 				}
 			}
-		}
-	}
+		}	
 	.menu-sep {
 		margin: 0.5rem 0 -1px;
 		border-bottom: 2px solid @green;
@@ -184,6 +198,7 @@ body {
 		.item {
 			color: @grey;
 			font-size: 0.8rem;
+			background: #F5F5F5;
 			&.item-divider {
 				background: @white;
 				color: @dark-grey;
@@ -191,21 +206,27 @@ body {
 				padding-top: 0.75rem;
 				padding-bottom: 0.75rem;
 			}
+			.item-content{
+				background: #F5F5F5;
+			}
 		}
 	}
 }
 
+
 /**** Job List Styles ****/
 .job-list {
 	background: transparent;
-	margin: 10px;
+	overflow:visible;
 	.job {
 		background: @white;
-		margin-bottom: 10px;
+		margin-bottom: 20px;
 		border-radius: 1px;
 		border: 0;
-		border-bottom: 2px solid lighten(@grey, 20%);
 		border-left: 2px solid @green;
+		box-shadow: 0px 0px 6px #888888;
+		-moz-box-shadow: 0px 0px 6px #888888;
+		-webkit-box-shadow: 0px 0px 6px #888888;
 		padding: 10px;
 		.job-details {
 			.job-title {
@@ -215,9 +236,9 @@ body {
 				color: @grey;
 			}
 			.detail {
-				margin-bottom: 5px;
-				font-size: 0.92rem;
-				font-family: 'Semibold', sans-serif;
+				margin-bottom: 8px;
+				font-size: 1.2rem;
+				font-weight: 400;
 			}
 			.location {
 				font-family: 'Regular', sans-serif;
@@ -228,6 +249,7 @@ body {
 				width: 15px;
 				display: inline-block;
 				text-align: center;
+				margin-right:5px;
 			}
 		}
 		.job-price {
@@ -241,11 +263,13 @@ body {
 			margin: 0 -10px -10px;
 			padding: 10px 20px;
 			font-size: 1.1rem;
+			padding-bottom: 0px;
 			.clearfix;
 			.apply-button {
 				float: left;
 				position: relative;
 				line-height: 40px;
+				width: 103px;
 				.minyawn-head {
 					background: url('../../img/minion-vector-head.png') no-repeat;
 					height: 20px;
@@ -253,7 +277,7 @@ body {
 					background-size: 20px 20px;
 					position: absolute;
 					top: 0;
-					right: -30px;
+					right:0;
 				}
 			}
 			.applicants {
@@ -304,7 +328,12 @@ body {
 		}
 	}
 }
-
+.single-job-card{
+	box-shadow: 0px 0px 6px #888888;
+	-moz-box-shadow: 0px 0px 6px #888888;
+	-webkit-box-shadow: 0px 0px 6px #888888;
+	border-left: 2px solid @green;
+}
 /**** Scroll Refresher Styles ****/
 .scroll-refresher {
 	top: -70px;
@@ -346,7 +375,7 @@ body {
 				border-bottom: 1px solid @grey;
 			}
 			.job-price {
-				font-size: 2rem;
+				font-size: 1.6rem;
 				color: @green;
 				font-family: 'light', sans-serif;
 			}
@@ -441,6 +470,9 @@ body {
 			margin: 0.5rem 1vw;
 			border: 0;
 			white-space: normal;
+			box-shadow: 0px 0px 6px #888888;
+			-moz-box-shadow: 0px 0px 6px #888888;
+			-webkit-box-shadow: 0px 0px 6px #888888;
 			&:first-child {
 				margin-left: auto;
 			}
@@ -462,7 +494,8 @@ body {
 			margin: 0 auto 0.5rem;
 			img {
 				max-width: 100%;
-				height: auto;
+				width: 100px;
+				height: 100px;
 				border-radius: 100%;
 				border: 3px solid lighten(@grey, 10%);
 			}
@@ -493,3 +526,31 @@ body {
 		}
 	}
 }
+
+
+/* Animate */
+.arrow-loader{
+	 background: url("../../img/arrow.gif") no-repeat center bottom !important;
+	 width:100%;
+	 height:48px;
+}
+
+
+/*Modal-popup*/
+.modal-backdrop{
+	.scroll-content{
+		top:15% !important;
+	}
+
+}
+.modal{
+	width:90%
+}
+
+#draggableContainer{
+	display: block;
+	overflow: hidden;
+	padding-right: 4px;
+}
+
+

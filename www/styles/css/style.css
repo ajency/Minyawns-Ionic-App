@@ -6,7 +6,8 @@ Description:    Style Classes for the Ionic App
 Author:         Jarryd for Ajency.in
 Author URI:     http://ajency.in/
 Version:        0.1.0
-*//**** Fonts ****/
+*/
+/**** Fonts ****/
 /****Colors****/
 /****Clearfix****/
 .clearfix {
@@ -17,6 +18,12 @@ Version:        0.1.0
   clear: both;
   content: "";
   display: table;
+}
+.pull-center {
+  text-align: center;
+}
+.p-20 {
+  padding: 20px;
 }
 /**** Body Styles ****/
 body h1,
@@ -121,6 +128,7 @@ body .pane .has-header {
   background: #88d816;
   height: 50px;
   color: #ffffff;
+  border-bottom: 3px solid #82b42f;
 }
 .bar-green .main-menu-toggle {
   color: rgba(0, 0, 0, 0.33);
@@ -135,42 +143,44 @@ body .pane .has-header {
   width: 100%;
   text-align: center;
   min-height: initial;
+  background: url('../../img/color.jpg') center bottom no-repeat;
 }
 .menu-left .log-view img {
   border-radius: 100%;
   top: auto;
-  width: 120px;
-  height: 120px;
-  margin: 0.5rem auto;
+  width: 70px;
+  height: 70px;
+  margin: 0.5rem auto 0px;
+  border: 3px solid #fff;
 }
 .menu-left .log-view h2 {
-  color: #444444;
+  color: #ffffff;
   margin-top: 0;
   margin-bottom: 0.25rem;
   font-size: 1.2rem;
   font-family: 'Semibold', sans-serif;
 }
 .menu-left .log-view h2 span {
-  color: #88d816;
+  color: #a2ff1d;
 }
 .menu-left .log-view .desc {
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
   font-family: 'Light', sans-serif;
+  color: #ffffff;
 }
-.menu-left .log-view .details {
-  text-align: left;
-}
-.menu-left .log-view .details p {
+.menu-left .details p {
   color: #444444;
   margin-bottom: 0.5rem;
 }
-.menu-left .log-view .details p .number {
+.menu-left .details p .number {
   font-size: 2rem;
   font-family: 'Semibold', sans-serif;
   color: #88d816;
+  margin-top: 0.5rem;
+  display: block;
 }
-.menu-left .log-view .details p .sign-in {
+.menu-left .details p .sign-in {
   font-family: 'Semibold', sans-serif;
   color: #88d816;
 }
@@ -186,6 +196,7 @@ body .pane .has-header {
 .menu-left .list .item {
   color: #b1b1b1;
   font-size: 0.8rem;
+  background: #F5F5F5;
 }
 .menu-left .list .item.item-divider {
   background: #ffffff;
@@ -194,18 +205,23 @@ body .pane .has-header {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
+.menu-left .list .item .item-content {
+  background: #F5F5F5;
+}
 /**** Job List Styles ****/
 .job-list {
   background: transparent;
-  margin: 10px;
+  overflow: visible;
 }
 .job-list .job {
   background: #ffffff;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 1px;
   border: 0;
-  border-bottom: 2px solid #e4e4e4;
   border-left: 2px solid #88d816;
+  box-shadow: 0px 0px 6px #888888;
+  -moz-box-shadow: 0px 0px 6px #888888;
+  -webkit-box-shadow: 0px 0px 6px #888888;
   padding: 10px;
 }
 .job-list .job .job-details .job-title {
@@ -215,9 +231,9 @@ body .pane .has-header {
   color: #b1b1b1;
 }
 .job-list .job .job-details .detail {
-  margin-bottom: 5px;
-  font-size: 0.92rem;
-  font-family: 'Semibold', sans-serif;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 .job-list .job .job-details .location {
   font-family: 'Regular', sans-serif;
@@ -228,6 +244,7 @@ body .pane .has-header {
   width: 15px;
   display: inline-block;
   text-align: center;
+  margin-right: 5px;
 }
 .job-list .job .job-price {
   text-align: center;
@@ -240,6 +257,7 @@ body .pane .has-header {
   margin: 0 -10px -10px;
   padding: 10px 20px;
   font-size: 1.1rem;
+  padding-bottom: 0px;
   *zoom: 1;
 }
 .job-list .job .job-actions:after,
@@ -252,6 +270,7 @@ body .pane .has-header {
   float: left;
   position: relative;
   line-height: 40px;
+  width: 103px;
 }
 .job-list .job .job-actions .apply-button .minyawn-head {
   background: url('../../img/minion-vector-head.png') no-repeat;
@@ -260,7 +279,7 @@ body .pane .has-header {
   background-size: 20px 20px;
   position: absolute;
   top: 0;
-  right: -30px;
+  right: 0;
 }
 .job-list .job .job-actions .applicants {
   float: right;
@@ -307,6 +326,12 @@ body .pane .has-header {
   color: #777777;
   background: transparent;
 }
+.single-job-card {
+  box-shadow: 0px 0px 6px #888888;
+  -moz-box-shadow: 0px 0px 6px #888888;
+  -webkit-box-shadow: 0px 0px 6px #888888;
+  border-left: 2px solid #88d816;
+}
 /**** Scroll Refresher Styles ****/
 .scroll-refresher {
   top: -70px;
@@ -347,7 +372,7 @@ body .pane .has-header {
   border-bottom: 1px solid #b1b1b1;
 }
 .single-job-card .item .job-details .job-price {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: #88d816;
   font-family: 'light', sans-serif;
 }
@@ -440,6 +465,9 @@ body .pane .has-header {
   margin: 0.5rem 1vw;
   border: 0;
   white-space: normal;
+  box-shadow: 0px 0px 6px #888888;
+  -moz-box-shadow: 0px 0px 6px #888888;
+  -webkit-box-shadow: 0px 0px 6px #888888;
 }
 .minyawn-list .list .minyawn:first-child {
   margin-left: auto;
@@ -459,7 +487,8 @@ body .pane .has-header {
 }
 .minyawn .minyawn-view .minyawn-pic img {
   max-width: 100%;
-  height: auto;
+  width: 100px;
+  height: 100px;
   border-radius: 100%;
   border: 3px solid #cbcbcb;
 }
@@ -486,4 +515,22 @@ body .pane .has-header {
 .minyawn .minyawn-view .rating .down {
   color: #ff3333;
   text-align: left;
+}
+/* Animate */
+.arrow-loader {
+  background: url("../../img/arrow.gif") no-repeat center bottom !important;
+  width: 100%;
+  height: 48px;
+}
+/*Modal-popup*/
+.modal-backdrop .scroll-content {
+  top: 15% !important;
+}
+.modal {
+  width: 90%;
+}
+#draggableContainer {
+  display: block;
+  overflow: hidden;
+  padding-right: 4px;
 }
