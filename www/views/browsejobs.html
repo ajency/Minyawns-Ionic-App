@@ -47,19 +47,22 @@
 		  	</div> -->
 		  	<div class="arrow-loader">
 			
-		  	<div class="applicants">
-				<div class="min-icon minyawn-applied">&nbsp;</div>
-		  		<div class="min-icon minyawn-applied">&nbsp;</div>
-		  		<div class="min-icon">&nbsp;</div>
-		  	 </div>
-		  	<div id="draggableContainer" >
-			  	<m-draggable on-apply-job="applyForJob($jobID)" job-post-id="{{job.post_id}}" on-touch="disableMenuDrag()" on-release="enableMenuDrag()">
-			  	</m-draggable>
-			 	<div class="applicants">
-					<div class="min-icon minyawn-empty">&nbsp;</div>
-		  		</div>
-			
-			</div>
+			  	<div class="applicants">
+					<div class="min-icon minyawn-applied">&nbsp;</div>
+			  		<div class="min-icon minyawn-applied">&nbsp;</div>
+			  		<div class="min-icon">&nbsp;</div>
+			  	 </div>
+
+			  	<div id="draggableContainer">
+				  	
+				  	<m-draggable on-apply-job="applyForJob($jobID)" job-post-id="{{job.post_id}}" on-touch="disableMenuDrag()" on-release="enableMenuDrag()">
+				  	</m-draggable>
+
+				 	<div class="applicants">
+						<div class="min-icon minyawn-empty">&nbsp;</div>
+			  		</div>
+				
+				</div>
 
 		   </div>
 		</div>

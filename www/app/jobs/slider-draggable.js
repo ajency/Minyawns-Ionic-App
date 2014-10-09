@@ -6,7 +6,7 @@ angular.module('minyawns.draggable', [])
     return {
         restrict: 'E',
         replace: true,
-        template: '<div class="apply-button">'+
+        template: '<div id="applyNowButton" class="apply-button">'+
         				'Apply Now'+
         				'<div class="minyawn-head">&nbsp;</div>'+
         			'</div>',
@@ -21,7 +21,10 @@ angular.module('minyawns.draggable', [])
         	
             var jobID = attr.jobPostId;
 
-        	var parentWidth = $('#draggableContainer').width();
+            var applyButtonWidth = $('#applyNowButton').width();
+        	var parentWidth = $('#draggableContainer').width()
+
+            var draggableWidth = parentWidth - applyButtonWidth;
 
         	$(element).draggable({ 
         		axis: "x",
@@ -33,7 +36,7 @@ angular.module('minyawns.draggable', [])
 
         			event.stopPropagation();
 
-        			if((ui.position.left+84) == parentWidth) {
+        			if((ui.position.left) == draggableWidth) {
 
                         scope.onApplyJob({$jobID: jobID});
                         
@@ -45,7 +48,6 @@ angular.module('minyawns.draggable', [])
 				    }
         		}
         	});
-
         	
     	}
     }
