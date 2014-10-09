@@ -97,9 +97,9 @@ angular.module('minyawns.interceptor', ['minyawns.network'])
 
 	$httpProvider.defaults.headers.common['Content-Type'] = contentType;
 	$httpProvider.defaults.headers.post['Content-Type'] = contentType;
-	// $httpProvider.defaults.withCredentials = true;
+	$httpProvider.defaults.withCredentials = true;
 
 	$httpProvider.interceptors.push('NetworkCheck');
-	// $httpProvider.interceptors.push('CookieInjector');
+	$httpProvider.interceptors.push('CookieInjector');
 	$httpProvider.interceptors.push('SessionHandler');
 }]);
