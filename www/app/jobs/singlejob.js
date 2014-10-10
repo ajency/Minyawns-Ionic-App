@@ -68,7 +68,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		$scope.mainContent = false;
 		$ionicLoading.hide();
 
-		$scope.jobTitle = data.post_name;
+		$scope.jobTitle = data.post_title;
 		$scope.noOfDays = data.days_to_job_expired;
 		$scope.startDate = moment(data.job_start_date).format('LL');;
 
