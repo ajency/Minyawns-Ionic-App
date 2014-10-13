@@ -16,14 +16,14 @@
 		    Connection error. Try again.
 		</ion-item>
 
-		<ion-item class="job" ng-repeat="job in jobs">
+		<ion-item class="job" ng-repeat="job in jobs" ng-controller="BrowseJobsItemController">
 
 			<div class="row" ng-click="onSingleJobClick(job.post_id)">
-				<div class="col">
+				<div class="col" >
 				  <div class="job-details">
 						<h2 class="job-title"> {{ job.post_title }}</h2>
 						<div class="detail">
-						  <i class="icon ion-person"></i> {{ job.job_author }}
+						  <i class="icon ion-person"></i> {{ job.days_to_job_expired }} DAYS TO GO  {{end_date}} 
 						</div>
 								<div class="detail">
 						  <i class="icon ion-calendar"></i> {{ job.job_start_time }}{{job.job_start_meridiem}} - {{ job.job_end_time }}{{ job.job_end_meridiem }}
@@ -66,7 +66,7 @@
 		</div>
 		</ion-item>
 
-		<ion-item class="job not-applicable">
+		<!-- <ion-item class="job not-applicable">
 
 			<div class="row">
 				<div class="col">
@@ -89,7 +89,7 @@
 		  	</div>
 		  </div>
 
-		</ion-item>
+		</ion-item> -->
 
 		<ion-item ng-show="showNoMoreJobs" class="message no-more">
 	      <i class="icon ion-eye-disabled"></i>

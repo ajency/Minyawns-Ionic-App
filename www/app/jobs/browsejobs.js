@@ -180,6 +180,15 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 }])
 
 
+.controller('BrowseJobsItemController', ['$scope', function($scope){
+
+
+	$scope.end_date = moment($scope.job.job_end_date).format('LL');
+
+
+}])
+
+
 
 .config(function($stateProvider, $urlRouterProvider) {
 	
