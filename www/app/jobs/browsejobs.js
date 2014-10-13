@@ -183,11 +183,17 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 .controller('BrowseJobsItemController', ['$scope', function($scope){
 
 
-	$scope.end_date = moment($scope.job.job_end_date).format('LL');
+	$scope.start_date = moment($scope.job.job_start_date).format('LL');
 
+	var required_minyawns = [];
+
+	for(i=0; i<$scope.job.required_minyawns; i++){
+		required_minyawns.push('min'+i);
+	}
+
+    $scope.required_minyawns = required_minyawns;
 
 }])
-
 
 
 .config(function($stateProvider, $urlRouterProvider) {

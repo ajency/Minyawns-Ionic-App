@@ -24,10 +24,9 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 
 		//Hide splash screen
 		if(ionic.Platform.isWebView()){
-
-			$timeout(function(){
-				$cordovaSplashscreen.hide();
-			}, 1000)
+            
+            $cordovaSplashscreen.hide();
+			
 		}
 
 	});
