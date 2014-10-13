@@ -21,33 +21,37 @@ angular.module('minyawns.draggable', [])
         	
             var jobID = attr.jobPostId;
 
-            var applyButtonWidth = $('#applyNowButton').width();
-        	var parentWidth = $('#draggableContainer').width()
+            $timeout(function() {
 
-            var draggableWidth = parentWidth - applyButtonWidth;
+                var applyButtonWidth = $('#applyNowButton').width();
+            	var parentWidth = $('#draggableContainer').width()
 
-        	$(element).draggable({ 
-        		axis: "x",
-        		revert: true,
-        		revertDuration: 500,
-        		containment: "parent",
+                var draggableWidth = parentWidth - applyButtonWidth;
 
-        		drag: function(event, ui){
+            	$(element).draggable({ 
+            		axis: "x",
+            		revert: true,
+            		revertDuration: 500,
+            		containment: "parent",
 
-        			event.stopPropagation();
+            		drag: function(event, ui){
 
-        			if((ui.position.left) == draggableWidth) {
+            			event.stopPropagation();
 
-                        scope.onApplyJob({$jobID: jobID});
-                        
-                        if(ui.helper[0].childNodes[1])
-                            ui.helper[0].removeChild(ui.helper[0].childNodes[1])
-                      
+            			if((ui.position.left) == draggableWidth) {
 
-				        return false;
-				    }
-        		}
-        	});
+                            scope.onApplyJob({$jobID: jobID});
+                            
+                            if(ui.helper[0].childNodes[1])
+                                ui.helper[0].removeChild(ui.helper[0].childNodes[1])
+                          
+
+    				        return false;
+    				    }
+            		}
+            	});
+
+            }, 800);
         	
     	}
     }
