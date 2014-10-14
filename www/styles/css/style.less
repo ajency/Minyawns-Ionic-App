@@ -242,6 +242,10 @@ body {
 			.location {
 				font-family: 'Regular', sans-serif;
 				font-size: 0.8rem;
+				width: 200px;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
 			}
 			.icon {
 				color: lighten(@grey, 10%);
@@ -253,7 +257,6 @@ body {
 		}
 		.job-price {
 			text-align: center;
-			font-size: 1.2rem;
 			color: @green;
 			font-family: 'bold', sans-serif;
 		}
@@ -267,7 +270,8 @@ body {
 				float: left;
 				position: relative;
 				line-height: 40px;
-				width: 103px;
+				width: 99px;
+				font-size: 1rem;
 				.minyawn-head {
 					background: url('../../img/minion-vector-head.png') no-repeat;
 					height: 20px;
@@ -383,9 +387,8 @@ body {
 				border-bottom: 1px solid @grey;
 			}
 			.job-price {
-				font-size: 1.6rem;
 				color: @green;
-				font-family: 'light', sans-serif;
+				
 			}
 			.job-time {
 				padding-right: 0.5rem;
@@ -415,6 +418,9 @@ body {
 			.job-snippets {
 				font-size: 0.8rem;
 				color: darken(@grey, 10%);
+			}
+			.author{
+				color: @green!important;
 			}
 		}
 	}
