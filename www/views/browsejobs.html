@@ -21,9 +21,9 @@
 			<div class="row" ng-click="onSingleJobClick(job.post_id)">
 				<div class="col" >
 				  <div class="job-details">
-						<h2 class="job-title"> {{ job.post_title }}</h2>
+						<h2 class="job-title"> {{ job.post_title }}</h2><br>
 						<div class="detail">
-						  <i class="icon ion-person"></i> {{ job.days_to_job_expired }} DAYS TO GO  {{start_date}} 
+						  <i class="icon ion-clock"></i><!-- {{ job.days_to_job_expired }} DAYS TO GO --><span class="date"> {{start_date}} </span>
 						</div>
 								<div class="detail">
 						  <i class="icon ion-calendar"></i> {{ job.job_start_time }}{{job.job_start_meridiem}} - {{ job.job_end_time }}{{ job.job_end_meridiem }}
@@ -46,9 +46,9 @@
 		  	<div class="arrow-loader">
                
 			  	<div class="applicants">
-					<!-- <div class="min-icon minyawn-applied">&nbsp;</div>
-			  		<div class="min-icon minyawn-applied">&nbsp;</div> -->
-			  		<div ng-repeat="minyawns in required_minyawns" class="min-icon">&nbsp;</div>
+					 <div class="min-icon minyawn-applied">&nbsp;</div>
+			  		<div class="min-count">+14</div>
+			  		<!--<div ng-repeat="minyawns in required_minyawns" class="min-icon">&nbsp;</div>-->
 			  	 </div>
 
               

@@ -218,26 +218,29 @@ body .pane .has-header {
   margin-bottom: 20px;
   border-radius: 1px;
   border: 0;
-  border-left: 2px solid #88d816;
-  box-shadow: 0px 0px 6px #888888;
-  -moz-box-shadow: 0px 0px 6px #888888;
-  -webkit-box-shadow: 0px 0px 6px #888888;
   padding: 10px;
 }
 .job-list .job .job-details .job-title {
-  font-family: 'Light', sans-serif;
-  font-size: 1.5rem;
+  font-family: 'bold', sans-serif;
+  font-size: 1.0rem;
   margin-bottom: 5px;
   color: #b1b1b1;
 }
 .job-list .job .job-details .detail {
-  margin-bottom: 8px;
-  font-size: 1.2rem;
+  margin-bottom: 3px;
+  font-size: 0.9rem;
   font-weight: 400;
+}
+.job-list .job .job-details .date {
+  color: #88d816;
 }
 .job-list .job .job-details .location {
   font-family: 'Regular', sans-serif;
   font-size: 0.8rem;
+  width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .job-list .job .job-details .icon {
   color: #cbcbcb;
@@ -248,16 +251,14 @@ body .pane .has-header {
 }
 .job-list .job .job-price {
   text-align: center;
-  font-size: 2rem;
   color: #88d816;
-  font-family: 'light', sans-serif;
+  font-family: 'bold', sans-serif;
 }
 .job-list .job .job-actions {
   background: url('../../img/action-bg.png');
   margin: 0 -10px -10px;
   padding: 10px 20px;
   font-size: 1.1rem;
-  padding-bottom: 0px;
   *zoom: 1;
 }
 .job-list .job .job-actions:after,
@@ -270,7 +271,8 @@ body .pane .has-header {
   float: left;
   position: relative;
   line-height: 40px;
-  width: 103px;
+  width: 99px;
+  font-size: 1rem;
 }
 .job-list .job .job-actions .apply-button .minyawn-head {
   background: url('../../img/minion-vector-head.png') no-repeat;
@@ -299,6 +301,16 @@ body .pane .has-header {
 .job-list .job .job-actions .applicants .min-icon.minyawn-empty {
   background: url('../../img/minion-vector-body.png') no-repeat center bottom;
   background-size: 22px 20px;
+}
+.job-list .job .job-actions .applicants .min-count {
+  display: inline-table;
+  width: 30px;
+  float: right;
+  margin-left: 5px;
+  color: #88d816;
+  font-weight: 200;
+  font-size: 1.3rem;
+  line-height: 41px;
 }
 .job-list .job.not-applicable {
   border-left-color: #ff3333;
@@ -372,9 +384,7 @@ body .pane .has-header {
   border-bottom: 1px solid #b1b1b1;
 }
 .single-job-card .item .job-details .job-price {
-  font-size: 1.6rem;
   color: #88d816;
-  font-family: 'light', sans-serif;
 }
 .single-job-card .item .job-details .job-time {
   padding-right: 0.5rem;
@@ -404,6 +414,9 @@ body .pane .has-header {
 .single-job-card .item .job-details .job-snippets {
   font-size: 0.8rem;
   color: #989898;
+}
+.single-job-card .item .job-details .author {
+  color: #88d816 !important;
 }
 .single-job-apply {
   margin: 20px 10px;
@@ -520,7 +533,6 @@ body .pane .has-header {
 .arrow-loader {
   background: url("../../img/arrow.gif") no-repeat center bottom !important;
   width: 100%;
-  height: 48px;
 }
 /*Modal-popup*/
 .modal-backdrop .scroll-content {
