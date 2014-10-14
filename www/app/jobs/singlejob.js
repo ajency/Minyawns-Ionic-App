@@ -238,7 +238,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		$scope.activeSlide = _.indexOf($scope.applicants, minionID);
 
-		var popup = $ionicPopup.show({
+		var popup = $ionicPopup.alert({
 			templateUrl: 'views/minion-slidebox.html',
 			scope: $scope,
 			
