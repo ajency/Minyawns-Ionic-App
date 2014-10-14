@@ -212,8 +212,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 
 
-.controller('ApplicantController', ['$scope', '$rootScope', '$http', '$ionicModal', '_'
-	, function($scope, $rootScope, $http, $ionicModal, _){
+.controller('ApplicantController', ['$scope', '$rootScope', '$http', '_', '$ionicPopup'
+	, function($scope, $rootScope, $http, _, $ionicPopup){
 
 	$scope.getMinionDetails = function(){
 
@@ -234,42 +234,27 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	}();
 
 
-	//Modal showing minion details
-	$ionicModal.fromTemplateUrl('views/minion-modal.html', { 
-		scope: $scope, 
-		animation: 'slide-in-up'
-	})
-	.then(function(modal) {
-		$scope.modal = modal;
-	});
-
-
-	$scope.openModal = function(minionID) {
+	$scope.openPopup = function(minionID){
 
 		$scope.activeSlide = _.indexOf($scope.applicants, minionID);
-		$scope.modal.show();
+
+		var popup = $ionicPopup.show({
+			templateUrl: 'views/minion-slidebox.html',
+			scope: $scope,
+			
+		});
+		
+		popup.then(function(res) {
+			console.log('Tapped!', res);
+		});
+
 	};
-
-
-	$scope.closeModal = function() {
-		$scope.modal.hide();
-	};
-
-	
-	$scope.$on('$destroy', function() {
-		$scope.modal.remove();
-	});
-
-
-	$scope.$on('modal.hidden', function() {
-		// $scope.modal.remove();
-	});
 
 }])
 
 
 
-.controller('MinionModalController', ['$scope', '$rootScope', '$ionicSlideBoxDelegate', '_'
+.controller('MinionPopupController', ['$scope', '$rootScope', '$ionicSlideBoxDelegate', '_'
 	, function($scope, $rootScope, $ionicSlideBoxDelegate, _){
 	
 
