@@ -1,5 +1,5 @@
 angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns.singlejob'
-	, 'minyawns.draggable'])
+	, 'minyawns.draggable','minyawns.jobstatus'])
 
 .controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
 	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate'
@@ -180,7 +180,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 }])
 
 
-.controller('BrowseJobsItemController', ['$scope', function($scope){
+.controller('BrowseJobsItemController', ['$scope', 'JobStatus', function($scope, JobStatus){
 
 
 	$scope.start_date = moment($scope.job.job_start_date).format('LL');
@@ -192,7 +192,10 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	}
 
     $scope.required_minyawns = required_minyawns;
-
+    var status = JobStatus.get($scope.job);
+    console.log(status)
+    
+    
 }])
 
 
