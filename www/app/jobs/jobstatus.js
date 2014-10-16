@@ -31,22 +31,22 @@ angular.module('minyawns.jobstatus',['minyawns.storage'])
                     if(user.isLoggedIn){
 
 					   if (model.users_applied.length === 0) // 0 APPLICANTS
-            				jobStatusDetails.jobStatus = "Applications Open." + model.days_to_job_expired + " days to go"+ " Apply Now";
+            				jobStatusDetails.jobStatus = "Apply Now";
             	
-            		  else // MINIONS APPLIED
-            		  {
-                    	if(model.users_applied.indexOf(user.userID) != -1)  // not applied
-                        	jobStatusDetails.jobStatus =  "Applications Open." + model.days_to_job_expired + " days to go"+" Apply Now";
+            		   else // MINIONS APPLIED
+            		   {
+                    	if(model.applied_user_id.indexOf(user.userID) != -1)  // applied
+                        	jobStatusDetails.jobStatus =  "Unapply";
                    
                 		else
-                			jobStatusDetails.jobStatus =  "Applications Open." + model.days_to_job_expired + " days to go"+" Unapply";
+                			jobStatusDetails.jobStatus =  "Apply Now";
 
-            		  }
+            		   }
 
                     }
 
                     else
-                          jobStatusDetails.jobStatus =  "Applications Open." + model.days_to_job_expired + " days to go"+" Sign In to apply";    
+                          jobStatusDetails.jobStatus =  "Login to apply";    
 
 
             	break;
@@ -60,11 +60,11 @@ angular.module('minyawns.jobstatus',['minyawns.storage'])
                         
                         if(user.isLoggedIn){
 
-                    	   if(model.users_applied.indexOf(user.userID) != -1)
- 							    jobStatusDetails.jobStatus =  "Applications Closed.Maximum number of minions have applied";
-                
+                    	   if(model.applied_user_id.indexOf(user.userID) != -1)  
+                                jobStatusDetails.jobStatus = "Applications Closed.Maximum number of minions have applied"+"You have already applied. Unapply";
+ 							    
                     	   else
-                    		    jobStatusDetails.jobStatus = "Applications Closed.Maximum number of minions have applied"+"You have already applied."+" Unapply";
+                    		    jobStatusDetails.jobStatus =  "Applications Closed.Maximum number of minions have applied";
 
                         }
                         else
@@ -84,20 +84,20 @@ angular.module('minyawns.jobstatus',['minyawns.storage'])
                         
                         if(user.isLoggedIn){
 
-            	    	  if(model.users_applied.indexOf(user.userID) != -1)  //Not applied
-                        	   jobStatusDetails.jobStatus = numOfHired+"Minions have been selected"+model.days_to_job_expired + " days to go";
-                    
-                    	   else{
-                         
-                        	   var index  = model.users_applied.indexOf(user.userID);
-                        	   var userstatus = model.user_to_job_status[index];
+            	    	  if(model.applied_user_id.indexOf(user.userID) != -1) { // applied
+                        	   
+                               var index  = model.applied_user_id.indexOf(user.userID);
+                               var userstatus = model.user_to_job_status[index];
 
-                        	   if (userstatus =='hired') 
-                        		  jobStatusDetails.jobStatus = numOfHired+"Minions have been selected"+model.days_to_job_expired + " days to go"+"You have been hired";
+                               if (userstatus =='hired') 
+                                  jobStatusDetails.jobStatus = numOfHired+"Minions have been selected"+"You are hired";
                        
-                        	   else
-                        		  jobStatusDetails.jobStatus = numOfHired+"Minions have been selected"+"Applications are now closed";
-                    	   }   
+                               else
+                                  jobStatusDetails.jobStatus = numOfHired+"Minions have been selected"+"Applications are now closed";
+                            }
+                    	   else
+                                  jobStatusDetails.jobStatus = numOfHired+"Minions have been selected";
+                        	     
                         }
                         else
                                jobStatusDetails.jobStatus = numOfHired+"Minions have been selected"+"Applications are now closed";
