@@ -221,6 +221,12 @@ body .pane .has-header {
   background: transparent;
   overflow: visible;
 }
+.job-list .available {
+  border-left: 2px solid #88d816;
+}
+.job-list .expire {
+  border-left: 2px solid #ff3333;
+}
 .job-list .job {
   background: #ffffff;
   margin-bottom: 20px;
