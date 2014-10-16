@@ -116,7 +116,14 @@ body {
     	display: block;
     }
 }
-
+.popup{
+	-webkit-box-shadow: inset 25px 0px 25px -25px rgba(0, 0, 0, 0.45), inset -25px 0px 25px -25px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: inset 25px 0px 25px -25px rgba(0, 0, 0, 0.45), inset -25px 0px 25px -25px rgba(0, 0, 0, 0.45);
+    box-shadow: inset 25px 0px 25px -25px rgba(0, 0, 0, 0.45), inset -25px 0px 25px -25px rgba(0, 0, 0, 0.45);
+	.popup-head{
+		border:0px;
+	}
+}
 /**** Main Header Styles ****/
 .bar-green {
 	background: @green;
@@ -218,6 +225,12 @@ body {
 .job-list {
 	background: transparent;
 	overflow:visible;
+	.available{
+		border-left:2px solid @green;
+	}
+	.expire{
+		border-left:2px solid @red;
+	}
 	.job {
 		background: @white;
 		margin-bottom: 20px;
