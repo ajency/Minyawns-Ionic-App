@@ -16,9 +16,9 @@
 		    Connection error. Try again.
 		</ion-item>
 
-		<ion-item class="job" ng-repeat="job in jobs" ng-controller="BrowseJobsItemController"  >
+		<ion-item class="job available" ng-repeat="job in jobs" ng-controller="BrowseJobsItemController"  >
           
-           <div class="available" ng-if="jobOpen && jobShow">
+           <div ng-if="jobOpen && jobShow">
 
 			<div class="row" ng-click="onSingleJobClick(job.post_id)">
 				<div class="col" >
@@ -56,6 +56,7 @@
               
 
 			  	<div id="draggableContainer">
+			  		
 				  	<m-draggable ng-if="showApplySlider" on-apply-job="applyForJob($jobID)" job-post-id="{{job.post_id}}" on-touch="disableMenuDrag()" on-release="enableMenuDrag()">
 				  	</m-draggable>
   					
@@ -74,7 +75,7 @@
 	    </div>
 
         <!-- condition for closed jobs -->
-        <div class="expire" ng-if="!jobOpen && jobShow" >
+        <div  ng-if="!jobOpen && jobShow" >
 	    	<div class="row">
 				<div class="col">
 				  <div class="job-details">
