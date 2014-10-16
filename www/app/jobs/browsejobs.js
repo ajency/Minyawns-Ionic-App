@@ -195,11 +195,17 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
     var status = JobStatus.get($scope.job);
 
    console.log(status.jobStatus);
-   console.log(status.validity);
-    if (status.validity ==='Available')
-       jobOpen = true;
+    if (status.display) {   //condition to avoid expired jobs
+        jobShow = true;
+
+        if (status.validity ==='Available')
+       		jobOpen = true;
+    	else
+       		jobOpen = false;
+    }
     else
-       jobOpen = false;
+    	 jobShow = false;
+    
     
 }])
 
