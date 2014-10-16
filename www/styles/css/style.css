@@ -222,10 +222,10 @@ body .pane .has-header {
   overflow: visible;
 }
 .job-list .available {
-  border-left: 2px solid #88d816;
+  border-left: 2px solid #88d816 !important;
 }
 .job-list .expire {
-  border-left: 2px solid #ff3333;
+  border-left: 2px solid #ff3333 !important;
 }
 .job-list .job {
   background: #ffffff;
