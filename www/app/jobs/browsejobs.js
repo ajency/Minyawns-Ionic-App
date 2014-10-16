@@ -193,8 +193,13 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
     $scope.required_minyawns = required_minyawns;
     var status = JobStatus.get($scope.job);
-    console.log(status)
-    
+
+   console.log(status.jobStatus);
+   console.log(status.validity);
+    if (status.validity ==='Available')
+       jobOpen = true;
+    else
+       jobOpen = false;
     
 }])
 
