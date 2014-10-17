@@ -34,7 +34,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 			
             $http.get($rootScope.GETURL+'fetchjobs?my_jobs=1&offset='+$rootScope.jobs.offset+'&filter_my=0&'+
-			'logged_in_user_id='+user.userID)
+			'logged_in_user_id='+'333')
 			.then(function(resp, status, headers, config){
 
 				$scope.onSuccessResponse(resp.data);

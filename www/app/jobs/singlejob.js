@@ -11,6 +11,20 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$rootScope.minionDetails = [];
 	$rootScope.postID = $stateParams.postID;
 	$scope.mainLoader = $scope.mainContent = true;
+
+
+
+	var setJs = function(){
+		
+		$('.marquee').marquee({
+			showSpeed:0, //speed of drop down animation
+			scrollSpeed: 10, //lower is faster
+			yScroll: 'bottom',  // scroll direction on y-axis 'top' for down or 'bottom' for up
+			direction: 'left', //scroll direction 'left' or 'right'
+			pauseSpeed: 1000, // pause before scroll start in milliseconds
+			duplicated: true  //continuous true or false
+		});
+	}
 	
 	
 	$scope.getSingleJobDetails = function(){
@@ -88,6 +102,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		$scope.applicants = data.applied_user_id;
 
 		$scope.updateApplySectionDetails();
+
+		setJs()
 	};
 
 
