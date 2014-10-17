@@ -14,9 +14,10 @@ Version:        0.1.0
 @green: #88D816;
 @light-green: #A2FF1D;
 @grey: #B1B1B1;
-@dark-grey: #444444;
+@dark-grey: #414141;
 @red: #ff3333;
 @white: #ffffff;
+@black: #000;
 
 /****Clearfix****/
 .clearfix {
@@ -143,11 +144,12 @@ body {
 
 .menu-left {
 	.log-view {
-		padding: 0 16px;
+		padding: 3px 16px;
 		width: 100%;
 		text-align: center;
 		min-height: initial;
-		background: url('../../img/color.jpg') center bottom no-repeat;
+		/*background: url('../../img/color.jpg') center bottom no-repeat;*/
+		background:#79C50B;
 		img {
 			border-radius: 100%;
 			top: auto;
@@ -163,7 +165,7 @@ body {
 			font-size: 1.2rem;
 			font-family: 'Semibold', sans-serif;
 			span {
-				color: @light-green
+				color:@black;
 			}
 		}
 		.desc {
@@ -203,9 +205,9 @@ body {
 	}
 	.list {
 		.item {
-			color: @grey;
-			font-size: 0.8rem;
-			background: #F5F5F5;
+			color: #5C5C5C;
+			font-size: 1rem;
+			background: #fafafa;
 			&.item-divider {
 				background: @white;
 				color: @dark-grey;
@@ -214,7 +216,7 @@ body {
 				padding-bottom: 0.75rem;
 			}
 			.item-content{
-				background: #F5F5F5;
+				background: #fafafa;
 			}
 		}
 	}
@@ -381,9 +383,11 @@ body {
 			white-space: normal;
 		}
 		.job-title {
-			color: darken(@grey, 20%);
-			font-size: 1.6rem;
+			color: @dark-grey;
+			font-size: 1.0rem;
 			margin-bottom: 1rem;
+			font-weight: 800;
+			line-height: 1.5rem;
 		}
 		.job-details {
 			padding: 0;
@@ -406,12 +410,14 @@ body {
 			.job-time {
 				padding-right: 0.5rem;
 				.time {
-					font-size: 1.1rem;
+					font-size: 1rem;
 					display: inline-block;
+					font-weight: 400;
+					margin-bottom: 0.3rem;
 				}
 				.date {
 					font-size: 0.8rem;
-					color: @green;
+					color: darken(@grey, 10%);
 					&:after {
 						display: block;
 						content: "";
@@ -419,9 +425,9 @@ body {
 				}
 			}
 			.job-location {
-				color: @dark-grey;
-				font-size: 0.9rem;
-				font-family: 'light', sans-serif;
+				font-size: 1rem;
+				display: inline-block;
+				font-weight:400;
 			}
 			.job-description {
 				font-size: 0.8rem;
@@ -581,3 +587,4 @@ body {
 }
 
 
+/* Title Scroll*/
