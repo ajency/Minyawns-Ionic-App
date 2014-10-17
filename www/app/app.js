@@ -10,6 +10,9 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 	$rootScope.GETURL = "http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/";
 
 	$rootScope.jobs = { offset: 0, allJobs: [] };
+    // $rootScope.myjobs = { offset: 0, myJobs: [] };
+
+
 
 	
 	$ionicPlatform.ready(function() {
