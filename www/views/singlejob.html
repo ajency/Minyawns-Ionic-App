@@ -9,7 +9,15 @@
   <ion-content ng-hide="mainContent">
   	<div class="list list-inset single-job-card">
   		<div class="item">
-	  		<h2 class="job-title">{{jobTitle}}</h2>
+	  		<h2 class="job-title"><ul class="marquee">
+     <li>This is the first list item with text and a hyperlink <a href="...URL to the /page.html" target="_blank">HYPERLINK TEXT</a> to open in a new window</li>
+
+     <li>This is list item number 2</li>
+
+     <li>List item 3</li>
+
+     <!-- add more list items as necessary -->
+</ul></h2>
 	  		<div class="row job-details">
 	  			<div class="col">
 	  				<h4 class="detail-header">When</h4>
@@ -59,7 +67,7 @@
 				</div>
 				<div class="col col-20">
 					<div class="pic-upload" ng-click="takePicture()">
-						<!-- <i class="icon ion-camera"></i> -->
+					 <i class="icon ion-camera"></i> 
 						<img ng-src="{{profileImage}}" ></img>
 					</div>
 				</div>
