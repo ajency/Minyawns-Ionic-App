@@ -6,7 +6,7 @@ angular.module('minyawns.draggable', [])
     return {
         restrict: 'E',
         replace: true,
-        template: '<div id="applyNowButton" class="apply-button">'+
+        template: '<div  id="applyNowButton" class="apply-button">'+
         				'Apply Now'+
         				'<div class="minyawn-head">&nbsp;</div>'+
         			'</div>',

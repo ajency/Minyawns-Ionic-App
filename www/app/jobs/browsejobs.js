@@ -135,7 +135,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 		else $scope.fetchJobs();
 	};
 
-
+    
 
 	$scope.onPullToRefresh = function(){
 
@@ -170,6 +170,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	$scope.disableMenuDrag = function(){
 
 		$ionicSideMenuDelegate.canDragContent(false);
+
 	};
 
 	
@@ -177,6 +178,16 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
 		$ionicSideMenuDelegate.canDragContent(true);
 	};
+
+	$rootScope.$on('onUserLogoutReloadBrowseJobs', function(event, args) {
+
+		// $scope.reSet();
+		// $scope.resetRootScope();
+		// $scope.onViewLoad();
+		   $state.reload();
+
+    });
+
 }])
 
 
@@ -186,7 +197,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	$scope.jobShow = true;
 	$scope.jobOpen = true;
 	$scope.showApplySlider = true;
-
+    
 
 	$scope.start_date = moment($scope.job.job_start_date).format('LL');
 
@@ -197,15 +208,15 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	}
 
     $scope.required_minyawns = required_minyawns;
+
     var status = JobStatus.get($scope.job);
 
    console.log(status.jobStatus);
-   $scope.applicationStatus = status.jobStatus;
    
     if (status.display) {   //condition to hide expired jobs
         jobShow = true;
 
-        if (status.validity ==='Available')
+        if (status.validity ==='Available') 
        		$scope.jobOpen = true;
     	else
        		$scope.jobOpen = false;
@@ -213,6 +224,8 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
     else
     	 jobShow = false;
     
+    
+   	$scope.applicationStatus = status.jobStatus;   
     
 }])
 
