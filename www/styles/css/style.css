@@ -152,7 +152,7 @@ body .pane .has-header {
   text-align: center;
   min-height: initial;
   /*background: url('../../img/color.jpg') center bottom no-repeat;*/
-  background: #79C50B;
+  background: #6FB509;
 }
 .menu-left .log-view img {
   border-radius: 100%;
@@ -305,6 +305,18 @@ body .pane .has-header {
   text-align: left;
   color: #817D7D;
   font-size: 0.7rem;
+  line-height: 25px;
+}
+.job-list .job .job-actions .applicants .minyawn-head {
+  background: url('../../img/minion-vector-head.png') no-repeat;
+  height: 20px;
+  width: 20px;
+  background-size: 22px 20px;
+  margin-right: 5px;
+  display: inline-block;
+  margin-top: 9px;
+  top: 0;
+  right: 0;
 }
 .job-list .job .job-actions .applicants b {
   font-size: 0.9rem;
