@@ -290,9 +290,9 @@ body .pane .has-header {
 .job-list .job .job-actions .apply-button {
   float: left;
   position: relative;
-  line-height: 40px;
-  width: 99px;
-  font-size: 0.9rem;
+  line-height: 20px;
+  width: 120px;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 .job-list .job .job-actions .apply-button .minyawn-head {
@@ -309,7 +309,7 @@ body .pane .has-header {
   text-align: left;
   color: #817D7D;
   font-size: 0.7rem;
-  line-height: 25px;
+  line-height: 20px;
 }
 .job-list .job .job-actions .applicants .minyawn-head {
   background: url('../../img/minion-vector-head.png') no-repeat;
@@ -318,7 +318,6 @@ body .pane .has-header {
   background-size: 22px 20px;
   margin-right: 5px;
   display: inline-block;
-  margin-top: 9px;
   top: 0;
   right: 0;
 }
