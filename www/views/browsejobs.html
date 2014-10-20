@@ -18,7 +18,7 @@
 
 		<ion-item class="job" ng-class="(jobOpen)? 'available' : 'expire'" ng-repeat="job in jobs" ng-controller="BrowseJobsItemController"  >
           
-           <div ng-if="jobOpen && jobShow">
+           <div ng-if="jobOpen">
 
 			<div class="row" ng-click="onSingleJobClick(job.post_id)">
 				<div class="col" >
@@ -80,7 +80,7 @@
 	    </div>
 
         <!-- condition for closed jobs -->
-        <div  ng-if="!jobOpen && jobShow" >
+        <div  ng-if="!jobOpen" >
 	    	<div class="row" ng-click="onSingleJobClick(job.post_id)">
 				<div class="col">
 				  <div class="job-details">
@@ -99,7 +99,7 @@
 		  		<div class="applicants">
 		  		  <div ng-if="required_minyawns.length==1"  class="min-icon" ng-class="job.no_applied>0 || job.no_hired>0 ?'minyawn-applied' : '' ">&nbsp;</div>
                   <div ng-if="required_minyawns.length>1"   class="min-icon" ng-class="job.no_applied>0 || job.no_hired>0 ?'minyawn-applied' : '' ">&nbsp;</div>
-                  <div ng-if="required_minyawns.length>1"   class="min-count">+ {{required_minyawns.length-1}}</div>
+                  <div ng-if="required_minyawns.length>1"   class="min-count"> {{required_minyawns.length}}</div>
 		  		</div>
 
 		  	</div>

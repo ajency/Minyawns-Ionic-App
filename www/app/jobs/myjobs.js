@@ -7,7 +7,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 	, Toast, $ionicSideMenuDelegate,Storage){
 
 	
-	$rootScope.profileImage = "";
+	
 	var user = Storage.getUserDetails();
 	
 	$scope.reSet = function(){
@@ -20,21 +20,22 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 	
 	$scope.resetRootScope = function(){
 
-		$rootScope.jobs = { offset: 0, allJobs: [] };
+		$rootScope.myjobs = { offset: 0, myJobsArray: [] };
 	};
 
 
 
 	$scope.fetchJobs = function(){
-
+          
 		//Make only one request at a time.
 		if(!$scope.requestPending){
 
 			$scope.requestPending = true;
 
 			
-            $http.get($rootScope.GETURL+'fetchjobs?my_jobs=1&offset='+$rootScope.jobs.offset+'&filter_my=0&'+
+            $http.get($rootScope.GETURL+'fetchjobs?my_jobs=1&offset='+$rootScope.myjobs.offset+'&filter_my=0&'+
 			'logged_in_user_id='+'333')
+
 			.then(function(resp, status, headers, config){
 
 				$scope.onSuccessResponse(resp.data);
@@ -51,16 +52,16 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 	$scope.onViewLoad = function(){
 		//On view load.
-		if($rootScope.jobs.allJobs.length == 0){ 
+		if($rootScope.myjobs.myJobsArray.length == 0){ 
 
 			$scope.reSet();
-			$scope.jobs = $rootScope.jobs.allJobs; 
+			$scope.jobs = $rootScope.myjobs.myJobsArray; 
 		}
 		else{
 
 			$scope.showRefresher = true;
 			// $scope.reSet();
-			$scope.jobs = $rootScope.jobs.allJobs;
+			$scope.jobs = $rootScope.myjobs.myJobsArray;
 			// $scope.resetRootScope();
 			// $scope.fetchJobs();
 		}
@@ -71,7 +72,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 
 	$scope.onSuccessResponse = function(data){
-
+      
 		$scope.requestPending = false;
 
 		$scope.fetchComplete();
@@ -83,10 +84,10 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 			$scope.showNoMoreJobs = true;
 		}
 		
-		$rootScope.jobs.offset = $rootScope.jobs.offset + 5;
-		$rootScope.jobs.allJobs = $rootScope.jobs.allJobs.concat(data)
+		$rootScope.myjobs.offset = $rootScope.myjobs.offset + 5;
+		$rootScope.myjobs.myJobsArray = $rootScope.myjobs.myJobsArray.concat(data)
 		$scope.jobs = [];
-		$scope.jobs = $rootScope.jobs.allJobs;
+		$scope.jobs = $rootScope.myjobs.myJobsArray;
 	};
 
 
@@ -95,14 +96,14 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 		$scope.requestPending = false;
 
-		$rootScope.jobs.allJobs = $scope.jobs;
+		$rootScope.myjobs.myJobsArray = $scope.jobs;
 
 		$timeout(function(){
 			$scope.fetchComplete();
 		}, 1000);
 		
 
-		if($rootScope.jobs.allJobs.length == 0){
+		if($rootScope.myjobs.myJobsArray.length == 0){
 			$scope.showRefresher = false;
 
 			$timeout(function(){
@@ -125,7 +126,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 	
 	$scope.onInfiniteScroll = function(){
 
-		if($rootScope.jobs.allJobs.length == 0){
+		if($rootScope.myjobs.myJobsArray.length == 0){
 			//Timeout is needed for the very first request 
 			//as cordova navigator.connection is undefined.
 			$timeout(function(){
@@ -195,7 +196,6 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 .controller('BrowseJobsItemController', ['$scope', 'JobStatus', function($scope, JobStatus){
 
 	//Init
-	$scope.jobShow = true;
 	$scope.jobOpen = true;
 	$scope.showApplySlider = true;
     
@@ -214,16 +214,13 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
    console.log(status.jobStatus);
    
-    if (status.display) {   //condition to hide expired jobs
-        jobShow = true;
+    
 
-        if (status.validity ==='Available') 
-       		$scope.jobOpen = true;
-    	else
-       		$scope.jobOpen = false;
-    }
-    else
-    	 jobShow = false;
+    if (status.validity ==='Available') 
+   		$scope.jobOpen = true;
+	else
+   		$scope.jobOpen = false;
+   
     
     
    	$scope.applicationStatus = status.jobStatus;   

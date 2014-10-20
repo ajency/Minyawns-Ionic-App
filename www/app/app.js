@@ -1,6 +1,6 @@
 // Minyawns app
 angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
-	, 'minyawns.interceptor', 'minyawns.menu', 'minyawns.login', 'minyawns.jobs'])
+	, 'minyawns.interceptor', 'minyawns.menu', 'minyawns.login', 'minyawns.jobs','minyawns.myjobs'])
 
 
 .run(function($ionicPlatform, $rootScope, $timeout, $cordovaSplashscreen, $window) {
@@ -10,7 +10,7 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 	$rootScope.GETURL = "http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/";
 
 	$rootScope.jobs = { offset: 0, allJobs: [] };
-    // $rootScope.myjobs = { offset: 0, myJobs: [] };
+    $rootScope.myjobs = { offset: 0, myJobsArray: [] };
 
 
 

@@ -194,7 +194,6 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 .controller('BrowseJobsItemController', ['$scope', 'JobStatus', function($scope, JobStatus){
 
 	//Init
-	$scope.jobShow = true;
 	$scope.jobOpen = true;
 	$scope.showApplySlider = true;
     
@@ -213,16 +212,13 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
    console.log(status.jobStatus);
    
-    if (status.display) {   //condition to hide expired jobs
-        jobShow = true;
+    
 
-        if (status.validity ==='Available') 
-       		$scope.jobOpen = true;
-    	else
-       		$scope.jobOpen = false;
-    }
-    else
-    	 jobShow = false;
+    if (status.validity ==='Available') 
+   		$scope.jobOpen = true;
+	else
+   		$scope.jobOpen = false;
+  
     
     
    	$scope.applicationStatus = status.jobStatus;   
