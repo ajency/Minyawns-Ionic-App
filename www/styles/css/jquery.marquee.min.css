@@ -10,8 +10,6 @@ overflow: hidden;
 }
 .tickercontainer .mask { /* that serves as a mask. so you get a sort of padding both left and right */
 position: relative;
-left: 10px;
-top: 8px;
 width: 350px;
 overflow: hidden;
 }
