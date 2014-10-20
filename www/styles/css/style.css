@@ -233,7 +233,8 @@ body .pane .has-header {
   margin-bottom: 20px;
   border-radius: 1px;
   border: 0;
-  padding: 10px;
+  padding: 0px;
+  border: 2px solid rgba(184, 184, 184, 0.51);
 }
 .job-list .job .job-details .job-title {
   font-family: 'bold', sans-serif;
@@ -265,14 +266,15 @@ body .pane .has-header {
   margin-right: 5px;
 }
 .job-list .job .job-price {
-  text-align: center;
+  text-align: left;
   color: #88d816;
   font-family: 'bold', sans-serif;
 }
 .job-list .job .job-actions {
   background: url('../../img/action-bg.png');
-  margin: 0 -10px -10px;
-  padding: 10px 20px;
+  /*margin: 0 -10px -10px;
+			padding: 3px 20px;*/
+  padding: 3px 10px;
   font-size: 1.1rem;
   *zoom: 1;
 }
@@ -287,7 +289,7 @@ body .pane .has-header {
   position: relative;
   line-height: 40px;
   width: 99px;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 .job-list .job .job-actions .apply-button .minyawn-head {
   background: url('../../img/minion-vector-head.png') no-repeat;
@@ -300,7 +302,13 @@ body .pane .has-header {
 }
 .job-list .job .job-actions .applicants {
   float: right;
-  text-align: right;
+  text-align: left;
+  color: #817D7D;
+  font-size: 0.7rem;
+}
+.job-list .job .job-actions .applicants b {
+  font-size: 0.9rem;
+  color: #88d816;
 }
 .job-list .job .job-actions .applicants .min-icon {
   display: inline-block;
@@ -354,10 +362,8 @@ body .pane .has-header {
   background: transparent;
 }
 .single-job-card {
-  box-shadow: 0px 0px 6px #888888;
-  -moz-box-shadow: 0px 0px 6px #888888;
-  -webkit-box-shadow: 0px 0px 6px #888888;
-  border-left: 2px solid #88d816;
+  /*border-left: 2px solid @green;
+	border:2px solid rgba(184, 184, 184, 0.51);*/
 }
 /**** Scroll Refresher Styles ****/
 .scroll-refresher {
@@ -373,7 +379,7 @@ body .pane .has-header {
 .single-job-card .item {
   white-space: normal;
   overflow: visible;
-  border: 0;
+  border: 2px solid #ccc;
 }
 .single-job-card .item * {
   white-space: normal;
@@ -387,7 +393,6 @@ body .pane .has-header {
 }
 .single-job-card .item .job-details {
   padding: 0;
-  margin: 0 0 0.5rem;
 }
 .single-job-card .item .job-details .col {
   padding: 0;
@@ -407,9 +412,9 @@ body .pane .has-header {
   padding-right: 0.5rem;
 }
 .single-job-card .item .job-details .job-time .time {
-  font-size: 1rem;
+  font-size: 0.8rem;
   display: inline-block;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 0.3rem;
 }
 .single-job-card .item .job-details .job-time .date {
@@ -421,9 +426,9 @@ body .pane .has-header {
   content: "";
 }
 .single-job-card .item .job-details .job-location {
-  font-size: 1rem;
+  font-size: 0.8rem;
   display: inline-block;
-  font-weight: 400;
+  font-weight: 500;
 }
 .single-job-card .item .job-details .job-description {
   font-size: 0.8rem;
