@@ -238,7 +238,7 @@ body {
 		margin-bottom: 20px;
 		border-radius: 1px;
 		border: 0;
-		padding: 10px;
+		padding: 0px;
 		border: 2px solid rgba(184, 184, 184, 0.51);
 		.job-details {
 			.job-title {
@@ -272,14 +272,15 @@ body {
 			}
 		}
 		.job-price {
-			text-align: center;
+			text-align: left;
 			color: @green;
 			font-family: 'bold', sans-serif;
 		}
 		.job-actions {
 			background: url('../../img/action-bg.png');
-			margin: 0 -10px -10px;
-			padding: 10px 20px;
+			/*margin: 0 -10px -10px;
+			padding: 3px 20px;*/
+			padding: 3px 10px;
 			font-size: 1.1rem;
 			.clearfix;
 			.apply-button {
@@ -287,7 +288,7 @@ body {
 				position: relative;
 				line-height: 40px;
 				width: 99px;
-				font-size: 1rem;
+				font-size: 0.9rem;
 				.minyawn-head {
 					background: url('../../img/minion-vector-head.png') no-repeat;
 					height: 20px;
@@ -300,7 +301,14 @@ body {
 			}
 			.applicants {
 				float: right;
-				text-align: right;
+				text-align: left;
+				color: #817D7D;
+				font-size: 0.7rem;
+				
+				b{
+					font-size: 0.9rem;
+					color:@green;
+				}
 				.min-icon {
 					display: inline-block;
 					width: 22px;
@@ -358,8 +366,8 @@ body {
 }
 .single-job-card{
 	
-	border-left: 2px solid @green;
-	border:2px solid rgba(184, 184, 184, 0.51);
+	/*border-left: 2px solid @green;
+	border:2px solid rgba(184, 184, 184, 0.51);*/
 }
 /**** Scroll Refresher Styles ****/
 .scroll-refresher {
@@ -378,7 +386,7 @@ body {
 	.item {
 		white-space: normal;
 		overflow: visible;
-		border: 0;
+		border: 2px solid #ccc;
 		* {
 			white-space: normal;
 		}
@@ -391,7 +399,7 @@ body {
 		}
 		.job-details {
 			padding: 0;
-			margin: 0 0 0.5rem;
+			
 			.col {
 				padding: 0;
 			}
@@ -410,9 +418,9 @@ body {
 			.job-time {
 				padding-right: 0.5rem;
 				.time {
-					font-size: 0.9rem;
+					font-size: 0.8rem;
 					display: inline-block;
-					font-weight: 400;
+					font-weight: 500;
 					margin-bottom: 0.3rem;
 				}
 				.date {
@@ -425,9 +433,9 @@ body {
 				}
 			}
 			.job-location {
-				font-size: 0.9rem;
-				display: inline-block;
-				font-weight:400;
+			font-size: 0.8rem;
+			display: inline-block;
+			font-weight: 500;
 			}
 			.job-description {
 				font-size: 0.8rem;

@@ -12,7 +12,7 @@
     <link href="styles/css/style.css" rel="stylesheet">
     <link href="styles/css/angular-material.css" rel="stylesheet">
     <link href="styles/css/animate.css" rel="stylesheet">
-
+   <link href="styles/css/jquery.marquee.min.css" rel="stylesheet">
      
     <!-- Ionic-Angular -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -23,7 +23,7 @@
     <script src="lib/plugins/jquery.min.js"></script>
     <script src="lib/plugins/jquery-ui.min.js"></script>
     <script src="lib/plugins/jquery-ui-touch-punch.js"></script>
-    <script src="lib/plugins/jquery.marquee.min.js"></script>
+    <script src="lib/plugins/jquery.li-scroller.1.0.js"></script>
 
     <!-- Ng Modules-->
     <script src="lib/modules/ng-cordova.js"></script>
@@ -55,7 +55,11 @@
 
     <!-- Directives -->
     <script src="app/jobs/slider-draggable.js"></script>
-
+<script type="text/javascript">
+$(document).ready(function (){
+  $("#marquee").marquee();
+});
+</script>
   </head>
 
   <body ng-app="minyawns" class="platform-android">
