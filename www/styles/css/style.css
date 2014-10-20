@@ -25,6 +25,9 @@ Version:        0.1.0
 .p-20 {
   padding: 20px;
 }
+.sm-padding .item {
+  padding: 10px !important;
+}
 /**** Body Styles ****/
 body h1,
 body h2,
@@ -290,6 +293,7 @@ body .pane .has-header {
   line-height: 40px;
   width: 99px;
   font-size: 0.9rem;
+  font-weight: 500;
 }
 .job-list .job .job-actions .apply-button .minyawn-head {
   background: url('../../img/minion-vector-head.png') no-repeat;
@@ -419,6 +423,10 @@ body .pane .has-header {
 }
 .single-job-card .item .job-details .job-price {
   color: #88d816;
+  /*background: @green;
+				border-radius: 7px;
+				text-align: center;
+				padding: 4px 0px;*/
 }
 .single-job-card .item .job-details .job-time {
   padding-right: 0.5rem;
