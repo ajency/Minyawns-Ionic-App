@@ -231,6 +231,11 @@ body .pane .has-header {
 .job-list .expire {
   border-left: 2px solid #ff3333 !important;
 }
+.job-list .item {
+  background: none !important;
+  border: 0px!important;
+  padding: 0!important;
+}
 .job-list .job {
   background: #ffffff;
   margin-bottom: 20px;
@@ -277,7 +282,7 @@ body .pane .has-header {
   background: url('../../img/action-bg.png');
   /*margin: 0 -10px -10px;
 			padding: 3px 20px;*/
-  padding: 3px 10px;
+  padding: 3px 0px;
   font-size: 1.1rem;
   *zoom: 1;
 }
