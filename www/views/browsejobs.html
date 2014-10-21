@@ -17,9 +17,9 @@
 		</ion-item>
 
 
-		<ion-item class="job" ng-repeat="job in jobs" ng-controller="controller" ng-click="toggleAccordian()">
+		<ion-item  ng-repeat="job in jobs" ng-controller="controller" ng-click="toggleAccordian()">
         
-        <div ng-class="(jobOpen)? 'available' : 'expire'">  
+        <div class="job" ng-class="(jobOpen)? 'available' : 'expire'">  
 
            <div ng-if="jobOpen">
 
@@ -63,19 +63,14 @@
 		  		Apply Now 
 		  		<div class="minyawn-head">&nbsp;</div>
 		  	</div> -->
-<<<<<<< HEAD
-		  	<div  >
-               
-			  	<div class="applicants">
-			  	<div class="minyawn-head">&nbsp;</div>
-				  <b>{{required_minyawns.length}}</b> Needed /  <b>{{job.applied_user_id.length}}</b> Applied
-			
-			  	</div>
 
-=======
+               
+			  	
+
+
 		  	<div class="row">
              
->>>>>>> 99775bcf33a0e9e721c852076c54da93473794c2
+
               
 <div class="col">
 			  	<div id="draggableContainer">
@@ -94,15 +89,15 @@
 				</div>
 </div>
 
-   <div class="col col-67">
+   <div class="col col-75">
 			  	<div class="applicants">
-			  	<div class="minyawn-head">&nbsp;</div>
-				  <b>3</b> Needed /  <b>2</b> Applied
+			  	<!-- <div class="minyawn-head">&nbsp;</div> -->
+				  <b>{{required_minyawns.length}}</b> Needed /  <b>{{job.applied_user_id.length}}</b> Applied
 			
 			  	</div>
 				</div>
 		    </div>
-		 </div>
+		 
 	    </div>
 
         <!-- condition for closed/expired jobs -->
@@ -170,11 +165,21 @@
 		    </div>
 		 </div>
         </div>
-<<<<<<< HEAD
+
 
         </div>   
-=======
-		<div class="single-job-apply cssSlideUp">
+
+		
+		</ion-item>
+	
+</div>
+	     <!-- <ion-item class="job not-applicable" ng-controller="BrowseJobsItemController" >
+>>>>>>> 99775bcf33a0e9e721c852076c54da93473794c2
+
+          <!-- Accordian View -->
+          <ion-item class="item-accordion" ng-show="accordianToggle" ng-click="onSingleJobClick(job.post_id)">
+
+                <div class="single-job-apply cssSlideUp">
 			<div class="row">
 				<div class="col">
 					<h3 class="detail-header">View the job</h3>
@@ -199,16 +204,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		</ion-item>
-	
-</div>
-	     <!-- <ion-item class="job not-applicable" ng-controller="BrowseJobsItemController" >
->>>>>>> 99775bcf33a0e9e721c852076c54da93473794c2
-
-          <!-- Accordian View -->
-          <ion-item class="item-accordion" ng-show="accordianToggle" ng-click="onSingleJobClick(job.post_id)">
-                View Job
+		   </div>
           </ion-item>
 
 		</ion-item>
