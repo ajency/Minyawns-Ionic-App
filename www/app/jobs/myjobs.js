@@ -8,7 +8,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 	
 	$scope.title="MY JOBS";
-	$scope.controller = "MyJobsItemController";
+	$scope.controller = MyJobsItemController;
 
 	var user = Storage.getUserDetails();
 	
@@ -195,13 +195,31 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 }])
 
 
-.controller('MyJobsItemController', ['$scope', 'JobStatus', function($scope, JobStatus){
 
-	//Init
+.config(function($stateProvider) {
+	
+	$stateProvider
+
+	.state('menu.myjobs', {
+		url: "/myjobs",
+		views: {
+			'menuContent' :{
+				templateUrl: "views/browsejobs.html",
+				controller: 'MyJobsController'
+			}
+		}
+	})
+
+});
+
+var MyJobsItemController = function($scope, JobStatus){
+    //Init
 	$scope.jobOpen = true;
 	$scope.showApplySlider = true;
-    
+    $scope.accordianToggle = false;
 
+    console.log('1')
+    
 	$scope.start_date = moment($scope.job.job_start_date).format('LL');
 
 	var required_minyawns = [];
@@ -225,23 +243,19 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
    
     
     
-   	$scope.applicationStatus = status.jobStatus;   
-    
-}])
+   	$scope.applicationStatus = status.jobStatus;  
 
+   	$scope.toggleAccordian = function(){
+         if ($scope.accordianToggle) {
+           $scope.accordianToggle = false;
+           $("ul#ticker"+$scope.job.post_id).removeClass('newsticker');
+         }
+         else{
+         	$scope.accordianToggle = true;
+         	$("ul#ticker"+$scope.job.post_id).liScroll();
+         }
+   		// $scope.accordianToggle =! $scope.accordianToggle;
+   		
+   	};
 
-.config(function($stateProvider) {
-	
-	$stateProvider
-
-	.state('menu.myjobs', {
-		url: "/myjobs",
-		views: {
-			'menuContent' :{
-				templateUrl: "",
-				controller: 'MyJobsController'
-			}
-		}
-	})
-
-});
+}
