@@ -480,6 +480,11 @@ body .pane .has-header {
   color: #88d816;
   margin-bottom: 0;
 }
+.single-job-apply .warning-msg {
+  text-transform: uppercase;
+  color: #ff3333 !important;
+  margin-bottom: 0;
+}
 .single-job-apply .helper-text {
   font-size: 0.8rem;
   color: #b1b1b1;
