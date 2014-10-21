@@ -25,6 +25,9 @@ Version:        0.1.0
 .p-20 {
   padding: 20px;
 }
+.sm-padding .item {
+  padding: 10px !important;
+}
 /**** Body Styles ****/
 body h1,
 body h2,
@@ -228,6 +231,14 @@ body .pane .has-header {
 .job-list .expire {
   border-left: 2px solid #ff3333 !important;
 }
+.job-list .item {
+  background: none !important;
+  border: 0px!important;
+  padding: 0!important;
+}
+.job-list .cssSlideUp {
+  height: auto !important;
+}
 .job-list .job {
   background: #ffffff;
   margin-bottom: 20px;
@@ -274,7 +285,7 @@ body .pane .has-header {
   background: url('../../img/action-bg.png');
   /*margin: 0 -10px -10px;
 			padding: 3px 20px;*/
-  padding: 3px 10px;
+  padding: 3px 0px;
   font-size: 1.1rem;
   *zoom: 1;
 }
@@ -287,9 +298,10 @@ body .pane .has-header {
 .job-list .job .job-actions .apply-button {
   float: left;
   position: relative;
-  line-height: 40px;
-  width: 99px;
-  font-size: 0.9rem;
+  line-height: 20px;
+  width: 120px;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 .job-list .job .job-actions .apply-button .minyawn-head {
   background: url('../../img/minion-vector-head.png') no-repeat;
@@ -305,7 +317,7 @@ body .pane .has-header {
   text-align: left;
   color: #817D7D;
   font-size: 0.7rem;
-  line-height: 25px;
+  line-height: 20px;
 }
 .job-list .job .job-actions .applicants .minyawn-head {
   background: url('../../img/minion-vector-head.png') no-repeat;
@@ -314,7 +326,6 @@ body .pane .has-header {
   background-size: 22px 20px;
   margin-right: 5px;
   display: inline-block;
-  margin-top: 9px;
   top: 0;
   right: 0;
 }
@@ -419,6 +430,10 @@ body .pane .has-header {
 }
 .single-job-card .item .job-details .job-price {
   color: #88d816;
+  /*background: @green;
+				border-radius: 7px;
+				text-align: center;
+				padding: 4px 0px;*/
 }
 .single-job-card .item .job-details .job-time {
   padding-right: 0.5rem;

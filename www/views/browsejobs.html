@@ -16,6 +16,7 @@
 		    Connection error. Try again.
 		</ion-item>
 
+
 		<ion-item class="job" ng-repeat="job in jobs" ng-controller="controller" ng-click="toggleAccordian()">
         
         <div ng-class="(jobOpen)? 'available' : 'expire'">  
@@ -23,6 +24,7 @@
            <div ng-if="jobOpen">
 
 			<div class="row" >
+
 
 				<div class="col" >
 					<h2 class="job-title">
@@ -61,6 +63,7 @@
 		  		Apply Now 
 		  		<div class="minyawn-head">&nbsp;</div>
 		  	</div> -->
+<<<<<<< HEAD
 		  	<div  >
                
 			  	<div class="applicants">
@@ -69,8 +72,12 @@
 			
 			  	</div>
 
+=======
+		  	<div class="row">
+             
+>>>>>>> 99775bcf33a0e9e721c852076c54da93473794c2
               
-
+<div class="col">
 			  	<div id="draggableContainer">
 
 				  	<!-- <m-draggable ng-if="showApplySlider" on-apply-job="applyForJob($jobID)" job-post-id="{{job.post_id}}" on-touch="disableMenuDrag()" on-release="enableMenuDrag()">
@@ -85,7 +92,15 @@
 			  		</div> -->
 				
 				</div>
+</div>
 
+   <div class="col col-67">
+			  	<div class="applicants">
+			  	<div class="minyawn-head">&nbsp;</div>
+				  <b>3</b> Needed /  <b>2</b> Applied
+			
+			  	</div>
+				</div>
 		    </div>
 		 </div>
 	    </div>
@@ -155,8 +170,41 @@
 		    </div>
 		 </div>
         </div>
+<<<<<<< HEAD
 
         </div>   
+=======
+		<div class="single-job-apply cssSlideUp">
+			<div class="row">
+				<div class="col">
+					<h3 class="detail-header">View the job</h3>
+				</div>
+				<div class="col col-20">
+					&nbsp;
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="helper-text">
+						To get details of this job, Just click the tick icon & browse the job.
+					</div>
+					<!--<button class="button button-small button-positive apply-btn" ng-click="onSingleJobClick(job.post_id)">
+					  View job
+					</button>-->
+				</div>
+				<div class="col col-20">
+					<div class="pic-upload" ng-click="onSingleJobClick(job.post_id)">
+					 <i class="icon ion-checkmark-circled"></i> 
+						<img ng-src="{{profileImage}}" ></img>
+					</div>
+				</div>
+			</div>
+		</div>
+		</ion-item>
+	
+</div>
+	     <!-- <ion-item class="job not-applicable" ng-controller="BrowseJobsItemController" >
+>>>>>>> 99775bcf33a0e9e721c852076c54da93473794c2
 
           <!-- Accordian View -->
           <ion-item class="item-accordion" ng-show="accordianToggle" ng-click="onSingleJobClick(job.post_id)">

@@ -17,6 +17,7 @@ Version:        0.1.0
 @dark-grey: #414141;
 @red: #ff3333;
 @white: #ffffff;
+@blue: #4a87ee;
 @black: #000;
 
 /****Clearfix****/
@@ -34,6 +35,12 @@ Version:        0.1.0
 .p-20{
 	padding:20px;
 }
+.sm-padding{
+	.item{
+	padding:10px !important;
+	}
+}
+
 /**** Body Styles ****/
 body {
 	h1, h2, h3, h4, h5, h6, p, input, button, select, textarea, .h1, .h2, .h3, .h4, .h5, .h6 .item, .item-divider {
@@ -233,6 +240,14 @@ body {
 	.expire{
 		border-left:2px solid @red !important;
 	}
+	.item{
+		background: none !important;
+		border: 0px!important;
+		padding: 0!important;
+	}
+	.cssSlideUp{
+		height:auto !important;
+	}
 	.job {
 		background: @white;
 		margin-bottom: 20px;
@@ -240,6 +255,7 @@ body {
 		border: 0;
 		padding: 0px;
 		border: 2px solid rgba(184, 184, 184, 0.51);
+		
 		.job-details {
 			.job-title {
 				font-family: 'bold', sans-serif;
@@ -280,15 +296,16 @@ body {
 			background: url('../../img/action-bg.png');
 			/*margin: 0 -10px -10px;
 			padding: 3px 20px;*/
-			padding: 3px 10px;
+			padding: 3px 0px;
 			font-size: 1.1rem;
 			.clearfix;
 			.apply-button {
 				float: left;
 				position: relative;
-				line-height: 40px;
-				width: 99px;
-				font-size: 0.9rem;
+				line-height: 20px;
+				width: 120px;
+				font-size: 0.8rem;
+				font-weight: 500;
 				.minyawn-head {
 					background: url('../../img/minion-vector-head.png') no-repeat;
 					height: 20px;
@@ -304,7 +321,7 @@ body {
 				text-align: left;
 				color: #817D7D;
 				font-size: 0.7rem;
-				line-height: 25px;
+				line-height: 20px;
 				.minyawn-head {
 					background: url('../../img/minion-vector-head.png') no-repeat;
 					height: 20px;
@@ -312,8 +329,6 @@ body {
 					background-size: 22px 20px;
 					margin-right:5px;
 					display: inline-block;
-					margin-top: 9px;
-				
 					top: 0;
 					right:0;
 				}
@@ -426,7 +441,11 @@ body {
 				border-bottom: 1px solid @grey;
 			}
 			.job-price {
-				color: @green;
+				color:@green;
+				/*background: @green;
+				border-radius: 7px;
+				text-align: center;
+				padding: 4px 0px;*/
 				
 			}
 			.job-time {
