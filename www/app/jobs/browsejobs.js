@@ -6,8 +6,10 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network
 	, Toast, $ionicSideMenuDelegate){
 
-	
+	$scope.title="BROWSE JOBS";
+
 	$rootScope.profileImage = "";
+	$scope.controller = BrowseJobsItemController;
 	
 	
 	$scope.reSet = function(){
@@ -181,52 +183,11 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
 	$rootScope.$on('onUserLogoutReloadBrowseJobs', function(event, args) {
 
-		// $scope.reSet();
-		// $scope.resetRootScope();
-		// $scope.onViewLoad();
-		   $state.reload();
-
+		 $state.transitionTo('menu.browsejobs', null, {'reload':true});
     });
 
-}])
-
-
-.controller('BrowseJobsItemController', ['$scope', 'JobStatus', function($scope, JobStatus){
-
-	//Init
-	$scope.jobShow = true;
-	$scope.jobOpen = true;
-	$scope.showApplySlider = true;
-    
-
-	$scope.start_date = moment($scope.job.job_start_date).format('LL');
-
-	var required_minyawns = [];
-
-	for(i=0; i<$scope.job.required_minyawns; i++){
-		required_minyawns.push('min'+i);
-	}
-
-    $scope.required_minyawns = required_minyawns;
-
-    var status = JobStatus.get($scope.job);
-
-   console.log(status.jobStatus);
    
-    if (status.display) {   //condition to hide expired jobs
-        jobShow = true;
 
-        if (status.validity ==='Available') 
-       		$scope.jobOpen = true;
-    	else
-       		$scope.jobOpen = false;
-    }
-    else
-    	 jobShow = false;
-    
-    
-   	$scope.applicationStatus = status.jobStatus;   
-    
 }])
 
 
@@ -248,3 +209,55 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
     $urlRouterProvider.otherwise('/menu/browsejobs');
 
 });
+
+
+// .controller('BrowseJobsItemController', ['$scope', 'JobStatus', function($scope, JobStatus){
+var BrowseJobsItemController = function($scope, JobStatus){
+
+	//Init
+	$scope.jobOpen = true;
+	$scope.showApplySlider = true;
+	$scope.accordianToggle = false;
+
+	console.log('1')
+
+	$scope.start_date = moment($scope.job.job_start_date).format('LL');
+
+	var required_minyawns = [];
+
+	for(i=0; i<$scope.job.required_minyawns; i++){
+		required_minyawns.push('min'+i);
+	}
+
+    $scope.required_minyawns = required_minyawns;
+
+    var status = JobStatus.get($scope.job);
+
+    console.log(status.validity);
+
+    if (status.validity ==='Available') 
+   		$scope.jobOpen = true;
+	else
+   		$scope.jobOpen = false;
+    
+   	$scope.applicationStatus = status.jobStatus;
+
+
+   	$scope.toggleAccordian = function(){
+         if ($scope.accordianToggle) {
+           $scope.accordianToggle = false;
+           $("ul#ticker"+$scope.job.post_id).removeClass('newsticker');
+         }
+         else{
+         	$scope.accordianToggle = true;
+         	$("ul#ticker"+$scope.job.post_id).liScroll();
+         }
+   		// $scope.accordianToggle =! $scope.accordianToggle;
+   		
+   	};
+   
+   };
+
+// }])
+
+
