@@ -122,15 +122,15 @@
 			<div class="row">
 				<div class="col">
 					<div class="helper-text">
-						To apply, take a picture or upload one, and when done, just hit the button below.
+						To get details of this job, Just click the tick icon & browse the job.
 					</div>
-					<button class="button button-small button-positive apply-btn" ng-click="onSingleJobClick(job.post_id)">
+					<!--<button class="button button-small button-positive apply-btn" ng-click="onSingleJobClick(job.post_id)">
 					  View job
-					</button>
+					</button>-->
 				</div>
 				<div class="col col-20">
-					<div class="pic-upload" ng-click="takePicture()">
-					 <i class="icon ion-camera"></i> 
+					<div class="pic-upload" ng-click="onSingleJobClick(job.post_id)">
+					 <i class="icon ion-checkmark-circled"></i> 
 						<img ng-src="{{profileImage}}" ></img>
 					</div>
 				</div>
