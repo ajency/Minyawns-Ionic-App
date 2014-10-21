@@ -65,8 +65,6 @@
 		  	</div> -->
 
                
-			  	
-
 
 		  	<div class="row">
              
@@ -141,7 +139,7 @@
 		  	<div  >
                
 			  	<div class="applicants">
-			  	<div class="minyawn-head">&nbsp;</div>
+			  	<!-- <div class="minyawn-head">&nbsp;</div> -->
 				  <b>{{required_minyawns.length}}</b> Needed /  <b>{{job.applied_user_id.length}}</b> Applied
 			
 			  	</div>
@@ -177,7 +175,7 @@
 >>>>>>> 99775bcf33a0e9e721c852076c54da93473794c2
 
           <!-- Accordian View -->
-          <ion-item class="item-accordion" ng-show="accordianToggle" ng-click="onSingleJobClick(job.post_id)">
+          <ion-item class="item-accordion" ng-show="accordianToggle" >
 
                 <div class="single-job-apply cssSlideUp">
 			<div class="row">
@@ -199,7 +197,7 @@
 				</div>
 				<div class="col col-20">
 					<div class="pic-upload" ng-click="onSingleJobClick(job.post_id)">
-					 <i class="icon ion-checkmark-circled"></i> 
+					 <i class="icon ion-checkmark-circled" ></i> 
 						<img ng-src="{{profileImage}}" ></img>
 					</div>
 				</div>
