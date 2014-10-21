@@ -313,8 +313,7 @@ body .pane .has-header {
   right: 0;
 }
 .job-list .job .job-actions .applicants {
-  float: right;
-  text-align: left;
+  text-align: right !important;
   color: #817D7D;
   font-size: 0.7rem;
   line-height: 20px;
