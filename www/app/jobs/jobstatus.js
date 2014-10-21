@@ -9,6 +9,7 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
             get: function(model) {
 
                 var user = Storage.getUserDetails();
+
                 var jobStatusDetails = {
                     validity: '',
                     jobStatus: ''
@@ -69,6 +70,8 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
 
                         } else { //Selection Done  
 
+                            jobStatusDetails.validity = 'Available';  //Show green if somebody is hired
+
                             var numOfHired = 0;
 
                             for (var i = 0; i < model.user_to_job_status.length; i++) {
@@ -77,7 +80,7 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
                                     numOfHired++;
 
                             }
-
+     
                             if (user.isLoggedIn) {
 
                                 if (model.applied_user_id.indexOf(user.userID) != -1) { // applied
@@ -86,15 +89,16 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
                                     var userstatus = model.user_to_job_status[index];
 
                                     if (userstatus == 'hired') {
-                                        jobStatusDetails.validity = 'Available';
+
+                                       
                                         jobStatusDetails.jobStatus = " You are hired";
                                     } else
-                                        jobStatusDetails.jobStatus = " Applications are now closed";
+                                        jobStatusDetails.jobStatus = " Application closed";
                                 } else
                                     jobStatusDetails.jobStatus = numOfHired + " Minions have been selected";
 
                             } else
-                                jobStatusDetails.jobStatus = " Applications are now closed";
+                                jobStatusDetails.jobStatus = " Application closed";
 
 
                         }

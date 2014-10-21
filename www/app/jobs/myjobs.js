@@ -7,7 +7,9 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 	, Toast, $ionicSideMenuDelegate,Storage){
 
 	
-	
+	$scope.title="MY JOBS";
+	$scope.controller = "MyJobsItemController";
+
 	var user = Storage.getUserDetails();
 	
 	$scope.reSet = function(){
@@ -34,7 +36,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 			
             $http.get($rootScope.GETURL+'fetchjobs?my_jobs=1&offset='+$rootScope.myjobs.offset+'&filter_my=0&'+
-			'logged_in_user_id='+'333')
+			'logged_in_user_id='+user.userID)
 
 			.then(function(resp, status, headers, config){
 
@@ -181,19 +183,19 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		$ionicSideMenuDelegate.canDragContent(true);
 	};
 
-	$rootScope.$on('onUserLogoutReloadBrowseJobs', function(event, args) {
+	$rootScope.$on('onUserLogoutNavigateBrowseJobs', function(event, args) {
 
 		// $scope.reSet();
 		// $scope.resetRootScope();
 		// $scope.onViewLoad();
-		   $state.reload();
+		   $state.go('menu.browsejobs');
 
     });
 
 }])
 
 
-.controller('BrowseJobsItemController', ['$scope', 'JobStatus', function($scope, JobStatus){
+.controller('MyJobsItemController', ['$scope', 'JobStatus', function($scope, JobStatus){
 
 	//Init
 	$scope.jobOpen = true;
@@ -212,7 +214,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
     var status = JobStatus.get($scope.job);
 
-   console.log(status.jobStatus);
+   // console.log(status.jobStatus);
    
     
 
@@ -236,7 +238,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		url: "/myjobs",
 		views: {
 			'menuContent' :{
-				templateUrl: "views/browsejobs.html",
+				templateUrl: "",
 				controller: 'MyJobsController'
 			}
 		}
