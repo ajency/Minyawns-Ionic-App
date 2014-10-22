@@ -254,7 +254,7 @@ body {
 		border-radius: 1px;
 		border: 0;
 		padding: 0px;
-		border: 2px solid rgba(184, 184, 184, 0.51);
+		border: 1px solid rgba(184, 184, 184, 0.51);
 		
 		.job-details {
 			.job-title {
@@ -292,6 +292,23 @@ body {
 			color: @green;
 			font-family: 'bold', sans-serif;
 		}
+		.single-job-apply{
+				margin: 0px 4px;
+				padding:7px 0px;
+			.helper-text{
+					border:0px !important;
+					padding-top:0px !important;
+					margin:0px;
+					color:@white!important;
+				}
+			i{
+				font-size: 20px;
+				text-align: right;
+				padding-right: 7px;
+				color: @white;
+				display:block;
+			}	
+		}
 		.job-actions {
 			background: url('../../img/action-bg.png');
 			/*margin: 0 -10px -10px;
@@ -299,13 +316,15 @@ body {
 			padding: 3px 0px;
 			font-size: 1.1rem;
 			.clearfix;
+			.apply{
+				color:@green;
+			}
 			.apply-button {
 				float: left;
 				position: relative;
 				line-height: 20px;
 				width: 120px;
 				font-size: 0.8rem;
-				font-weight: 500;
 				.minyawn-head {
 					background: url('../../img/minion-vector-head.png') no-repeat;
 					height: 20px;
@@ -362,6 +381,7 @@ body {
 					line-height: 41px;
 				}
 			}
+			
 		}
 		&.not-applicable {
 			border-left-color: @red;
@@ -394,7 +414,7 @@ body {
 .single-job-card{
 	
 	/*border-left: 2px solid @green;
-	border:2px solid rgba(184, 184, 184, 0.51);*/
+	border:1px solid rgba(184, 184, 184, 0.51);*/
 }
 /**** Scroll Refresher Styles ****/
 .scroll-refresher {
