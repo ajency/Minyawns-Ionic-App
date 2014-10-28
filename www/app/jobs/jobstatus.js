@@ -12,10 +12,11 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
 
                 var jobStatusDetails = {
                     validity: '',
+                    applicationStatus: '',
                     jobStatus: ''
                 };
 
-                
+
                 if (model.todays_date_time < model.job_end_date_time_check && (model.job_status == 1 || model.job_status == 0)) {
                     status = 'Available';
                 } else if (model.todays_date_time < model.job_end_date_time_check && (model.job_status === 3 || model.job_status === 2)) {
@@ -29,24 +30,31 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
                     case 'Available':
 
                         jobStatusDetails.validity = 'Available';
+                        jobStatusDetails.applicationStatus = 'Application Open';
 
                         if (user.isLoggedIn) {
 
-                            if (model.users_applied.length === 0) // 0 APPLICANTS
-                                jobStatusDetails.jobStatus = "Apply Now";
-
-                            else // MINIONS APPLIED
+                            if (model.users_applied.length === 0) { // 0 APPLICANTS
+                                //    jobStatusDetails.jobStatus = "Apply Now";
+                                jobStatusDetails.jobStatus = "Not Applied";
+                            } else // MINIONS APPLIED
                             {
-                                if (model.applied_user_id.indexOf(user.userID) != -1) // applied
-                                    jobStatusDetails.jobStatus = "Unapply";
+                                if (model.applied_user_id.indexOf(user.userID) != -1) { // applied
+                                    //    jobStatusDetails.jobStatus = "Unapply";
+                                    jobStatusDetails.jobStatus = "Applied";
+                                } else {
+                                    //    jobStatusDetails.jobStatus = "Apply Now";
+                                    jobStatusDetails.jobStatus = "Not Applied";
+                                }
 
-                                else
-                                    jobStatusDetails.jobStatus = "Apply Now";
 
                             }
 
-                        } else
-                            jobStatusDetails.jobStatus = "Login to apply";
+                        } else {
+                            // jobStatusDetails.jobStatus = "Login to apply";
+                            jobStatusDetails.jobStatus = "Not Applied";
+                        }
+
 
 
                         break;
@@ -54,23 +62,30 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
                     case 'Closed':
 
                         jobStatusDetails.validity = 'Closed';
+                        jobStatusDetails.applicationStatus = 'Application Closed';
 
                         if (model.job_status === 3) { //Max Applicants
 
                             if (user.isLoggedIn) {
 
-                                if (model.applied_user_id.indexOf(user.userID) != -1)
-                                    jobStatusDetails.jobStatus = "Applications Closed"+"Unapply";
+                                if (model.applied_user_id.indexOf(user.userID) != -1) {
+                                    // jobStatusDetails.jobStatus = "Applications Closed"+"Unapply";
+                                    jobStatusDetails.jobStatus = "Applied";
+                                } else {
+                                    // jobStatusDetails.jobStatus = "Applications Closed";
+                                    jobStatusDetails.jobStatus = "Not Applied";
+                                }
 
-                                else
-                                    jobStatusDetails.jobStatus = "Applications Closed";
 
-                            } else
-                                jobStatusDetails.jobStatus = "Applications are now closed";
+                            } else {
+                                // jobStatusDetails.jobStatus = "Applications are now closed";
+                                jobStatusDetails.jobStatus = "Not Applied";
+                            }
+
 
                         } else { //Selection Done  
 
-                            jobStatusDetails.validity = 'Available';  //Show green if somebody is hired
+                            jobStatusDetails.validity = 'Available'; //Show green if somebody is hired
 
                             var numOfHired = 0;
 
@@ -80,7 +95,7 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
                                     numOfHired++;
 
                             }
-     
+
                             if (user.isLoggedIn) {
 
                                 if (model.applied_user_id.indexOf(user.userID) != -1) { // applied
@@ -90,15 +105,24 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
 
                                     if (userstatus == 'hired') {
 
-                                       
-                                        jobStatusDetails.jobStatus = "You are hired";
-                                    } else
-                                        jobStatusDetails.jobStatus = "Application closed";
-                                } else
-                                    jobStatusDetails.jobStatus = numOfHired +"Minions have been selected";
 
-                            } else
-                                jobStatusDetails.jobStatus = "Application closed";
+                                        jobStatusDetails.jobStatus = "Hired";
+                                    } else {
+                                        // jobStatusDetails.jobStatus = "Application closed";
+                                        jobStatusDetails.jobStatus = "Applied";
+                                    }
+
+                                } else {
+                                    // jobStatusDetails.jobStatus = numOfHired + "Minions have been selected";
+                                    jobStatusDetails.jobStatus = "Not Applied";
+                                }
+
+
+                            } else {
+                                // jobStatusDetails.jobStatus = "Application closed";
+                                jobStatusDetails.jobStatus = "Not Applied";
+                            }
+
 
 
                         }
@@ -108,25 +132,32 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
                     case 'Expired':
 
                         jobStatusDetails.validity = 'Closed';
+                        jobStatusDetails.applicationStatus = 'Job Expired';
+                        
 
-                        if (model.applied_user_id.indexOf(user.userID) != -1) {
+                        // if (model.applied_user_id.indexOf(user.userID) != -1) {
 
-                            for (var i = 0; i < model.user_to_job_status.length; i++) {
+                        //     for (var i = 0; i < model.user_to_job_status.length; i++) {
 
-                                if (model.applied_user_id[i] === user.userID && model.user_to_job_rating[i] !== 'Rating:Awaited') {
+                        //         if (model.applied_user_id[i] === user.userID && model.user_to_job_rating[i] !== 'Rating:Awaited') {
 
-                                    jobStatusDetails.jobStatus = "You have been rated";
-                                    break;
+                        //             jobStatusDetails.jobStatus = "You have been rated";
+                        //             break;
 
-                                } else {
-                                    jobStatusDetails.jobStatus = "Job Date is Over";
-                                }
-                            }
+                        //         } else {
+                        //             jobStatusDetails.jobStatus = "Job Date is Over";
+                        //         }
+                        //     }
 
-                        } else
-                            jobStatusDetails.jobStatus = "Job Date is Over";
+                        // } else
+                        //     jobStatusDetails.jobStatus = "Job Date is Over";
 
+                        if (model.individual_user_to_job_status=='Hired')
+                            jobStatusDetails.jobStatus = "Hired";
 
+                        else if (model.individual_user_to_job_status=='Applied')
+                            jobStatusDetails.jobStatus = "Applied";;
+                        
                         break;
 
                 }

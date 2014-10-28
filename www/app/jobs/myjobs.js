@@ -240,11 +240,12 @@ var MyJobsItemController = function($scope, JobStatus){
    		$scope.jobOpen = true;
 	else
    		$scope.jobOpen = false;
-   
+  
     
-    
-   	$scope.applicationStatus = status.jobStatus;  
-    
+   	// $scope.applicationStatus = status.jobStatus;  
+    $scope.applicationStatus = status.applicationStatus;
+
+    $scope.jobStatus = status.jobStatus;
     
 
    	$scope.toggleAccordian = function(){
