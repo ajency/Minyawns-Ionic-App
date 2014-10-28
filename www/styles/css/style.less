@@ -378,14 +378,13 @@ body {
 				display:block;
 			}	
 		}
-		.job-actions:before{
-				font-family: "Ionicons";
+			.arrow{
+			font-family: "Ionicons";
 				speak: none;
 				font-style: normal;
 				font-variant: normal;
 				text-transform: none;
 				text-rendering: auto;
-				content: "\f151" !important;
 				z-index: 0;
 				list-style: none;
 				text-align: center;
@@ -397,9 +396,13 @@ body {
 				padding: 17px 10px;
 				right: 0px;
 		}
+		.up-arrow:before{
+			content: "\f151" !important;
+			.arrow;
+		}
 		.down-arrow:before{
 				content: "\f155" !important;
-				
+				.arrow;
 		}
 		.job-actions {
 			background: url('../../img/action-bg.png');
@@ -408,6 +411,7 @@ body {
 			padding: 3px 0px;
 			font-size: 1.1rem;
 			.clearfix;
+		
 			.apply{
 				color:@green;
 			}

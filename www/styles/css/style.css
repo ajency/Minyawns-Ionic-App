@@ -365,14 +365,32 @@ body .pane .has-header {
   color: #ffffff;
   display: block;
 }
-.job-list .job .job-actions:before {
+.job-list .job .arrow {
   font-family: "Ionicons";
   speak: none;
   font-style: normal;
   font-variant: normal;
   text-transform: none;
   text-rendering: auto;
+  z-index: 0;
+  list-style: none;
+  text-align: center;
+  font-weight: normal;
+  font-size: 28px;
+  cursor: pointer;
+  color: #b1b1b1;
+  position: absolute;
+  padding: 17px 10px;
+  right: 0px;
+}
+.job-list .job .up-arrow:before {
   content: "\f151" !important;
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
   z-index: 0;
   list-style: none;
   text-align: center;
@@ -386,6 +404,22 @@ body .pane .has-header {
 }
 .job-list .job .down-arrow:before {
   content: "\f155" !important;
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  z-index: 0;
+  list-style: none;
+  text-align: center;
+  font-weight: normal;
+  font-size: 28px;
+  cursor: pointer;
+  color: #b1b1b1;
+  position: absolute;
+  padding: 17px 10px;
+  right: 0px;
 }
 .job-list .job .job-actions {
   background: url('../../img/action-bg.png');
