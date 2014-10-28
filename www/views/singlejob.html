@@ -6,15 +6,15 @@
 	</div>
   </ion-content>
 
-  <ion-content ng-hide="mainContent">
+  <ion-content scrollbar-y="false" ng-hide="mainContent">
   	<div class="list list-inset single-job-card sm-padding">
   		<div class="item">
 
-	  		<h2 class="job-title"><ul id="ticker01">
-   <li><a>{{ jobTitle }}</a></li>
- 
-    <!-- eccetera -->
-</ul></h2>
+	  		<h2 class="job-title">
+	  			<ul id="ticker01">
+   					<li><a>{{ jobTitle }}</a></li> <!-- eccetera -->
+				</ul>
+			</h2>
 
 	  		<div class="row job-details">
 	  			<div class="col">
@@ -65,8 +65,14 @@
 				</div>
 				<div class="col col-20">
 					<div class="pic-upload" ng-click="takePicture()">
-					 <i class="icon ion-camera"></i> 
-						<img ng-src="{{profileImage}}" ></img>
+					  
+					  <i class="icon ion-camera" ng-if="!picturePresent">
+						 <img ng-src="{{profileImage}}" ></img>
+					  </i> 	
+
+					  <i class="hidden" ng-if="picturePresent">
+						 <img align="middle" ng-src="{{profileImage}}" width="70" height="50" ></img>
+					  </i> 	
 					</div>
 				</div>
 			</div>

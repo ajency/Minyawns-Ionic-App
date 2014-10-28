@@ -10,7 +10,9 @@
 .cssSlideUp.ng-hide {
     height: 0;
 }
-
+.hidden {
+    display : none;
+}
 
 .rotate, 
 .rotateCounterwise {

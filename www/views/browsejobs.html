@@ -70,7 +70,7 @@
              
 
               
-<div class="col">
+<div class="col col-50">
 			  	<div id="draggableContainer">
 
 				  	<!-- <m-draggable ng-if="showApplySlider" on-apply-job="applyForJob($jobID)" job-post-id="{{job.post_id}}" on-touch="disableMenuDrag()" on-release="enableMenuDrag()">
@@ -87,7 +87,7 @@
 				</div>
 </div>
 
-   <div class="col col-67">
+   <div class="col col-50">
 			  	<div class="applicants">
 			  	<!-- <div class="minyawn-head">&nbsp;</div> -->
 				  <b>{{required_minyawns.length}}</b> Needed /  <b>{{job.applied_user_id.length}}</b> Applied
@@ -103,13 +103,18 @@
         <div  ng-if="!jobOpen" >
 	    	<div class="row" >
 
+
 				<div class="col" >
-					<h2 class="job-title">{{ job.post_title }}</h2>
+					<h2 class="job-title">
+	 					<ul id="ticker{{job.post_id}}">
+	   						<li><a>{{ job.post_title }}</a></li><!-- eccetera -->
+	   					</ul>
+					</h2>
 			<div class="row job-details">
 	  			<div class="col">
 	  				<h4 class="detail-header">When</h4>
 	  				<div class="job-time">
-	  					<!-- <span class="time">{{ job.days_to_job_expired }} DAYS TO GO </span> -->
+	  					
 	  					<span class="date">{{start_date}}</span>
 	  					<span class="time">{{ job.job_start_time }}{{job.job_start_meridiem}} - {{ job.job_end_time }}{{ job.job_end_meridiem }}</span>
 	  				</div>
@@ -136,16 +141,14 @@
 		  		Apply Now 
 		  		<div class="minyawn-head">&nbsp;</div>
 		  	</div> -->
-		  	<div  >
+
                
-			  	<div class="applicants">
-			  	<!-- <div class="minyawn-head">&nbsp;</div> -->
-				  <b>{{required_minyawns.length}}</b> Needed /  <b>{{job.applied_user_id.length}}</b> Applied
-			
-			  	</div>
+
+		  	<div class="row">
+             
 
               
-
+<div class="col col-50">
 			  	<div id="draggableContainer">
 
 				  	<!-- <m-draggable ng-if="showApplySlider" on-apply-job="applyForJob($jobID)" job-post-id="{{job.post_id}}" on-touch="disableMenuDrag()" on-release="enableMenuDrag()">
@@ -160,9 +163,18 @@
 			  		</div> -->
 				
 				</div>
+</div>
 
+   <div class="col col-50">
+			  	<div class="applicants">
+			  	<!-- <div class="minyawn-head">&nbsp;</div> -->
+				  <b>{{required_minyawns.length}}</b> Needed /  <b>{{job.applied_user_id.length}}</b> Applied
+			
+			  	</div>
+				</div>
 		    </div>
-		 </div>
+		 
+	     </div>
         </div>
 
 

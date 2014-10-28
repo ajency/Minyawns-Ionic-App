@@ -244,15 +244,20 @@ var MyJobsItemController = function($scope, JobStatus){
     
     
    	$scope.applicationStatus = status.jobStatus;  
+    
+    
 
    	$scope.toggleAccordian = function(){
          if ($scope.accordianToggle) {
            $scope.accordianToggle = false;
-           $("ul#ticker"+$scope.job.post_id).removeClass('newsticker');
+           $("ul#ticker"+$scope.job.post_id).removeClass('newsticker') //removes the extra class
          }
          else{
          	$scope.accordianToggle = true;
-         	$("ul#ticker"+$scope.job.post_id).liScroll();
+
+         	if ($scope.job.post_title.length>50) {
+       			$("ul#ticker"+$scope.job.post_id).liScroll();
+   			 };
          }
    		// $scope.accordianToggle =! $scope.accordianToggle;
    		

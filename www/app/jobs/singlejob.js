@@ -11,16 +11,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$rootScope.minionDetails = [];
 	$rootScope.postID = $stateParams.postID;
 	$scope.mainLoader = $scope.mainContent = true;
-
-
-
-	var setJs = function(){
-		
-	
-  $("ul#ticker01").liScroll();
-
-	}
-	
+	$scope.picturePresent = false ;
 	
 	$scope.getSingleJobDetails = function(){
 
@@ -97,8 +88,12 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		$scope.applicants = data.applied_user_id;
 
 		$scope.updateApplySectionDetails();
+        
 
-		setJs()
+		if (data.post_title.length>50) {
+            console.log('3');
+    		$("ul#ticker01").liScroll();
+    	};
 	};
 
 
@@ -163,17 +158,20 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
     $scope.takePicture = function(){
 
-    	var options = { 
-    		cameraDirection : 1 ,  
-			targetWidth: 1000,
-			targetHeight: 1000,
+    	var options = {
+    		quality : 100,
+    		correctOrientation : true,
+    		targetWidth : 1000,
+    		targetHeight : 1000,
 			allowEdit : true
 		};
 
 		$cordovaCamera.getPicture(options)
 		.then(function(imageURI){
-
+			$scope.picturePresent = true ;
 			$rootScope.profileImage = imageURI;
+
+			
 		}
 		,function(err){
 			console.log(err);

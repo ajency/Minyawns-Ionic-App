@@ -60,13 +60,13 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
                             if (user.isLoggedIn) {
 
                                 if (model.applied_user_id.indexOf(user.userID) != -1)
-                                    jobStatusDetails.jobStatus = "Applications Closed.Maximum number of minions have applied" + " You have already applied. Unapply";
+                                    jobStatusDetails.jobStatus = "Applications Closed"+"Unapply";
 
                                 else
-                                    jobStatusDetails.jobStatus = "Applications Closed.Maximum number of minions have applied";
+                                    jobStatusDetails.jobStatus = "Applications Closed";
 
                             } else
-                                jobStatusDetails.jobStatus = "Maximum number of minions have applied. Applications are now closed";
+                                jobStatusDetails.jobStatus = "Applications are now closed";
 
                         } else { //Selection Done  
 
@@ -91,14 +91,14 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
                                     if (userstatus == 'hired') {
 
                                        
-                                        jobStatusDetails.jobStatus = " You are hired";
+                                        jobStatusDetails.jobStatus = "You are hired";
                                     } else
-                                        jobStatusDetails.jobStatus = " Application closed";
+                                        jobStatusDetails.jobStatus = "Application closed";
                                 } else
-                                    jobStatusDetails.jobStatus = numOfHired + " Minions have been selected";
+                                    jobStatusDetails.jobStatus = numOfHired +"Minions have been selected";
 
                             } else
-                                jobStatusDetails.jobStatus = " Application closed";
+                                jobStatusDetails.jobStatus = "Application closed";
 
 
                         }

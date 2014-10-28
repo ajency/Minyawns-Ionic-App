@@ -15,7 +15,7 @@ overflow: hidden;
 }
 ul.newsticker { /* that's your list */
 position: relative;
-left: 350px;
+left: 0;
 
 list-style-type: none;
 margin: 0;
