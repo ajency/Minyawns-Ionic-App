@@ -32,8 +32,14 @@ Version:        0.1.0
 .pull-center{
 	text-align:center;
 }
+.pull-right{
+	float:right;
+}
 .p-20{
 	padding:20px;
+}
+.m-l-20{
+		margin-left:20px;
 }
 .sm-padding{
 	.item{
@@ -301,6 +307,58 @@ body {
 					margin:0px;
 					color:@white!important;
 				}
+				.button{
+					margin: 1px;
+					background:@green !important;
+					border:0px;
+					min-height:0px !important;
+					
+				}
+				.applied{
+					display: inline-block;
+					text-align: center;
+					font-size: 0.7rem;
+					text-transform: uppercase;
+					color:#868080;
+					margin-right:5px;
+					span{
+						display: block;
+						width: 30px;
+						height: 30px;
+						background: url('../../img/sprite.png') -1px 0px no-repeat;
+						margin: auto;
+					}
+				}
+	.hired{
+					display: inline-block;
+					text-align: center;
+					font-size: 0.7rem;
+					text-transform: uppercase;
+					color:#868080;
+					margin-right:5px;
+					span{
+						display: block;
+						width: 30px;
+						height: 30px;
+						background: url('../../img/sprite.png') -36px 0px no-repeat;
+						margin: auto;
+					}
+				}
+.not-applied{
+					display: inline-block;
+					text-align: center;
+					font-size: 0.7rem;
+					text-transform: uppercase;
+					color:#868080;
+					margin-right:5px;
+					span{
+						display: block;
+						width: 30px;
+						height: 30px;
+						background: url('../../img/sprite.png') -69px 0px no-repeat;
+						margin: auto;
+					}
+				}				
 			i{
 				font-size: 20px;
 				text-align: right;
@@ -308,6 +366,29 @@ body {
 				color: @white;
 				display:block;
 			}	
+		}
+		.job-actions:before{
+				font-family: "Ionicons";
+				speak: none;
+				font-style: normal;
+				font-variant: normal;
+				text-transform: none;
+				text-rendering: auto;
+				content: "\f151" !important;
+				z-index: 0;
+				list-style: none;
+				text-align: center;
+				font-weight: normal;
+				font-size: 28px;
+				cursor: pointer;
+				color: @grey;
+				position: absolute;
+				padding: 17px 10px;
+				right: 0px;
+		}
+		.down-arrow:before{
+				content: "\f155"; !important;
+				
 		}
 		.job-actions {
 			background: url('../../img/action-bg.png');
@@ -320,11 +401,13 @@ body {
 				color:@green;
 			}
 			.apply-button {
-				float: left;
+				float: right;
 				position: relative;
-				line-height: 20px;
-				width: 120px;
+				line-height: 30px;
+				margin-right: 19px;
 				font-size: 0.8rem;
+				font-weight: 100;
+				font-style: italic;
 				.minyawn-head {
 					background: url('../../img/minion-vector-head.png') no-repeat;
 					height: 20px;
@@ -336,10 +419,11 @@ body {
 				}
 			}
 			.applicants {
-				text-align: right !important;
+				
 				color: #817D7D;
 				font-size: 0.7rem;
-				line-height: 20px;
+				line-height: 15px;
+				text-transform:uppercase;
 				.minyawn-head {
 					background: url('../../img/minion-vector-head.png') no-repeat;
 					height: 20px;
@@ -352,8 +436,12 @@ body {
 				}
 				
 				b{
-					font-size: 0.9rem;
-					color:@green;
+					font-size: 2.4rem;
+					color:@dark-grey;
+					line-height: 28px;
+					float:left;
+					margin-right:5px;
+					font-weight: 400;
 				}
 				.min-icon {
 					display: inline-block;

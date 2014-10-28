@@ -1,6 +1,6 @@
 
 .list .item.item-accordion {
-  background: #88D816 !important;
+background: url('../../img/action-bg.png') !important;
 padding: 3px 0px;
 font-size: 1.1rem;
 overflow:visible;
@@ -8,8 +8,14 @@ border-top: 1px dashed rgba(204, 204, 204, 0.58) !important;
 margin-top:-4px;
   padding-top: 0;
   padding-bottom: 0;
-  transition: 0.09s all linear;
+
 }
+ .single-job-apply { transition: 0.09s all linear;
+   -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  }
 .list .item.item-accordion.ng-hide {
   line-height: 0px;
 }

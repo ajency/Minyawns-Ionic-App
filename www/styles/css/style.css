@@ -22,8 +22,14 @@ Version:        0.1.0
 .pull-center {
   text-align: center;
 }
+.pull-right {
+  float: right;
+}
 .p-20 {
   padding: 20px;
+}
+.m-l-20 {
+  margin-left: 20px;
 }
 .sm-padding .item {
   padding: 10px !important;
@@ -291,12 +297,101 @@ body .pane .has-header {
   margin: 0px;
   color: #ffffff !important;
 }
+.job-list .job .single-job-apply .button {
+  margin: 1px;
+  background: #88d816 !important;
+  border: 0px;
+  min-height: 0px !important;
+}
+.job-list .job .single-job-apply .applied {
+  display: inline-block;
+  text-align: center;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: #868080;
+  margin-right: 5px;
+}
+.job-list .job .single-job-apply .applied span {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url('../../img/sprite.png') -1px 0px no-repeat;
+  margin: auto;
+}
+.job-list .job .single-job-apply .hired {
+  display: inline-block;
+  text-align: center;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: #868080;
+  margin-right: 5px;
+}
+.job-list .job .single-job-apply .hired span {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url('../../img/sprite.png') -36px 0px no-repeat;
+  margin: auto;
+}
+.job-list .job .single-job-apply .not-applied {
+  display: inline-block;
+  text-align: center;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: #868080;
+  margin-right: 5px;
+}
+.job-list .job .single-job-apply .not-applied span {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url('../../img/sprite.png') -69px 0px no-repeat;
+  margin: auto;
+}
 .job-list .job .single-job-apply i {
   font-size: 20px;
   text-align: right;
   padding-right: 7px;
   color: #ffffff;
   display: block;
+}
+.job-list .job .job-actions:before {
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  content: "\f151" !important;
+  z-index: 0;
+  list-style: none;
+  text-align: center;
+  font-weight: normal;
+  font-size: 28px;
+  cursor: pointer;
+  color: #b1b1b1;
+  position: absolute;
+  padding: 17px 10px;
+  right: 0px;
+}
+.job-list .job .down-arrow:before {
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  content: "\f151" !important;
+  z-index: 0;
+  list-style: none;
+  text-align: center;
+  font-weight: normal;
+  font-size: 28px;
+  cursor: pointer;
+  color: #b1b1b1;
+  position: absolute;
+  padding: 17px 10px;
+  right: 0px;
 }
 .job-list .job .job-actions {
   background: url('../../img/action-bg.png');
@@ -316,11 +411,13 @@ body .pane .has-header {
   color: #88d816;
 }
 .job-list .job .job-actions .apply-button {
-  float: left;
+  float: right;
   position: relative;
-  line-height: 20px;
-  width: 120px;
+  line-height: 30px;
+  margin-right: 19px;
   font-size: 0.8rem;
+  font-weight: 100;
+  font-style: italic;
 }
 .job-list .job .job-actions .apply-button .minyawn-head {
   background: url('../../img/minion-vector-head.png') no-repeat;
@@ -332,10 +429,10 @@ body .pane .has-header {
   right: 0;
 }
 .job-list .job .job-actions .applicants {
-  text-align: right !important;
   color: #817D7D;
   font-size: 0.7rem;
-  line-height: 20px;
+  line-height: 15px;
+  text-transform: uppercase;
 }
 .job-list .job .job-actions .applicants .minyawn-head {
   background: url('../../img/minion-vector-head.png') no-repeat;
@@ -348,8 +445,12 @@ body .pane .has-header {
   right: 0;
 }
 .job-list .job .job-actions .applicants b {
-  font-size: 0.9rem;
-  color: #88d816;
+  font-size: 2.4rem;
+  color: #414141;
+  line-height: 28px;
+  float: left;
+  margin-right: 5px;
+  font-weight: 400;
 }
 .job-list .job .job-actions .applicants .min-icon {
   display: inline-block;
