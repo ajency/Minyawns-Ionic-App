@@ -34,6 +34,9 @@ Version:        0.1.0
 .sm-padding .item {
   padding: 10px !important;
 }
+.no-wrap {
+  white-space: normal !important;
+}
 /**** Body Styles ****/
 body h1,
 body h2,
@@ -226,6 +229,12 @@ body .pane .has-header {
 .menu-left .list .item .item-content {
   background: #fafafa;
 }
+.menu-left .list .item:active a {
+  background: #EDEDED;
+}
+.menu-left .list .item:active {
+  background: #EDEDED;
+}
 /**** Job List Styles ****/
 .job-list {
   background: transparent;
@@ -301,6 +310,7 @@ body .pane .has-header {
   margin: 1px;
   background: #88d816 !important;
   border: 0px;
+  width: 100% !important;
   min-height: 0px !important;
 }
 .job-list .job .single-job-apply .applied {
@@ -355,14 +365,32 @@ body .pane .has-header {
   color: #ffffff;
   display: block;
 }
-.job-list .job .job-actions:before {
+.job-list .job .arrow {
   font-family: "Ionicons";
   speak: none;
   font-style: normal;
   font-variant: normal;
   text-transform: none;
   text-rendering: auto;
+  z-index: 0;
+  list-style: none;
+  text-align: center;
+  font-weight: normal;
+  font-size: 28px;
+  cursor: pointer;
+  color: #b1b1b1;
+  position: absolute;
+  padding: 17px 10px;
+  right: 0px;
+}
+.job-list .job .up-arrow:before {
   content: "\f151" !important;
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
   z-index: 0;
   list-style: none;
   text-align: center;
@@ -375,13 +403,13 @@ body .pane .has-header {
   right: 0px;
 }
 .job-list .job .down-arrow:before {
+  content: "\f155" !important;
   font-family: "Ionicons";
   speak: none;
   font-style: normal;
   font-variant: normal;
   text-transform: none;
   text-rendering: auto;
-  content: "\f151" !important;
   z-index: 0;
   list-style: none;
   text-align: center;
@@ -627,6 +655,7 @@ body .pane .has-header {
   font-size: 3rem;
   color: #88d816;
   height: 54px;
+  overflow: hidden;
 }
 .single-job-apply .pic-upload i {
   display: block;

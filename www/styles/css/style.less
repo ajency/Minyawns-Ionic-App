@@ -46,6 +46,9 @@ Version:        0.1.0
 	padding:10px !important;
 	}
 }
+.no-wrap{
+	white-space: normal !important;
+}
 
 /**** Body Styles ****/
 body {
@@ -231,6 +234,13 @@ body {
 			.item-content{
 				background: #fafafa;
 			}
+			
+			&:active a{
+				background:#EDEDED;
+			}
+			&:active {
+				background:#EDEDED;
+			}
 		}
 	}
 }
@@ -311,6 +321,7 @@ body {
 					margin: 1px;
 					background:@green !important;
 					border:0px;
+					width:100% !important;
 					min-height:0px !important;
 					
 				}
@@ -367,14 +378,13 @@ body {
 				display:block;
 			}	
 		}
-		.job-actions:before{
-				font-family: "Ionicons";
+			.arrow{
+			font-family: "Ionicons";
 				speak: none;
 				font-style: normal;
 				font-variant: normal;
 				text-transform: none;
 				text-rendering: auto;
-				content: "\f151" !important;
 				z-index: 0;
 				list-style: none;
 				text-align: center;
@@ -386,9 +396,13 @@ body {
 				padding: 17px 10px;
 				right: 0px;
 		}
+		.up-arrow:before{
+			content: "\f151" !important;
+			.arrow;
+		}
 		.down-arrow:before{
-				content: "\f155"; !important;
-				
+				content: "\f155" !important;
+				.arrow;
 		}
 		.job-actions {
 			background: url('../../img/action-bg.png');
@@ -397,6 +411,7 @@ body {
 			padding: 3px 0px;
 			font-size: 1.1rem;
 			.clearfix;
+		
 			.apply{
 				color:@green;
 			}
@@ -630,6 +645,7 @@ body {
 		font-size: 3rem;
 		color: @green;
 		height: 54px;
+		overflow: hidden;
 		i{
 			display:block;
 			text-align:center;

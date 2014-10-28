@@ -111,6 +111,36 @@
 	</div>
 	<div class="minyawn-list">
 		<h4 class="detail-header">Minyawns who have applied</h4>
+		<!-- No On Applied For job-->
+			<ion-list>
+				<ion-item class="minyawn">
+
+					<div class="padding loader" ng-show="minionLoader">
+						<i class="icon ion-loading-c"></i>
+					</div>
+					
+					<div ng-hide="minionLoader">
+
+						<div class="minyawn-view">
+							<div class="minyawn-pic">
+								 <img src="./img/applicants.png"> 
+							
+							</div>
+							<h5 class="minyawn-name no-wrap"> Be the first to apply</h5>
+							<div class="row ">
+								<div class="col up text-center">
+									No one has been hired for this job yet. Apply and get hired
+								</div>
+								
+							</div>
+						</div>
+
+					</div>
+
+				</ion-item>
+				
+			</ion-list>
+				<!-- No On Applied For job-->	
 		<ion-scroll direction="x" has-bouncing="true" style="width:100vw;" on-touch="disableMenuDrag()" on-release="enableMenuDrag()">
 
 			<ion-list>
