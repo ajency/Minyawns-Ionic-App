@@ -112,7 +112,7 @@
 	<div class="minyawn-list">
 		<h4 class="detail-header">Minyawns who have applied</h4>
 		<!-- No On Applied For job-->
-			<ion-list>
+			<ion-list ng-if="!minyawnsAppliedPresent">
 				<ion-item class="minyawn">
 
 					<div class="padding loader" ng-show="minionLoader">
@@ -141,7 +141,7 @@
 				
 			</ion-list>
 				<!-- No On Applied For job-->	
-		<ion-scroll direction="x" has-bouncing="true" style="width:100vw;" on-touch="disableMenuDrag()" on-release="enableMenuDrag()">
+		<ion-scroll direction="x" has-bouncing="true" style="width:100vw;" on-touch="disableMenuDrag()" on-release="enableMenuDrag()" ng-if="minyawnsAppliedPresent">
 
 			<ion-list>
 				<ion-item class="minyawn"

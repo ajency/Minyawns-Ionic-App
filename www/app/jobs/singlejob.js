@@ -12,7 +12,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$rootScope.postID = $stateParams.postID;
 	$scope.mainLoader = $scope.mainContent = true;
 	$scope.picturePresent = false ;
-	
+	$scope.minyawnsAppliedPresent = true;
+
 	$scope.getSingleJobDetails = function(){
 
 		$http.get($rootScope.GETURL+'fetchjobs?offset=0&single_job='+$rootScope.postID)
@@ -86,7 +87,12 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		$scope.jobTags = data.tags.join(', ');
 
 		$scope.applicants = data.applied_user_id;
-
+		
+		if ($scope.applicants.length>0)
+			$scope.minyawnsAppliedPresent = true;
+		else
+			$scope.minyawnsAppliedPresent = false;
+		
 		$scope.updateApplySectionDetails();
         
 
