@@ -41,44 +41,54 @@
 	  	</div>
 	</div>
 
-	<div>
+	<div >
 		<!-- <button class="button button-small button-positive apply-btn" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[!toggle]" ng-click="toggle=!toggle">
 					  Apply
 		</button> -->
 		<div class="single-job-apply cssSlideUp">
-			<div class="row">
-				<div class="col">
-					<h3 class="detail-header ">{{applyHeader}}</h3>
+
+			<div ng-hide="applyLoader">
+				<div class="row">
+					<div class="col">
+						<h3 class="detail-header ">{{applyHeader}}</h3>
+					</div>
+					<div class="col col-20">
+						&nbsp;
+					</div>
 				</div>
-				<div class="col col-20">
-					&nbsp;
+				<div class="row">
+					<div class="col">
+						<div class="helper-text">
+							To apply, take a picture or upload one, and when done, just hit the button below.
+						</div>
+						<button class="button button-small button-positive apply-btn" ng-click="onApply()">
+						  {{applyButton}}
+						</button>
+					</div>
+					<div class="col col-20">
+						<div class="pic-upload" ng-click="takePicture()">
+						  
+						  <i class="icon ion-camera" ng-if="!picturePresent">
+							 <img ng-src="{{profileImage}}" ></img>
+						  </i> 	
+
+						  <i class="hidden" ng-if="picturePresent">
+							 <img align="middle" ng-src="{{profileImage}}" width="70" height="50" ></img>
+						  </i> 	
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col">
-					<div class="helper-text">
-						To apply, take a picture or upload one, and when done, just hit the button below.
-					</div>
-					<button class="button button-small button-positive apply-btn" ng-click="onApply()">
-					  {{applyButton}}
-					</button>
-				</div>
-				<div class="col col-20">
-					<div class="pic-upload" ng-click="takePicture()">
-					  
-					  <i class="icon ion-camera" ng-if="!picturePresent">
-						 <img ng-src="{{profileImage}}" ></img>
-					  </i> 	
 
-					  <i class="hidden" ng-if="picturePresent">
-						 <img align="middle" ng-src="{{profileImage}}" width="70" height="50" ></img>
-					  </i> 	
-					</div>
-				</div>
+			<div  ng-show="applyLoader">
+				<i class="icon ion-loading-c"></i>
 			</div>
 		</div>
+		
 	</div>
-
+	
+	
+	
 	<div class="list list-inset single-job-card">
   		<div class="item">
 	  		<div class="job-details">

@@ -38,6 +38,9 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
 			if(data.status){
 
+				//clear users 'MY JOBS' if present
+				$rootScope.myjobs = { offset: 0, myJobsArray: [] };
+
 				var cookie = data.logged_in_cookie_key + '=' + data.logged_in_cookie_value;
 
 				Storage.setUserID(data.id);

@@ -13,6 +13,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$scope.mainLoader = $scope.mainContent = true;
 	$scope.picturePresent = false ;
 	$scope.minyawnsAppliedPresent = true;
+	$scope.applyLoader = false;
 
 	$scope.getSingleJobDetails = function(){
 
@@ -22,6 +23,11 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 			$rootScope.singleJobData = resp.data[0];
 			$scope.populateSingleJobData(resp.data[0]);
+			
+			//Event handler in browsejobs.js to refresh a single job
+	    	$rootScope.$emit('onMinyawnApplyAction', { passedJob: resp.data[0] });
+	    	
+	    	$scope.applyLoader = false;
 		},
 
 		function(error){
@@ -29,7 +35,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			console.log('getSingleJobDetails Error');
 
 			$scope.mainLoader = false;
-			$ionicLoading.hide();
+			// $ionicLoading.hide();
+			$scope.applyLoader = false;
 			$scope.errorPopUp('Could not connect to server');
 		});
 
@@ -67,7 +74,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		$scope.mainLoader = false;
 		$scope.mainContent = false;
-		$ionicLoading.hide();
+		// $ionicLoading.hide();
 
 		$scope.jobTitle = data.post_title;
 		$scope.noOfDays = data.days_to_job_expired;
@@ -92,7 +99,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			$scope.minyawnsAppliedPresent = true;
 		else
 			$scope.minyawnsAppliedPresent = false;
-		
+
 		$scope.updateApplySectionDetails();
         
 
@@ -133,7 +140,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
     $scope.minyawnJobAction = function(action){
     	
-    	$scope.jobActionLoader('Please wait...');
+    //	$scope.jobActionLoader('Please wait...');
+    	$scope.applyLoader = true;
 
     	var data = { action: action, job_id: $rootScope.postID };
 
@@ -155,7 +163,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			console.log('minyawnJobAction error');
 			console.log(error);
 
-			$ionicLoading.hide();
+			// $ionicLoading.hide();
 			if(error === 'NetworkNotAvailable') Toast.connectionError();
 			else Toast.responseError();
 		});
@@ -185,7 +193,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
     };
 
     
-    $rootScope.$on('onUserLogout', function(event, args) {
+    $rootScope.$on('update:apply:section:details', function(event, args) {
 
 		$scope.updateApplySectionDetails();
     });
@@ -216,12 +224,12 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	};
 
 
-	$scope.jobActionLoader = function(mesage){
+	// $scope.jobActionLoader = function(mesage){
 
-		$ionicLoading.show({
-			template: mesage
-		});
-	};
+	// 	$ionicLoading.show({
+	// 		template: mesage
+	// 	});
+	// };
 	
 }])
 

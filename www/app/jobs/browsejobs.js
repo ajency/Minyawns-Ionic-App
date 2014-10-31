@@ -2,9 +2,9 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	, 'minyawns.draggable','minyawns.jobstatus'])
 
 .controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate'
+	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate', '_'
 	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network
-	, Toast, $ionicSideMenuDelegate){
+	, Toast, $ionicSideMenuDelegate, _){
 
 	$scope.title="BROWSE JOBS";
 
@@ -181,10 +181,39 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 		$ionicSideMenuDelegate.canDragContent(true);
 	};
 
-	$rootScope.$on('onUserLogoutReloadBrowseJobs', function(event, args) {
+	// $scope.$on("$destroy", $rootScope.$on('onMinyawnApplyAction',''));
 
-		 $state.transitionTo('menu.browsejobs', null, {'reload':true});
+	var reloadBrowseJobsControllerEvent = $rootScope.$on('reload:browsejobs:controller', function(event, args) {
+		
+		event.stopPropagation()
+		console.log('logout event');
+		// $state.transitionTo('menu.browsejobs', null, {'reload':true });
+		$scope.jobs = []
+		$timeout(function() {
+
+			$scope.jobs = $rootScope.jobs.allJobs;
+
+		}, 200);
     });
+
+
+	$rootScope.$on('onMinyawnApplyAction', function(event, args) {
+
+		event.stopPropagation()
+
+		console.log('Minyawn has Applied');
+		var postIdArray = _.pluck($rootScope.jobs.allJobs, "post_id");
+
+		var index = postIdArray.indexOf(args.passedJob.post_id);
+
+		$rootScope.jobs.allJobs[index] = args.passedJob
+		console.log($rootScope.jobs.allJobs)
+	});
+
+	$scope.$on('$destroy', function(){
+
+		reloadBrowseJobsControllerEvent()
+	});
 
    
 

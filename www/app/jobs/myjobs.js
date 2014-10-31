@@ -28,13 +28,13 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 
 	$scope.fetchJobs = function(){
-          
+
 		//Make only one request at a time.
 		if(!$scope.requestPending){
 
 			$scope.requestPending = true;
 
-			
+
             $http.get($rootScope.GETURL+'fetchjobs?my_jobs=1&offset='+$rootScope.myjobs.offset+'&filter_my=0&'+
 			'logged_in_user_id='+user.userID)
 
@@ -183,12 +183,10 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		$ionicSideMenuDelegate.canDragContent(true);
 	};
 
-	$rootScope.$on('onUserLogoutNavigateBrowseJobs', function(event, args) {
 
-		// $scope.reSet();
-		// $scope.resetRootScope();
-		// $scope.onViewLoad();
-		   $state.go('menu.browsejobs');
+	$rootScope.$on('go:to:browsejobs:from:myjobs', function(event, args) {
+		
+		$state.go('menu.browsejobs');
 
     });
 
@@ -217,8 +215,6 @@ var MyJobsItemController = function($scope, JobStatus){
 	$scope.jobOpen = true;
 	$scope.showApplySlider = true;
     $scope.accordianToggle = false;
-
-    console.log('1')
     
 	$scope.start_date = moment($scope.job.job_start_date).format('LL');
 

@@ -115,13 +115,13 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 		$scope.init();
 
 		//Event handler in singlejob.js
-		$rootScope.$emit('onUserLogout', {});
+		$rootScope.$emit('update:apply:section:details', {});
 		
 		//Event handler in browsejobs.js
-		$rootScope.$emit('onUserLogoutReloadBrowseJobs', {});
+		$rootScope.$emit('reload:browsejobs:controller', {});
 		
 		//Event handler in myjobs.js
-		$rootScope.$emit('onUserLogoutNavigateBrowseJobs', {});
+		$rootScope.$emit('go:to:browsejobs:from:myjobs', {});
 	};
 
 
