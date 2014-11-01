@@ -9,7 +9,7 @@
 		
 	</ion-refresher>
 
-<div class="list list-inset job-list single-job-card">
+<div class="list list-inset job-list single-job-card" >
 
 	    <ion-item ng-show="showConnectionError" ng-click="onViewLoad()" class="message connection-error">
 	    	<i class="icon ion-alert-circled"></i>
@@ -100,7 +100,7 @@
 
 					</div>
 
-					<ion-item class="item-accordion single-job-apply" ng-show="accordianToggle" >
+					<ion-item class="item-accordion single-job-apply" ng-if="accordianToggle" >
 
 					<div class="row ">
 						<div class="col col-50 " ng-switch="jobStatus">
@@ -113,9 +113,8 @@
 								<span></span>
 								Hired
 							</div>
-							<div class="not-applied" ng-switch-when="Not Applied">
-								<span></span>
-								N/A
+							<div  ng-switch-when="Not Applied">
+								
 							</div>
 							
 						</div>
@@ -220,9 +219,8 @@
 								<span></span>
 								Hired
 							</div>
-							<div class="not-applied" ng-switch-when="Not Applied">
-								<span></span>
-								N/A
+							<div  ng-switch-when="Not Applied">
+								
 							</div>
 							
 						</div>

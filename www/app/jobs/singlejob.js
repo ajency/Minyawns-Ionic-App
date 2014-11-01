@@ -3,9 +3,9 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 .controller('SinglejobController', ['$scope', '$rootScope','$stateParams', '$http'
 	, '$ionicSideMenuDelegate', 'Storage', '$state', '$cordovaCamera', '_', '$ionicPopup'
-	, '$ionicLoading', 'Toast','$window'
+	, '$ionicLoading', 'Toast','$window' , '$cordovaFile'
 	, function($scope, $rootScope, $stateParams, $http, $ionicSideMenuDelegate
-	, Storage, $state, $cordovaCamera, _, $ionicPopup, $ionicLoading, Toast, $window) {
+	, Storage, $state, $cordovaCamera, _, $ionicPopup, $ionicLoading, Toast, $window, $cordovaFile) {
 
 	
 	$rootScope.minionDetails = [];
@@ -14,6 +14,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$scope.picturePresent = false ;
 	$scope.minyawnsAppliedPresent = true;
 	$scope.applyLoader = false;
+
+	
 
 	$scope.getSingleJobDetails = function(){
 
@@ -25,8 +27,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			$scope.populateSingleJobData(resp.data[0]);
 			
 			//Event handler in browsejobs.js to refresh a single job
-	    	$rootScope.$emit('onMinyawnApplyAction', { passedJob: resp.data[0] });
-	    	
+	    	$rootScope.$emit('action:minyawn:apply', { passedJob: resp.data[0] });
+
 	    	$scope.applyLoader = false;
 		},
 
@@ -41,7 +43,62 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		});
 
 	};
+    
+    function uploadSuccess(r) {
 
+    		$scope.applyLoader = false;
+            console.log("Code = " + r.responseCode);
+            console.log("Response = "+r.response);
+            var fileUploadResponse = r.response;
+
+        	var photoResponse= JSON.parse(fileUploadResponse);
+        	console.log(photoResponse.status);
+
+        	if (photoResponse.status) {
+        		Storage.setProfileImageSrc(photoResponse.photo.url);
+        		//Event handler in menu.js
+    			$rootScope.$emit('upload:profile:photo', {});
+        	}
+        	else
+        		alert("Picture Could not be uploaded");
+        	
+            
+            
+
+            console.log("Sent = " + r.bytesSent);
+    }
+
+    function uplaodFail(error) {
+    		$scope.applyLoader = false;
+            alert("An error has occurred: Code = " + error.code);
+            console.log("upload error source " + error.source);
+            console.log("upload error target " + error.target);
+    }
+
+    $scope.addUpdatePicture = function(imagePath){
+
+    	$scope.applyLoader = true;
+
+    	var options = new FileUploadOptions();
+    	
+    	options.fileKey = "profile_photo";
+        options.fileName = imagePath.substr(imagePath.lastIndexOf('/')+1);
+        options.mimeType = "image/jpeg";
+
+        options.chunkedMode = false;
+
+        var params =  new Object();
+        params.profile_photo = imagePath;
+        // params.job_id = $rootScope.postID;
+
+        options.params = params;
+
+        var ft = new FileTransfer();
+        ft.upload(imagePath, encodeURI("http://www.minyawns.ajency.in/api/photos/upload/profile"), uploadSuccess, uplaodFail, options);
+
+    };
+
+    
 
 	$scope.updateApplySectionDetails = function(){
 
@@ -72,6 +129,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	
 	$scope.populateSingleJobData = function(data){
 
+		var user = Storage.getUserDetails();
+
 		$scope.mainLoader = false;
 		$scope.mainContent = false;
 		// $ionicLoading.hide();
@@ -95,6 +154,14 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		$scope.applicants = data.applied_user_id;
 		
+		if(user.isLoggedIn){
+			console.log('Picture');
+			console.log(user.profileImgSrc);
+			$scope.picturePresent = true ;
+			$rootScope.profileImage = user.profileImgSrc;
+		}
+			
+
 		if ($scope.applicants.length>0)
 			$scope.minyawnsAppliedPresent = true;
 		else
@@ -124,9 +191,10 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 	$scope.onApply = function(){
 
-    	if($scope.applyButton === 'Apply'){
+		var user = Storage.getUserDetails();
 
-    		if($rootScope.profileImage === "") console.log('Upload picture');
+    	if($scope.applyButton === 'Apply'){
+    		if(user.profileImgSrc.substr(user.profileImgSrc.lastIndexOf('/')+1) === "applicants.png") alert('Upload picture');
     		else $scope.minyawnJobAction('minyawn_job_apply');
     	}
 
@@ -156,6 +224,9 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 	    	//Event handler in menu.js
 	    	$rootScope.$emit('onMinyawnJobAction', {});
+
+	    	//Event handler in myjobs.js to refresh the respective job list
+	    	$rootScope.$emit('new:job:added:to:myjobs', { });
 		},
 
 		function(error){
@@ -185,6 +256,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			$scope.picturePresent = true ;
 			$rootScope.profileImage = imageURI;
 
+			$scope.addUpdatePicture(imageURI);
 			
 		}
 		,function(err){
