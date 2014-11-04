@@ -9,6 +9,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 	
 	$scope.title="MY JOBS";
 	$scope.controller = MyJobsItemController;
+	$scope.tempJobs = [];
 
 	var user = Storage.getUserDetails();
 	
@@ -22,7 +23,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 	
 	$scope.resetRootScope = function(){
 
-		$rootScope.myjobs = { offset: 0, myJobsArray: [] };
+		$rootScope.myjobs = { offset: 0, myJobsArray: [] , changed: false};
 	};
 
 
@@ -69,12 +70,21 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		}
 	}
 
-
-	$scope.onViewLoad();
+	if(!$rootScope.myjobs.changed)
+		$scope.onViewLoad();
+	
+	else{
+		$scope.tempJobs = $rootScope.myjobs.myJobsArray;
+		$rootScope.myjobs.offset = 0;
+		$rootScope.myjobs.myJobsArray = [];
+		$scope.onViewLoad();
+	}
 
 
 	$scope.onSuccessResponse = function(data){
-      
+      	
+      	if ($rootScope.myjobs.changed) 
+      		$rootScope.myjobs.changed = false;
 		$scope.requestPending = false;
 
 		$scope.fetchComplete();
@@ -98,6 +108,14 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 		$scope.requestPending = false;
 
+		if ($rootScope.myjobs.changed) {    
+      		$rootScope.myjobs.changed = false;
+
+      		$rootScope.myjobs.myJobsArray = $scope.tempJobs;
+      		$scope.tempJobs = [];
+      		$scope.jobs = $rootScope.myjobs.myJobsArray;
+      	}
+      	else	
 		$rootScope.myjobs.myJobsArray = $scope.jobs;
 
 		$timeout(function(){
@@ -183,18 +201,15 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		$ionicSideMenuDelegate.canDragContent(true);
 	};
 
-	$rootScope.$on('add:job:to:myjobs', function(event, args){
-        
-        console.log('job added to my job');
-        event.stopPropagation();
-        $rootScope.myjobs.myJobsArray.unshift(args.passedJob);
-
-	});
-
+	
 	var newJobAddedToMyJobsEvent = $rootScope.$on('new:job:added:to:myjobs', function(event, args) {
 		
-		$scope.reSet();
-		$scope.onViewLoad();
+		if ($rootScope.myjobs.myJobsArray.length > 0) //whether my jobs has been visited previously
+			$rootScope.myjobs.changed = true ;
+
+		else
+			$rootScope.myjobs.changed = false ;
+		
     });
 
 
@@ -206,7 +221,6 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
     $scope.$on('$destroy', function(){
 
-    	newJobAddedToMyJobsEvent();
 		goToBrowseJobsEvent();
 	});
 
