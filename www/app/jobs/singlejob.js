@@ -48,14 +48,27 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
     		$scope.applyLoader = false;
             console.log("Code = " + r.responseCode);
-            console.log("Response = "+r.response);
             var fileUploadResponse = r.response;
 
         	var photoResponse= JSON.parse(fileUploadResponse);
-        	console.log(photoResponse.status);
-
+        	
         	if (photoResponse.status) {
         		Storage.setProfileImageSrc(photoResponse.photo.url);
+
+        		// $rootScope.$emit('refreshProfilePhoto', {changedUrl : photoResponse.photo.url});
+        		
+        		
+        		_.each($rootScope.minionDetails,function(minion){
+
+        			if (minion.user_id == photoResponse.photo.author ) {
+
+        				minion.user_image = "<img alt='' src="+photoResponse.photo.url+" height='96' width='96'>"
+ 						
+        			};
+
+        		})
+        			
+        		
         		//Event handler in menu.js
     			$rootScope.$emit('upload:profile:photo', {});
         	}
@@ -342,6 +355,13 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		});
 
 	};
+
+	// $rootScope.$on('refreshProfilePhoto', function(event, args) {
+	// 	_.each($scope.details,function(){
+	// 		if (true) {};
+	// 	});
+	// });
+	
 
 }])
 
