@@ -13,13 +13,12 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
 	$scope.onLoginClick = function(username, password){
 
-		if(angular.isUndefined(username) || angular.isUndefined(password) 
+		if (!checkEmail(username))
+			Toast.invalidEmail();
+
+		else if(angular.isUndefined(username) || angular.isUndefined(password) 
 			|| username.trim() === "" || password.trim() === "")
-			
-			Toast.emptyUsernamePassword();
-
-		
-
+				Toast.emptyUsernamePassword();
 		else{
 
 			$scope.showLoader = true;
