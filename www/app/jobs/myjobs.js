@@ -183,12 +183,32 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		$ionicSideMenuDelegate.canDragContent(true);
 	};
 
+	$rootScope.$on('add:job:to:myjobs', function(event, args){
+        
+        console.log('job added to my job');
+        event.stopPropagation();
+        $rootScope.myjobs.myJobsArray.unshift(args.passedJob);
 
-	$rootScope.$on('go:to:browsejobs:from:myjobs', function(event, args) {
+	});
+
+	var newJobAddedToMyJobsEvent = $rootScope.$on('new:job:added:to:myjobs', function(event, args) {
+		
+		$scope.reSet();
+		$scope.onViewLoad();
+    });
+
+
+	var goToBrowseJobsEvent = $rootScope.$on('go:to:browsejobs:from:myjobs', function(event, args) {
 		
 		$state.go('menu.browsejobs');
 
     });
+
+    $scope.$on('$destroy', function(){
+
+    	newJobAddedToMyJobsEvent();
+		goToBrowseJobsEvent();
+	});
 
 }])
 

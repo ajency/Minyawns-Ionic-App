@@ -68,7 +68,7 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 	$scope.init = function(){
 
 		var user = Storage.getUserDetails();
-
+		console.log(user);
 		if(user.isLoggedIn){
 
 			$scope.menuLoader = true;
@@ -107,6 +107,10 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 		$scope.init();
     });
 
+	$rootScope.$on('upload:profile:photo', function(event, args) {
+		console.log('Upload photo');
+		$scope.init();
+    });
 
 	$scope.onLogout = function(){
 

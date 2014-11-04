@@ -8,7 +8,6 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
 	$scope.title="BROWSE JOBS";
 
-	$rootScope.profileImage = "";
 	$scope.controller = BrowseJobsItemController;
 	
 	
@@ -169,20 +168,6 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	};
 
 
-	$scope.disableMenuDrag = function(){
-
-		$ionicSideMenuDelegate.canDragContent(false);
-
-	};
-
-	
-	$scope.enableMenuDrag = function(){
-
-		$ionicSideMenuDelegate.canDragContent(true);
-	};
-
-	// $scope.$on("$destroy", $rootScope.$on('onMinyawnApplyAction',''));
-
 	var reloadBrowseJobsControllerEvent = $rootScope.$on('reload:browsejobs:controller', function(event, args) {
 		
 		event.stopPropagation()
@@ -193,11 +178,11 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
 			$scope.jobs = $rootScope.jobs.allJobs;
 
-		}, 200);
+		}, 100);
     });
 
 
-	$rootScope.$on('onMinyawnApplyAction', function(event, args) {
+	var minyawnApplyActionEvent = $rootScope.$on('action:minyawn:apply', function(event, args) {
 
 		event.stopPropagation()
 
@@ -212,6 +197,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
 	$scope.$on('$destroy', function(){
 
+		 // minyawnApplyActionEvent()
 		reloadBrowseJobsControllerEvent()
 	});
 

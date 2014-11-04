@@ -42,6 +42,15 @@ angular.module('minyawns.toast', ['ngMaterial'])
 				duration: 2000,
 				position: 'bottom'
 			});
+		},
+
+		invalidEmail : function(){
+
+			$materialToast({
+				templateUrl: 'views/toast/invalid-email.html',
+				duration: 2000,
+				position: 'bottom'
+			});
 		}
 
 	};
