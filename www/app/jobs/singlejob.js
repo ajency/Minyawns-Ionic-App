@@ -155,8 +155,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		$scope.applicants = data.applied_user_id;
 		
 		if(user.isLoggedIn){
-			console.log('Picture');
-			console.log(user.profileImgSrc);
 			$scope.picturePresent = true ;
 			$rootScope.profileImage = user.profileImgSrc;
 		}
