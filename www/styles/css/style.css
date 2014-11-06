@@ -166,12 +166,18 @@ body .pane .has-header {
   /*background: url('../../img/color.jpg') center bottom no-repeat;*/
   background: #6FB509;
 }
-.menu-left .log-view img {
+.menu-left .log-view .profile-img {
   border-radius: 100%;
   top: auto;
   width: 70px;
   height: 70px;
   margin: 0.5rem auto 0px;
+}
+.menu-left .log-view .profile-img img {
+  border-radius: 100%;
+  top: auto;
+  width: 70px;
+  height: 70px;
   border: 3px solid #fff;
 }
 .menu-left .log-view h2 {
@@ -237,6 +243,7 @@ body .pane .has-header {
 }
 /**** Job List Styles ****/
 .job-list {
+  -webkit-overflow-scrolling: touch;
   background: transparent;
   overflow: visible;
 }
