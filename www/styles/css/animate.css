@@ -7,10 +7,12 @@
     overflow: hidden;
 }
 
-.cssSlideUp.ng-hide {
-    height: 0;
+.cssSlideUp.ng-show {
+    height: 0px;
 }
-
+.hidden {
+    display : none;
+}
 
 .rotate, 
 .rotateCounterwise {

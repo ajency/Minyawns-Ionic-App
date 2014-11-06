@@ -13,11 +13,12 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
 	$scope.onLoginClick = function(username, password){
 
-		if(angular.isUndefined(username) || angular.isUndefined(password) 
-			|| username.trim() === "" || password.trim() === "")
+		if (!checkEmail(username))
+			Toast.invalidEmail();
 
-			Toast.emptyUsernamePassword();
-		
+		else if(angular.isUndefined(username) || angular.isUndefined(password) 
+			|| username.trim() === "" || password.trim() === "")
+				Toast.emptyUsernamePassword();
 		else{
 
 			$scope.showLoader = true;
@@ -37,6 +38,9 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 	    	var data = resp.data;
 
 			if(data.status){
+
+				//clear users 'MY JOBS' if present
+				$rootScope.myjobs = { offset: 0, myJobsArray: [] };
 
 				var cookie = data.logged_in_cookie_key + '=' + data.logged_in_cookie_value;
 
@@ -67,6 +71,18 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 			else Toast.responseError();
 
 		});
+	};
+
+	function checkEmail(emailAddress) {
+		var str = emailAddress;
+		var filter = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+	
+		if (filter.test(str)) {
+			testresults = true;
+		} else {
+			testresults = false;
+		}
+			return (testresults);
 	};
 	
 }])

@@ -2,13 +2,12 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	, 'minyawns.draggable','minyawns.jobstatus'])
 
 .controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate'
+	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate', '_'
 	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network
-	, Toast, $ionicSideMenuDelegate){
+	, Toast, $ionicSideMenuDelegate, _){
 
 	$scope.title="BROWSE JOBS";
 
-	$rootScope.profileImage = "";
 	$scope.controller = BrowseJobsItemController;
 	
 	
@@ -169,22 +168,38 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	};
 
 
-	$scope.disableMenuDrag = function(){
+	var reloadBrowseJobsControllerEvent = $rootScope.$on('reload:browsejobs:controller', function(event, args) {
+		
+		event.stopPropagation()
+		console.log('logout event');
+		// $state.transitionTo('menu.browsejobs', null, {'reload':true });
+		$scope.jobs = []
+		$timeout(function() {
 
-		$ionicSideMenuDelegate.canDragContent(false);
+			$scope.jobs = $rootScope.jobs.allJobs;
 
-	};
-
-	
-	$scope.enableMenuDrag = function(){
-
-		$ionicSideMenuDelegate.canDragContent(true);
-	};
-
-	$rootScope.$on('onUserLogoutReloadBrowseJobs', function(event, args) {
-
-		 $state.transitionTo('menu.browsejobs', null, {'reload':true});
+		}, 100);
     });
+
+
+	var minyawnApplyActionEvent = $rootScope.$on('action:minyawn:apply', function(event, args) {
+
+		event.stopPropagation()
+
+		console.log('Minyawn has Applied');
+		var postIdArray = _.pluck($rootScope.jobs.allJobs, "post_id");
+
+		var index = postIdArray.indexOf(args.passedJob.post_id);
+
+		$rootScope.jobs.allJobs[index] = args.passedJob
+		console.log($rootScope.jobs.allJobs)
+	});
+
+	$scope.$on('$destroy', function(){
+
+		 // minyawnApplyActionEvent()
+		reloadBrowseJobsControllerEvent()
+	});
 
    
 
@@ -219,7 +234,6 @@ var BrowseJobsItemController = function($scope, JobStatus){
 	$scope.showApplySlider = true;
 	$scope.accordianToggle = false;
 
-	console.log('1')
 
 	$scope.start_date = moment($scope.job.job_start_date).format('LL');
 
@@ -240,21 +254,28 @@ var BrowseJobsItemController = function($scope, JobStatus){
 	else
    		$scope.jobOpen = false;
     
-   	$scope.applicationStatus = status.jobStatus;
+   	// $scope.applicationStatus = status.jobStatus;
+    $scope.applicationStatus = status.applicationStatus;
 
+    $scope.jobStatus = status.jobStatus;
 
    	$scope.toggleAccordian = function(){
+         
          if ($scope.accordianToggle) {
-           $scope.accordianToggle = false;
-           $("ul#ticker"+$scope.job.post_id).removeClass('newsticker');
+           $scope.accordianToggle = false; 
+           $("ul#ticker"+$scope.job.post_id).removeClass('newsticker') //removes the extra class
          }
          else{
          	$scope.accordianToggle = true;
-         	$("ul#ticker"+$scope.job.post_id).liScroll();
+
+         	if ($scope.job.post_title.length>50) {
+    			$("ul#ticker"+$scope.job.post_id).liScroll();
+    		}
          }
    		// $scope.accordianToggle =! $scope.accordianToggle;
    		
    	};
+
    
    };
 

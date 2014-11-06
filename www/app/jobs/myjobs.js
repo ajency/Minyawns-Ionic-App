@@ -9,6 +9,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 	
 	$scope.title="MY JOBS";
 	$scope.controller = MyJobsItemController;
+	$scope.tempJobs = [];
 
 	var user = Storage.getUserDetails();
 	
@@ -22,19 +23,19 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 	
 	$scope.resetRootScope = function(){
 
-		$rootScope.myjobs = { offset: 0, myJobsArray: [] };
+		$rootScope.myjobs = { offset: 0, myJobsArray: [] , changed: false};
 	};
 
 
 
 	$scope.fetchJobs = function(){
-          
+
 		//Make only one request at a time.
 		if(!$scope.requestPending){
 
 			$scope.requestPending = true;
 
-			
+
             $http.get($rootScope.GETURL+'fetchjobs?my_jobs=1&offset='+$rootScope.myjobs.offset+'&filter_my=0&'+
 			'logged_in_user_id='+user.userID)
 
@@ -69,12 +70,21 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		}
 	}
 
-
-	$scope.onViewLoad();
+	if(!$rootScope.myjobs.changed)
+		$scope.onViewLoad();
+	
+	else{
+		$scope.tempJobs = $rootScope.myjobs.myJobsArray;
+		$rootScope.myjobs.offset = 0;
+		$rootScope.myjobs.myJobsArray = [];
+		$scope.onViewLoad();
+	}
 
 
 	$scope.onSuccessResponse = function(data){
-      
+      	
+      	if ($rootScope.myjobs.changed) 
+      		$rootScope.myjobs.changed = false;
 		$scope.requestPending = false;
 
 		$scope.fetchComplete();
@@ -98,6 +108,14 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 		$scope.requestPending = false;
 
+		if ($rootScope.myjobs.changed) {    
+      		$rootScope.myjobs.changed = false;
+
+      		$rootScope.myjobs.myJobsArray = $scope.tempJobs;
+      		$scope.tempJobs = [];
+      		$scope.jobs = $rootScope.myjobs.myJobsArray;
+      	}
+      	else	
 		$rootScope.myjobs.myJobsArray = $scope.jobs;
 
 		$timeout(function(){
@@ -183,14 +201,28 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		$ionicSideMenuDelegate.canDragContent(true);
 	};
 
-	$rootScope.$on('onUserLogoutNavigateBrowseJobs', function(event, args) {
+	
+	var newJobAddedToMyJobsEvent = $rootScope.$on('new:job:added:to:myjobs', function(event, args) {
+		
+		if ($rootScope.myjobs.myJobsArray.length > 0) //whether my jobs has been visited previously
+			$rootScope.myjobs.changed = true ;
 
-		// $scope.reSet();
-		// $scope.resetRootScope();
-		// $scope.onViewLoad();
-		   $state.go('menu.browsejobs');
+		else
+			$rootScope.myjobs.changed = false ;
+		
+    });
+
+
+	var goToBrowseJobsEvent = $rootScope.$on('go:to:browsejobs:from:myjobs', function(event, args) {
+		
+		$state.go('menu.browsejobs');
 
     });
+
+    $scope.$on('$destroy', function(){
+
+		goToBrowseJobsEvent();
+	});
 
 }])
 
@@ -217,8 +249,6 @@ var MyJobsItemController = function($scope, JobStatus){
 	$scope.jobOpen = true;
 	$scope.showApplySlider = true;
     $scope.accordianToggle = false;
-
-    console.log('1')
     
 	$scope.start_date = moment($scope.job.job_start_date).format('LL');
 
@@ -240,19 +270,25 @@ var MyJobsItemController = function($scope, JobStatus){
    		$scope.jobOpen = true;
 	else
    		$scope.jobOpen = false;
-   
+  
     
+   	// $scope.applicationStatus = status.jobStatus;  
+    $scope.applicationStatus = status.applicationStatus;
+
+    $scope.jobStatus = status.jobStatus;
     
-   	$scope.applicationStatus = status.jobStatus;  
 
    	$scope.toggleAccordian = function(){
          if ($scope.accordianToggle) {
            $scope.accordianToggle = false;
-           $("ul#ticker"+$scope.job.post_id).removeClass('newsticker');
+           $("ul#ticker"+$scope.job.post_id).removeClass('newsticker') //removes the extra class
          }
          else{
          	$scope.accordianToggle = true;
-         	$("ul#ticker"+$scope.job.post_id).liScroll();
+
+         	if ($scope.job.post_title.length>50) {
+       			$("ul#ticker"+$scope.job.post_id).liScroll();
+   			 };
          }
    		// $scope.accordianToggle =! $scope.accordianToggle;
    		
