@@ -625,6 +625,11 @@ body .pane .has-header {
 }
 .single-job-apply {
   margin: 20px 10px;
+  background: #E5E5E5;
+  height: auto !important;
+}
+.single-job-apply h3 {
+  margin-bottom: 0px;
 }
 .single-job-apply .col {
   padding: 0;
@@ -641,12 +646,11 @@ body .pane .has-header {
 }
 .single-job-apply .helper-text {
   font-size: 0.8rem;
-  color: #b1b1b1;
+  color: #666666;
   font-family: 'italic', sans-serif;
   margin: 0 0 0.5rem;
-  padding-right: 0.2rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid #b1b1b1;
+  padding: 0.4rem;
+  /*border-top: 1px solid @grey;*/
 }
 .single-job-apply .apply-btn {
   border: 0;
@@ -657,16 +661,37 @@ body .pane .has-header {
   border-radius: 1px;
 }
 .single-job-apply .pic-upload {
-  border: 1px solid #8b8b8b;
+  /*border: 1px solid darken(@grey, 15%);*/
   text-align: center;
   font-size: 3rem;
   color: #88d816;
-  height: 54px;
+  margin: -5px;
+  width: 80px;
+  height: 80px;
+  float: right;
   overflow: hidden;
+  position: relative;
+  background: #88d816;
 }
 .single-job-apply .pic-upload i {
   display: block;
   text-align: center;
+  color: #ffffff;
+  margin-top: 14px;
+}
+.single-job-apply .apply-job .overlay {
+  width: 80px;
+  height: 80px;
+  background: rgba(84, 255, 0, 0.45);
+  position: absolute;
+  z-index: 999;
+}
+.single-job-apply .unapply-job .overlay {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 0, 0, 0.61);
+  position: absolute;
+  z-index: 999;
 }
 /**** Minyawn List Styles ****/
 .minyawn-list {
