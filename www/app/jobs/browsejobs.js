@@ -103,6 +103,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 		
 
 		if($rootScope.jobs.allJobs.length == 0){
+
 			$scope.showRefresher = false;
 
 			$timeout(function(){
