@@ -29,202 +29,75 @@
 
 			<ion-item  ng-repeat="job in jobs" ng-controller="controller" ng-click="toggleAccordian()">
 		        
-		        <div class="job" ng-class="(jobOpen)? 'available' : 'expire'">  
+		        <div class="job">  
 
-		            <div ng-if="jobOpen">
+		            <!-- <div ng-if="jobOpen"> -->
 
-						<div class="row" >
-							<div class="col" >
-								<div class="row" >
-									<div class="col col-80" >
-										<h2 class="job-title">
-										<ul id="ticker{{job.post_id}}">
-										<li><a>{{ job.post_title }}</a></li><!-- eccetera -->
-										</ul>
-										</h2>
-										<span class="date">{{start_date}} </span>
-									</div>
-
-									<div class="col col" >
-										<div class="job-price">
-											${{ job.job_wages }}
-										</div>
-									</div>
+					<div class="row" >
+						<div class="col" >
+							<div class="row" >
+								<div class="col col-80" >
+									<h2 class="job-title">
+									<ul id="ticker{{job.post_id}}">
+									<li><a>{{ job.post_title }}</a></li><!-- eccetera -->
+									</ul>
+									</h2>
+									<span class="date">{{start_date}} </span>
 								</div>
 
-								<div class="row job-details">
-									<div class="col">
-										<div class="job-time">
-											<i class="ion-android-clock"></i> &nbsp; 
-											<span class="time">{{ job.job_start_time }}{{job.job_start_meridiem}} - {{ job.job_end_time }}{{ job.job_end_meridiem }}</span>
-											<br>
-											<i class="ion-flag"></i>&nbsp;&nbsp;
-											<span class="time">{{ job.job_location }}</span>
-											<!--<br>
-											<i class="ion-person"></i>&nbsp;&nbsp;
-											<span class="time">{{job.applied_user_id.length}}</b> &nbsp;	Applied {{required_minyawns.length}} &nbsp;Needed </span>-->
-										</div>
+								<div class="col col" >
+									<div class="job-price">
+										${{ job.job_wages }}
+									</div>
+								</div>
+							</div>
+
+							<div class="row job-details">
+								<div class="col">
+									<div class="job-time">
+										<i class="ion-android-clock"></i> &nbsp; 
+										<span class="time">{{ job.job_start_time }}{{job.job_start_meridiem}} - {{ job.job_end_time }}{{ job.job_end_meridiem }}</span>
+										<br>
+										<i class="ion-flag"></i>&nbsp;&nbsp;
+										<span class="time">{{ job.job_location }}</span>
+										<!--<i class="ion-person"></i>&nbsp;&nbsp;
+										<span class="time">{{job.applied_user_id.length}}</b> &nbsp;	Applied {{required_minyawns.length}} &nbsp;Needed </span>-->
 									</div>
 								</div>
 							</div>
 						</div>
+					</div>
 
 
-						<div class="job-actions">
+					<div class="job-actions">
 
-                            <div class="row">
+                        <div class="row">
 
-                                <div class="col col-50" ng-switch="jobStatus"> 
-                                    <div class="applicants">
-	                                    <div class="applied" ng-switch-when="Applied">
-	                                        <span></span>
-	                                        <b>Applied</b>
-	                                    </div>
-	                                    <div class="hired" ng-switch-when="Hired">
-	                                        <span></span>
-	                                        <b>Hired</b>
-	                                    </div>
-	                                    <!--<i class="ion-thumbsup"></i><span>HIRED</span>-->
-	                                        <!-- <div class="minyawn-head">&nbsp;</div> 
-	                                        <b>{{job.applied_user_id.length}}</b>    Applied<br> {{required_minyawns.length}} Needed 
-	                                        -->
-                                    </div>    
+                            <div class="col col-50" ng-switch="jobStatus"> 
+                                <div class="applied" ng-switch-when="Applied">
+                                    <span></span>
+                                    <b>Applied</b>
                                 </div>
-
-                                <div class="col col-50">
-                                    <div id="draggableContainer">
-                                        <i class="ion-ios7-download-outline appicant-job" ng-click="onSingleJobClick(job.post_id)" ></i>
-                                        
-                                        <div class="apply-button apply ">{{applicationStatus}}</div> 
-
-                                        <!-- <div class="applicants">
-                                        <div class="min-icon minyawn-empty">&nbsp;</div>
-                                        </div> -->
-                                    </div>
+                                <div class="hired" ng-switch-when="Hired">
+                                    <span></span>
+                                    <b>Hired</b>
                                 </div>
+                            </div>
 
+                            <div class="col col-50">
+                                <div id="draggableContainer">
+                                    <i class="ion-ios7-download-outline appicant-job" ng-click="onSingleJobClick(job.post_id)" ></i>
+                                    
+                                    <div ng-class="(applicationStatus==='Application Open')? 'apply-button apply' : 'expired job-closed apply-button'">{{applicationStatus}}</div>
+
+                                </div>
                             </div>
 
                         </div>
 
-						<!--	<ion-item class="item-accordion single-job-apply" ng-if="accordianToggle" >
+                    </div>
 
-							<div class="row ">
-								<div class="col col-50 " ng-switch="jobStatus">
-									
-									<div class="applied" ng-switch-when="Applied">
-										<span></span>
-										Applied
-									</div>
-									<div class="hired" ng-switch-when="Hired">
-										<span></span>
-										Hired
-									</div>
-									<div  ng-switch-when="Not Applied">
-										
-									</div>
-									
-								</div>
-								<div class="col col-50">
-									<a class="button   button-block icon-right ion-ios7-arrow-forward button-balanced pull-right" ng-click="onSingleJobClick(job.post_id)">View Job</a>
-								</div>
-							</div>
-
-							</ion-item>-->
-
-		       		</div>
-
-			       	<!-- condition for closed/expired jobs -->
-			        <div  ng-if="!jobOpen" >
-			    	
-						<div class="row" >
-
-							<div class="col" >
-								<h2 class="job-title">
-									<ul id="ticker{{job.post_id}}">
-										<li><a>{{ job.post_title }}</a></li><!-- eccetera -->
-									</ul>
-								</h2>
-
-								<div class="row job-details">
-									<div class="col">
-										<h4 class="detail-header">When</h4>
-										<div class="job-time">
-											<!-- <span class="time">{{ job.days_to_job_expired }} DAYS TO GO </span> -->
-											<span class="date">{{start_date}}</span>
-											<span class="time">{{ job.job_start_time }}{{job.job_start_meridiem}} - {{ job.job_end_time }}{{ job.job_end_meridiem }}</span>
-										</div>
-									</div>
-
-									<div class="col col-20">
-										<h4 class="detail-header">Wages</h4>
-										<div class="job-price">${{ job.job_wages }}</div>
-									</div>
-								</div>
-
-								<div class="job-details">
-									<h4 class="detail-header">Where</h4>
-									<div class="job-location">{{ job.job_location }}</div>
-								</div>
-							</div>
-
-						</div>
-
-
-						<div class="job-actions"  >
-							<!-- ng-class="(accordianToggle)? 'down-arrow' : 'up-arrow'" -->
-							<i class="up-arrow" ng-class="(accordianToggle) ? 'rotate' : 'rotateCounterwise'"></i>
-							
-							<div class="row">
-
-								<div class="col col-50">
-									<div class="applicants ">
-										<!-- <div class="minyawn-head">&nbsp;</div> -->
-										<b>{{job.applied_user_id.length}}</b>Applied<br>{{required_minyawns.length}} Needed 
-									</div>	
-								</div>
-
-								<div class="col col-50">
-									<div id="draggableContainer">
-										<!-- <m-draggable ng-if="showApplySlider" on-apply-job="applyForJob($jobID)" job-post-id="{{job.post_id}}" on-touch="disableMenuDrag()" on-release="enableMenuDrag()">
-										</m-draggable> -->
-
-										<div class="apply-button apply">{{applicationStatus}}</div> 
-
-										<!-- <div class="applicants">
-										<div class="min-icon minyawn-empty">&nbsp;</div>
-										</div> -->
-									</div>
-								</div>
-
-							</div>
-
-						</div>
-
-						<ion-item class="item-accordion single-job-apply" ng-show="accordianToggle" >
-
-							<div class="row ">
-								<div class="col col-50 " ng-switch="jobStatus">
-									<div class="applied" ng-switch-when="Applied">
-										<span></span>
-										Applied
-									</div>
-									<div class="hired" ng-switch-when="Hired">
-										<span></span>
-										Hired
-									</div>
-									<div  ng-switch-when="Not Applied">
-									</div>
-								</div>
-
-								<div class="col col-50">
-									<a class="button   button-block icon-right ion-ios7-arrow-forward button-balanced pull-right" ng-click="onSingleJobClick(job.post_id)">View Job</a>
-								</div>
-							</div>
-
-						</ion-item>
-
-		        	</div>
+		       		<!-- </div> -->
 
 		        </div>   
 
