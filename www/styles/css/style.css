@@ -639,7 +639,8 @@ body .pane .has-header {
   margin-top: 41vh;
 }
 .minyawn .loader {
-  margin-top: 2vh !important;
+  margin-top: 3vh !important;
+  height: 145px;
 }
 /**** Single Job Styles ****/
 .single-card {
