@@ -72,46 +72,40 @@
 
 						<div class="job-actions">
 
-							<div class="row">
+                            <div class="row">
 
-								<div class="col col-50 " ng-switch="jobStatus"> 
-									<div class="applicants ">
-									<div class="col col-50 " ng-switch="jobStatus">
-									
-									<div class="applied" ng-switch-when="Applied">
-										<span></span>
-										<b>Applied</b>
-									</div>
-									<div class="hired" ng-switch-when="Hired">
-										<span></span>
-										<b>Hired</b>
-									</div>
-									<div  ng-switch-when="Not Applied">
-										
-									</div>
-									
-								</div>
-										<!--<i class="ion-thumbsup"></i><span>HIRED</span>-->
-										<!-- <div class="minyawn-head">&nbsp;</div> 
-										<b>{{job.applied_user_id.length}}</b>	Applied<br> {{required_minyawns.length}} Needed 
-										-->
-									</div>	
-								</div>
+                                <div class="col col-50" ng-switch="jobStatus"> 
+                                    <div class="applicants">
+	                                    <div class="applied" ng-switch-when="Applied">
+	                                        <span></span>
+	                                        <b>Applied</b>
+	                                    </div>
+	                                    <div class="hired" ng-switch-when="Hired">
+	                                        <span></span>
+	                                        <b>Hired</b>
+	                                    </div>
+	                                    <!--<i class="ion-thumbsup"></i><span>HIRED</span>-->
+	                                        <!-- <div class="minyawn-head">&nbsp;</div> 
+	                                        <b>{{job.applied_user_id.length}}</b>    Applied<br> {{required_minyawns.length}} Needed 
+	                                        -->
+                                    </div>    
+                                </div>
 
-								<div class="col col-50">
-									<div id="draggableContainer">
-										<i class="ion-ios7-download-outline appicant-job" ng-click="onSingleJobClick(job.post_id)" ></i>
-										<div class="apply-button apply ">{{applicationStatus}}</div> 
+                                <div class="col col-50">
+                                    <div id="draggableContainer">
+                                        <i class="ion-ios7-download-outline appicant-job" ng-click="onSingleJobClick(job.post_id)" ></i>
+                                        
+                                        <div class="apply-button apply ">{{applicationStatus}}</div> 
 
-										<!-- <div class="applicants">
-										<div class="min-icon minyawn-empty">&nbsp;</div>
-										</div> -->
-									</div>
-								</div>
+                                        <!-- <div class="applicants">
+                                        <div class="min-icon minyawn-empty">&nbsp;</div>
+                                        </div> -->
+                                    </div>
+                                </div>
 
-							</div>
+                            </div>
 
-						</div>
+                        </div>
 
 						<!--	<ion-item class="item-accordion single-job-apply" ng-if="accordianToggle" >
 
