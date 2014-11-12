@@ -9,6 +9,10 @@ Version:        0.1.0
 */
 /**** Fonts ****/
 /****Colors****/
+.expired,
+.job-closed {
+  color: #ff3333 !important;
+}
 /****Clearfix****/
 .clearfix {
   *zoom: 1;
