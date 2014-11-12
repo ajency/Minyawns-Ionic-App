@@ -1,258 +1,203 @@
 <ion-view title="JOB DETAILS">
-<div class="bar bar-subheader">
-		 
-		  <div class="row">
-		  <div class="col col-100">
-		 <h1 class="job-title">
-	  			<ul id="ticker01">
-   					<li><a>{{ jobTitle }}</a></li> <!-- eccetera -->
+
+	<div class="bar bar-subheader">
+		<div class="row">
+			<div class="col col-100">
+				<h1 class="job-title">
+				<ul id="ticker01">
+				<li><a>{{jobTitle}}</a></li>
 				</ul>
-			</h1>
-			<span>{{startDate}}</span>
-		  </div>
-		  
-		 </div>
-		<span class="badge badge-assertive" ui-sref="menu.browsejobs" ><i class="ion-reply"></i></span>
-</div>
-  <ion-content  ng-show="mainLoader">
-  	<div class="padding loader">
-		<i class="icon ion-loading-c" ></i>
-	</div>
-  </ion-content>
-
-  <ion-content scrollbar-y="false" ng-hide="mainContent">
-  	<div class="list list-inset single-card sm-padding">
-  		<div class="item">
-
-	  		
-
-	  		<div class="row job-details">
-	  			<div class="col">
-					<i class="ion-android-clock"></i>
-	  			</div>
-	  			<div class="col col-80">
-					<div class="details">
-	  					<span class="time">{{startTime}}{{startMeridiem}} - {{endTime}}{{endMeridiem}}</span>
-	  				</div>
-				</div>
-	  		</div>
-			<div class="row job-details">
-	  			<div class="col">
-					<i class="ion-flag"></i>
-	  			</div>
-	  			<div class="col col-80">
-					<div class="details">
-	  					<span class="time">{{jobLocation}}</span>
-	  				</div>
-				</div>
-	  		</div>
-	  		<div class="row job-details">
-	  			<div class="col">
-					<i class="ion-cash"></i>
-	  			</div>
-	  			<div class="col col-80">
-					<div class="details">
-	  					<span class="time">$ {{wages}}</span>
-	  				</div>
-				</div>
-	  		</div>
-			<div class="row job-details">
-	  			<div class="col">
-					<i class="ion-person"></i>
-	  			</div>
-	  			<div class="col col-80">
-					<div class="details">
-	  					<span class="time">5 Applied 2 Needed</span>
-	  				</div>
-				</div>
-	  		</div>
-			<div class="job-details">
-	  			<div class="job-description">
-	  				{{jobDetails}} 
-	  			</div>
-	  		</div>
-	  	</div>
-	</div>
-
-	<div >
-		<!-- <button class="button button-small button-positive apply-btn" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[!toggle]" ng-click="toggle=!toggle">
-					  Apply
-		</button> -->
-				<div class="single-job-apply cssSlideUp">
-
-			<div ng-hide="applyLoader">
-				<div class="row">
-					<div class="col">
-						<div class="helper-text">
-							To apply, take a picture or upload one
-							<!--<div class="row">
-								  <div class="col col-10"><img src="img/minion-vector.png" width="20px"></div>
-								  <div class="col col-90">
-									<h3>Yuhoo! </h3>
-									Your hired For thid Job
-								  </div>
-								</div>-->
-						</div>
-						<!--<button class="button button-small button-positive apply-btn" ng-click="onApply()">
-						  {{applyButton}}
-						</button>-->
-					</div>
-					<div class="col col-20">
-						<div class="pic-upload " ng-click="takePicture()">
-							<div class="overlay"></div>
-						  <img src="img/click-pic.jpg"/>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div  ng-show="applyLoader">
-				<i class="icon ion-loading-c"></i>
+				</h1>
+				<span>{{startDate}}</span>
 			</div>
 		</div>
-		
-		<!--
-		
-		
-		<div class="single-job-apply cssSlideUp">
 
-			<div ng-hide="applyLoader">
-				<div class="row">
-					<div class="col">
-						<h3 class="detail-header ">{{applyHeader}}</h3>
-					</div>
-					<div class="col col-20">
-						&nbsp;
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<div class="helper-text">
-							To apply, take a picture or upload one, and when done, just hit the button below.
-						</div>
-						<button class="button button-small button-positive apply-btn" ng-click="onApply()">
-						  {{applyButton}}
-						</button>
-					</div>
-					<div class="col col-20">
-						<div class="pic-upload" ng-click="takePicture()">
-						  
-						  <i class="icon ion-camera" ng-if="!picturePresent">
-							 <img ng-src="{{profileImage}}" ></img>
-						  </i> 	
+		<span class="badge badge-assertive" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[!toggleBack]" ui-sref="menu.browsejobs" ><i class="ion-reply"></i></span>
+	</div>
 
-						  <i class="hidden" ng-if="picturePresent">
-							 <img align="middle" ng-src="{{profileImage}}" width="70" height="50" ></img>
-						  </i> 	
+	<ion-content ng-show="mainLoader">
+		<div class="padding loader">
+			<i class="icon ion-loading-c" ></i>
+		</div>
+	</ion-content>
+
+	<ion-content scrollbar-y="false" ng-hide="mainContent">
+
+		<div class="list list-inset single-card sm-padding">
+			<div class="item">
+				
+				<div class="row job-details">
+					<div class="col">
+						<i class="ion-android-clock"></i>
+					</div>
+					<div class="col col-80">
+						<div class="details">
+							<span class="time">{{startTime}}{{startMeridiem}} - {{endTime}}{{endMeridiem}}</span>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<div  ng-show="applyLoader">
-				<i class="icon ion-loading-c"></i>
+				<div class="row job-details">
+					<div class="col">
+						<i class="ion-flag"></i>
+					</div>
+					<div class="col col-80">
+						<div class="details">
+							<span class="time">{{jobLocation}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="row job-details">
+					<div class="col">
+						<i class="ion-cash"></i>
+					</div>
+					<div class="col col-80">
+						<div class="details">
+							<span class="time">$ {{wages}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="row job-details">
+					<div class="col">
+						<i class="ion-person"></i>
+					</div>
+					<div class="col col-80">
+						<div class="details">
+							<span class="time">{{appliedCount}} Applied {{requiredCount}} Needed</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="job-details">
+					<div class="job-description">{{jobDetails}}</div>
+				</div>
+
 			</div>
 		</div>
-		-->
-		
-	</div>
+
+		<div >
+			<!-- <button class="button button-small button-positive apply-btn" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[!toggle]" ng-click="toggle=!toggle">
+			Apply
+			</button> -->
+			<div class="single-job-apply cssSlideUp">
+				<div ng-hide="applyLoader">
+					<div class="row">
+						<div class="col">
+							<div class="helper-text">To apply, take a picture or upload one</div>
+						</div>
+						<div class="col col-20">
+							<div class="pic-upload " ng-click="takePicture()">
+								<div class="overlay"></div>
+								<img src="img/click-pic.jpg"/>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div  ng-show="applyLoader">
+					<i class="icon ion-loading-c"></i>
+				</div>
+			</div>
+		</div>
 	
-	
-	
-	<div class="list list-inset more-details">
-  		<div class="item">
-	  		
-	  		<div class="row job-details">
-	  			<div class="col">
-	  				<h4 class="detail-header">Posted By</h4>
-	  				<div class="job-snippets author">
-		  				{{postedBy}}
-		  			</div>
-	  			</div>
-	  			<div class="col">
-	  				<h4 class="detail-header">Category</h4>
-	  				<div class="job-snippets">
-		  				{{category}}
-		  			</div>
-	  			</div>
-	  			<div class="col">
-	  				<h4 class="detail-header">Tags</h4>
-	  				<div class="job-snippets">
-		  				{{jobTags}}
-		  			</div>
-	  			</div>
-	  		</div>
-	  	</div>
-	</div>
-	<div class="minyawn-list">
-		<h4 class="detail-header">Minyawns who have applied</h4>
-		<!-- No On Applied For job-->
+		<div class="list list-inset more-details">
+			<div class="item">
+				<div class="row job-details">
+					<div class="col">
+						<h4 class="detail-header">Posted By</h4>
+						<div class="job-snippets author">{{postedBy}}</div>
+					</div>
+
+					<div class="col">
+						<h4 class="detail-header">Category</h4>
+						<div class="job-snippets">{{category}}</div>
+					</div>
+
+					<div class="col">
+						<h4 class="detail-header">Tags</h4>
+						<div class="job-snippets">{{jobTags}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="minyawn-list">
+
+			<h4 class="detail-header">Minyawns who have applied</h4>
+
+			<!-- No One Applied For job-->
 			<ion-list ng-if="!minyawnsAppliedPresent">
 				<ion-item class="minyawn">
-
+					
 					<div class="padding loader" ng-show="minionLoader">
 						<i class="icon ion-loading-c"></i>
 					</div>
-					
-					<div ng-hide="minionLoader">
 
+					<div ng-hide="minionLoader">
 						<div class="minyawn-view">
 							<div class="minyawn-pic">
-								 <img src="./img/applicants.png"> 
-							
+								<img src="./img/applicants.png"> 
 							</div>
-							<h5 class="minyawn-name no-wrap"> Be the first to apply</h5>
+							<h5 class="minyawn-name no-wrap">Be the first to apply</h5>
 							<div class="row ">
 								<div class="col up text-center">
-									No one has been hired for this job yet. Apply and get hired
+								No one has been hired for this job yet. Apply and get hired
 								</div>
-								
 							</div>
 						</div>
-
 					</div>
 
 				</ion-item>
-				
 			</ion-list>
-				<!-- No On Applied For job-->	
-		<ion-scroll direction="x" has-bouncing="true" style="width:100vw;" on-touch="disableMenuDrag()" on-release="enableMenuDrag()" ng-if="minyawnsAppliedPresent">
-
-			<ion-list>
-				<ion-item class="minyawn"
-					ng-repeat="minion in applicants"
-					ng-click="openPopup(minion)"
-					ng-controller="ApplicantController"
-					ng-init="minionLoader=true">
-
-					<div class="padding loader" ng-show="minionLoader">
-						<i class="icon ion-loading-c"></i>
-					</div>
 					
-					<div ng-hide="minionLoader">
+			<ion-scroll 
+				direction="x" 
+				has-bouncing="true" 
+				style="width:100vw;" 
+				on-touch="disableMenuDrag()" 
+				on-release="enableMenuDrag()" 
+				ng-if="minyawnsAppliedPresent">
 
-						<div class="minyawn-view">
-							<div class="minyawn-pic">
-								<!-- <img src="./img/venkman.jpg"> -->
-								<div ng-bind-html="details.user_image"></div>
-							</div>
-							<h5 class="minyawn-name">{{details.name}}</h5>
-							<div class="row rating">
-								<div class="col up">
-									<i class="icon ion-thumbsup"></i> <span class="count">{{details.rating_positive}}</span>
+					<ion-list>
+						<ion-item class="minyawn"
+							ng-repeat="minion in applicants"
+							ng-click="openPopup(minion)"
+							ng-controller="ApplicantController"
+							ng-init="minionLoader=true">
+
+								<div class="padding loader" ng-show="minionLoader">
+									<i class="icon ion-loading-c"></i>
 								</div>
-								<div class="col down">
-									<i class="icon ion-thumbsdown"></i> <span class="count">{{details.rating_negative}}</span>
+
+								<div ng-hide="minionLoader">
+									<div class="minyawn-view">
+										<div class="minyawn-pic">
+											<div ng-bind-html="details.user_image"></div>
+										</div>
+
+										<h5 class="minyawn-name">{{details.name}}</h5>
+
+										<div class="row rating">
+											<div class="col up">
+												<i class="icon ion-thumbsup"></i> <span class="count">{{details.rating_positive}}</span>
+											</div>
+											<div class="col down">
+												<i class="icon ion-thumbsdown"></i> <span class="count">{{details.rating_negative}}</span>
+											</div>
+										</div>
+									</div>
 								</div>
-							</div>
-						</div>
 
-					</div>
+						</ion-item>
+					</ion-list>
+			</ion-scroll>
 
-				</ion-item>
-				
-			</ion-list>
-		</ion-scroll>
-	</div>
-  </ion-content>
+		</div>
+
+	</ion-content>
+
 </ion-view>
+
+

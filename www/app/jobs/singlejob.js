@@ -14,8 +14,13 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$scope.picturePresent = false ;
 	$scope.minyawnsAppliedPresent = true;
 	$scope.applyLoader = false;
+	$scope.toggleBack = true;
 
-	
+	// setTimeout(function(){
+
+	// 	$scope.toggleBack = false;
+
+	// }, 40)
 
 	$scope.getSingleJobDetails = function(){
 
@@ -146,7 +151,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		$scope.mainLoader = false;
 		$scope.mainContent = false;
-		// $ionicLoading.hide();
 
 		$scope.jobTitle = data.post_title;
 		$scope.noOfDays = data.days_to_job_expired;
@@ -159,6 +163,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		$scope.wages = data.job_wages;
 		$scope.jobLocation = data.job_location;
+		$scope.appliedCount = data.no_applied
+		$scope.requiredCount = data.required_minyawns
 		$scope.jobDetails = data.job_details;
 
 		$scope.postedBy = data.job_company;
@@ -171,7 +177,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			$scope.picturePresent = true ;
 			$rootScope.profileImage = user.profileImgSrc;
 		}
-			
 
 		if ($scope.applicants.length>0)
 			$scope.minyawnsAppliedPresent = true;
@@ -305,14 +310,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			$window.history.back();
 		});
 	};
-
-
-	// $scope.jobActionLoader = function(mesage){
-
-	// 	$ionicLoading.show({
-	// 		template: mesage
-	// 	});
-	// };
 	
 }])
 

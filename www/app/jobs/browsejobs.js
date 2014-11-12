@@ -254,8 +254,7 @@ var BrowseJobsItemController = function($scope, JobStatus){
    		$scope.jobOpen = true;
 	else
    		$scope.jobOpen = false;
-    
-   	// $scope.applicationStatus = status.jobStatus;
+
     $scope.applicationStatus = status.applicationStatus;
 
     $scope.jobStatus = status.jobStatus;
@@ -273,13 +272,9 @@ var BrowseJobsItemController = function($scope, JobStatus){
     			$("ul#ticker"+$scope.job.post_id).liScroll();
     		}
          }
-   		// $scope.accordianToggle =! $scope.accordianToggle;
    		
    	};
-
    
-   };
-
-// }])
+};
 
 
