@@ -309,7 +309,9 @@ body {
 	.item {
   background: #fff;
   padding: 50px 100px;
-   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  -mox-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 	
@@ -474,7 +476,67 @@ body {
 			border-top:1px solid rgba(204, 204, 204, 0.46);
 			font-size: 1.1rem;
 			.clearfix;
-			
+			.applicants{
+				.col{
+					padding:0px;
+				}
+			}
+						.applied{
+					display: inline-block;
+					float:left;
+					text-align: center;
+					font-size: 0.8rem;
+					text-transform: uppercase;
+					color:#868080;
+					margin-right:5px;
+					span{
+						display: inline-block;
+						float:left;
+						width: 30px;
+						height: 30px;
+						background: url('../../img/sprite.png') -1px 0px no-repeat;
+						margin: auto;
+					}
+					b{
+						line-height:2.5em;
+						margin-left:5px;
+					}
+				}
+	.hired{
+					display: inline-block;
+					text-align: center;
+					font-size: 0.8rem;
+					text-transform: uppercase;
+					color:#868080;
+					margin-right:5px;
+					span{
+						display: block;
+						float:left;
+						width: 30px;
+						height: 30px;
+						background: url('../../img/sprite.png') -36px 0px no-repeat;
+						margin: auto;
+					}
+					b{
+						line-height:2.5em;
+						margin-left:5px;
+					}
+				}
+.not-applied{
+					display: inline-block;
+					text-align: center;
+					font-size: 0.7rem;
+					text-transform: uppercase;
+					color:#868080;
+					margin-right:5px;
+					span{
+						display: block;
+						width: 30px;
+						height: 30px;
+						background: url('../../img/sprite.png') -69px 0px no-repeat;
+						margin: auto;
+					}
+				}	
 			.apply{
 				color:@green;
 			}
@@ -559,10 +621,16 @@ body {
 .loader {
 	text-align: center;
 	font-size: 2rem;
-	margin-top: 2vh;
-	
-}
+	margin-top: 41vh;
 
+}
+.minyawn{
+	.loader {
+		
+		margin-top: 2vh !important;
+
+	}
+}
 /**** Single Job Styles ****/
 
 .single-card{

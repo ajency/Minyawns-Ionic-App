@@ -55,11 +55,14 @@
 								<div class="row job-details">
 									<div class="col">
 										<div class="job-time">
-											<i class="ion-android-clock"></i>  
+											<i class="ion-android-clock"></i> &nbsp; 
 											<span class="time">{{ job.job_start_time }}{{job.job_start_meridiem}} - {{ job.job_end_time }}{{ job.job_end_meridiem }}</span>
 											<br>
 											<i class="ion-flag"></i>&nbsp;&nbsp;
 											<span class="time">{{ job.job_location }}</span>
+											<!--<br>
+											<i class="ion-person"></i>&nbsp;&nbsp;
+											<span class="time">{{job.applied_user_id.length}}</b> &nbsp;	Applied {{required_minyawns.length}} &nbsp;Needed </span>-->
 										</div>
 									</div>
 								</div>
@@ -71,9 +74,24 @@
 
 							<div class="row">
 
-								<div class="col col-50">
+								<div class="col col-50 " ng-switch="jobStatus"> 
 									<div class="applicants ">
-										<i class="ion-thumbsup"></i><span>HIRED</span>
+									<div class="col col-50 " ng-switch="jobStatus">
+									
+									<div class="applied" ng-switch-when="Applied">
+										<span></span>
+										<b>Applied</b>
+									</div>
+									<div class="hired" ng-switch-when="Hired">
+										<span></span>
+										<b>Hired</b>
+									</div>
+									<div  ng-switch-when="Not Applied">
+										
+									</div>
+									
+								</div>
+										<!--<i class="ion-thumbsup"></i><span>HIRED</span>-->
 										<!-- <div class="minyawn-head">&nbsp;</div> 
 										<b>{{job.applied_user_id.length}}</b>	Applied<br> {{required_minyawns.length}} Needed 
 										-->
