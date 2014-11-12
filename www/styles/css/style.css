@@ -195,6 +195,7 @@ body .pane .has-header {
   background: #84D50E;
   height: 50px;
   color: #ffffff;
+  border-bottom: 0px;
 }
 .bar-green .main-menu-toggle {
   color: rgba(0, 0, 0, 0.33);
@@ -302,17 +303,7 @@ body .pane .has-header {
 .job-list .item {
   background: #fff;
   padding: 50px 100px;
-  -webkit-transition: 0.28s all 0.03s;
-  transition: 0.28s all 0.03s;
-  -webkit-transform: perspective(500px);
-  transform: perspective(500px);
-}
-.job-list .item:hover {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  -webkit-transform: perspective(500px) translate3d(0, -9px, 6px);
-  transform: perspective(500px) translate3d(0, -9px, 6px);
-  margin: 16px 0 0;
-  z-index: 1;
 }
 .job-list .item {
   background: none !important;
@@ -567,8 +558,9 @@ body .pane .has-header {
   background: transparent;
 }
 .single-job-card {
-  margin: 140px 10px /*border-left: 2px solid @green;
-	border:1px solid rgba(184, 184, 184, 0.51);*/;
+  margin: 140px 10px 0px;
+  /*border-left: 2px solid @green;
+	border:1px solid rgba(184, 184, 184, 0.51);*/
 }
 /**** Scroll Refresher Styles ****/
 .scroll-refresher {
@@ -578,7 +570,7 @@ body .pane .has-header {
 .loader {
   text-align: center;
   font-size: 2rem;
-  margin-top: 41vh;
+  margin-top: 2vh;
 }
 /**** Single Job Styles ****/
 .single-card {
@@ -810,9 +802,9 @@ body .pane .has-header {
   margin: 0.5rem 1vw;
   border: 0;
   white-space: normal;
-  box-shadow: 0px 0px 6px #888888;
-  -moz-box-shadow: 0px 0px 6px #888888;
-  -webkit-box-shadow: 0px 0px 6px #888888;
+  box-shadow: 4px 2px 5px #C2C2C2;
+  -moz-box-shadow: 4px 2px 5px #C2C2C2;
+  -webkit-box-shadow: 4px 2px 5px #C2C2C2;
 }
 .minyawn-list .list .minyawn:first-child {
   margin-left: auto;
