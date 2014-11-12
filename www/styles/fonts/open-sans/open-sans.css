@@ -3,7 +3,7 @@
 
 
 @font-face {
-    font-family: 'Semibold';
+    font-family: 'opensans';
     src: url('opensans-semibold-webfont.eot');
     src: url('opensans-semibold-webfont.eot?#iefix') format('embedded-opentype'),
          url('opensans-semibold-webfont.woff') format('woff'),
@@ -17,7 +17,7 @@
 
 
 @font-face {
-    font-family: 'Regular';
+    font-family: 'opensans';
     src: url('opensans-regular-webfont.eot');
     src: url('opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
          url('opensans-regular-webfont.woff') format('woff'),
@@ -31,7 +31,7 @@
 
 
 @font-face {
-    font-family: 'Italic';
+    font-family: 'opensans';
     src: url('opensans-italic-webfont.eot');
     src: url('opensans-italic-webfont.eot?#iefix') format('embedded-opentype'),
          url('opensans-italic-webfont.woff') format('woff'),
@@ -45,7 +45,7 @@
 
 
 @font-face {
-    font-family: 'Light';
+    font-family: 'opensans';
     src: url('opensans-light-webfont.eot');
     src: url('opensans-light-webfont.eot?#iefix') format('embedded-opentype'),
          url('opensans-light-webfont.woff') format('woff'),

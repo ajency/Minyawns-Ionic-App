@@ -1,41 +1,65 @@
+<div class="bar bar-subheader">
+		 
+		  <div class="row">
+		  <div class="col col-100">
+		 <h1 class="job-title">
+	  			<ul id="ticker01">
+   					<li><a>{{ jobTitle }}</a></li> <!-- eccetera -->
+				</ul>
+			</h1>
+			<span>{{startDate}}</span>
+		  </div>
+		 </div>
+		<span class="badge badge-assertive" ui-sref="menu.browsejobs" ><i class="ion-reply"></i></span>
+		</div>
+
 <ion-view title="JOB DETAILS">
 
   <ion-content  ng-show="mainLoader">
   	<div class="padding loader">
-		<i class="icon ion-loading-c"></i>
+		<i class="icon ion-loading-c" ></i>
 	</div>
   </ion-content>
 
   <ion-content scrollbar-y="false" ng-hide="mainContent">
-  	<div class="list list-inset single-job-card sm-padding">
+  	<div class="list list-inset single-card sm-padding">
   		<div class="item">
 
-	  		<h2 class="job-title">
-	  			<ul id="ticker01">
-   					<li><a>{{ jobTitle }}</a></li> <!-- eccetera -->
-				</ul>
-			</h2>
+	  		
 
 	  		<div class="row job-details">
 	  			<div class="col">
-	  				<h4 class="detail-header">When</h4>
-	  				<div class="job-time">
-	  					<span class="time">{{noOfDays}} DAYS TO GO</span>
-	  					<span class="date">{{startDate}}</span>
+					<i class="ion-android-clock"></i>
+	  			</div>
+	  			<div class="col col-80">
+					<div class="details">
 	  					<span class="time">{{startTime}}{{startMeridiem}} - {{endTime}}{{endMeridiem}}</span>
 	  				</div>
-	  			</div>
-	  			<div class="col col-20">
-	  				<h4 class="detail-header">Wages</h4>
-	  				<div class="job-price">
-	  					${{wages}}
-	  				</div>
-	  			</div>
+				</div>
 	  		</div>
-	  		<div class="job-details">
-	  			<h4 class="detail-header">Where</h4>
-	  			<div class="job-location">
-	  				{{jobLocation}}
+			<div class="row job-details">
+	  			<div class="col">
+					<i class="ion-flag"></i>
+	  			</div>
+	  			<div class="col col-80">
+					<div class="details">
+	  					<span class="time">{{jobLocation}}</span>
+	  				</div>
+				</div>
+	  		</div>
+	  		<div class="row job-details">
+	  			<div class="col">
+					<i class="ion-cash"></i>
+	  			</div>
+	  			<div class="col col-80">
+					<div class="details">
+	  					<span class="time">$ {{wages}}</span>
+	  				</div>
+				</div>
+	  		</div>
+			<div class="job-details">
+	  			<div class="job-description">
+	  				{{jobDetails}} 
 	  			</div>
 	  		</div>
 	  	</div>
@@ -51,14 +75,14 @@
 				<div class="row">
 					<div class="col">
 						<div class="helper-text">
-							<!--To apply, take a picture or upload one, and when done, just hit the button below.-->
-							<div class="row">
+							To apply, take a picture or upload one
+							<!--<div class="row">
 								  <div class="col col-10"><img src="img/minion-vector.png" width="20px"></div>
 								  <div class="col col-90">
 									<h3>Yuhoo! </h3>
 									Your hired For thid Job
 								  </div>
-								</div>
+								</div>-->
 						</div>
 						<!--<button class="button button-small button-positive apply-btn" ng-click="onApply()">
 						  {{applyButton}}
@@ -67,7 +91,7 @@
 					<div class="col col-20">
 						<div class="pic-upload " ng-click="takePicture()">
 							<div class="overlay"></div>
-						  <img src="img/camera.png"/>
+						  <img src="img/click-pic.jpg"/>
 						  <!--<i class="icon ion-camera" >
 							
 						  </i> 	-->
@@ -131,14 +155,9 @@
 	
 	
 	
-	<div class="list list-inset single-job-card">
+	<div class="list list-inset more-details">
   		<div class="item">
-	  		<div class="job-details">
-	  			<h4 class="detail-header">More about the Job</h4>
-	  			<div class="job-description">
-	  				{{jobDetails}} 
-	  			</div>
-	  		</div>
+	  		
 	  		<div class="row job-details">
 	  			<div class="col">
 	  				<h4 class="detail-header">Posted By</h4>
