@@ -519,6 +519,7 @@ body .pane .has-header {
 }
 .job-list .job .job-actions .hired {
   display: inline-block;
+  float: left;
   text-align: center;
   font-size: 0.8rem;
   text-transform: uppercase;
