@@ -869,8 +869,9 @@ body .pane .has-header {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+  margin-left: 5px;
 }
-.minyawn-list .list margin-left:5px .minyawn {
+.minyawn-list .list .minyawn {
   min-width: 43vw;
   max-width: 43vw;
   margin: 0.5rem 1rem 0rem 0rem;
@@ -880,10 +881,10 @@ body .pane .has-header {
   -moz-box-shadow: 3px 2px 5px #C2C2C2;
   -webkit-box-shadow: 3px 2px 5px #C2C2C2;
 }
-.minyawn-list .list margin-left:5px .minyawn:first-child {
+.minyawn-list .list .minyawn:first-child {
   margin-left: auto;
 }
-.minyawn-list .list margin-left:5px .minyawn:last-child {
+.minyawn-list .list .minyawn:last-child {
   margin-right: auto;
 }
 .minyawn {
