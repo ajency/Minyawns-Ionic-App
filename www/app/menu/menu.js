@@ -68,7 +68,7 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 	$scope.init = function(){
 
 		var user = Storage.getUserDetails();
-		console.log(user);
+		
 		if(user.isLoggedIn){
 
 			$scope.menuLoader = true;
@@ -137,3 +137,27 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 	});
 
 }])
+
+
+.directive('minImageLoad', [ function() {
+    return {
+      restrict: 'A',
+      link: function(scope, element, attrs) {
+        element.bind('load', function() {
+          return scope.$apply(function() {
+            
+
+          });
+        });
+        return element.bind('error', function() {
+          return scope.$apply(function() {
+
+            scope.display_image = "./img/applicants.png";
+          });
+        });
+      }
+    };
+  }
+])
+
+

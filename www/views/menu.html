@@ -10,8 +10,6 @@
 
 		<ion-nav-view  name="menuContent" nav-router animation="slide-left-right-ios7"></ion-nav-view>
 		
-		
-		
 	</ion-pane>
 	
 		
@@ -22,7 +20,7 @@
 
 			<div class="log-view">
 				<div class="profile-img">
-				<img ng-src="{{display_image}}">
+				<img ng-src="{{display_image}}" min-image-load>
 				</div>
 				<div ng-hide="logInOutMenu">
 					<h2>Hello, <span>{{display_name}}</span></h2>

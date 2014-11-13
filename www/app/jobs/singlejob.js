@@ -14,15 +14,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$scope.picturePresent = false ;
 	$scope.minyawnsAppliedPresent = true;
 	$scope.applyLoader = false;
-	$scope.toggleBack = true;
 	// $scope.topContent = false;
-
-	setTimeout(function(){
-
-		// $scope.toggleBack = false;
-		// $scope.topContent = true;
-
-	}, 1000)
 	
 
 	$scope.getSingleJobDetails = function(){
@@ -45,7 +37,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			console.log('getSingleJobDetails Error');
 
 			$scope.mainLoader = false;
-			// $ionicLoading.hide();
 			$scope.applyLoader = false;
 			$scope.errorPopUp('Could not connect to server');
 		});
@@ -54,47 +45,42 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
     
     function uploadSuccess(r) {
 
-    		$scope.applyLoader = false;
-            console.log("Code = " + r.responseCode);
-            var fileUploadResponse = r.response;
+		$scope.applyLoader = false;
 
-        	var photoResponse= JSON.parse(fileUploadResponse);
-        	
-        	if (photoResponse.status) {
-        		Storage.setProfileImageSrc(photoResponse.photo.url);
+        console.log("Code = " + r.responseCode);
+        var fileUploadResponse = r.response;
 
-        		// $rootScope.$emit('refreshProfilePhoto', {changedUrl : photoResponse.photo.url});
-        		
-        		
-        		_.each($rootScope.minionDetails,function(minion){
+    	var photoResponse= JSON.parse(fileUploadResponse);
+    	
+    	if (photoResponse.status) {
+    		Storage.setProfileImageSrc(photoResponse.photo.url);
+    		
+    		_.each($rootScope.minionDetails, function(minion){
 
-        			if (minion.user_id == photoResponse.photo.author ) {
+    			if (minion.user_id == photoResponse.photo.author ) {
 
-        				minion.user_image = "<img alt='' src="+photoResponse.photo.url+" height='96' width='96'>"
- 						
-        			};
+    				minion.user_image = "<img alt='' src="+photoResponse.photo.url+" height='96' width='96'>"
+						
+    			};
+    		})
+    		
+    		//Event handler in menu.js
+			$rootScope.$emit('upload:profile:photo', {});
+    	}
+    	else
+    		console.log("Picture Could not be uploaded");
 
-        		})
-        			
-        		
-        		//Event handler in menu.js
-    			$rootScope.$emit('upload:profile:photo', {});
-        	}
-        	else
-        		alert("Picture Could not be uploaded");
-        	
-            
-            
-
-            console.log("Sent = " + r.bytesSent);
+        console.log("Sent = " + r.bytesSent);
     }
 
-    function uplaodFail(error) {
-    		$scope.applyLoader = false;
-            alert("An error has occurred: Code = " + error.code);
-            console.log("upload error source " + error.source);
-            console.log("upload error target " + error.target);
+    function uploadFail(error) {
+
+		$scope.applyLoader = false;
+        console.log("An error has occurred: Code = " + error.code);
+        console.log("upload error source " + error.source);
+        console.log("upload error target " + error.target);
     }
+
 
     $scope.addUpdatePicture = function(imagePath){
 
@@ -110,12 +96,12 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
         var params =  new Object();
         params.profile_photo = imagePath;
-        // params.job_id = $rootScope.postID;
 
         options.params = params;
 
         var ft = new FileTransfer();
-        ft.upload(imagePath, encodeURI("http://www.minyawns.ajency.in/api/photos/upload/profile"), uploadSuccess, uplaodFail, options);
+        ft.upload(imagePath, encodeURI("http://www.minyawns.ajency.in/api/photos/upload/profile")
+        	, uploadSuccess, uploadFail, options);
 
     };
 
@@ -187,12 +173,9 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			$scope.minyawnsAppliedPresent = false;
 
 		$scope.updateApplySectionDetails();
-        
 
-		if (data.post_title.length>50) {
-            console.log('3');
-    		$("ul#ticker01").liScroll();
-    	};
+		if (data.post_title.length>50) $("ul#ticker01").liScroll();
+ 
 	};
 
 
@@ -226,8 +209,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 
     $scope.minyawnJobAction = function(action){
-    	
-    //	$scope.jobActionLoader('Please wait...');
+
     	$scope.applyLoader = true;
 
     	var data = { action: action, job_id: $rootScope.postID };
@@ -253,7 +235,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			console.log('minyawnJobAction error');
 			console.log(error);
 
-			// $ionicLoading.hide();
 			if(error === 'NetworkNotAvailable') Toast.connectionError();
 			else Toast.responseError();
 		});
@@ -272,6 +253,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		$cordovaCamera.getPicture(options)
 		.then(function(imageURI){
+
 			$scope.picturePresent = true ;
 			$rootScope.profileImage = imageURI;
 
@@ -340,51 +322,45 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	}();
 
 
-	$scope.openPopup = function(minionID){
+	// $scope.openPopup = function(minionID){
 
-		$scope.activeSlide = _.indexOf($scope.applicants, minionID);
+	// 	$scope.activeSlide = _.indexOf($scope.applicants, minionID);
 
-		var popup = $ionicPopup.alert({
-			templateUrl: 'views/minion-slidebox.html',
-			scope: $scope,
+	// 	var popup = $ionicPopup.alert({
+	// 		templateUrl: 'views/minion-slidebox.html',
+	// 		scope: $scope,
 			
-		});
-		
-		popup.then(function(res) {
-			console.log('Tapped!', res);
-		});
-
-	};
-
-	// $rootScope.$on('refreshProfilePhoto', function(event, args) {
-	// 	_.each($scope.details,function(){
-	// 		if (true) {};
 	// 	});
-	// });
+		
+	// 	popup.then(function(res) {
+	// 		console.log('Tapped!', res);
+	// 	});
+
+	// };
 	
 
 }])
 
 
 
-.controller('MinionPopupController', ['$scope', '$rootScope', '$ionicSlideBoxDelegate', '_'
-	, function($scope, $rootScope, $ionicSlideBoxDelegate, _){
+// .controller('MinionPopupController', ['$scope', '$rootScope', '$ionicSlideBoxDelegate', '_'
+// 	, function($scope, $rootScope, $ionicSlideBoxDelegate, _){
 	
 
-	$scope.$watchCollection("minionDetails", function(newValue, oldValue) {
+// 	$scope.$watchCollection("minionDetails", function(newValue, oldValue) {
 
-			var sortedArray  = _.sortBy(newValue, function(num){
+// 			var sortedArray  = _.sortBy(newValue, function(num){
 
-				return _.indexOf($scope.applicants, num.user_id);
-			})
+// 				return _.indexOf($scope.applicants, num.user_id);
+// 			})
 
-            $rootScope.minionDetails = sortedArray;
+//             $rootScope.minionDetails = sortedArray;
 
-            $ionicSlideBoxDelegate.update();
-        }
-    );
+//             $ionicSlideBoxDelegate.update();
+//         }
+//     );
 	
-}])
+// }])
 
 
 

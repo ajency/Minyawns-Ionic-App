@@ -1,5 +1,5 @@
 angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns.singlejob'
-	, 'minyawns.draggable','minyawns.jobstatus'])
+	, 'minyawns.jobstatus'])
 
 .controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
 	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate', '_'

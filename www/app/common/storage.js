@@ -47,9 +47,7 @@ angular.module('minyawns.storage', ['ngUnderscore'])
 			var displayName = LS.getItem("minyawns_display_name");
 			var loginStatus = LS.getItem("minyawns_login_status");
 			var cookie = LS.getItem("minyawns_login_cookie");
-
 			var profileImg = LS.getItem("minyawns_profile_image_src");
-			var defaultImg = "./img/applicants.png";
 
 			return details = {
 
@@ -58,7 +56,7 @@ angular.module('minyawns.storage', ['ngUnderscore'])
 				displayName 	: (_.isNull(displayName)) ? "" : displayName,
 				isLoggedIn 		: (loginStatus === 'signed-in') ? true : false,
 				cookie 			: (_.isNull(cookie)) ? "" : cookie,
-				profileImgSrc 	: (_.isNull(profileImg) || profileImg === 'null') ? defaultImg : profileImg
+				profileImgSrc 	: profileImg
 			};
 		},
 
