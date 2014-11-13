@@ -59,7 +59,12 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
 			$scope.showRefresher = true;
 			// $scope.reSet();
-			$scope.jobs = $rootScope.jobs.allJobs;
+			
+			$scope.jobs = [];
+			$timeout(function(){
+				$scope.jobs = $rootScope.jobs.allJobs;
+			}, 500);
+			
 			// $scope.resetRootScope();
 			// $scope.fetchJobs();
 		}
@@ -171,8 +176,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	var reloadBrowseJobsControllerEvent = $rootScope.$on('reload:browsejobs:controller', function(event, args) {
 		
 		event.stopPropagation()
-		console.log('logout event');
-		// $state.transitionTo('menu.browsejobs', null, {'reload':true });
+
 		$scope.jobs = []
 		$timeout(function() {
 
@@ -181,7 +185,8 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 		}, 100);
     });
 
-
+	
+	//TODO: Event not required
 	var minyawnApplyActionEvent = $rootScope.$on('action:minyawn:apply', function(event, args) {
 
 		event.stopPropagation()
@@ -192,15 +197,13 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 		var index = postIdArray.indexOf(args.passedJob.post_id);
 
 		$rootScope.jobs.allJobs[index] = args.passedJob
-		console.log($rootScope.jobs.allJobs)
 	});
 
+	
 	$scope.$on('$destroy', function(){
 
-		 // minyawnApplyActionEvent()
 		reloadBrowseJobsControllerEvent()
 	});
-
    
 
 }])

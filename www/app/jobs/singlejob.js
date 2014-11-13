@@ -342,6 +342,12 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		});
 	};
 	
+
+	$scope.onBackClick = function(){
+
+		$window.history.back();
+	};
+	
 }])
 
 

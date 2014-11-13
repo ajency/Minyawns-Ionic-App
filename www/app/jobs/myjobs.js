@@ -64,7 +64,12 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 			$scope.showRefresher = true;
 			// $scope.reSet();
-			$scope.jobs = $rootScope.myjobs.myJobsArray;
+
+			$scope.jobs = [];
+			$timeout(function(){
+				$scope.jobs = $rootScope.myjobs.myJobsArray;
+			}, 500);
+
 			// $scope.resetRootScope();
 			// $scope.fetchJobs();
 		}
