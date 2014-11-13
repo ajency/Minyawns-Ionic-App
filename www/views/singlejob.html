@@ -77,24 +77,25 @@
 
 		<div>
 			<div class="single-job-apply cssSlideUp">
-				<div ng-hide="applyLoader">
+				<div>
 					<div class="row">
 						<div class="col" ng-click="loginToApply()">
-							<div class="helper-text">{{helperText}}</div>
+							<div ng-hide="applyLoader" class="helper-text">{{helperText}}</div>
+
+							<div  ng-show="applyLoader">
+								<i class="icon ion-loading-c"></i>
+							</div>
 						</div>
 
 						<div class="col col-20" ng-show="cameraIcon">
-							<div class="pic-upload" ng-click="takePicture()">
+							<div class="pic-upload" ng-click="takePicture()" on-hold="onIconHold()">
 								<div class="overlay"></div>
 								<img ng-src="{{profileImage}}"/>
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<div  ng-show="applyLoader">
-					<i class="icon ion-loading-c"></i>
-				</div>
+				
 			</div>
 		</div>
 	

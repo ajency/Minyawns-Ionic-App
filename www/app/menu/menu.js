@@ -108,9 +108,10 @@ angular.module('minyawns.menu', ['minyawns.storage'])
     });
 
 	$rootScope.$on('upload:profile:photo', function(event, args) {
-		console.log('Upload photo');
+
 		$scope.init();
     });
+    
 
 	$scope.onLogout = function(){
 

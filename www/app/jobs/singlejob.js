@@ -11,7 +11,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$rootScope.minionDetails = [];
 	$rootScope.postID = $stateParams.postID;
 	$scope.mainLoader = $scope.mainContent = true;
-	$scope.picturePresent = false ;
 	$scope.minyawnsAppliedPresent = true;
 	$scope.applyLoader = false;
 	$scope.cameraIcon = false;
@@ -46,40 +45,33 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
     
     function uploadSuccess(r) {
 
-		$scope.applyLoader = false;
-
-        console.log("Code = " + r.responseCode);
         var fileUploadResponse = r.response;
 
     	var photoResponse= JSON.parse(fileUploadResponse);
     	
     	if (photoResponse.status) {
+
     		Storage.setProfileImageSrc(photoResponse.photo.url);
+
+    		$scope.minyawnJobAction('minyawn_job_apply');
     		
-    		_.each($rootScope.minionDetails, function(minion){
+    		// _.each($rootScope.minionDetails, function(minion){
 
-    			if (minion.user_id == photoResponse.photo.author ) {
+    		// 	if (minion.user_id == photoResponse.photo.author ) {
 
-    				minion.user_image = "<img alt='' src="+photoResponse.photo.url+" height='96' width='96'>"
+    		// 		minion.user_image = "<img alt='' src="+photoResponse.photo.url+" height='96' width='96'>"
 						
-    			};
-    		})
+    		// 	};
+    		// })
     		
     		//Event handler in menu.js
 			$rootScope.$emit('upload:profile:photo', {});
     	}
-    	else
+
+    	else{
     		console.log("Picture Could not be uploaded");
-
-        console.log("Sent = " + r.bytesSent);
-    }
-
-    function uploadFail(error) {
-
-		$scope.applyLoader = false;
-        console.log("An error has occurred: Code = " + error.code);
-        console.log("upload error source " + error.source);
-        console.log("upload error target " + error.target);
+    		$scope.applyLoader = false;
+    	}
     }
 
 
@@ -102,10 +94,15 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
         var ft = new FileTransfer();
         ft.upload(imagePath, encodeURI("http://www.minyawns.ajency.in/api/photos/upload/profile")
-        	, uploadSuccess, uploadFail, options);
+        	, uploadSuccess
+        	, function(error){
+
+        		$scope.applyLoader = false;
+				console.log('File upload error');
+        	}
+        	, options);
 
     };
-
     
 
 	$scope.updateApplySectionDetails = function(){
@@ -165,7 +162,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 					if($rootScope.profileImage === 'img/click-pic.jpg')
 						$scope.helperText = "To apply, take a picture or upload one";
 					else
-						$scope.helperText = "Applications Open. Apply now";
+						$scope.helperText = "Applications Open. Please tap the icon to apply now";
 				}
 
 			}
@@ -208,11 +205,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		$scope.jobTags = data.tags.join(', ');
 
 		$scope.applicants = data.applied_user_id;
-		
-		if(user.isLoggedIn){
-			$scope.picturePresent = true ;
-			$rootScope.profileImage = user.profileImgSrc;
-		}
 
 		if ($scope.applicants.length>0)
 			$scope.minyawnsAppliedPresent = true;
@@ -238,21 +230,55 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	}();
 
 
-	$scope.onApply = function(){
+    $scope.takePicture = function(){
 
-		var user = Storage.getUserDetails();
+    	var options = { quality : 100, correctOrientation : true,
+    		targetWidth : 1000, targetHeight : 1000, allowEdit : true
+		};
+		
+		if($scope.helperText === "Applications Open. Please tap the icon to apply now")
+			$scope.minyawnJobAction('minyawn_job_apply');
 
-    	if($scope.applyButton === 'Apply'){
-    		if(user.profileImgSrc.substr(user.profileImgSrc.lastIndexOf('/')+1) === "applicants.png") alert('Upload picture');
-    		else $scope.minyawnJobAction('minyawn_job_apply');
-    	}
+		if($scope.helperText === "To apply, take a picture or upload one")
+			if(ionic.Platform.isWebView()){
 
-    	else if($scope.applyButton === 'Un-apply')
-    		$scope.minyawnJobAction('minyawn_job_unapply');
+				$cordovaCamera.getPicture(options)
+					.then(function(imageURI){
 
-    	else if($scope.applyButton === 'Login to apply')
-    		$state.go('login');
+						$rootScope.profileImage = imageURI;
+
+						var confirmPopup = $ionicPopup.confirm({
+							title: 'Apply',
+							template: 'Please click OK to confirm the application.'
+						});
+
+						confirmPopup.then(function(res) {
+							if(res) $scope.addUpdatePicture(imageURI);
+							else $rootScope.profileImage = 'img/click-pic.jpg';
+						});
+						
+					});
+			}
     };
+
+
+    $scope.onIconHold = function(){
+
+    	if($scope.helperText === "You have applied. Please tap and hold the icon to un-apply.")
+
+    		var confirmPopup = $ionicPopup.confirm({
+				title: 'Unapply',
+				template: 'Are you sure you want to un-apply?'
+			});
+
+			confirmPopup.then(function(res) {
+				if(res) {
+					$scope.minyawnJobAction('minyawn_job_unapply');
+				} 
+			});
+			
+    };
+
 
 
     $scope.minyawnJobAction = function(action){
@@ -265,9 +291,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 	    .then(function(resp, status, headers, config){
 
-	    	console.log('minyawnJobAction response')
-	    	console.log(resp);
-
 	    	$scope.getSingleJobDetails();
 
 	    	//Event handler in menu.js
@@ -279,8 +302,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		function(error){
 
-			console.log('minyawnJobAction error');
-			console.log(error);
+			$scope.applyLoader = false;
 
 			if(error === 'NetworkNotAvailable') Toast.connectionError();
 			else Toast.responseError();
@@ -288,36 +310,10 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
     };
 
 
-    $scope.takePicture = function(){
-
-    	var options = {
-    		quality : 100,
-    		correctOrientation : true,
-    		targetWidth : 1000,
-    		targetHeight : 1000,
-			allowEdit : true
-		};
-
-		$cordovaCamera.getPicture(options)
-		.then(function(imageURI){
-
-			$scope.picturePresent = true ;
-			$rootScope.profileImage = imageURI;
-
-			$scope.addUpdatePicture(imageURI);
-			
-		}
-		,function(err){
-			console.log(err);
-		});
-    };
-
-
     $scope.loginToApply = function(){
 
-    	var user = Storage.getUserDetails();
-
-		if(!user.isLoggedIn) $state.go('login');
+		if($scope.helperText === "Applications Open. Sign In to apply") 
+			$state.go('login');
     };
 
 
