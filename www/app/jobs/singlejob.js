@@ -187,7 +187,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		$scope.wages = data.job_wages;
 		$scope.jobLocation = data.job_location;
-		$scope.appliedCount = data.no_applied
+		$scope.appliedCount = data.users_applied.length
 		$scope.requiredCount = data.required_minyawns
 		$scope.jobDetails = data.job_details;
 

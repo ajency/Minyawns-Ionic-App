@@ -1,4 +1,4 @@
-<ion-view title="{{title}}">
+<ion-view title="navTitle">
 
 	<div class="bar bar-subheader">
 		<div class="row">
@@ -83,8 +83,8 @@
                             </div>
 
                             <div class="col col-50">
-                                <div id="draggableContainer">
-                                    <i class="ion-ios7-download-outline appicant-job" ng-click="onSingleJobClick(job.post_id)" ></i>
+                                <div id="draggableContainer" ng-click="onSingleJobClick(job.post_id)">
+                                    <i class="ion-ios7-download-outline appicant-job"></i>
                                     
                                     <div ng-class="(applicationStatus==='Application Open')? 'apply-button apply' : 'expired job-closed apply-button'">{{applicationStatus}}</div>
 
