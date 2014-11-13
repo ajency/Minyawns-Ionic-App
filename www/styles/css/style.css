@@ -563,7 +563,7 @@ body .pane .has-header {
   margin: auto;
 }
 .job-list .job .job-actions .apply {
-  color: #88d816;
+  color: #60A70D;
 }
 .job-list .job .job-actions .apply-button {
   position: relative;
@@ -781,7 +781,7 @@ body .pane .has-header {
   color: #989898;
 }
 .single-job-card .item .job-details .author {
-  color: #88d816 !important;
+  color: #487513 !important;
 }
 .single-job-apply {
   margin: 20px 10px;
@@ -831,6 +831,9 @@ body .pane .has-header {
   color: #ffffff;
   margin-top: 14px;
 }
+.single-job-apply .pic-upload img {
+  width: 100%;
+}
 .single-job-apply .helper-text {
   font-size: 0.9rem;
   margin-right: 20px;
@@ -872,8 +875,8 @@ body .pane .has-header {
   margin-left: 5px;
 }
 .minyawn-list .list .minyawn {
-  min-width: 43vw;
-  max-width: 43vw;
+  min-width: 58vw;
+  max-width: 58vw;
   margin: 0.5rem 1rem 0rem 0rem;
   border: 0;
   white-space: normal;
