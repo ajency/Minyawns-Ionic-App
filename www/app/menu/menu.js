@@ -147,12 +147,14 @@ angular.module('minyawns.menu', ['minyawns.storage'])
         element.bind('load', function() {
           return scope.$apply(function() {
             
+            console.log('Image load success')
 
           });
         });
         return element.bind('error', function() {
           return scope.$apply(function() {
 
+          	console.log('Image load failure')
             scope.display_image = "./img/applicants.png";
           });
         });
