@@ -6,7 +6,8 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network
 	, Toast, $ionicSideMenuDelegate, _){
 
-	$scope.navTitle = '<img src="./img/applicants.png" />';
+	$scope.navTitle = '<img src="./img/user.png"/>'
+	$scope.title = "Browse Jobs";
 
 	$scope.controller = BrowseJobsItemController;
 	
