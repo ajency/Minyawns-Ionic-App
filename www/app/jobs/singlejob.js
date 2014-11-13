@@ -14,15 +14,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$scope.picturePresent = false ;
 	$scope.minyawnsAppliedPresent = true;
 	$scope.applyLoader = false;
-	$scope.toggleBack = true;
 	// $scope.topContent = false;
-
-	setTimeout(function(){
-
-		// $scope.toggleBack = false;
-		// $scope.topContent = true;
-
-	}, 1000)
 	
 
 	$scope.getSingleJobDetails = function(){
@@ -63,7 +55,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
     	if (photoResponse.status) {
     		Storage.setProfileImageSrc(photoResponse.photo.url);
     		
-    		_.each($rootScope.minionDetails,function(minion){
+    		_.each($rootScope.minionDetails, function(minion){
 
     			if (minion.user_id == photoResponse.photo.author ) {
 
@@ -104,7 +96,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
         var params =  new Object();
         params.profile_photo = imagePath;
-        // params.job_id = $rootScope.postID;
 
         options.params = params;
 
@@ -218,7 +209,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 
     $scope.minyawnJobAction = function(action){
-    	
+
     	$scope.applyLoader = true;
 
     	var data = { action: action, job_id: $rootScope.postID };
@@ -331,45 +322,45 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	}();
 
 
-	$scope.openPopup = function(minionID){
+	// $scope.openPopup = function(minionID){
 
-		$scope.activeSlide = _.indexOf($scope.applicants, minionID);
+	// 	$scope.activeSlide = _.indexOf($scope.applicants, minionID);
 
-		var popup = $ionicPopup.alert({
-			templateUrl: 'views/minion-slidebox.html',
-			scope: $scope,
+	// 	var popup = $ionicPopup.alert({
+	// 		templateUrl: 'views/minion-slidebox.html',
+	// 		scope: $scope,
 			
-		});
+	// 	});
 		
-		popup.then(function(res) {
-			console.log('Tapped!', res);
-		});
+	// 	popup.then(function(res) {
+	// 		console.log('Tapped!', res);
+	// 	});
 
-	};
+	// };
 	
 
 }])
 
 
 
-.controller('MinionPopupController', ['$scope', '$rootScope', '$ionicSlideBoxDelegate', '_'
-	, function($scope, $rootScope, $ionicSlideBoxDelegate, _){
+// .controller('MinionPopupController', ['$scope', '$rootScope', '$ionicSlideBoxDelegate', '_'
+// 	, function($scope, $rootScope, $ionicSlideBoxDelegate, _){
 	
 
-	$scope.$watchCollection("minionDetails", function(newValue, oldValue) {
+// 	$scope.$watchCollection("minionDetails", function(newValue, oldValue) {
 
-			var sortedArray  = _.sortBy(newValue, function(num){
+// 			var sortedArray  = _.sortBy(newValue, function(num){
 
-				return _.indexOf($scope.applicants, num.user_id);
-			})
+// 				return _.indexOf($scope.applicants, num.user_id);
+// 			})
 
-            $rootScope.minionDetails = sortedArray;
+//             $rootScope.minionDetails = sortedArray;
 
-            $ionicSlideBoxDelegate.update();
-        }
-    );
+//             $ionicSlideBoxDelegate.update();
+//         }
+//     );
 	
-}])
+// }])
 
 
 

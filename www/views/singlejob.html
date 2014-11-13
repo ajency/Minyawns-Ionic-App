@@ -12,7 +12,7 @@
 			</div>
 		</div>
 
-		<span class=" zoomIn badge badge-assertive" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[!toggleBack]" ui-sref="menu.browsejobs" ><i class="ion-reply"></i></span>
+		<span class=" zoomIn badge badge-assertive" ui-sref="menu.browsejobs"><i class="ion-reply"></i></span>
 	</div>
 
 	<ion-content ng-show="mainLoader">
@@ -160,9 +160,9 @@
 					<ion-list>
 						<ion-item class="minyawn"
 							ng-repeat="minion in applicants"
-							ng-click="openPopup(minion)"
 							ng-controller="ApplicantController"
 							ng-init="minionLoader=true">
+							<!-- ng-click="openPopup(minion)" -->
 
 								<div class="padding loader" ng-show="minionLoader">
 									<i class="icon ion-loading-c"></i>
