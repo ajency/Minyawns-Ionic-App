@@ -66,6 +66,7 @@ body {
 		background: #edf5e3;
 		.has-header {
 			top: 50px;
+			-webkit-overflow-scrolling: touch;
 		}
 	}
 }
@@ -177,7 +178,7 @@ body {
 				}
 			}
 			.badge{
-				background-color: #419ECF;
+				background-color: #C2C2C2;;
 				visibilty:hidden;
 				color: #fff;
 				position: absolute;
@@ -656,21 +657,19 @@ body {
 		border: 0px;
 		background:none !important;
 		i{
-			background: #8bc34a;
-				width: 40px;
-				height: 40px;
-				color: #fff;
-				border-radius: 100%;
-				display: inline-block;
-				text-align: center;
-				line-height: 38px;
+			color: #8bc34a;
+			border-radius: 100%;
+			display: inline-block;
+			text-align: center;
+			line-height: 38px;
+			font-size: 1.3rem;
 		}
 		.job-details{
-				margin-bottom:0.4rem;
+				margin-bottom:-1rem;
 				visibility:hidden;
 			.details{
 				span{
-					line-height: 2rem;
+					line-height: 2.2rem;
 				}
 			}
 			
@@ -885,14 +884,14 @@ body {
 		.minyawn {
 			min-width: 43vw;
 			max-width: 43vw;
-			margin: 0.5rem 2vw;
+			margin: 0.5rem 1rem 0rem 0rem;
 			border: 0;
 			white-space: normal;
-			box-shadow: 4px 2px 5px #C2C2C2;
-			-moz-box-shadow:4px 2px 5px #C2C2C2;
-			-webkit-box-shadow: 4px 2px 5px #C2C2C2;
+			box-shadow: 3px 2px 5px #C2C2C2;
+			-moz-box-shadow:3px 2px 5px #C2C2C2;
+			-webkit-box-shadow: 3px 2px 5px #C2C2C2;
 			&:first-child {
-				margin-left: auto;
+				margin-left: 0;
 			}
 			&:last-child {
 				margin-right: auto;
@@ -902,7 +901,7 @@ body {
 }
 
 .minyawn {
-padding:10px;
+padding:15px;
 	.minyawn-view {
 		/*padding: 1rem;*/
 		text-align: center;
@@ -1144,10 +1143,13 @@ ul.marquee li a:hover {color:#FF0000;} /* link rollover color */
   -webkit-filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
           filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
 }
-.button-bar{
-i{
+.btn-icon{
 	font-size:20px;
 }
+.no-more{
+	background: none !important;
+	border: 0!important;
+	text-align: center!important;
 }
 
 
