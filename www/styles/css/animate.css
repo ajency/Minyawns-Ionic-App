@@ -1,19 +1,21 @@
-.cssSlideUp {
-	-webkit-transition: .5s ease all;
-    -moz-transition: .5s ease all;
-    -o-transition: .5s ease all;
-    transition: .5s ease all;
-    height: 110px;
-    overflow: hidden;
+/*Slise up down animation*/
+.content-to-show. {
+    position: relative;
+    height: 100px;
+    -webkit-transition:top linear 1.5s;
+    transition:top linear 1.5s;
+    top: 0;
 }
 
-.cssSlideUp.ng-show {
-    height: 0px;
-}
-.hidden {
-    display : none;
+.content-to-show.ng-hide {
+    top: -100px;
 }
 
+.content-to-show.ng-hide-add, .content-to-show.ng-hide-remove {
+    display:block!important;
+}
+
+/*Rotate animation*/
 .rotate, 
 .rotateCounterwise {
     -webkit-transition: 600ms ease all;

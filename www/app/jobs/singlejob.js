@@ -15,12 +15,15 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$scope.minyawnsAppliedPresent = true;
 	$scope.applyLoader = false;
 	$scope.toggleBack = true;
+	// $scope.topContent = false;
 
-	// setTimeout(function(){
+	setTimeout(function(){
 
-	// 	$scope.toggleBack = false;
+		// $scope.toggleBack = false;
+		// $scope.topContent = true;
 
-	// }, 40)
+	}, 1000)
+	
 
 	$scope.getSingleJobDetails = function(){
 

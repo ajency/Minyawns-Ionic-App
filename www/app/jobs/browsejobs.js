@@ -6,7 +6,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network
 	, Toast, $ionicSideMenuDelegate, _){
 
-	$scope.title="BROWSE JOBS";
+	$scope.title="Browse Jobs";
 
 	$scope.controller = BrowseJobsItemController;
 	

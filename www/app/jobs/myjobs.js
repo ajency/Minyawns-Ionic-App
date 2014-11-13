@@ -7,7 +7,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 	, Toast, $ionicSideMenuDelegate,Storage){
 
 	
-	$scope.title="MY JOBS";
+	$scope.title = "My Jobs";
 	$scope.controller = MyJobsItemController;
 	$scope.tempJobs = [];
 
@@ -261,9 +261,6 @@ var MyJobsItemController = function($scope, JobStatus){
     $scope.required_minyawns = required_minyawns;
 
     var status = JobStatus.get($scope.job);
-
-   // console.log(status.jobStatus);
-   
     
 
     if (status.validity ==='Available') 
@@ -271,8 +268,7 @@ var MyJobsItemController = function($scope, JobStatus){
 	else
    		$scope.jobOpen = false;
   
-    
-   	// $scope.applicationStatus = status.jobStatus;  
+     
     $scope.applicationStatus = status.applicationStatus;
 
     $scope.jobStatus = status.jobStatus;
@@ -290,7 +286,6 @@ var MyJobsItemController = function($scope, JobStatus){
        			$("ul#ticker"+$scope.job.post_id).liScroll();
    			 };
          }
-   		// $scope.accordianToggle =! $scope.accordianToggle;
    		
    	};
 
