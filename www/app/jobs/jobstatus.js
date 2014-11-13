@@ -133,24 +133,6 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
 
                         jobStatusDetails.validity = 'Closed';
                         jobStatusDetails.applicationStatus = 'Job Expired';
-                        
-
-                        // if (model.applied_user_id.indexOf(user.userID) != -1) {
-
-                        //     for (var i = 0; i < model.user_to_job_status.length; i++) {
-
-                        //         if (model.applied_user_id[i] === user.userID && model.user_to_job_rating[i] !== 'Rating:Awaited') {
-
-                        //             jobStatusDetails.jobStatus = "You have been rated";
-                        //             break;
-
-                        //         } else {
-                        //             jobStatusDetails.jobStatus = "Job Date is Over";
-                        //         }
-                        //     }
-
-                        // } else
-                        //     jobStatusDetails.jobStatus = "Job Date is Over";
 
                         if (model.individual_user_to_job_status=='Hired')
                             jobStatusDetails.jobStatus = "Hired";

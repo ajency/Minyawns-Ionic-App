@@ -47,7 +47,7 @@ angular.module('minyawns.storage', ['ngUnderscore'])
 			var displayName = LS.getItem("minyawns_display_name");
 			var loginStatus = LS.getItem("minyawns_login_status");
 			var cookie = LS.getItem("minyawns_login_cookie");
-			var profileImg = 'http://www.pubzday.com/wp-content/uploads/2014/07/funny-meme-pictures-5.png'//LS.getItem("minyawns_profile_image_src");
+			var profileImg = 'img/color.jpg'//LS.getItem("minyawns_profile_image_src");
 
 			return details = {
 

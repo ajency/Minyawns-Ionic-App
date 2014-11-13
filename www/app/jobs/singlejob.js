@@ -1,11 +1,11 @@
-angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngUnderscore'])
+angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngUnderscore', 'minyawns.jobstatus'])
 
 
 .controller('SinglejobController', ['$scope', '$rootScope','$stateParams', '$http'
 	, '$ionicSideMenuDelegate', 'Storage', '$state', '$cordovaCamera', '_', '$ionicPopup'
-	, '$ionicLoading', 'Toast','$window' , '$cordovaFile'
+	, '$ionicLoading', 'Toast','$window' , '$cordovaFile', 'JobStatus'
 	, function($scope, $rootScope, $stateParams, $http, $ionicSideMenuDelegate
-	, Storage, $state, $cordovaCamera, _, $ionicPopup, $ionicLoading, Toast, $window, $cordovaFile) {
+	, Storage, $state, $cordovaCamera, _, $ionicPopup, $ionicLoading, Toast, $window, $cordovaFile, JobStatus) {
 
 	
 	$rootScope.minionDetails = [];
@@ -113,27 +113,69 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		//Set(or Reset) apply header and apply button text.
 
 		var user = Storage.getUserDetails();
+		var status = JobStatus.get($rootScope.singleJobData);
 
-		if(user.isLoggedIn){
+		if(user.profileImgSrc === 'null') 
+			$rootScope.profileImage = 'img/click-pic.jpg';
+		else 
+			$rootScope.profileImage = user.profileImgSrc;
+		
 
+		if(status.applicationStatus === "Job Expired"){
+			
 			$scope.cameraIcon = true;
+			$scope.helperText = "Job Date is Over";
+		}
+		
+		
+		else if (status.applicationStatus === "Application Closed"){
 
-			var applied = false;
-			if($scope.applicants.indexOf(user.userID) != -1) applied = true;
+			if(user.isLoggedIn){
 
-			if(!applied){
-				$scope.applyHeader = 'Apply now';
-				$scope.applyButton = 'Apply';
+				$scope.cameraIcon = true;
+
+				if(status.jobStatus === "Applied")
+					$scope.helperText = "You have applied. Please tap and hold the icon to un-apply";
+
+				else if (status.jobStatus === "Hired")
+					$scope.helperText = "You have been hired";
+
+				else
+					$scope.helperText = "Applications Closed! Maximum number of minions have applied";
 			}
+
 			else{
-				$scope.applyHeader = 'Applied successfully';
-				$scope.applyButton = 'Un-apply';
+
+				$scope.cameraIcon = false;
+				$scope.helperText = "Applications Closed! Maximum number of minions have applied";
 			}
 		}
+
 		else{
-			$scope.cameraIcon = false;
-			$scope.helperText = "Login to apply"
-			$scope.applyButton = 'Login to apply';
+			//Application open
+			if(user.isLoggedIn){
+
+				$scope.cameraIcon = true;
+
+				if(status.jobStatus === "Applied")
+					$scope.helperText = "You have applied. Please tap and hold the icon to un-apply";
+
+				else{
+
+					if($rootScope.profileImage === 'img/click-pic.jpg')
+						$scope.helperText = "To apply, take a picture or upload one";
+					else
+						$scope.helperText = "Applications Open. Apply now";
+				}
+
+			}
+
+			else{
+
+				$scope.cameraIcon = false;
+				$scope.helperText = "Applications Open. Sign In to apply";
+			}
+			
 		}
 	};
 
@@ -277,7 +319,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		if(!user.isLoggedIn) $state.go('login');
     };
-    
+
 
     
     $rootScope.$on('update:apply:section:details', function(event, args) {
