@@ -180,7 +180,7 @@ body .pane .has-header {
   text-align: center;
 }
 .bar-subheader .badge {
-  background-color: #419ECF;
+  background-color: #C2C2C2;
   visibilty: hidden;
   color: #fff;
   position: absolute;
@@ -661,21 +661,19 @@ body .pane .has-header {
   background: none !important;
 }
 .single-card .item i {
-  background: #8bc34a;
-  width: 40px;
-  height: 40px;
-  color: #fff;
+  color: #8bc34a;
   border-radius: 100%;
   display: inline-block;
   text-align: center;
   line-height: 38px;
+  font-size: 1.3rem;
 }
 .single-card .item .job-details {
-  margin-bottom: 0.4rem;
+  margin-bottom: -1rem;
   visibility: hidden;
 }
 .single-card .item .job-details .details span {
-  line-height: 2rem;
+  line-height: 2.2rem;
 }
 .more-details {
   background-color: rgba(255, 255, 255, 0);
@@ -1130,6 +1128,11 @@ ul.marquee li a:hover {
   -webkit-filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
 }
-.button-bar i {
+.btn-icon {
   font-size: 20px;
+}
+.no-more {
+  background: none !important;
+  border: 0!important;
+  text-align: center!important;
 }
