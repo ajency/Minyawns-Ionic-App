@@ -26,10 +26,10 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 		if(ionic.Platform.isWebView()){
             
             $cordovaSplashscreen.hide();
-			
 		}
 
 	});
+
 })
 
 

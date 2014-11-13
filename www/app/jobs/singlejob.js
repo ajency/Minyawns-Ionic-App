@@ -14,6 +14,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$scope.picturePresent = false ;
 	$scope.minyawnsAppliedPresent = true;
 	$scope.applyLoader = false;
+	$scope.cameraIcon = false;
 	// $scope.topContent = false;
 	
 
@@ -115,6 +116,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		if(user.isLoggedIn){
 
+			$scope.cameraIcon = true;
+
 			var applied = false;
 			if($scope.applicants.indexOf(user.userID) != -1) applied = true;
 
@@ -128,10 +131,12 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			}
 		}
 		else{
-			$scope.applyHeader = 'Apply now';
+			$scope.cameraIcon = false;
+			$scope.helperText = "Login to apply"
 			$scope.applyButton = 'Login to apply';
 		}
 	};
+
 
 	
 	$scope.populateSingleJobData = function(data){
@@ -264,6 +269,15 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			console.log(err);
 		});
     };
+
+
+    $scope.loginToApply = function(){
+
+    	var user = Storage.getUserDetails();
+
+		if(!user.isLoggedIn) $state.go('login');
+    };
+    
 
     
     $rootScope.$on('update:apply:section:details', function(event, args) {

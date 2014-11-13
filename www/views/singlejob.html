@@ -79,10 +79,11 @@
 			<div class="single-job-apply cssSlideUp">
 				<div ng-hide="applyLoader">
 					<div class="row">
-						<div class="col">
-							<div class="helper-text">To apply, take a picture or upload one</div>
+						<div class="col" ng-click="loginToApply()">
+							<div class="helper-text">{{helperText}}</div>
 						</div>
-						<div class="col col-20">
+
+						<div class="col col-20" ng-show="cameraIcon">
 							<div class="pic-upload " ng-click="takePicture()">
 								<div class="overlay"></div>
 								<img src="img/click-pic.jpg"/>
