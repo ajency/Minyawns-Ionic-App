@@ -189,6 +189,9 @@ body .pane .has-header {
   border-radius: 100%;
   width: 50px;
   height: 50px;
+  -moz-box-shadow: 0px 2px 5px #7E7E7E;
+  -webkit-box-shadow: 0px 2px 5px #7E7E7E;
+  box-shadow: 0px 2px 5px #7E7E7E;
 }
 .bar-subheader .badge i {
   font-size: 2.1rem;
@@ -831,6 +834,7 @@ body .pane .has-header {
 }
 .single-job-apply .helper-text {
   font-size: 1rem;
+  margin-right: 20px;
   padding: 10px;
   color: #649B69;
 }
