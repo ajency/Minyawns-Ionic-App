@@ -832,9 +832,9 @@ body .pane .has-header {
   margin-top: 14px;
 }
 .single-job-apply .helper-text {
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-right: 20px;
-  padding: 10px;
+  padding: 17px 10px;
   color: #649B69;
 }
 .single-job-apply .apply-job .overlay {
@@ -1135,4 +1135,11 @@ ul.marquee li a:hover {
   background: none !important;
   border: 0!important;
   text-align: center!important;
+}
+.detail-loader {
+  text-align: center;
+  margin-top: 25px;
+}
+.popup-title {
+  font-size: 1.5rem;
 }
