@@ -1,8 +1,7 @@
 angular.module('minyawns.menu', ['minyawns.storage'])
 
 
-.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http'
-	, '$timeout'
+.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http', '$timeout'
 	, function($scope, $rootScope, Storage, $window, _, $http, $timeout){
 
 
