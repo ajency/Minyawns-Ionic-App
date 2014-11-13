@@ -80,8 +80,8 @@
 						<div class="col" ng-click="loginToApply()">
 							<div ng-hide="applyLoader" class="helper-text">{{helperText}}</div>
 
-							<div ng-show="applyLoader">
-								<i class="icon ion-loading-c"></i>
+							<div  ng-show="applyLoader " class="detail-loader">
+								<i class="icon ion-loading-c"></i> Applying....
 							</div>
 						</div>
 
@@ -126,8 +126,8 @@
 			<ion-list ng-if="!minyawnsAppliedPresent">
 				<ion-item class="minyawn">
 					
-					<div class="padding loader" ng-show="minionLoader">
-						<i class="icon ion-loading-c"></i>
+					<div class="padding loader " ng-show="minionLoader">
+						<i class="icon ion-loading-c"></i> 
 					</div>
 
 					<div ng-hide="minionLoader">
