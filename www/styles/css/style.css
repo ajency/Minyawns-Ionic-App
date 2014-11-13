@@ -360,7 +360,7 @@ body .pane .has-header {
   margin-right: 5px;
 }
 .job-list .job .job-price {
-  text-align: left;
+  text-align: right;
   color: #88d816;
   font-family: 'bold', sans-serif;
 }
