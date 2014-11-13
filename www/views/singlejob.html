@@ -81,7 +81,7 @@
 							<div ng-hide="applyLoader" class="helper-text">{{helperText}}</div>
 
 							<div ng-show="applyLoader " class="detail-loader">
-								<i class="icon ion-loading-c"></i> Applying...
+								<i class="icon ion-loading-c"></i> {{actionText}}...
 							</div>
 						</div>
 
@@ -171,11 +171,15 @@
 										<div class="minyawn-pic">
 											<div ng-bind-html="details.user_image"></div>
 										</div>
-										<button class="button button-clear  button-positive btn-icon"><i class="ion-social-facebook"></i></button>
-										  <button class="button button-clear button-calm btn-icon"><i class="ion-social-linkedin"></i></button>
+
+										<button class="button button-clear button-positive btn-icon"><i class="ion-social-facebook"></i></button ng-click="openFacebookLink(details.facebook_link)">
+										
+										<button class="button button-clear button-calm btn-icon"><i class="ion-social-linkedin"></i></button ng-click="openLinkedinLink(details.linkedin)">
+											
 										<h5 class="minyawn-name">{{details.name}}</h5>
-										<h6>London, Ontario, Canada</h6>
-										<h6 class="minyawn-name">www.amitad@gmail.com</h6>
+										<h6>{{details.college}}</h6>
+										<h6>{{details.major}}</h6>
+										<h6 class="minyawn-name">{{details.user_email}}</h6>
 
 										<div class="row rating">
 											<div class="col up">

@@ -226,6 +226,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
     	var options = { quality : 100, correctOrientation : true,
     		targetWidth : 1000, targetHeight : 1000, allowEdit : true
 		};
+
+		$scope.actionText = "Applying";
 		
 		if($scope.helperText === "Applications Open. Please tap the icon to apply now.")
 			$scope.minyawnJobAction('minyawn_job_apply');
@@ -244,6 +246,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 						});
 
 						confirmPopup.then(function(res) {
+
 							if(res) $scope.addUpdatePicture(imageURI);
 							else $rootScope.profileImage = 'img/click-pic.jpg';
 						});
@@ -264,6 +267,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 			confirmPopup.then(function(res) {
 				if(res) {
+					$scope.actionText = "Unapplying"
 					$scope.minyawnJobAction('minyawn_job_unapply');
 				} 
 			});
@@ -362,6 +366,18 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		});
 
 	}();
+
+
+	$scope.openFacebookLink = function(link){
+		console.log('openFacebookLink')
+
+		$window.open(link, '_system', 'location=yes');
+	}
+
+	$scope.openLinkedinLink = function(link){
+
+		$window.open(link, '_system', 'location=yes');
+	}
 
 
 	// $scope.openPopup = function(minionID){

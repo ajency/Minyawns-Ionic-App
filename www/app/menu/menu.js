@@ -73,7 +73,11 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 			$scope.menuLoader = true;
 			$scope.display_name = user.displayName;
-			$scope.display_image = user.profileImgSrc;
+
+			if(user.profileImgSrc === 'null') 
+				$scope.display_image = "./img/applicants.png";
+			else 
+				$scope.display_image = user.profileImgSrc;
 
 			$scope.menuTitle = 'Do More';
 			$scope.logInOutMenu = false;
@@ -100,7 +104,6 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 		$window.open('http://www.minyawns.com/blog/', '_system', 'location=yes')
 	}
-
 
 	$rootScope.$on('onMinyawnJobAction', function(event, args) {
 
@@ -138,29 +141,5 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 	});
 
 }])
-
-
-.directive('minImageLoad', [ function() {
-    return {
-      restrict: 'A',
-      link: function(scope, element, attrs) {
-        element.bind('load', function() {
-          return scope.$apply(function() {
-            
-            console.log('Image load success')
-
-          });
-        });
-        return element.bind('error', function() {
-          return scope.$apply(function() {
-
-          	console.log('Image load failure')
-            scope.display_image = "./img/applicants.png";
-          });
-        });
-      }
-    };
-  }
-])
 
 
