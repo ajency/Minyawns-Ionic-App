@@ -176,6 +176,7 @@ body {
 			}
 			.badge{
 				background-color: #419ECF;
+				visibilty:hidden;
 				color: #fff;
 				position: absolute;
 				bottom: -17px;
@@ -660,7 +661,8 @@ body {
 				line-height: 38px;
 		}
 		.job-details{
-				margin-bottom:1rem;
+				margin-bottom:0.4rem;
+				visibility:hidden;
 			.details{
 				span{
 					line-height: 2rem;
@@ -818,8 +820,8 @@ body {
 		font-size: 3rem;
 		color: @green;
 		margin: -5px;
-		width: 80px;
-		height: 80px;
+		width: 88px;
+		height: 88px;
 		float: right;
 		overflow: hidden;
 		position: relative;
@@ -963,7 +965,136 @@ body {
 	padding-right: 4px;
 }
 
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+			visibility:visible;
+  }
 
+  50% {
+    opacity: 1;
+	visibility:visible;
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+			visibility:visible;
+  }
+
+  50% {
+    opacity: 1;
+	visibility:visible;
+  }
+}
+
+.zoomIn {
+
+-webkit-animation-delay: 2s; /* Chrome, Safari, Opera */
+    animation-delay: 2s;
+ -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-name: zoomIn;
+          animation-name: zoomIn;
+		    -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+@-webkit-keyframes bounceInLeft {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+			visibility:visible;
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-3000px, 0, 0);
+            transform: translate3d(-3000px, 0, 0);
+			visibility:visible;
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(25px, 0, 0);
+            transform: translate3d(25px, 0, 0);
+			visibility:visible;
+  }
+
+  75% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+            transform: translate3d(-10px, 0, 0);
+			visibility:visible;
+  }
+
+  90% {
+    -webkit-transform: translate3d(5px, 0, 0);
+            transform: translate3d(5px, 0, 0);
+			visibility:visible;
+  }
+
+  100% {
+    -webkit-transform: none;
+            transform: none;
+			visibility:visible;
+  }
+}
+
+@keyframes bounceInLeft {
+opacity: 0;
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+			visibility:visible;
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-3000px, 0, 0);
+            transform: translate3d(-3000px, 0, 0);
+			visibility:visible;
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(25px, 0, 0);
+            transform: translate3d(25px, 0, 0);
+			visibility:visible;
+  }
+
+  75% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+            transform: translate3d(-10px, 0, 0);
+			visibility:visible;
+  }
+
+  90% {
+    -webkit-transform: translate3d(5px, 0, 0);
+            transform: translate3d(5px, 0, 0);
+			visibility:visible;
+  }
+
+  100% {
+    -webkit-transform: none;
+            transform: none;
+			visibility:visible;
+  }
+}
+
+.bounceInLeft {
+	-webkit-animation-delay: 0.5s; /* Chrome, Safari, Opera */
+    animation-delay: 0.5s;
+ -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-name: bounceInLeft;
+          animation-name: bounceInLeft;
+		    -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
 /* Title Scroll*/
 ul.marquee {
      /* required styles */
@@ -1004,4 +1135,6 @@ ul.marquee li a:hover {color:#FF0000;} /* link rollover color */
   -webkit-filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
           filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
 }
+
+
 

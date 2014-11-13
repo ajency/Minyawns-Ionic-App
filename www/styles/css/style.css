@@ -180,6 +180,7 @@ body .pane .has-header {
 }
 .bar-subheader .badge {
   background-color: #419ECF;
+  visibilty: hidden;
   color: #fff;
   position: absolute;
   bottom: -17px;
@@ -666,7 +667,8 @@ body .pane .has-header {
   line-height: 38px;
 }
 .single-card .item .job-details {
-  margin-bottom: 1rem;
+  margin-bottom: 0.4rem;
+  visibility: hidden;
 }
 .single-card .item .job-details .details span {
   line-height: 2rem;
@@ -814,8 +816,8 @@ body .pane .has-header {
   font-size: 3rem;
   color: #88d816;
   margin: -5px;
-  width: 80px;
-  height: 80px;
+  width: 88px;
+  height: 88px;
   float: right;
   overflow: hidden;
   position: relative;
@@ -939,6 +941,130 @@ body .pane .has-header {
   display: block;
   overflow: hidden;
   padding-right: 4px;
+}
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+    visibility: visible;
+  }
+  50% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+    visibility: visible;
+  }
+  50% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+.zoomIn {
+  -webkit-animation-delay: 2s;
+  /* Chrome, Safari, Opera */
+  animation-delay: 2s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes bounceInLeft {
+  0%,
+  60%,
+  75%,
+  90%,
+  100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    visibility: visible;
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-3000px, 0, 0);
+    transform: translate3d(-3000px, 0, 0);
+    visibility: visible;
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(25px, 0, 0);
+    transform: translate3d(25px, 0, 0);
+    visibility: visible;
+  }
+  75% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+    visibility: visible;
+  }
+  90% {
+    -webkit-transform: translate3d(5px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: none;
+    transform: none;
+    visibility: visible;
+  }
+}
+@keyframes bounceInLeft {
+  opacity: 0;
+  
+  0%,
+  60%,
+  75%,
+  90%,
+  100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    visibility: visible;
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-3000px, 0, 0);
+    transform: translate3d(-3000px, 0, 0);
+    visibility: visible;
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(25px, 0, 0);
+    transform: translate3d(25px, 0, 0);
+    visibility: visible;
+  }
+  75% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+    visibility: visible;
+  }
+  90% {
+    -webkit-transform: translate3d(5px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: none;
+    transform: none;
+    visibility: visible;
+  }
+}
+.bounceInLeft {
+  -webkit-animation-delay: 0.5s;
+  /* Chrome, Safari, Opera */
+  animation-delay: 0.5s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-name: bounceInLeft;
+  animation-name: bounceInLeft;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 /* Title Scroll*/
 ul.marquee {
