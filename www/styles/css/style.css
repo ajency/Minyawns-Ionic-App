@@ -70,6 +70,7 @@ body .pane {
 }
 body .pane .has-header {
   top: 50px;
+  -webkit-overflow-scrolling: touch;
 }
 /**** Button Styles ****/
 .button.button-green {
@@ -875,21 +876,21 @@ body .pane .has-header {
 .minyawn-list .list .minyawn {
   min-width: 43vw;
   max-width: 43vw;
-  margin: 0.5rem 2vw;
+  margin: 0.5rem 1rem 0rem 0rem;
   border: 0;
   white-space: normal;
-  box-shadow: 4px 2px 5px #C2C2C2;
-  -moz-box-shadow: 4px 2px 5px #C2C2C2;
-  -webkit-box-shadow: 4px 2px 5px #C2C2C2;
+  box-shadow: 3px 2px 5px #C2C2C2;
+  -moz-box-shadow: 3px 2px 5px #C2C2C2;
+  -webkit-box-shadow: 3px 2px 5px #C2C2C2;
 }
 .minyawn-list .list .minyawn:first-child {
-  margin-left: auto;
+  margin-left: 0;
 }
 .minyawn-list .list .minyawn:last-child {
   margin-right: auto;
 }
 .minyawn {
-  padding: 10px;
+  padding: 15px;
 }
 .minyawn .minyawn-view {
   /*padding: 1rem;*/
