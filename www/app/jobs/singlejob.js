@@ -14,7 +14,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$scope.minyawnsAppliedPresent = true;
 	$scope.applyLoader = false;
 	$scope.cameraIcon = false;
-	// $scope.topContent = false;
 	
 
 	$scope.getSingleJobDetails = function(){
@@ -42,6 +41,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		});
 
 	};
+
     
     function uploadSuccess(r) {
 
@@ -53,26 +53,17 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
     		Storage.setProfileImageSrc(photoResponse.photo.url);
 
-    		$scope.minyawnJobAction('minyawn_job_apply');
-    		
-    		// _.each($rootScope.minionDetails, function(minion){
-
-    		// 	if (minion.user_id == photoResponse.photo.author ) {
-
-    		// 		minion.user_image = "<img alt='' src="+photoResponse.photo.url+" height='96' width='96'>"
-						
-    		// 	};
-    		// })
-    		
     		//Event handler in menu.js
 			$rootScope.$emit('upload:profile:photo', {});
+
+    		$scope.minyawnJobAction('minyawn_job_apply');
     	}
 
     	else{
     		console.log("Picture Could not be uploaded");
     		$scope.applyLoader = false;
     	}
-    }
+    };
 
 
     $scope.addUpdatePicture = function(imagePath){
@@ -121,7 +112,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		if(status.applicationStatus === "Job Expired"){
 			
 			$scope.cameraIcon = true;
-			$scope.helperText = "Job Date is Over";
+			$scope.helperText = "Job Date is Over.";
 		}
 		
 		
@@ -132,19 +123,19 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 				$scope.cameraIcon = true;
 
 				if(status.jobStatus === "Applied")
-					$scope.helperText = "You have applied. Please tap and hold the icon to un-apply";
+					$scope.helperText = "You have applied. Please tap and hold the icon to un-apply.";
 
 				else if (status.jobStatus === "Hired")
-					$scope.helperText = "You have been hired";
+					$scope.helperText = "You have been hired.";
 
 				else
-					$scope.helperText = "Applications Closed! Maximum number of minions have applied";
+					$scope.helperText = "Applications Closed! Maximum number of minions have applied.";
 			}
 
 			else{
 
 				$scope.cameraIcon = false;
-				$scope.helperText = "Applications Closed! Maximum number of minions have applied";
+				$scope.helperText = "Applications Closed! Maximum number of minions have applied.";
 			}
 		}
 
@@ -155,14 +146,14 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 				$scope.cameraIcon = true;
 
 				if(status.jobStatus === "Applied")
-					$scope.helperText = "You have applied. Please tap and hold the icon to un-apply";
+					$scope.helperText = "You have applied. Please tap and hold the icon to un-apply.";
 
 				else{
 
 					if($rootScope.profileImage === 'img/click-pic.jpg')
-						$scope.helperText = "To apply, take a picture or upload one";
+						$scope.helperText = "To apply, take a picture or upload one.";
 					else
-						$scope.helperText = "Applications Open. Please tap the icon to apply now";
+						$scope.helperText = "Applications Open. Please tap the icon to apply now.";
 				}
 
 			}
@@ -170,7 +161,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			else{
 
 				$scope.cameraIcon = false;
-				$scope.helperText = "Applications Open. Sign In to apply";
+				$scope.helperText = "Applications Open. Sign In to apply.";
 			}
 			
 		}
@@ -236,10 +227,10 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
     		targetWidth : 1000, targetHeight : 1000, allowEdit : true
 		};
 		
-		if($scope.helperText === "Applications Open. Please tap the icon to apply now")
+		if($scope.helperText === "Applications Open. Please tap the icon to apply now.")
 			$scope.minyawnJobAction('minyawn_job_apply');
 
-		if($scope.helperText === "To apply, take a picture or upload one")
+		if($scope.helperText === "To apply, take a picture or upload one.")
 			if(ionic.Platform.isWebView()){
 
 				$cordovaCamera.getPicture(options)
@@ -276,7 +267,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 					$scope.minyawnJobAction('minyawn_job_unapply');
 				} 
 			});
-			
     };
 
 
