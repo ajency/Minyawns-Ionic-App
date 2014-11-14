@@ -4,7 +4,11 @@
 		<div class="row">
 			<div class="col col-50"><h1>{{title}}</h1></div>
 			<div class="col total-job">&nbsp;</div>
-			<div class="col total-job"><b>50</b> Jobs Open</div>
+			<div class="col total-job">
+				<b ng-hide="openJobsLoader">{{openJobs}}</b>
+				<div ng-show="openJobsLoader"><i class="icon ion-loading-c"></i></div>
+				Jobs Open
+			</div>
 		</div>
 	</div>
 

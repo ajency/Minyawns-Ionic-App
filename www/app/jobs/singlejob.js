@@ -38,8 +38,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 			$scope.populateSingleJobData(data);
 			
-			//Event handler in browsejobs.js to refresh a single job
-	    	// $rootScope.$emit('action:minyawn:apply', { passedJob: resp.data[0] });
 	    	refreshSingleJobInBrowseJobs(data);
 
 	    	$scope.applyLoader = false;

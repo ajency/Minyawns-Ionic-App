@@ -36,25 +36,30 @@
 						<br>
 						<b class=" pull-center">Total number of Jobs</b>
 
-						<div >
+						<div>
 							<div class="row">
 								<div class="col col-50">
-								  <div class="col-demo"><p> Applied to <br><span class="number">{{applied_to}}</span></p></div>
+									<div class="col-demo"><p> Applied to <br>
+										<span ng-hide="menuLoader" class="number">{{applied_to}}</span></p>
+									</div>
 
 									<div ng-show="menuLoader">
 										<i class="icon ion-loading-c"></i>
 									</div>
 								</div>
 								<div class="col col-50">
-								  <div class="col-demo"><p>Hired for <br><span class="number">{{hired_for}}</span></p></div>
+									<div class="col-demo"><p>Hired for <br>
+										<span ng-hide="menuLoader" class="number">{{hired_for}}</span></p>
+									</div>
 									
 									<div ng-show="menuLoader">
 										<i class="icon ion-loading-c"></i>
 									</div>
 								</div>
-						 </div>
+						 	</div>
 						</div>
 					</div>
+				
 				<div ng-show="logInOutMenu">
 				
 					<div class="details pull-center">

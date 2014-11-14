@@ -2,9 +2,9 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 	, 'minyawns.jobstatus'])
 
 .controller('MyJobsController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate','Storage'
+	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate','Storage', '_', 'JobStatus'
 	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network
-	, Toast, $ionicSideMenuDelegate,Storage){
+	, Toast, $ionicSideMenuDelegate, Storage, _, JobStatus){
 
 	
 	$scope.title = "My Jobs";
@@ -18,12 +18,49 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		$scope.showConnectionError = false;
 		$scope.showNoMoreJobs = false;
 		$scope.canLoadMore = true;
+		$scope.openJobsLoader = false;
 	};
 
 	
 	$scope.resetRootScope = function(){
 
-		$rootScope.myjobs = { offset: 0, myJobsArray: [] , changed: false};
+		$rootScope.myjobs = { offset: 0, myJobsArray: [] , changed: false, openJobsCount: 0};
+	};
+
+
+	$scope.getOpenJobs = function(){
+
+		$scope.openJobsLoader = true;
+
+		$http.get($rootScope.GETURL+'fetchjobs?my_jobs=1&offset=0&filter_my=0&'+
+			'logged_in_user_id='+user.userID+'&all_jobs=1')
+
+		.then(function(resp, status, headers, config){
+
+			$scope.openJobsLoader = false;
+
+			var count = 0;
+
+			if(resp.data.length == 0) count = 0;
+			else{
+
+				_.each(resp.data, function(job){
+
+					var status = JobStatus.get(job);
+					if(status.applicationStatus === "Applications Open")
+						count = count + 1;
+				});
+			}
+
+			$scope.openJobs = count;
+			$rootScope.myjobs.openJobsCount = $scope.openJobs;
+		},
+
+		function(error){
+
+			$scope.openJobsLoader = false;
+			$scope.openJobs = '-';
+		});
 	};
 
 
@@ -58,23 +95,27 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		if($rootScope.myjobs.myJobsArray.length == 0){ 
 
 			$scope.reSet();
-			$scope.jobs = $rootScope.myjobs.myJobsArray; 
+			$scope.jobs = $rootScope.myjobs.myJobsArray;
+			
+			$scope.openJobsLoader = true;
+			$timeout(function(){
+				$scope.getOpenJobs();
+			}, 1000);
 		}
 		else{
 
 			$scope.showRefresher = true;
-			// $scope.reSet();
 
 			$scope.jobs = [];
 			$timeout(function(){
 				$scope.jobs = $rootScope.myjobs.myJobsArray;
 			}, 500);
 
-			// $scope.resetRootScope();
-			// $scope.fetchJobs();
+			$scope.openJobs = $rootScope.myjobs.openJobsCount;
 		}
 	}
 
+	
 	if(!$rootScope.myjobs.changed)
 		$scope.onViewLoad();
 	
@@ -90,6 +131,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
       	
       	if ($rootScope.myjobs.changed) 
       		$rootScope.myjobs.changed = false;
+
 		$scope.requestPending = false;
 
 		$scope.fetchComplete();
@@ -121,7 +163,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
       		$scope.jobs = $rootScope.myjobs.myJobsArray;
       	}
       	else	
-		$rootScope.myjobs.myJobsArray = $scope.jobs;
+			$rootScope.myjobs.myJobsArray = $scope.jobs;
 
 		$timeout(function(){
 			$scope.fetchComplete();
@@ -169,6 +211,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		$scope.reSet();
 		$scope.resetRootScope();
 		$scope.fetchJobs();
+		$scope.getOpenJobs();
 	};
 
 
@@ -185,25 +228,6 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 			$state.go('menu.singlejob',  { postID: postID });
 		else 
 			Toast.connectionError();
-	};
-
-
-	$scope.applyForJob = function(jobID){
-
-		console.log('applyForJob: '+jobID);
-	};
-
-
-	$scope.disableMenuDrag = function(){
-
-		$ionicSideMenuDelegate.canDragContent(false);
-
-	};
-
-	
-	$scope.enableMenuDrag = function(){
-
-		$ionicSideMenuDelegate.canDragContent(true);
 	};
 
 	
@@ -224,6 +248,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
     });
 
+    
     $scope.$on('$destroy', function(){
 
 		goToBrowseJobsEvent();
