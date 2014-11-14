@@ -38,6 +38,10 @@ Version:        0.1.0
 .m-l-20 {
   margin-left: 20px;
 }
+.list {
+  display: block !important;
+  margin: auto;
+}
 .sm-padding .item {
   padding: 10px !important;
 }
