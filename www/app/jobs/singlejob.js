@@ -315,7 +315,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
     $scope.loginToApply = function(){
 
-		if($scope.helperText === "Applications Open. Sign In to apply") 
+		if($scope.helperText === "Applications Open. Sign In to apply.") 
 			$state.go('login');
     };
 
