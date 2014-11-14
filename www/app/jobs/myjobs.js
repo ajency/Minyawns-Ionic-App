@@ -72,9 +72,8 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 			$scope.requestPending = true;
 
-
-            $http.get($rootScope.GETURL+'fetchjobs?my_jobs=1&offset='+$rootScope.myjobs.offset+'&filter_my=0&'+
-			'logged_in_user_id='+user.userID)
+            $http.get($rootScope.GETURL + 'fetchjobs?my_jobs=1&offset='+ $rootScope.myjobs.offset + 
+            	'&filter_my=0&' + 'logged_in_user_id='+user.userID)
 
 			.then(function(resp, status, headers, config){
 
@@ -98,9 +97,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 			$scope.jobs = $rootScope.myjobs.myJobsArray;
 			
 			$scope.openJobsLoader = true;
-			$timeout(function(){
-				$scope.getOpenJobs();
-			}, 1000);
+			$scope.getOpenJobs();
 		}
 		else{
 
@@ -109,6 +106,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 			$scope.jobs = [];
 			$timeout(function(){
 				$scope.jobs = $rootScope.myjobs.myJobsArray;
+				$scope.canLoadMore = true;
 			}, 500);
 
 			$scope.openJobs = $rootScope.myjobs.openJobsCount;
@@ -193,15 +191,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 	
 	$scope.onInfiniteScroll = function(){
 
-		if($rootScope.myjobs.myJobsArray.length == 0){
-			//Timeout is needed for the very first request 
-			//as cordova navigator.connection is undefined.
-			$timeout(function(){
-				$scope.fetchJobs();
-			}, 1000);
-		}
-
-		else $scope.fetchJobs();
+		$scope.fetchJobs();
 	};
 
     

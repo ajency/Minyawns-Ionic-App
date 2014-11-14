@@ -92,9 +92,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 			$scope.jobs = $rootScope.jobs.allJobs;
 
 			$scope.openJobsLoader = true;
-			$timeout(function(){
-				$scope.getOpenJobs();
-			}, 1000);
+			$scope.getOpenJobs();
 		}
 		else{
 
@@ -103,6 +101,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 			$scope.jobs = [];
 			$timeout(function(){
 				$scope.jobs = $rootScope.jobs.allJobs;
+				$scope.canLoadMore = true;
 			}, 500);
 
 			$scope.openJobs = $rootScope.jobs.openJobsCount;
@@ -169,15 +168,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	
 	$scope.onInfiniteScroll = function(){
 
-		if($rootScope.jobs.allJobs.length == 0){
-			//Timeout is needed for the very first request 
-			//as cordova navigator.connection is undefined.
-			$timeout(function(){
-				$scope.fetchJobs();
-			}, 1000);
-		}
-
-		else $scope.fetchJobs();
+		$scope.fetchJobs();
 	};
 
     
@@ -228,7 +219,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 }])
 
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider) {
 	
 	$stateProvider
 
@@ -240,10 +231,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 				controller: 'BrowseController'
 			}
 		}
-	})
-
-	//Default state. If no states are matched, this will be used as fallback.
-    $urlRouterProvider.otherwise('/menu/browsejobs');
+	});
 
 });
 

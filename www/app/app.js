@@ -25,18 +25,42 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 		//Hide splash screen
 		if(ionic.Platform.isWebView()){
             
-            $cordovaSplashscreen.hide();
+            $timeout(function() {
+            	$cordovaSplashscreen.hide();
+            }, 500);
 		}
 
 	});
 
 })
 
+.controller('StarterController', ['$ionicPlatform', '$state', '$ionicViewService'
+	, function($ionicPlatform, $state, $ionicViewService){
 
-.config(function($stateProvider) {
+	$ionicPlatform.ready(function() {
+		
+		$state.go('menu.browsejobs');
+
+		$ionicViewService.nextViewOptions({
+			disableAnimate: true,
+			disableBack: true
+		});
+			
+	});
+
+}])
+
+
+.config(function($stateProvider, $urlRouterProvider) {
 	
 	
 	$stateProvider
+
+	.state('start', {
+		url: "/start",
+		controller: 'StarterController'
+	})
+
 
 	//Login
 	.state('login', {
@@ -51,6 +75,8 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 		url: "/menu",
 		abstract: true,
 		templateUrl: "views/menu.html"
-	})
+	});
 
+
+    $urlRouterProvider.otherwise('/start');
 });

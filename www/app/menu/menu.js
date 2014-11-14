@@ -1,8 +1,8 @@
 angular.module('minyawns.menu', ['minyawns.storage'])
 
 
-.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http', '$timeout'
-	, function($scope, $rootScope, Storage, $window, _, $http, $timeout){
+.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http'
+	, function($scope, $rootScope, Storage, $window, _, $http){
 
 		
 	$scope.updateTotalNoOfJobs = function(userID){
@@ -66,11 +66,8 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 			$scope.menuTitle = 'Do More';
 			$scope.logInOutMenu = false;
-
-			$timeout(function(){
 				
-				$scope.updateTotalNoOfJobs(user.userID);
-			}, 1000);
+			$scope.updateTotalNoOfJobs(user.userID);
 			
 		}
 		else{
