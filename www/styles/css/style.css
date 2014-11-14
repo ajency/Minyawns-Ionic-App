@@ -93,7 +93,7 @@ body .pane .has-header {
 }
 /**** Login View Styles ****/
 .login-view {
-  background: #848484 !important;
+  background: #01AE66 !important;
   background-color: #414141;
   background-size: cover !important;
   text-align: center;
@@ -139,6 +139,7 @@ body .pane .has-header {
 .login-view h6 {
   color: #ffffff;
   font-family: 'Light', sans-serif;
+  font-size: 1rem;
 }
 .login-view .loader {
   color: #ffffff;
