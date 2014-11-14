@@ -133,7 +133,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 				$scope.cameraIcon = true;
 
 				if(status.jobStatus === "Applied")
-					$scope.helperText = "You have applied. Please tap and hold the icon to un-apply.";
+					$scope.helperText = "You have applied. Please tap and hold the photo to un-apply.";
 
 				else if (status.jobStatus === "Hired")
 					$scope.helperText = "You have been hired.";
@@ -156,14 +156,14 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 				$scope.cameraIcon = true;
 
 				if(status.jobStatus === "Applied")
-					$scope.helperText = "You have applied. Please tap and hold the icon to un-apply.";
+					$scope.helperText = "You have applied. Please tap and hold the photo to un-apply.";
 
 				else{
 
 					if($rootScope.profileImage === 'img/click-pic.jpg')
 						$scope.helperText = "To apply, take a picture or upload one.";
 					else
-						$scope.helperText = "Applications Open. Please tap the icon to apply now.";
+						$scope.helperText = "Applications Open. Please tap the photo to apply now.";
 				}
 
 			}
@@ -239,7 +239,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		$scope.actionText = "Applying";
 		
-		if($scope.helperText === "Applications Open. Please tap the icon to apply now.")
+		if($scope.helperText === "Applications Open. Please tap the photo to apply now.")
 			$scope.minyawnJobAction('minyawn_job_apply');
 
 		if($scope.helperText === "To apply, take a picture or upload one.")
@@ -267,7 +267,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
     $scope.onIconHold = function(){
 
-    	if($scope.helperText === "You have applied. Please tap and hold the icon to un-apply.")
+    	if($scope.helperText === "You have applied. Please tap and hold the photo to un-apply.")
 
     		$ionicPopup.confirm({
 				title: 'Unapply',
