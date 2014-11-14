@@ -14,6 +14,16 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$scope.minyawnsAppliedPresent = true;
 	$scope.applyLoader = false;
 	$scope.cameraIcon = false;
+
+
+	function refreshSingleJobInBrowseJobs(job){
+
+		var postIdArray = _.pluck($rootScope.jobs.allJobs, "post_id");
+
+		var index = postIdArray.indexOf(job.post_id);
+
+		$rootScope.jobs.allJobs[index] = job;
+	};
 	
 
 	$scope.getSingleJobDetails = function(){
@@ -22,11 +32,15 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		.then(function(resp, status, headers, config){
 
-			$rootScope.singleJobData = resp.data[0];
-			$scope.populateSingleJobData(resp.data[0]);
+			var data = resp.data[0];
+
+			$rootScope.singleJobData = data;
+
+			$scope.populateSingleJobData(data);
 			
 			//Event handler in browsejobs.js to refresh a single job
-	    	$rootScope.$emit('action:minyawn:apply', { passedJob: resp.data[0] });
+	    	// $rootScope.$emit('action:minyawn:apply', { passedJob: resp.data[0] });
+	    	refreshSingleJobInBrowseJobs(data);
 
 	    	$scope.applyLoader = false;
 		},
@@ -52,9 +66,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
     	if (photoResponse.status) {
 
     		Storage.setProfileImageSrc(photoResponse.photo.url);
-
-    		//Event handler in menu.js
-			$rootScope.$emit('upload:profile:photo', {});
 
     		$scope.minyawnJobAction('minyawn_job_apply');
     	}
@@ -240,12 +251,11 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 						$rootScope.profileImage = imageURI;
 
-						var confirmPopup = $ionicPopup.confirm({
+						$ionicPopup.confirm({
 							title: 'Apply',
 							template: 'Please click OK to confirm the application.'
-						});
-
-						confirmPopup.then(function(res) {
+						})
+						.then(function(res) {
 
 							if(res) $scope.addUpdatePicture(imageURI);
 							else $rootScope.profileImage = 'img/click-pic.jpg';
@@ -260,13 +270,13 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
     	if($scope.helperText === "You have applied. Please tap and hold the icon to un-apply.")
 
-    		var confirmPopup = $ionicPopup.confirm({
+    		$ionicPopup.confirm({
 				title: 'Unapply',
 				template: 'Are you sure you want to un-apply?'
-			});
-
-			confirmPopup.then(function(res) {
+			})
+    		.then(function(res) {
 				if(res) {
+					
 					$scope.actionText = "Unapplying"
 					$scope.minyawnJobAction('minyawn_job_unapply');
 				} 
@@ -288,7 +298,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	    	$scope.getSingleJobDetails();
 
 	    	//Event handler in menu.js
-	    	$rootScope.$emit('onMinyawnJobAction', {});
+	    	$rootScope.$emit('refresh:menu:details', {});
 
 	    	//Event handler in myjobs.js to refresh the respective job list
 	    	$rootScope.$emit('new:job:added:to:myjobs', { });

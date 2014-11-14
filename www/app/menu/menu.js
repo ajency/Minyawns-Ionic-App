@@ -103,16 +103,6 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 		$window.open('http://www.minyawns.com/blog/', '_system', 'location=yes')
 	}
-
-	$rootScope.$on('onMinyawnJobAction', function(event, args) {
-
-		$scope.init();
-    });
-
-	$rootScope.$on('upload:profile:photo', function(event, args) {
-
-		$scope.init();
-    });
     
 
 	$scope.onLogout = function(){
@@ -130,6 +120,12 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 		//Event handler in myjobs.js
 		$rootScope.$emit('go:to:browsejobs:from:myjobs', {});
 	};
+
+
+	$rootScope.$on('refresh:menu:details', function(event, args) {
+
+		$scope.init();
+    });
 
 
 	//Keep track of current & previous state in abstract menu state.

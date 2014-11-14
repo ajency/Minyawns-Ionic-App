@@ -249,6 +249,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 });
 
+
 var MyJobsItemController = function($scope, JobStatus){
     //Init
 	$scope.jobOpen = true;

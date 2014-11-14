@@ -187,17 +187,17 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
 	
 	//TODO: Event not required
-	var minyawnApplyActionEvent = $rootScope.$on('action:minyawn:apply', function(event, args) {
+	// var minyawnApplyActionEvent = $rootScope.$on('action:minyawn:apply', function(event, args) {
 
-		event.stopPropagation()
+	// 	event.stopPropagation()
 
-		console.log('Minyawn has Applied');
-		var postIdArray = _.pluck($rootScope.jobs.allJobs, "post_id");
+	// 	console.log('Minyawn has Applied');
+	// 	var postIdArray = _.pluck($rootScope.jobs.allJobs, "post_id");
 
-		var index = postIdArray.indexOf(args.passedJob.post_id);
+	// 	var index = postIdArray.indexOf(args.passedJob.post_id);
 
-		$rootScope.jobs.allJobs[index] = args.passedJob
-	});
+	// 	$rootScope.jobs.allJobs[index] = args.passedJob
+	// });
 
 	
 	$scope.$on('$destroy', function(){
@@ -249,8 +249,6 @@ var BrowseJobsItemController = function($scope, JobStatus){
     $scope.required_minyawns = required_minyawns;
 
     var status = JobStatus.get($scope.job);
-
-    console.log(status.validity);
 
     if (status.validity ==='Available') 
    		$scope.jobOpen = true;

@@ -73,7 +73,7 @@
 
 			<ion-list>
 
-				<ion-item menu-close ng-show="logInOutMenu" ui-sref="login">
+				<ion-item ng-show="logInOutMenu" ui-sref="login">
 					Sign in
 				</ion-item>
 				<ion-item menu-close ui-sref="menu.browsejobs">
@@ -85,9 +85,6 @@
 				<ion-item menu-close nav-clear ng-click="openBlogLink()">
 					Blog
 				</ion-item>
-				<!-- <ion-item menu-close ng-hide="logInOutMenu">
-					My Profile
-				</ion-item> -->
 				<ion-item menu-close nav-clear ng-hide="logInOutMenu" ng-click="onLogout()">
 					Logout
 				</ion-item>

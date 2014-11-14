@@ -30,7 +30,7 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
                     case 'Available':
 
                         jobStatusDetails.validity = 'Available';
-                        jobStatusDetails.applicationStatus = 'Application Open';
+                        jobStatusDetails.applicationStatus = 'Applications Open';
 
                         if (user.isLoggedIn) {
 
@@ -62,7 +62,7 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
                     case 'Closed':
 
                         jobStatusDetails.validity = 'Closed';
-                        jobStatusDetails.applicationStatus = 'Application Closed';
+                        jobStatusDetails.applicationStatus = 'Applications Closed';
 
                         if (model.job_status === 3) { //Max Applicants
 
