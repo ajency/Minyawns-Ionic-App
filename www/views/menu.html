@@ -71,30 +71,32 @@
 					</div>
 					
 				</div>
+
 			<div class="static-bottom">
-			<div class="menu-sep">
-				{{menuTitle}}
-			</div>
-
-			<ion-list>
-
-				<button class="button button-light" ng-show="logInOutMenu" ui-sref="login">
-					Sign in
-				</button>
-				<button class="button button-light" menu-close ui-sref="menu.browsejobs">
-					Browse Jobs
-				</button>
-				<button class="button button-light" menu-close ui-sref="menu.myjobs" ng-hide="logInOutMenu">
-					My Jobs
-				</button>
-				<button class="button button-light" menu-close nav-clear ng-click="openBlogLink()">
-					Blog
-				</button>
-				<button class="button button-light" menu-close nav-clear ng-hide="logInOutMenu" ng-click="onLogout()">
-					Logout
-				</button>
 				
-			</ion-list>
+				<div class="menu-sep">
+					{{menuTitle}}
+				</div>
+
+				<ion-list>
+
+					<ion-item ng-show="logInOutMenu" ui-sref="login">
+						Sign in
+					</ion-item>
+					<ion-item menu-close ui-sref="menu.browsejobs">
+						Browse Jobs
+					</ion-item>
+					<ion-item menu-close ui-sref="menu.myjobs" ng-hide="logInOutMenu">
+						My Jobs
+					</ion-item>
+					<ion-item menu-close nav-clear ng-click="openBlogLink()">
+						Blog
+					</ion-item>
+					<ion-item menu-close nav-clear ng-hide="logInOutMenu" ng-click="onLogout()">
+						Logout
+					</ion-item>
+					
+				</ion-list>
 			</div>
 		</ion-content>
 
