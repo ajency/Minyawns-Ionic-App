@@ -103,3 +103,4 @@ angular.module('minyawns.interceptor', ['minyawns.network'])
 	// $httpProvider.interceptors.push('CookieInjector');
 	$httpProvider.interceptors.push('SessionHandler');
 }]);
+

@@ -1,67 +1,53 @@
 angular.module('minyawns.menu', ['minyawns.storage'])
 
 
-.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http', '$timeout'
-	, function($scope, $rootScope, Storage, $window, _, $http, $timeout){
+.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http'
+	, function($scope, $rootScope, Storage, $window, _, $http){
 
-
-	var myJobs = []; 
-	var offset = 0;
 		
-	$scope.updateHiredAndAppliedCount = function(userID){
+	$scope.updateTotalNoOfJobs = function(userID){
 
-		$http.get($rootScope.GETURL+'fetchjobs?my_jobs=1&offset='+offset+'&filter_my=0&'+
-			'logged_in_user_id='+userID)
-
+		$http.get($rootScope.GETURL+'fetchjobs?my_jobs=1&offset=0&filter_my=0&'+
+			'logged_in_user_id='+userID+'&all_jobs=1')
+		
 		.then(function(resp, status, headers, config){
 
-			var data = resp.data;
+			var myJobs = resp.data;
+			var totalJobsCount = myJobs.length;
 
-			if(data.length == 0 && myJobs.length == 0){
+			if(totalJobsCount == 0){
 
 				$scope.applied_to = $scope.hired_for = 0;
 				$scope.menuLoader = false;
 			}
+
 			else{
 
-				if(data.length == 0){
+				$scope.applied_to = totalJobsCount;
 
-					$scope.applied_to = myJobs.length
+				var totalHired = 0;
 
-					var totalHired = 0;
+				_.each(myJobs, function(job){
 
-					_.each(myJobs, function(job){
+					var appliedUsers = job.applied_user_id;
 
-						var appliedUsers = job.applied_user_id;
+					var index = appliedUsers.indexOf(userID);
 
-						var index = appliedUsers.indexOf(userID);
+					if(job.user_to_job_status[index] === 'hired')
+						totalHired = totalHired + 1;
 
-						if(job.user_to_job_status[index] === 'hired')
-							totalHired = totalHired + 1;
+				});
 
-					});
-
-					$scope.hired_for = totalHired;
-					$scope.menuLoader = false;
-
-				}
-
-				else{
-					myJobs = myJobs.concat(data);
-					offset = offset + 5;
-					$scope.updateHiredAndAppliedCount(userID);
-				}
+				$scope.hired_for = totalHired;
+				$scope.menuLoader = false;
 			}
-
-			
-		},
-
-		function(error){
+		}
+		, function(error){
 
 			console.log('updateHiredAndAppliedCount Error');
 		});
 
-	}
+	};
 	
 	
 	$scope.init = function(){
@@ -80,12 +66,8 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 			$scope.menuTitle = 'Do More';
 			$scope.logInOutMenu = false;
-
-			$timeout(function(){
-				myJobs = [];
-				offset = 0;
-				$scope.updateHiredAndAppliedCount(user.userID);
-			}, 1000);
+				
+			$scope.updateTotalNoOfJobs(user.userID);
 			
 		}
 		else{
