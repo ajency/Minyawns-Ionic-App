@@ -217,7 +217,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 		url: "/browsejobs",
 		views: {
 			'menuContent' :{
-				templateUrl: "views/browsejobs.html",
+				templateUrl: "views/jobs.html",
 				controller: 'BrowseController'
 			}
 		}
@@ -229,7 +229,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 });
 
 
-// .controller('BrowseJobsItemController', ['$scope', 'JobStatus', function($scope, JobStatus){
+
 var BrowseJobsItemController = function($scope, JobStatus){
 
 	//Init

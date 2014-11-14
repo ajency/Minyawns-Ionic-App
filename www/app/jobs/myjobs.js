@@ -241,7 +241,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		url: "/myjobs",
 		views: {
 			'menuContent' :{
-				templateUrl: "views/browsejobs.html",
+				templateUrl: "views/jobs.html",
 				controller: 'MyJobsController'
 			}
 		}
