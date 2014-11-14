@@ -823,7 +823,7 @@ body .pane .has-header {
   color: #88d816;
   margin: -5px;
   width: 88px;
-  height: 88px;
+  height: auto;
   float: right;
   overflow: hidden;
   position: relative;
@@ -871,28 +871,19 @@ body .pane .has-header {
   border-bottom: 1px solid #b1b1b1;
 }
 .minyawn-list .list {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
   margin-left: 5px;
 }
 .minyawn-list .list .minyawn {
   min-width: 43vw;
   max-width: 43vw;
-  margin: 0.5rem 1rem 0rem 0rem;
+  margin: 0.5rem 0.6rem 0.6rem 0rem;
   border: 0;
   white-space: normal;
   box-shadow: 3px 2px 5px #C2C2C2;
   -moz-box-shadow: 3px 2px 5px #C2C2C2;
   -webkit-box-shadow: 3px 2px 5px #C2C2C2;
-}
-.minyawn-list .list .minyawn:first-child {
-  margin-left: auto;
-}
-.minyawn-list .list .minyawn:last-child {
-  margin-right: auto;
+  float: left;
+  height: 326px;
 }
 .minyawn {
   padding: 15px;
