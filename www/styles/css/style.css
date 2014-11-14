@@ -872,6 +872,7 @@ body .pane .has-header {
 }
 .minyawn-list .list {
   margin-left: 5px;
+  display: -webkit-box;
 }
 .minyawn-list .list .minyawn {
   min-width: 43vw;
