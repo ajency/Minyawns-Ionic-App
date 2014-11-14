@@ -34,6 +34,7 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 
 })
 
+
 .controller('StarterController', ['$ionicPlatform', '$state', '$ionicViewService'
 	, function($ionicPlatform, $state, $ionicViewService){
 
