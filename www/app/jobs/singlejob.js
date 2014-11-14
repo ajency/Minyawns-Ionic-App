@@ -327,18 +327,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
     });
 
 
-	$scope.disableMenuDrag = function(){
-
-		$ionicSideMenuDelegate.canDragContent(false);
-	};
-
-	
-	$scope.enableMenuDrag = function(){
-
-		$ionicSideMenuDelegate.canDragContent(true);
-	};
-
-
 	$scope.navigateBack = function(){
 
 		$timeout(function(){
