@@ -27,8 +27,30 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 		}
 	};
 
+	var fbLoginSuccess = function (userData) {
+
+    	alert("UserInfo: " + JSON.stringify(userData));
+    	console.log('login response');
+    	console.log(JSON.stringify(userData));
+    	facebookConnectPlugin.getAccessToken(function(token) {
+
+        	alert("Token: " + token);
+        	console.log(token);
+
+    		}, function(err) {
+        	alert("Could not get access token: " + err);
+    		});
+
+	}
+
 	$scope.onFacebookButtonClick = function(){
  			console.log('facebook button clicked');
+
+ 			facebookConnectPlugin.login(["public_profile"],
+    			fbLoginSuccess,
+
+    		function (error) { alert("" + error) }
+			);
 	};
 
 	$scope.authenticate = function(username, password){
