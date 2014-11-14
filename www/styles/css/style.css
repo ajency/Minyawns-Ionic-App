@@ -1136,3 +1136,12 @@ ul.marquee li a:hover {
 .popup .popup-body {
   padding: 0px 10px 10px;
 }
+.error-minion {
+  text-align: center;
+}
+.error-minion img {
+  width: 100px;
+}
+.error-minion h5 {
+  margin: 0px;
+}

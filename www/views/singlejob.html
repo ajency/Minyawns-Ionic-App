@@ -124,14 +124,13 @@
 
 			<!-- No One Applied For job-->
 			<ion-list ng-if="!minyawnsAppliedPresent">
-				<ion-item class="minyawn">
+				
 					
 					<div class="padding loader " ng-show="minionLoader">
 						<i class="icon ion-loading-c"></i> 
 					</div>
-							<i class="icon ion-eye-disabled"></i>
-	     No one has been hired for this job yet. <br>Apply and get hired.
-					<!--<div ng-hide="minionLoader">
+						
+				<div ng-hide="minionLoader" class="error-minion">
 						<div class="minyawn-view">
 							<div class="minyawn-pic">
 								<img src="./img/applicants.png"> 
@@ -139,13 +138,13 @@
 							<h5 class="minyawn-name no-wrap">Be the first to apply</h5>
 							<div class="row ">
 								<div class="col up text-center">
-								No one has been hired for this job yet. Apply and get hired
+								No one has been hired for this job yet. <br>Apply and get hired
 								</div>
 							</div>
 						</div>
-					</div>-->
+					</div>
 
-				</ion-item>
+			
 			</ion-list>
 
 
