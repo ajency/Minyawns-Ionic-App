@@ -9,6 +9,9 @@ Version:        0.1.0
 */
 /**** Fonts ****/
 /****Colors****/
+.title {
+  top: 0.7rem!important;
+}
 .expired,
 .job-closed {
   color: #ff3333 !important;
@@ -172,6 +175,7 @@ body .pane .has-header {
 .bar-subheader .total-job {
   font-size: 0.8rem;
   text-align: center;
+  margin-top: -8px;
 }
 .bar-subheader .total-job b {
   display: block;
@@ -225,16 +229,16 @@ body .pane .has-header {
 .menu-left .log-view .profile-img {
   border-radius: 100%;
   top: auto;
-  width: 70px;
-  height: 70px;
-  margin: 0.5rem auto 2rem;
+  width: 90px;
+  height: 90px;
+  margin: 0.5rem auto 1rem;
 }
 .menu-left .log-view .profile-img img {
   border-radius: 100%;
   top: auto;
-  width: 70px;
-  height: 70px;
-  border: 3px solid #fff;
+  width: 90px;
+  height: 90px;
+  border: 2px solid #fff;
 }
 .menu-left .log-view h2 {
   color: #ffffff;
@@ -1143,6 +1147,13 @@ ul.marquee li a:hover {
   text-align: center;
   margin-top: 25px;
 }
-.popup-title {
+/**pop up **/
+.popup {
+  box-shadow: none !important;
+}
+.popup .popup-title {
   font-size: 1.5rem;
+}
+.popup .popup-body {
+  padding: 0px 10px 10px;
 }
