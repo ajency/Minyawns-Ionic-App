@@ -93,7 +93,7 @@ body .pane .has-header {
 }
 /**** Login View Styles ****/
 .login-view {
-  background: url("../../img/background.jpg") no-repeat center bottom !important;
+  background: #848484 !important;
   background-color: #414141;
   background-size: cover !important;
   text-align: center;
@@ -101,7 +101,7 @@ body .pane .has-header {
 .login-view #logo-cover {
   width: 100%;
   height: 25%;
-  margin: 3rem 0 2rem;
+  margin: 6rem 0 2rem;
 }
 .login-view #logo-cover #logo {
   width: 75%;
@@ -299,6 +299,12 @@ body .pane .has-header {
   background: #EDEDED;
 }
 .menu-left .list .item:active {
+  background: #EDEDED;
+}
+.menu-left .list .item:hover a {
+  background: #EDEDED;
+}
+.menu-left .list .item:hover {
   background: #EDEDED;
 }
 /**** Job List Styles ****/
@@ -871,8 +877,8 @@ body .pane .has-header {
   border-bottom: 1px solid #b1b1b1;
 }
 .minyawn-list .list {
-  margin-left: 5px;
-  display: -webkit-box;
+  margin-left: 10px;
+  display: inline-block;
 }
 .minyawn-list .list .minyawn {
   min-width: 43vw;
