@@ -3,9 +3,10 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 .controller('SinglejobController', ['$scope', '$rootScope','$stateParams', '$http'
 	, '$ionicSideMenuDelegate', 'Storage', '$state', '$cordovaCamera', '_', '$ionicPopup'
-	, '$ionicLoading', 'Toast','$window' , '$cordovaFile', 'JobStatus'
+	, '$ionicLoading', 'Toast','$window' , '$cordovaFile', 'JobStatus', '$timeout'
 	, function($scope, $rootScope, $stateParams, $http, $ionicSideMenuDelegate
-	, Storage, $state, $cordovaCamera, _, $ionicPopup, $ionicLoading, Toast, $window, $cordovaFile, JobStatus) {
+	, Storage, $state, $cordovaCamera, _, $ionicPopup, $ionicLoading, Toast, $window, $cordovaFile
+	, JobStatus, $timeout) {
 
 	
 	$rootScope.minionDetails = [];
@@ -49,7 +50,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 			$scope.mainLoader = false;
 			$scope.applyLoader = false;
-			$scope.errorPopUp('Could not connect to server');
+			$scope.navigateBack();
 		});
 
 	};
@@ -125,7 +126,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		}
 		
 		
-		else if (status.applicationStatus === "Application Closed"){
+		else if (status.applicationStatus === "Applications Closed"){
 
 			if(user.isLoggedIn){
 
@@ -314,7 +315,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
     $scope.loginToApply = function(){
 
-		if($scope.helperText === "Applications Open. Sign In to apply") 
+		if($scope.helperText === "Applications Open. Sign In to apply.") 
 			$state.go('login');
     };
 
@@ -338,16 +339,11 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	};
 
 
-	$scope.errorPopUp = function(message){
+	$scope.navigateBack = function(){
 
-		var popup = $ionicPopup.alert({
-			title: 'ERROR',
-			template: message
-		});
-
-		popup.then(function(res) {
+		$timeout(function(){
 			$window.history.back();
-		});
+		}, 1000);
 	};
 	
 
