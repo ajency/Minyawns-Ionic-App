@@ -307,6 +307,12 @@ body .pane .has-header {
 .menu-left .list .item:hover {
   background: #EDEDED;
 }
+.menu-left .list .item:focus a {
+  background: #EDEDED;
+}
+.menu-left .list .item:focus {
+  background: #EDEDED;
+}
 /**** Job List Styles ****/
 .job-list {
   -webkit-overflow-scrolling: touch;
