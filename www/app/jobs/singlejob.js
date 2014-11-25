@@ -3,9 +3,10 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 .controller('SinglejobController', ['$scope', '$rootScope','$stateParams', '$http'
 	, '$ionicSideMenuDelegate', 'Storage', '$state', '$cordovaCamera', '_', '$ionicPopup'
-	, '$ionicLoading', 'Toast','$window' , '$cordovaFile', 'JobStatus'
+	, '$ionicLoading', 'Toast','$window' , '$cordovaFile', 'JobStatus', '$timeout'
 	, function($scope, $rootScope, $stateParams, $http, $ionicSideMenuDelegate
-	, Storage, $state, $cordovaCamera, _, $ionicPopup, $ionicLoading, Toast, $window, $cordovaFile, JobStatus) {
+	, Storage, $state, $cordovaCamera, _, $ionicPopup, $ionicLoading, Toast, $window, $cordovaFile
+	, JobStatus, $timeout) {
 
 	
 	$rootScope.minionDetails = [];
@@ -49,7 +50,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 			$scope.mainLoader = false;
 			$scope.applyLoader = false;
-			$scope.errorPopUp('Could not connect to server');
+			$scope.navigateBack();
 		});
 
 	};
@@ -125,14 +126,14 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		}
 		
 		
-		else if (status.applicationStatus === "Application Closed"){
+		else if (status.applicationStatus === "Applications Closed"){
 
 			if(user.isLoggedIn){
 
 				$scope.cameraIcon = true;
 
 				if(status.jobStatus === "Applied")
-					$scope.helperText = "You have applied. Please tap and hold the icon to un-apply.";
+					$scope.helperText = "You have applied. Please tap and hold the photo to un-apply.";
 
 				else if (status.jobStatus === "Hired")
 					$scope.helperText = "You have been hired.";
@@ -155,14 +156,14 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 				$scope.cameraIcon = true;
 
 				if(status.jobStatus === "Applied")
-					$scope.helperText = "You have applied. Please tap and hold the icon to un-apply.";
+					$scope.helperText = "You have applied. Please tap and hold the photo to un-apply.";
 
 				else{
 
 					if($rootScope.profileImage === 'img/click-pic.jpg')
 						$scope.helperText = "To apply, take a picture or upload one.";
 					else
-						$scope.helperText = "Applications Open. Please tap the icon to apply now.";
+						$scope.helperText = "Applications Open. Please tap the photo to apply now.";
 				}
 
 			}
@@ -238,7 +239,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		$scope.actionText = "Applying";
 		
-		if($scope.helperText === "Applications Open. Please tap the icon to apply now.")
+		if($scope.helperText === "Applications Open. Please tap the photo to apply now.")
 			$scope.minyawnJobAction('minyawn_job_apply');
 
 		if($scope.helperText === "To apply, take a picture or upload one.")
@@ -266,7 +267,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
     $scope.onIconHold = function(){
 
-    	if($scope.helperText === "You have applied. Please tap and hold the icon to un-apply.")
+    	if($scope.helperText === "You have applied. Please tap and hold the photo to un-apply.")
 
     		$ionicPopup.confirm({
 				title: 'Unapply',
@@ -314,7 +315,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
     $scope.loginToApply = function(){
 
-		if($scope.helperText === "Applications Open. Sign In to apply") 
+		if($scope.helperText === "Applications Open. Sign In to apply.") 
 			$state.go('login');
     };
 
@@ -326,28 +327,11 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
     });
 
 
-	$scope.disableMenuDrag = function(){
+	$scope.navigateBack = function(){
 
-		$ionicSideMenuDelegate.canDragContent(false);
-	};
-
-	
-	$scope.enableMenuDrag = function(){
-
-		$ionicSideMenuDelegate.canDragContent(true);
-	};
-
-
-	$scope.errorPopUp = function(message){
-
-		var popup = $ionicPopup.alert({
-			title: 'ERROR',
-			template: message
-		});
-
-		popup.then(function(res) {
+		$timeout(function(){
 			$window.history.back();
-		});
+		}, 1000);
 	};
 	
 

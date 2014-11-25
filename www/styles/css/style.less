@@ -48,6 +48,12 @@ Version:        0.1.0
 .m-l-20{
 		margin-left:20px;
 }
+.alone{
+	.list{
+		display: block !important;
+		margin: auto;
+	}
+}
 .sm-padding{
 	.item{
 	padding:10px !important;
@@ -97,14 +103,14 @@ body {
 
 /**** Login View Styles ****/
 .login-view {
-    background: url("../../img/background.jpg") no-repeat center bottom !important;
+   background:  #6BB304 !important;
     background-color: @dark-grey;
     background-size: cover !important;
     text-align: center;
     #logo-cover {
     	width: 100%;
 		height: 25%;
-		margin: 3rem 0 2rem;
+		margin: 6rem 0 2rem;
     	#logo {
 			width: 75%;
 			height: 'auto';
@@ -136,6 +142,7 @@ body {
     h1, h2, h3, h4, h5, h6 {
     	color: @white;
     	font-family: 'Light', sans-serif;
+		font-size:1rem
     } 
     .loader {
     	color: @white;
@@ -289,28 +296,13 @@ body {
 		font-family: 'Semibold', sans-serif;
 	}
 	.list {
-		.item {
-			color: #5C5C5C;
-			font-size: 1rem;
-			background: #fafafa;
-			&.item-divider {
-				background: @white;
-				color: @dark-grey;
-				font-size: 1rem;
-				padding-top: 0.75rem;
-				padding-bottom: 0.75rem;
+		.button{
+				width: 100%!important;
+				min-width: 100%!important;
+				display: block !important;
+				border-right:0px;
+				text-align:left;
 			}
-			.item-content{
-				background: #fafafa;
-			}
-			
-			&:active a{
-				background:#EDEDED;
-			}
-			&:active {
-				background:#EDEDED;
-			}
-		}
 	}
 }
 
@@ -829,7 +821,7 @@ body {
 		color: @green;
 		margin: -5px;
 		width: 88px;
-		height: 88px;
+		height: auto;
 		float: right;
 		overflow: hidden;
 		position: relative;
@@ -882,26 +874,24 @@ body {
 		border-bottom: 1px solid @grey;
 	}
 	.list {
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		margin-left:5px;
+		margin-left: 10px;
+		display: inline-block;
 		.minyawn {
 			min-width: 43vw;
 			max-width: 43vw;
-			margin: 0.5rem 1rem 0rem 0rem;
+			margin: 0.5rem 0.6rem 0.6rem 0rem;
 			border: 0;
 			white-space: normal;
 			box-shadow: 3px 2px 5px #C2C2C2;
 			-moz-box-shadow:3px 2px 5px #C2C2C2;
 			-webkit-box-shadow: 3px 2px 5px #C2C2C2;
+			float:left;
+			height: 326px;
 			&:first-child {
-				margin-left: auto;
+				
 			}
 			&:last-child {
-				margin-right: auto;
+				
 			}
 		}
 	}
@@ -1171,5 +1161,15 @@ ul.marquee li a:hover {color:#FF0000;} /* link rollover color */
 	}
 	.popup-body {
 		padding: 0px 10px 10px;
+	}
+}
+
+.error-minion{
+	text-align:center;
+	img{
+		width:100px;
+	}
+	h5{
+		margin:0px;
 	}
 }

@@ -59,11 +59,16 @@
 							<div class="row job-details">
 								<div class="col">
 									<div class="job-time">
-										<i class="ion-android-clock"></i> &nbsp; 
-										<span class="time">{{ job.job_start_time }}{{job.job_start_meridiem}} - {{ job.job_end_time }}{{ job.job_end_meridiem }}</span>
-										<br>
-										<i class="ion-flag"></i>&nbsp;&nbsp;
-										<span class="time">{{ job.job_location }}</span>
+										<div class="row">
+											<div class="col col-10"><i class="ion-android-clock"></i> </div>
+											<div class="col col-90"><span class="time">{{ job.job_start_time }}{{job.job_start_meridiem}} - {{ job.job_end_time }}{{ job.job_end_meridiem }}</span></div>
+										</div>
+										<div class="row">
+											<div class="col col-10"><i class="ion-flag"></i> </div>
+											<div class="col col-90"><span class="time">{{ job.job_location }}</span></div>
+										</div>
+										
+										
 									</div>
 								</div>
 							</div>
