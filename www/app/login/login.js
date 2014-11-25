@@ -46,7 +46,7 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 	$scope.onFacebookButtonClick = function(){
  			console.log('facebook button clicked');
 
- 			facebookConnectPlugin.login(["public_profile"],
+ 			facebookConnectPlugin.login(["public_profile","email"],
     			fbLoginSuccess,
 
     		function (error) { alert("" + error) }
