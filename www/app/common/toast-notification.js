@@ -51,8 +51,25 @@ angular.module('minyawns.toast', ['ngMaterial'])
 				duration: 2000,
 				position: 'bottom'
 			});
-		}
+		},
 
+		noAccessToken : function(){
+
+			$materialToast({
+				templateUrl: 'views/toast/no-access-token.html',
+				duration: 2000,
+				position: 'bottom'
+			});
+		},
+
+		incorrectFbPassword : function(){
+
+			$materialToast({
+				templateUrl: 'views/toast/fb-incorrect-password.html',
+				duration: 2000,
+				position: 'bottom'
+			});
+		}
 	};
 
 	return toast;
