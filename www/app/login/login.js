@@ -2,8 +2,8 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
 
 .controller('LoginController', ['$scope', '$rootScope', '$state', '$http'
-	, 'Storage', 'Toast', '$window','$cordovaNetwork'
-	, function($scope, $rootScope, $state, $http, Storage, Toast, $window, $cordovaNetwork) {
+	, 'Storage', 'Toast', '$window','$cordovaNetwork', '$timeout'
+	, function($scope, $rootScope, $state, $http, Storage, Toast, $window, $cordovaNetwork, $timeout) {
 
 	//Default
 	$scope.showLoader = false;
@@ -31,8 +31,9 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
     	console.log('login response');
     	console.log(JSON.stringify(userData));
-
-    	facebookConnectPlugin.getAccessToken(function(token) {
+    	$scope.showLoader = true;
+    	$timeout(function() {
+    		facebookConnectPlugin.getAccessToken(function(token) {
 
         	console.log(token);
         	connectToServer(token);
@@ -41,12 +42,13 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
         	   Toast.noAccessToken();
     		   $scope.showLoader = false;
     		});
+    	}, 500);
 
 	}
 
 	var connectToServer = function(token){
 
-		$scope.showLoader = true;
+		
 		
 		$http.get("http://www.minyawns.ajency.in/api/fblogin/token/"+token)
 
