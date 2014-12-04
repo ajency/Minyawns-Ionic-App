@@ -5,43 +5,46 @@
     		<img id="logo" src="./img/minyawnsLogo.png"/>
     	</div>
 
-    	<div class="login" ng-hide="showLoader">
+    	<form novalidate ng-submit="onLoginAction(username, password)">
 
-	    	<div class="list list-inset" ng-init="showPassword=false">
+	    	<div class="login" ng-hide="showLoader">
 
-			  <label class="item item-input">
-			    <input type="email" placeholder="Username" ng-model="username">
-			  </label>
+		    	<div class="list list-inset" ng-init="showPassword=false">
 
-			  <div class="item item-input" ng-show="showPassword">
-			    <input type="text" placeholder="Password" ng-model="password">
-			    <a class="padding-horizontal show-password" ng-click="showPassword=false">
-				    <i class="icon ion-eye show-password shown"></i>
-				</a>
-			  </div>
+				  <label class="item item-input">
+				    <input type="email" placeholder="Username" ng-model="username">
+				  </label>
 
-			  <div class="item item-input" ng-hide="showPassword">
-			    <input type="password" placeholder="Password" ng-model="password">
-			    <a class="padding-horizontal show-password" ng-click="showPassword=true">
-				    <i class="icon ion-eye show-password"></i>
-				</a>
-			  </div>
+				  <div class="item item-input" ng-show="showPassword">
+				    <input type="text" placeholder="Password" ng-model="password">
+				    <a class="padding-horizontal show-password" ng-click="showPassword=false">
+					    <i class="icon ion-eye show-password shown"></i>
+					</a>
+				  </div>
+
+				  <div class="item item-input" ng-hide="showPassword">
+				    <input type="password" placeholder="Password" ng-model="password">
+				    <a class="padding-horizontal show-password" ng-click="showPassword=true">
+					    <i class="icon ion-eye show-password"></i>
+					</a>
+				  </div>
+
+				</div>
+
+				<div class="padding-horizontal">
+					<button class="button button-block button-green" type="submit">Login</button>
+				</div>
+
+				<div class="padding">
+					<h5>Get Using Minions, faster!</h5>
+				</div>
+				
+				<div class="padding">
+					<button class="button icon-left ion-social-facebook button-facebook" ng-click="onFacebookButtonClick()">Sign in with Facebook</button>
+				</div>
 
 			</div>
-
-			<div class="padding-horizontal">
-				<button class="button button-block button-green" ng-click="onLoginClick(username, password)">Login</button>
-			</div>
-
-			<div class="padding">
-				<h5>Get Using Minions, faster!</h5>
-			</div>
-			
-			<div class="padding">
-				<button class="button icon-left ion-social-facebook button-facebook" ng-click="onFacebookButtonClick()">Sign in with Facebook</button>
-			</div>
-
-		</div>
+		</form>
 
 		<div class="padding loader" ng-show="showLoader">
 			<i class="icon ion-loading-c"></i>

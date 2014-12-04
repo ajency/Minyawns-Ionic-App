@@ -11,7 +11,7 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 	var user = Storage.getUserDetails();
 	$scope.username = user.userName;
 
-	$scope.onLoginClick = function(username, password){
+	$scope.onLoginAction = function(username, password){
 
 		if (!checkEmail(username))
 			Toast.invalidEmail();

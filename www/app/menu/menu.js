@@ -1,8 +1,8 @@
 angular.module('minyawns.menu', ['minyawns.storage'])
 
 
-.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http'
-	, function($scope, $rootScope, Storage, $window, _, $http){
+.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http', 'Network', '$materialToast', 'Toast'
+	, function($scope, $rootScope, Storage, $window, _, $http, Network, $materialToast, Toast){
 
 		
 	$scope.updateTotalNoOfJobs = function(userID){
@@ -66,7 +66,8 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 			$scope.menuTitle = 'Do More';
 			$scope.logInOutMenu = false;
-				
+			
+			
 			$scope.updateTotalNoOfJobs(user.userID);
 			
 		}
@@ -89,18 +90,24 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 	$scope.onLogout = function(){
 
-		Storage.clear();
+		if(Network.isOnline()){
+			console.log('Online');
+			Storage.clear();
 		
-		$scope.init();
+			$scope.init();
 
-		//Event handler in singlejob.js
-		$rootScope.$emit('update:apply:section:details', {});
+			//Event handler in singlejob.js
+			$rootScope.$emit('update:apply:section:details', {});
 		
-		//Event handler in browsejobs.js
-		$rootScope.$emit('reload:browsejobs:controller', {});
+			//Event handler in browsejobs.js
+			$rootScope.$emit('reload:browsejobs:controller', {});
+			
+			//Event handler in myjobs.js
+			$rootScope.$emit('go:to:browsejobs:from:myjobs', {});
+		}
+		else
+			Toast.connectionError();
 		
-		//Event handler in myjobs.js
-		$rootScope.$emit('go:to:browsejobs:from:myjobs', {});
 	};
 
 
