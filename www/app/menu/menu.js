@@ -1,8 +1,8 @@
 angular.module('minyawns.menu', ['minyawns.storage'])
 
 
-.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http', 'Network', '$materialToast', 'Toast'
-	, function($scope, $rootScope, Storage, $window, _, $http, Network, $materialToast, Toast){
+.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http', 'Network', '$materialToast', 'Toast', '$ionicSideMenuDelegate'
+	, function($scope, $rootScope, Storage, $window, _, $http, Network, $materialToast, Toast, $ionicSideMenuDelegate){
 
 		
 	$scope.updateTotalNoOfJobs = function(userID){
@@ -40,6 +40,7 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 				$scope.hired_for = totalHired;
 				$scope.menuLoader = false;
+				$scope.display="No-Error";
 			}
 		}
 		, function(error){
@@ -53,10 +54,12 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 	$scope.init = function(){
 
 		var user = Storage.getUserDetails();
-		
+		$scope.display="No-Error";
+
 		if(user.isLoggedIn){
 
 			$scope.menuLoader = true;
+			
 			$scope.display_name = user.displayName;
 
 			if(user.profileImgSrc === 'null') 
@@ -67,8 +70,13 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 			$scope.menuTitle = 'Do More';
 			$scope.logInOutMenu = false;
 			
-			
-			$scope.updateTotalNoOfJobs(user.userID);
+			if(Network.isOnline())
+				$scope.updateTotalNoOfJobs(user.userID);
+			else{
+				$scope.menuLoader = false;
+				$scope.display="Error";
+			}
+				
 			
 		}
 		else{
@@ -93,7 +101,8 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 		if(Network.isOnline()){
 			console.log('Online');
 			Storage.clear();
-		
+			
+			$ionicSideMenuDelegate.toggleLeft();
 			$scope.init();
 
 			//Event handler in singlejob.js

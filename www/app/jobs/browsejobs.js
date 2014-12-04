@@ -8,7 +8,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
 	$scope.title = "Browse Jobs";
 	$scope.controller = BrowseJobsItemController;
-	
+	$scope.display="No-Error";
 	
 	$scope.reSet = function(){
 
@@ -50,12 +50,14 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
 			$scope.openJobs = count;
 			$rootScope.jobs.openJobsCount = $scope.openJobs;
+			
 		},
 
 		function(error){
 
 			$scope.openJobsLoader = false;
-			$scope.openJobs = '-';
+			$scope.openJobs = '';
+			$scope.display="Error";
 		});
 	};
 
@@ -85,6 +87,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
 
 	$scope.onViewLoad = function(){
+		$scope.display="No-Error";
 		//On view load.
 		if($rootScope.jobs.allJobs.length == 0){ 
 
@@ -93,6 +96,9 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 
 			$scope.openJobsLoader = true;
 			$scope.getOpenJobs();
+
+			//Event handler in menu.js
+	    	$rootScope.$emit('refresh:menu:details', {});
 		}
 		else{
 
@@ -197,6 +203,10 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 			Toast.connectionError();
 	};
 
+	$scope.networkCheck = function(){
+
+		  return Network.isOnline();
+	};
 
 	var reloadBrowseJobsControllerEvent = $rootScope.$on('reload:browsejobs:controller', function(event, args) {
 		

@@ -37,24 +37,32 @@
 						<b class=" pull-center">Total number of Jobs</b>
 
 						<div>
-							<div class="row">
+							<div class="row" ng-switch="display">
 								<div class="col col-50">
 									<div class="col-demo"><p> Applied to <br>
-										<span ng-hide="menuLoader" class="number">{{applied_to}}</span></p>
+										<span ng-hide="menuLoader" ng-switch-when="No-Error" class="number">{{applied_to}}</span></p>
 									</div>
 
-									<div ng-show="menuLoader">
+									<div ng-show="menuLoader" ng-switch-when="No-Error">
 										<i class="icon ion-loading-c"></i>
 									</div>
+
+									
 								</div>
+
+								<div class="col col-10" ng-switch-when="Error">
+									<i class="icon ion-alert-circled" ng-click="init()"></i>
+								</div>
+
 								<div class="col col-50">
 									<div class="col-demo"><p>Hired for <br>
-										<span ng-hide="menuLoader" class="number">{{hired_for}}</span></p>
+										<span ng-hide="menuLoader" ng-switch-when="No-Error" class="number">{{hired_for}}</span></p>
 									</div>
 									
-									<div ng-show="menuLoader">
+									<div ng-show="menuLoader" ng-switch-when="No-Error">
 										<i class="icon ion-loading-c"></i>
 									</div>
+
 								</div>
 						 	</div>
 						</div>
@@ -92,7 +100,7 @@
 					<ion-item menu-close nav-clear ng-click="openBlogLink()">
 						Blog
 					</ion-item>
-					<ion-item menu-close nav-clear ng-hide="logInOutMenu" ng-click="onLogout()">
+					<ion-item . nav-clear ng-hide="logInOutMenu" ng-click="onLogout()">
 						Logout
 					</ion-item>
 					
