@@ -2,8 +2,8 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
 
 .controller('LoginController', ['$scope', '$rootScope', '$state', '$http'
-	, 'Storage', 'Toast', '$window'
-	, function($scope, $rootScope, $state, $http, Storage, Toast, $window) {
+	, 'Storage', 'Toast', '$window','$cordovaNetwork', '$timeout'
+	, function($scope, $rootScope, $state, $http, Storage, Toast, $window, $cordovaNetwork, $timeout) {
 
 	//Default
 	$scope.showLoader = false;
@@ -11,7 +11,7 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 	var user = Storage.getUserDetails();
 	$scope.username = user.userName;
 
-	$scope.onLoginClick = function(username, password){
+	$scope.onLoginAction = function(username, password){
 
 		if (!checkEmail(username))
 			Toast.invalidEmail();
@@ -27,6 +27,73 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 		}
 	};
 
+	var fbLoginSuccess = function (userData) {
+
+    	console.log('login response');
+    	console.log(JSON.stringify(userData));
+    	$scope.showLoader = true;
+    	$timeout(function() {
+    		facebookConnectPlugin.getAccessToken(function(token) {
+
+        	console.log(token);
+        	connectToServer(token);
+    		
+    		}, function(err) {
+        	   Toast.noAccessToken();
+    		   $scope.showLoader = false;
+    		});
+    	}, 500);
+
+	}
+
+	var connectToServer = function(token){
+
+		
+		
+		$http.get("http://www.minyawns.ajency.in/api/fblogin/token/"+token)
+
+		.then(function(resp, status, headers, config){
+
+			console.log("the server success response");
+			console.log(resp);
+			var data = resp.data;
+
+			var cookie = data.logged_in_cookie_key + '=' + data.logged_in_cookie_value;
+
+			Storage.setUserID(data.id);
+        	Storage.setUserName(data.user_login);
+        	Storage.setDisplayName(data.display_name);
+        	Storage.setLoginCookie(cookie);
+        	Storage.setProfileImageSrc(data.avatar_url)
+        	Storage.setLoginStatus('signed-in');
+        	$window.history.back();
+
+		},
+
+		function(error){
+			console.log("the server error response");
+			console.log(error);
+			$scope.showLoader = false;
+			Toast.responseError();
+		});
+	}
+
+	$scope.onFacebookButtonClick = function(){
+
+			if ($cordovaNetwork.isOnline()) {
+				
+				facebookConnectPlugin.login(["public_profile","email"],
+    				fbLoginSuccess,
+
+    				function (error) { 
+
+    				Toast.incorrectFbPassword();
+
+    			});
+			}
+			else Toast.connectionError(); 
+ 			
+	};
 
 	$scope.authenticate = function(username, password){
 	    

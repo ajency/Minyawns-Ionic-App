@@ -4,9 +4,10 @@
 		<div class="row">
 			<div class="col col-50"><h1>{{title}}</h1></div>
 			<div class="col total-job">&nbsp;</div>
-			<div class="col total-job">
-				<b ng-hide="openJobsLoader">{{openJobs}}</b>
-				<div ng-show="openJobsLoader"><i class="icon ion-loading-c"></i></div>
+			<div class="col total-job" ng-switch="display">
+				<b ng-hide="openJobsLoader" ng-switch-when="No-Error">{{openJobs}}</b>
+				<div ng-show="openJobsLoader" ng-switch-when="No-Error"><i class="icon ion-loading-c"></i></div>
+				<div ng-switch-when="Error"><i class="icon ion-alert-circled"></i></div>
 				Jobs Open
 			</div>
 		</div>

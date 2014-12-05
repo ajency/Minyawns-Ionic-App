@@ -34,9 +34,8 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 		$http.get($rootScope.GETURL+'fetchjobs?my_jobs=1&offset=0&filter_my=0&'+
 			'logged_in_user_id='+user.userID+'&all_jobs=1')
-
+		
 		.then(function(resp, status, headers, config){
-
 			$scope.openJobsLoader = false;
 
 			var count = 0;
