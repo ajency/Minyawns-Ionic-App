@@ -831,6 +831,7 @@ body .pane .has-header {
 }
 .single-job-apply .pic-upload img {
   width: 100%;
+  height: 100%;
 }
 .single-job-apply .helper-text {
   font-size: 0.9rem;
