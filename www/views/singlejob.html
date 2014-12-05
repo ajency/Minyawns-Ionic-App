@@ -148,8 +148,8 @@
 			</ion-list>
 
 
-			<ion-list>
-				<ion-item class="minyawn"
+			<ion-list class="row">
+				<ion-item class="minyawn col col-50"
 					ng-repeat="minion in applicants"
 					ng-controller="ApplicantController"
 					ng-init="minionLoader=true">
@@ -169,10 +169,10 @@
 								
 								<button class="button button-clear button-calm btn-icon"><i class="ion-social-linkedin"></i></button ng-click="openLinkedinLink(details.linkedin)">
 									
-								<h5 class="minyawn-name">{{details.name}}</h5>
+								<h6 class="minyawn-name">{{details.name}}</h6>
 								<h6>{{details.college}}</h6>
 								<h6>{{details.major}}</h6>
-								<h6 class="minyawn-name">{{details.user_email}}</h6>
+								<h6 >{{details.user_email}}</h6>
 
 								<div class="row rating">
 									<div class="col up">

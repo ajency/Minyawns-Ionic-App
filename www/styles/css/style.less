@@ -12,6 +12,7 @@ Version:        0.1.0
 
 /****Colors****/
 @green: #88D816;
+@dark-green: #5E8E26;
 @light-green: #A2FF1D;
 @grey: #B1B1B1;
 @dark-grey: #414141;
@@ -27,6 +28,11 @@ Version:        0.1.0
 .expired, .job-closed{
 	color:@red !important;
 }
+
+.menu-content{
+    box-shadow: none !important;
+}
+
 /****Clearfix****/
 .clearfix {
     *zoom: 1;
@@ -874,19 +880,25 @@ body {
 		border-bottom: 1px solid @grey;
 	}
 	.list {
-		margin-left: 10px;
+	   width: 100%;
 		display: inline-block;
 		.minyawn {
-			min-width: 43vw;
-			max-width: 43vw;
-			margin: 0.5rem 0.6rem 0.6rem 0rem;
+			-webkit-box-flex: 0;
+            -webkit-flex: 0 0 48%;
+            -moz-box-flex: 0;
+            -moz-flex: 0 0 48%;
+            -ms-flex: 0 0 48%;
+            flex: 0 0 48%;
+            max-width: 48%;
+            margin:3px 3px 5px 3px;
 			border: 0;
 			white-space: normal;
 			box-shadow: 3px 2px 5px #C2C2C2;
 			-moz-box-shadow:3px 2px 5px #C2C2C2;
 			-webkit-box-shadow: 3px 2px 5px #C2C2C2;
 			float:left;
-			height: 326px;
+            max-height: 300px;
+			
 			&:first-child {
 				
 			}
@@ -916,8 +928,8 @@ padding:15px;
 			}
 		}
 		.minyawn-name {
-			font-size: 1.0rem;
-			color: @green;
+			font-size: 0.8rem;
+			color: @dark-green;
 			margin: 0 0 0.5rem;
 			overflow:visible;
 			white-space: normal;
@@ -1172,4 +1184,10 @@ ul.marquee li a:hover {color:#FF0000;} /* link rollover color */
 	h5{
 		margin:0px;
 	}
+}
+
+.static-bottom{
+    .item:first-child {
+        border-top:0px !important;
+    }
 }
