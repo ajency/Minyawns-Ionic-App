@@ -15,7 +15,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$scope.minyawnsAppliedPresent = true;
 	$scope.applyLoader = false;
 	$scope.cameraIcon = false;
-
+       
 
 	function refreshSingleJobInBrowseJobs(job){
 
@@ -112,7 +112,10 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		var user = Storage.getUserDetails();
 		var status = JobStatus.get($rootScope.singleJobData);
-
+		console.log('Status');
+		console.log(status);
+		console.log('User');
+		console.log(user);
 		if(user.profileImgSrc === 'null') 
 			$rootScope.profileImage = 'img/click-pic.jpg';
 		else 
@@ -223,7 +226,11 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		if($rootScope.previousState === 'menu.singlejob'){
 			$scope.mainLoader = false;
-			$scope.populateSingleJobData($rootScope.singleJobData);
+
+			 $timeout(function() {
+            	$scope.populateSingleJobData($rootScope.singleJobData);
+            }, 500);
+			
 		}
 
 		else $scope.getSingleJobDetails();

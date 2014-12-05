@@ -15,15 +15,15 @@
 				    <input type="email" placeholder="Username" ng-model="username">
 				  </label>
 
-				  <div class="item item-input" ng-show="showPassword">
-				    <input type="text" placeholder="Password" ng-model="password">
+				  <div class="item item-input" ng-show="showPassword" >
+				    <input type="text" placeholder="Password" ng-model="password" focus-me="showPassword">
 				    <a class="padding-horizontal show-password" ng-click="showPassword=false">
 					    <i class="icon ion-eye show-password shown"></i>
 					</a>
 				  </div>
 
 				  <div class="item item-input" ng-hide="showPassword">
-				    <input type="password" placeholder="Password" ng-model="password">
+				    <input type="password" placeholder="Password" ng-model="password" focus-me="showPassword">
 				    <a class="padding-horizontal show-password" ng-click="showPassword=true">
 					    <i class="icon ion-eye show-password"></i>
 					</a>
