@@ -16,6 +16,9 @@ Version:        0.1.0
 .job-closed {
   color: #ff3333 !important;
 }
+.menu-content {
+  box-shadow: none !important;
+}
 /****Clearfix****/
 .clearfix {
   *zoom: 1;
@@ -862,20 +865,25 @@ body .pane .has-header {
   border-bottom: 1px solid #b1b1b1;
 }
 .minyawn-list .list {
-  margin-left: 10px;
+  width: 100%;
   display: inline-block;
 }
 .minyawn-list .list .minyawn {
-  min-width: 43vw;
-  max-width: 43vw;
-  margin: 0.5rem 0.6rem 0.6rem 0rem;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 48%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 48%;
+  -ms-flex: 0 0 48%;
+  flex: 0 0 48%;
+  max-width: 48%;
+  margin: 3px 3px 5px 3px;
   border: 0;
   white-space: normal;
   box-shadow: 3px 2px 5px #C2C2C2;
   -moz-box-shadow: 3px 2px 5px #C2C2C2;
   -webkit-box-shadow: 3px 2px 5px #C2C2C2;
   float: left;
-  height: 326px;
+  max-height: 300px;
 }
 .minyawn {
   padding: 15px;
@@ -898,8 +906,8 @@ body .pane .has-header {
   border: 1px solid #cbcbcb;
 }
 .minyawn .minyawn-view .minyawn-name {
-  font-size: 1.0rem;
-  color: #88d816;
+  font-size: 0.8rem;
+  color: #5e8e26;
   margin: 0 0 0.5rem;
   overflow: visible;
   white-space: normal;
@@ -1148,4 +1156,7 @@ ul.marquee li a:hover {
 }
 .error-minion h5 {
   margin: 0px;
+}
+.static-bottom .item:first-child {
+  border-top: 0px !important;
 }
