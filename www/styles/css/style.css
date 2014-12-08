@@ -235,6 +235,8 @@ body .pane .has-header {
   background: #6FB509;
 }
 .menu-left .log-view .profile-img {
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
   border-radius: 100%;
   top: auto;
   width: 90px;
@@ -242,6 +244,8 @@ body .pane .has-header {
   margin: 0.5rem auto 1rem;
 }
 .menu-left .log-view .profile-img img {
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
   border-radius: 100%;
   top: auto;
   width: 90px;
