@@ -9,6 +9,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 	
 	$scope.title = "My Jobs";
 	$scope.controller = MyJobsItemController;
+	$scope.display="No-Error";
 	$scope.tempJobs = [];
 
 	var user = Storage.getUserDetails();
@@ -58,7 +59,8 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		function(error){
 
 			$scope.openJobsLoader = false;
-			$scope.openJobs = '-';
+			$scope.openJobs = '';
+			$scope.display="Error";
 		});
 	};
 
@@ -89,6 +91,7 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 
 
 	$scope.onViewLoad = function(){
+		$scope.display="No-Error";
 		//On view load.
 		if($rootScope.myjobs.myJobsArray.length == 0){ 
 
