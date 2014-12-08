@@ -3,10 +3,10 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 .controller('SinglejobController', ['$scope', '$rootScope','$stateParams', '$http'
 	, '$ionicSideMenuDelegate', 'Storage', '$state', '$cordovaCamera', '_', '$ionicPopup'
-	, '$ionicLoading', 'Toast','$window' , '$cordovaFile', 'JobStatus', '$timeout'
+	, '$ionicLoading', 'Toast','$window' , '$cordovaFile', 'JobStatus', '$timeout', '$ionicScrollDelegate'
 	, function($scope, $rootScope, $stateParams, $http, $ionicSideMenuDelegate
 	, Storage, $state, $cordovaCamera, _, $ionicPopup, $ionicLoading, Toast, $window, $cordovaFile
-	, JobStatus, $timeout) {
+	, JobStatus, $timeout, $ionicScrollDelegate) {
 
 	
 	$rootScope.minionDetails = [];
@@ -15,6 +15,20 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$scope.minyawnsAppliedPresent = true;
 	$scope.applyLoader = false;
 	$scope.cameraIcon = false;
+        
+        
+    $scope.onViewScroll = function(){
+        
+        scrollTop = $ionicScrollDelegate.getScrollPosition().top
+        
+        if(scrollTop > 1){
+            $('.bar-subheader').addClass("sticky");
+        }
+        else{
+            $('.bar-subheader').removeClass("sticky");
+        }
+    };
+       
 
 	function refreshSingleJobInBrowseJobs(job){
 
@@ -325,7 +339,17 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			$state.go('login');
     };
 
-    
+    $scope.stickyMenu = function(){
+        console.log("Sticky footer");
+     $(window).scroll(function() {
+     if ($(this).scrollTop() > 1){  
+        $('.navheader').addClass("sticky");
+    }
+    else{
+        $('.navheader').removeClass("sticky");
+    }
+});
+    }
     
     $rootScope.$on('update:apply:section:details', function(event, args) {
 

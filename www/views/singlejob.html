@@ -1,6 +1,5 @@
-<ion-view title="<img src='./img/logo.png' height='30px'/>">
-
-	<div class="bar bar-subheader">
+<ion-view title="<img src='./img/logo.png' height='30px'/>" >
+	<div class="bar bar-subheader navheader">
 		<div class="row">
 			<div class="col col-100">
 				<h1 class="job-title">
@@ -8,20 +7,23 @@
 				<li><a>{{jobTitle}}</a></li>
 				</ul>
 				</h1>
-				<span>{{startDate}}</span>
+				<span class="time-log">{{startDate}}</span>
 			</div>
 		</div>
 
 		<span class="zoomIn badge badge-assertive" ng-click="onBackClick()"><i class="ion-reply"></i></span>
 	</div>
 
+<!--
 	<ion-content ng-show="mainLoader">
 		<div class="padding loader">
 			<i class="icon ion-loading-c" ></i>
 		</div>
 	</ion-content>
+-->
 
-	<ion-content scrollbar-y="false" ng-hide="mainContent">
+	<ion-content scrollbar-y="false" ng-hide="mainContent" on-scroll="onViewScroll()">
+
 
 		<div class="list list-inset single-card sm-padding">
 			<div class="item">

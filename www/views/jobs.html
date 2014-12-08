@@ -79,7 +79,7 @@
 
 					<div class="job-actions">
 
-                        <div class="row">
+                        <div class="row" ng-click="onSingleJobClick(job.post_id)">
 
                             <div class="col col-33" ng-switch="jobStatus"> 
                                 <div class="applied" ng-switch-when="Applied">
@@ -93,7 +93,7 @@
                             </div>
 
                             <div class="col col-67">
-                                <div id="draggableContainer" ng-click="onSingleJobClick(job.post_id)">
+                                <div id="draggableContainer" >
                                     <i class="ion-ios7-download-outline appicant-job"></i>
                                     
                                     <div ng-class="(applicationStatus==='Applications Open')? 'apply-button apply' : 'expired job-closed apply-button'">{{applicationStatus}}</div>
