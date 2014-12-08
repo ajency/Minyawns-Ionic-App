@@ -15,7 +15,6 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 	$scope.minyawnsAppliedPresent = true;
 	$scope.applyLoader = false;
 	$scope.cameraIcon = false;
-       
 
 	function refreshSingleJobInBrowseJobs(job){
 
@@ -326,7 +325,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 			$state.go('login');
     };
 
-
+    
     
     $rootScope.$on('update:apply:section:details', function(event, args) {
 
