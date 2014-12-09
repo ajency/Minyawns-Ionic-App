@@ -180,7 +180,7 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
     
 
 	$scope.onPullToRefresh = function(){
-
+		
 		$scope.reSet();
 		$scope.resetRootScope();
 		$scope.fetchJobs();

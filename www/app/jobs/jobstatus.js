@@ -84,7 +84,7 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
 
 
                         } else { //Selection Done  
-
+                           
                             jobStatusDetails.validity = 'Available'; //Show green if somebody is hired
 
                             var numOfHired = 0;
@@ -102,7 +102,8 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
 
                                     var index = model.applied_user_id.indexOf(user.userID);
                                     var userstatus = model.user_to_job_status[index];
-
+                                    
+                                    console.log(userstatus);
                                     if (userstatus == 'hired') {
 
 
@@ -134,11 +135,37 @@ angular.module('minyawns.jobstatus', ['minyawns.storage'])
                         jobStatusDetails.validity = 'Closed';
                         jobStatusDetails.applicationStatus = 'Job Expired';
 
-                        if (model.individual_user_to_job_status=='Hired')
-                            jobStatusDetails.jobStatus = "Hired";
+                        if (user.isLoggedIn) {
 
-                        else if (model.individual_user_to_job_status=='Applied')
-                            jobStatusDetails.jobStatus = "Applied";;
+                                if (model.applied_user_id.indexOf(user.userID) != -1) { // applied
+
+                                    var index = model.applied_user_id.indexOf(user.userID);
+                                    var userstatus = model.user_to_job_status[index];
+                                    
+                                    if (userstatus == 'hired') {
+
+                                        jobStatusDetails.jobStatus = "Hired";
+                                    } else {
+                                        // jobStatusDetails.jobStatus = "Application closed";
+                                        jobStatusDetails.jobStatus = "Applied";
+                                    }
+
+                                } else {
+                                    // jobStatusDetails.jobStatus = numOfHired + "Minions have been selected";
+                                    jobStatusDetails.jobStatus = "Not Applied";
+                                }
+
+
+                            } else {
+                                // jobStatusDetails.jobStatus = "Application closed";
+                                jobStatusDetails.jobStatus = "Not Applied";
+                            }
+
+                        // if (model.individual_user_to_job_status=='Hired')
+                        //     jobStatusDetails.jobStatus = "Hired";
+
+                        // else if (model.individual_user_to_job_status=='Applied')
+                        //     jobStatusDetails.jobStatus = "Applied";
                         
                         break;
 

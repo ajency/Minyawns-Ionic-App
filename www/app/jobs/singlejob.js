@@ -125,10 +125,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 		var user = Storage.getUserDetails();
 		var status = JobStatus.get($rootScope.singleJobData);
-		console.log('Status');
-		console.log(status);
-		console.log('User');
-		console.log(user);
+		
 		if(user.profileImgSrc === 'null') 
 			$rootScope.profileImage = 'img/click-pic.jpg';
 		else 

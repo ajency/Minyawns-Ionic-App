@@ -46,13 +46,14 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 		, function(error){
 
 			console.log('updateHiredAndAppliedCount Error');
+			$scope.display="Error";
 		});
 
 	};
 	
 	
 	$scope.init = function(){
-
+		console.log('init called');
 		var user = Storage.getUserDetails();
 		$scope.display="No-Error";
 
@@ -102,6 +103,9 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 			console.log('Online');
 			Storage.clear();
 			
+			//reset my jobs on logout
+			$rootScope.myjobs = { offset: 0, myJobsArray: [] , changed: false, openJobsCount: 0};
+
 			$ionicSideMenuDelegate.toggleLeft();
 			$scope.init();
 

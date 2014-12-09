@@ -62,14 +62,6 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 		controller: 'StarterController'
 	})
 
-
-	//Login
-	.state('login', {
-		url: "/login",
-		templateUrl: 'views/login.html',
-		controller: 'LoginController'
-	})
-
 	
 	//Menu
 	.state('menu', {

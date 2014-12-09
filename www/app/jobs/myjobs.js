@@ -79,10 +79,12 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 			.then(function(resp, status, headers, config){
 
 				$scope.onSuccessResponse(resp.data);
+				console.log('My jobs response');
+				console.log(resp.data);
 			},
 
 			function(error){
-
+				
 				$scope.onErrorResponse(error);
 			});
 		}
@@ -100,6 +102,9 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 			
 			$scope.openJobsLoader = true;
 			$scope.getOpenJobs();
+
+			//Event handler in menu.js
+	    	$rootScope.$emit('refresh:menu:details', {});
 		}
 		else{
 
@@ -295,8 +300,9 @@ var MyJobsItemController = function($scope, JobStatus){
     $scope.applicationStatus = status.applicationStatus;
 
     $scope.jobStatus = status.jobStatus;
-    
-
+    console.log('Job status');
+    console.log($scope.job);
+    console.log($scope.jobStatus);
    	$scope.toggleAccordian = function(){
          if ($scope.accordianToggle) {
            $scope.accordianToggle = false;
