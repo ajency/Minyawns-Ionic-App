@@ -388,46 +388,46 @@ body .pane .has-header {
   display: inline-block;
   text-align: center;
   font-size: 0.7rem;
-  text-transform: uppercase;
   color: #868080;
   margin-right: 5px;
 }
 .job-list .job .single-job-apply .applied span {
   display: block;
-  width: 30px;
-  height: 30px;
-  background: url('../../img/sprite.png') -1px 0px no-repeat;
+  width: 24px;
+  height: 27px;
+  background: url('../../img/sprite.png') -1px 4px no-repeat;
   margin: auto;
+  background-size: 75px;
 }
 .job-list .job .single-job-apply .hired {
   display: inline-block;
   text-align: center;
   font-size: 0.7rem;
-  text-transform: uppercase;
   color: #868080;
   margin-right: 5px;
 }
 .job-list .job .single-job-apply .hired span {
   display: block;
-  width: 30px;
-  height: 30px;
-  background: url('../../img/sprite.png') -36px 0px no-repeat;
+  width: 24px;
+  height: 27px;
+  background: url('../../img/sprite.png') -36px 4px no-repeat;
   margin: auto;
+  background-size: 75px;
 }
 .job-list .job .single-job-apply .not-applied {
   display: inline-block;
   text-align: center;
   font-size: 0.7rem;
-  text-transform: uppercase;
   color: #868080;
   margin-right: 5px;
 }
 .job-list .job .single-job-apply .not-applied span {
   display: block;
-  width: 30px;
-  height: 30px;
-  background: url('../../img/sprite.png') -69px 0px no-repeat;
+  width: 24px;
+  height: 27px;
+  background: url('../../img/sprite.png') -69px 4px no-repeat;
   margin: auto;
+  background-size: 75px;
 }
 .job-list .job .single-job-apply i {
   font-size: 20px;
@@ -512,16 +512,16 @@ body .pane .has-header {
   float: left;
   text-align: center;
   font-size: 0.8rem;
-  text-transform: uppercase;
   color: #868080;
   margin-right: 5px;
 }
 .job-list .job .job-actions .applied span {
   display: inline-block;
   float: left;
-  width: 30px;
-  height: 30px;
-  background: url('../../img/sprite.png') -1px 0px no-repeat;
+  width: 24px;
+  height: 27px;
+  background: url('../../img/sprite.png') -1px 4px no-repeat;
+  background-size: 75px;
   margin: auto;
 }
 .job-list .job .job-actions .applied b {
@@ -533,17 +533,17 @@ body .pane .has-header {
   float: left;
   text-align: center;
   font-size: 0.8rem;
-  text-transform: uppercase;
   color: #868080;
   margin-right: 5px;
 }
 .job-list .job .job-actions .hired span {
   display: block;
   float: left;
-  width: 30px;
-  height: 30px;
-  background: url('../../img/sprite.png') -36px 0px no-repeat;
+  width: 24px;
+  height: 27px;
+  background: url('../../img/sprite.png') -36px 4px no-repeat;
   margin: auto;
+  background-size: 75px;
 }
 .job-list .job .job-actions .hired b {
   line-height: 2.5em;
@@ -552,17 +552,17 @@ body .pane .has-header {
 .job-list .job .job-actions .not-applied {
   display: inline-block;
   text-align: center;
-  font-size: 0.7rem;
-  text-transform: uppercase;
+  font-size: 0.8rem;
   color: #868080;
   margin-right: 5px;
 }
 .job-list .job .job-actions .not-applied span {
   display: block;
-  width: 30px;
-  height: 30px;
-  background: url('../../img/sprite.png') -69px 0px no-repeat;
+  width: 24px;
+  height: 27px;
+  background: url('../../img/sprite.png') -69px 4px no-repeat;
   margin: auto;
+  background-size: 75px;
 }
 .job-list .job .job-actions .apply {
   color: #60A70D;
@@ -836,9 +836,9 @@ body .pane .has-header {
   height: 100%;
 }
 .single-job-apply .helper-text {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin-right: 20px;
-  padding: 17px 10px;
+  padding: 15px 10px;
   color: #649B69;
 }
 .single-job-apply .apply-job .overlay {
@@ -1189,4 +1189,12 @@ ul.marquee li a:hover {
 }
 .navheader.sticky .time-log {
   display: none;
+}
+.app-close img {
+  -webkit-filter: grayscale(1);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  filter: gray;
+  filter: grayscale(100%);
+  filter: url(desaturate.svg#greyscale);
 }
