@@ -84,6 +84,15 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 		});
 	};
 
+	$scope.checkFocus = function (username){
+		
+		if (username === ''){
+			console.log('model is null');
+			$('#usernameField').focus();
+		}
+		
+	};
+
 	function checkEmail(emailAddress) {
 		var str = emailAddress;
 		var filter = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;

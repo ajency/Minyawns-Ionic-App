@@ -33,7 +33,7 @@
 				
 			</div>
 
-			<div ng-hide="logInOutMenu">
+			<div ng-if="!logInOutMenu">
 				<div  class="details pull-center">
 					<br>
 					<b class=" pull-center">Total number of Jobs</b>
@@ -94,7 +94,7 @@
 				</div>
 			</div>
 				
-			<div ng-show="logInOutMenu">
+			<div ng-if="logInOutMenu">
 			
 				<div class="details pull-center">
 					<p class="p-20">Sadly, you are missing out on a lot of action! To apply to Jobs, update your profile and do a lot more you will need to 

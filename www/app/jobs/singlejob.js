@@ -20,7 +20,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
     $scope.onViewScroll = function(){
         
         scrollTop = $ionicScrollDelegate.getScrollPosition().top
-        
+        console.log('Scrol value');
+        console.log(scrollTop);
         if(scrollTop > 1){
             $('.bar-subheader').addClass("sticky");
         }

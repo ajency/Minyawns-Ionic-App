@@ -101,8 +101,8 @@
 							</div>
 						</div>
 
-						<div class="col col-20" ng-show="cameraIcon">
-							<div class="pic-upload" ng-click="takePicture()" on-hold="onIconHold()">
+						<div class="col col-20" ng-show="cameraIcon" >
+							<div class="pic-upload" ng-click="takePicture()" on-hold="onIconHold()" ng-class="(helperText==='Applications Closed! Maximum number of minions have applied.') ? 'app-close' : '' ">
 								<div class="overlay"></div>
 								<img ng-src="{{profileImage}}"/>
 							</div>

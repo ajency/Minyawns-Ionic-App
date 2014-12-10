@@ -12,7 +12,7 @@
 		    	<div class="list list-inset" ng-init="showPassword=false">
 
 				  <label class="item item-input">
-				    <input type="email" placeholder="Username" ng-model="username">
+				    <input id="usernameField" type="email" placeholder="Username" ng-model="username" ng-init="checkFocus(username)">
 				  </label>
 
 				  <div class="item item-input" ng-show="showPassword" >
