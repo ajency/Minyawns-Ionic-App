@@ -2,12 +2,12 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
 
 .controller('LoginController', ['$scope', '$rootScope', '$state', '$http'
-	, 'Storage', 'Toast', '$window','$cordovaNetwork', '$timeout'
-	, function($scope, $rootScope, $state, $http, Storage, Toast, $window, $cordovaNetwork, $timeout) {
+	, 'Storage', 'Toast', '$window','$cordovaNetwork', '$timeout' , '$cordovaKeyboard'
+	, function($scope, $rootScope, $state, $http, Storage, Toast, $window, $cordovaNetwork, $timeout, $cordovaKeyboard) {
 
 	//Default
 	$scope.showLoader = false;
-
+	$scope.iType = 'password';
 	var user = Storage.getUserDetails();
 	$scope.username = user.userName;
 
@@ -47,7 +47,8 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 	    .then(function(resp, status, headers, config){
 
 	    	var data = resp.data;
-
+	    	console.log('response');
+	    	console.log(resp.data);
 			if(data.status){
 
 				//clear users 'MY JOBS' if present
@@ -84,14 +85,27 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 		});
 	};
 
-	$scope.checkFocus = function (username){
-		
-		if (username === ''){
-			console.log('model is null');
-			$('#usernameField').focus();
-		}
-		
-	};
+
+
+	// $scope.toggleInput = function(){
+	// 	console.log("toggle called");
+
+	// 	if ($scope.iType=== 'password') {
+	// 		$scope.iType = 'text';
+	// 		$("#passwordField").focus();
+	// 		$scope.setFocus= true;
+			
+	// 	}
+			
+	// 	else{
+	// 		$scope.iType = 'password';
+	// 		$("#passwordField").focus();
+	// 	}
+			
+	// 	// $('[placeholder="Password"]').attr('type', 'text')  
+	// 	// $('[placeholder="Password"]').attr('type', 'text')  
+	// }
+	
 
 	function checkEmail(emailAddress) {
 		var str = emailAddress;

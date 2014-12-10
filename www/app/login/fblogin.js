@@ -61,7 +61,10 @@ angular.module('minyawns.login')
 
     				function (error) { 
     				console.log(error);
-    				// $state.go('login');
+    				if (error.errorMessage === "User cancelled dialog") {
+    					$state.go('login');
+    				};
+    				
 
     			});
 	};
