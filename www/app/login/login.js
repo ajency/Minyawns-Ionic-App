@@ -87,7 +87,11 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
 		});
 	};
-
+	$scope.forceFocus= function(){
+		console.log('show Keyboard');
+		if (!cordova.plugins.Keyboard.isVisible)
+		cordova.plugins.Keyboard.show();
+	}
 
 
 	// $scope.toggleInput = function(){

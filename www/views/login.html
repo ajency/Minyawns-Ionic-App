@@ -20,14 +20,14 @@
 
 				  <div class="item item-input" ng-show="showPassword">
 				    <input type= "text" placeholder="Password" ng-model="password"  >
-				    <a class="padding-horizontal show-password" ng-click="showPassword=false" >
+				    <a class="padding-horizontal show-password" ng-click="showPassword=false;forceFocus()" >
 					    <i  class="icon ion-eye show-password shown"></i>
 					</a>
 				  </div>
 
 				  <div class="item item-input" ng-hide="showPassword">
 				    <input type="password" placeholder="Password" ng-model="password"  >
-				    <a class="padding-horizontal show-password" ng-click="showPassword=true">
+				    <a class="padding-horizontal show-password" ng-click="showPassword=true;forceFocus()">
 					    <i class="icon ion-eye show-password"></i>
 					</a>
 				  </div>

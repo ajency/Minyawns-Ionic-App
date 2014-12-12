@@ -9,10 +9,6 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"Keyboard\"><param name=\"ios-package\" onload=\"true\" value=\"IonicKeyboard\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
                             "count": 1
                         },
@@ -74,6 +70,10 @@
                         },
                         {
                             "xml": "<access origin=\"https://*.akamaihd.net\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Keyboard\"><param name=\"ios-package\" onload=\"true\" value=\"IonicKeyboard\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -174,9 +174,6 @@
         }
     },
     "installed_plugins": {
-        "com.ionic.keyboard": {
-            "PACKAGE_NAME": "com.ajency.in.minyawns"
-        },
         "org.apache.cordova.console": {
             "PACKAGE_NAME": "com.ajency.in.minyawns"
         },
@@ -201,6 +198,9 @@
         "com.phonegap.plugins.facebookconnect": {
             "APP_ID": "1440271799581640",
             "APP_NAME": "“Minyawns”",
+            "PACKAGE_NAME": "com.ajency.in.minyawns"
+        },
+        "com.ionic.keyboard": {
             "PACKAGE_NAME": "com.ajency.in.minyawns"
         }
     },
