@@ -146,7 +146,6 @@ body .pane .has-header {
   border-color: transparent;
 }
 .login-view h1,
-.login-view h2,
 .login-view h3,
 .login-view h4,
 .login-view h5,
@@ -1217,4 +1216,11 @@ ul.marquee li a:hover {
   filter: gray;
   filter: grayscale(100%);
   filter: url(desaturate.svg#greyscale);
+}
+.fb-login {
+  padding-top: 20%;
+}
+.fb-login h2 {
+  font-size: 2rem !important;
+  color: #ffffff;
 }
