@@ -48,6 +48,8 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
 	    	var data = resp.data;
 	    	console.log('response');
+	    	console.log(username);
+	    	console.log(password);
 	    	console.log(resp.data);
 			if(data.status){
 
@@ -62,7 +64,8 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
             	Storage.setLoginCookie(cookie);
             	Storage.setProfileImageSrc(data.avatar_url)
             	Storage.setLoginStatus('signed-in');
-            	$window.history.back();
+            	// $window.history.back();
+            	$state.go('menu.browsejobs');
             }
             else{
 
