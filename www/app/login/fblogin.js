@@ -60,10 +60,11 @@ angular.module('minyawns.login')
     				fbLoginSuccess,
 
     				function (error) { 
+    				console.log('The error');	
     				console.log(error);
-    				if (error.errorMessage === "User cancelled dialog") {
-    					$state.go('login');
-    				};
+    				Storage.clear();
+    				$state.go('login');
+    				
     				
 
     			});
