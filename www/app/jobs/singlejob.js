@@ -146,7 +146,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 				$scope.cameraIcon = true;
 
 				if(status.jobStatus === "Applied")
-					$scope.helperText = "You have applied.";
+					$scope.helperText = "You have applied. Please tap and hold the photo to un-apply.";
 
 				else if (status.jobStatus === "Hired")
 					$scope.helperText = "You have been hired.";

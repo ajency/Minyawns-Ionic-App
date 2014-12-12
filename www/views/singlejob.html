@@ -4,7 +4,7 @@
 			<div class="col col-100">
 				<h1 class="job-title">
 				<ul id="ticker01">
-				<li><a>{{jobTitle}}</a></li>
+				<li ><a>{{jobTitle}}</a></li>
 				</ul>
 				</h1>
 				<span class="time-log">{{startDate}}</span>
@@ -102,7 +102,7 @@
 						</div>
 
 						<div class="col col-20" ng-show="cameraIcon" >
-							<div class="pic-upload" ng-click="takePicture()" on-hold="onIconHold()" ng-class="(helperText ==='Applications Closed! Maximum number of minions have applied.') ?'app-close': (helperText === 'You have applied.') ?'app-close': (helperText === 'You have been hired.') ?'app-close' :(helperText === 'Job Date is Over.') ?'app-close':'' ">
+							<div class="pic-upload" ng-click="takePicture()" on-hold="onIconHold()" ng-class="(helperText ==='Applications Closed! Maximum number of minions have applied.') ?'app-close': (helperText === 'You have been hired.') ?'app-close' :(helperText === 'Job Date is Over.') ?'app-close':'' ">
 								<div class="overlay"></div>
 								<img ng-src="{{profileImage}}"/>
 							</div>
