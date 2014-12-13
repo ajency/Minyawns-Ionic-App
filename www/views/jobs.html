@@ -1,6 +1,6 @@
 <ion-view title="<img src='./img/logo.png' height='30px'/>">
 
-	<div class="bar bar-subheader">
+	<div class="bar bar-subheader navheader">
 		<div class="row">
 			<div class="col col-50"><h1>{{title}}</h1></div>
 			<div class="col total-job">&nbsp;</div>
@@ -13,7 +13,7 @@
 		</div>
 	</div>
 
-	<ion-content ng-init="requestPending=false">
+	<ion-content ng-init="requestPending=false" scrollbar-y="false"  delegate-handle="mainScroll" on-scroll="onViewScroll()">
 
 		<ion-refresher 
 			ng-init="showRefresher=false" 

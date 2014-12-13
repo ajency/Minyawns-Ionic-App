@@ -2,9 +2,9 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 	, 'minyawns.jobstatus'])
 
 .controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate', '_', 'JobStatus'
+	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate', '_', '$ionicScrollDelegate', 'JobStatus'
 	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network
-	, Toast, $ionicSideMenuDelegate, _, JobStatus){
+	, Toast, $ionicSideMenuDelegate, _, $ionicScrollDelegate, JobStatus){
 
 	$scope.title = "Browse Jobs";
 	$scope.controller = BrowseJobsItemController;
@@ -18,13 +18,26 @@ angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns
 		$scope.openJobsLoader = false;
 	};
 
-	
+	    $scope.onViewScroll = function(){
+    	  
+        scrollTop = $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top
+        
+        if(scrollTop > 1){
+            $('.bar-subheader').addClass("sticky");
+        }
+        else{
+            $('.bar-subheader').removeClass("sticky");
+        }
+    };
+        
 	$scope.resetRootScope = function(){
 
 		$rootScope.jobs = { offset: 0, allJobs: [], openJobsCount: 0};
 	};
 
+       
 
+       
 	$scope.getOpenJobs = function(){
 
 		$scope.openJobsLoader = true;

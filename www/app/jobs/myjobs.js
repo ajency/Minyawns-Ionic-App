@@ -2,9 +2,9 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 	, 'minyawns.jobstatus'])
 
 .controller('MyJobsController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate','Storage', '_', 'JobStatus'
+	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate','Storage', '_', 'JobStatus', '$ionicScrollDelegate'
 	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network
-	, Toast, $ionicSideMenuDelegate, Storage, _, JobStatus){
+	, Toast, $ionicSideMenuDelegate, Storage, _, JobStatus,$ionicScrollDelegate){
 
 	
 	$scope.title = "My Jobs";
@@ -28,7 +28,19 @@ angular.module('minyawns.myjobs', ['minyawns.storage','minyawns.network', 'minya
 		$rootScope.myjobs = { offset: 0, myJobsArray: [] , changed: false, openJobsCount: 0};
 	};
 
-
+       
+    $scope.onViewScroll = function(){
+    	  
+        scrollTop = $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top
+        
+        if(scrollTop > 1){
+            $('.bar-subheader').addClass("sticky");
+        }
+        else{
+            $('.bar-subheader').removeClass("sticky");
+        }
+    };
+       
 	$scope.getOpenJobs = function(){
 
 		$scope.openJobsLoader = true;

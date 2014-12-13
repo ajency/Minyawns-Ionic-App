@@ -646,13 +646,13 @@ body .pane .has-header {
   background: transparent;
 }
 .single-job-card {
-  margin: 140px 10px 0px;
+  margin: 120px 10px 0px;
   /*border-left: 2px solid @green;
 	border:1px solid rgba(184, 184, 184, 0.51);*/
 }
 /**** Scroll Refresher Styles ****/
 .scroll-refresher {
-  top: -70px;
+  top: -90px;
 }
 /**** Loader Styles ****/
 .loader {
@@ -669,7 +669,7 @@ body .pane .has-header {
   background-color: rgba(255, 255, 255, 0);
   box-shadow: none;
   border: 0px;
-  margin: 140px 10px 0px;
+  margin: 100px 10px 0px;
 }
 .single-card .item {
   white-space: normal;
@@ -1206,6 +1206,7 @@ ul.marquee li a:hover {
   margin-bottom: 0px;
   font-size: 1rem !important;
   line-height: 30px;
+  margin-top: 4px;
 }
 .navheader.sticky .time-log {
   display: none;
@@ -1224,4 +1225,14 @@ ul.marquee li a:hover {
 .fb-login h2 {
   font-size: 2rem !important;
   color: #ffffff;
+}
+.sticky .total-job {
+  margin-top: 6px !important;
+  line-height: 25px!important;
+}
+.sticky .total-job b {
+  float: left!important;
+}
+.sticky .single-job-card {
+  margin: 90px 10px 0px;
 }
