@@ -41,8 +41,8 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
 	$scope.authenticate = function(username, password){
 	    
-	    $http.get('http://www.minyawns.ajency.in/api/login/username/'+username
-	    	+'/password/'+password)
+	    $http.get('http://www.minyawns.ajency.in/api/authenticate/?username='+username
+	    	+'&password='+password)
 
 	    .then(function(resp, status, headers, config){
 
@@ -50,7 +50,7 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 	    	console.log('response');
 	    	console.log(username);
 	    	console.log(password);
-	    	console.log(resp.data);
+	    	console.log(resp);
 			if(data.status){
 
 				//clear users 'MY JOBS' if present
@@ -87,10 +87,14 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
 		});
 	};
+
 	$scope.forceFocus= function(){
-		console.log('show Keyboard');
-		if (!cordova.plugins.Keyboard.isVisible)
-		cordova.plugins.Keyboard.show();
+		console.log('In focus');
+		if (!cordova.plugins.Keyboard.isVisible){
+			console.log('visible Keyboard');
+			cordova.plugins.Keyboard.show();
+		}
+		
 	}
 
 

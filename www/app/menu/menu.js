@@ -51,7 +51,37 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 	};
 	
+	var menuState = function(){
+		console.log('In menu state');
+		Storage.clear();
+			
+		//reset my jobs on logout
+		$rootScope.myjobs = { offset: 0, myJobsArray: [] , changed: false, openJobsCount: 0};
+
+		$ionicSideMenuDelegate.toggleLeft();
+		$scope.init();
+
+		//Event handler in singlejob.js
+		$rootScope.$emit('update:apply:section:details', {});
 	
+		//Event handler in browsejobs.js
+		$rootScope.$emit('reload:browsejobs:controller', {});
+		
+		//Event handler in myjobs.js
+		$rootScope.$emit('go:to:browsejobs:from:myjobs', {});
+	};
+
+	var facebookLogoutSuccess = function(){
+		$rootScope.loggedInFacebook = false;
+		menuState();	
+	};
+
+	var facebookLogoutFailure = function(){
+		Toast.responseError();	
+	};	
+	
+
+
 	$scope.init = function(){
 		console.log('init called');
 		var user = Storage.getUserDetails();
@@ -101,22 +131,14 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 		if(Network.isOnline()){
 			console.log('Online');
-			Storage.clear();
-			
-			//reset my jobs on logout
-			$rootScope.myjobs = { offset: 0, myJobsArray: [] , changed: false, openJobsCount: 0};
 
-			$ionicSideMenuDelegate.toggleLeft();
-			$scope.init();
-
-			//Event handler in singlejob.js
-			$rootScope.$emit('update:apply:section:details', {});
-		
-			//Event handler in browsejobs.js
-			$rootScope.$emit('reload:browsejobs:controller', {});
+			if ($rootScope.loggedInFacebook)  //Check if logged in through facebook
+				facebookConnectPlugin.logout(facebookLogoutSuccess, facebookLogoutFailure)
+			else
+				menuState();
 			
-			//Event handler in myjobs.js
-			$rootScope.$emit('go:to:browsejobs:from:myjobs', {});
+
+			
 		}
 		else
 			Toast.connectionError();

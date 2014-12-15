@@ -12,6 +12,7 @@ angular.module('minyawns.login')
 
 			console.log("the server success response");
 			console.log(resp);
+			$rootScope.loggedInFacebook = true;
 			var data = resp.data;
 
 			var cookie = data.logged_in_cookie_key + '=' + data.logged_in_cookie_value;

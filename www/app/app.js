@@ -11,7 +11,8 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 
 	$rootScope.jobs = { offset: 0, allJobs: [] };
     $rootScope.myjobs = { offset: 0, myJobsArray: [] };
-	
+	$rootScope.loggedInFacebook = false;
+
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
