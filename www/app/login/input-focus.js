@@ -22,9 +22,9 @@ angular.module('minyawns.login')
         angular.element(element).attr('type', 'text')
       }
       
-      console.log(model.test);
-      console.log(model.testTwo);
-      scope.$watch(, myMethod ,true);
+      // console.log(model.test);
+      // console.log(model.testTwo);
+      // scope.$watch(, myMethod ,true);
       scope.$watch(model.testTwo, myMethod,true);
       // scope.$watch(model, function(value) {
       //   console.log('value=',value);

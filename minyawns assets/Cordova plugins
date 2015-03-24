@@ -6,3 +6,6 @@ org.apache.cordova.file-transfer
 org.apache.cordova.device
 org.apache.cordova.network-information
 org.apache.cordova.splashscreen
+
+Facebook Plugin
+cordova -d plugin add https://github.com/Wizcorp/phonegap-facebook-plugin/ --variable APP_ID="1578825815706920" --variable APP_NAME="Minyawns"
