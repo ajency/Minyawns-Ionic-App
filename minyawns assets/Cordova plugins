@@ -7,5 +7,10 @@ org.apache.cordova.device
 org.apache.cordova.network-information
 org.apache.cordova.splashscreen
 
-Facebook Plugin
+#Facebook Plugin
 cordova -d plugin add https://github.com/Wizcorp/phonegap-facebook-plugin/ --variable APP_ID="1578825815706920" --variable APP_NAME="Minyawns"
+
+#Android development hash key for Facebook
+keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
+
+Password: android
