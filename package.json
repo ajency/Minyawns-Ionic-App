@@ -22,6 +22,11 @@
     "org.apache.cordova.file-transfer",
     "org.apache.cordova.device",
     "org.apache.cordova.network-information",
-    "org.apache.cordova.splashscreen"
-  ]
+    "org.apache.cordova.splashscreen",
+    {
+      "id": "com.parse.cordova.core.pushplugin",
+      "locator": "/Users/deepak/Documents/Parse/phonegap-parse-plugin-master"
+    }
+  ],
+  "cordovaPlatforms": []
 }
