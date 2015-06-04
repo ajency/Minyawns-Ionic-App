@@ -25,7 +25,7 @@
     "org.apache.cordova.splashscreen",
     {
       "id": "com.parse.cordova.core.pushplugin",
-      "locator": "/Users/deepak/Documents/Parse/phonegap-parse-plugin-master"
+      "locator": "/Users/deepak/Desktop/com.parse.cordova.core.pushplugin"
     }
   ],
   "cordovaPlatforms": []
