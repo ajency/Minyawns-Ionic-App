@@ -6,8 +6,12 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 .run(function($ionicPlatform, $rootScope, $timeout, $cordovaSplashscreen, $window) {
 
 	//Initialize $rootScope variables
-	$rootScope.AJAXURL = "http://www.minyawns.ajency.in/wp-admin/admin-ajax.php";
-	$rootScope.GETURL = "http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/";
+	// $rootScope.AJAXURL = "http://www.minyawns.ajency.in/wp-admin/admin-ajax.php";
+	// $rootScope.GETURL = "http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/";
+
+	$rootScope.AJAXURL = "http://www.minyawns.com/wp-admin/admin-ajax.php";
+	$rootScope.GETURL  = "http://www.minyawns.com/wp-content/themes/minyawns/libs/job.php/";
+	$rootScope.SITEURL = "http://www.minyawns.com";
 
 	$rootScope.jobs = { offset: 0, allJobs: [] };
     $rootScope.myjobs = { offset: 0, myJobsArray: [] };

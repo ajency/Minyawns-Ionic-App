@@ -24,9 +24,22 @@
     "org.apache.cordova.network-information",
     "org.apache.cordova.splashscreen",
     {
+      "locator": "https://github.com/Paldom/SpinnerDialog.git",
+      "id": "hu.dpal.phonegap.plugins.SpinnerDialog"
+    },
+    "cordova-plugin-camera",
+    "cordova-plugin-device",
+    "cordova-plugin-file",
+    "cordova-plugin-file-transfer",
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-network-information",
+    "cordova-plugin-splashscreen",
+    {
       "id": "com.parse.cordova.core.pushplugin",
       "locator": "/Users/deepak/Desktop/com.parse.cordova.core.pushplugin"
     }
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "ios"
+  ]
 }

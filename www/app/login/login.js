@@ -2,8 +2,9 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
 
 .controller('LoginController', ['$scope', '$rootScope', '$state', '$http'
-	, 'Storage', 'Toast', '$window','$cordovaNetwork', '$timeout' , '$cordovaKeyboard'
-	, function($scope, $rootScope, $state, $http, Storage, Toast, $window, $cordovaNetwork, $timeout, $cordovaKeyboard) {
+	, 'Storage', 'Toast', '$window','$cordovaNetwork', '$timeout' , '$cordovaKeyboard', 'ParseCloud'
+	, function($scope, $rootScope, $state, $http, Storage, Toast, $window, $cordovaNetwork, $timeout
+	, $cordovaKeyboard, ParseCloud) {
 
 	//Default
 	$scope.showLoader = false;
@@ -27,21 +28,16 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 		}
 	};
 
-	
-
 	$scope.onFacebookButtonClick = function(){
 
-			if ($cordovaNetwork.isOnline()) {
-				$state.go('fblogin');
-				
-			}
-			else Toast.connectionError(); 
- 			
+		if ($cordovaNetwork.isOnline())
+			$state.go('fblogin');
+		else Toast.connectionError();
 	};
 
 	$scope.authenticate = function(username, password){
 	    
-	    $http.get('http://www.minyawns.ajency.in/api/authenticate/?username='+username
+	    $http.get($rootScope.SITEURL+'/api/authenticate/?username='+username
 	    	+'&password='+password)
 
 	    .then(function(resp, status, headers, config){
@@ -53,26 +49,30 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 	    	console.log(resp);
 			if(data.status){
 
-				//clear users 'MY JOBS' if present
-				$rootScope.myjobs = { offset: 0, myJobsArray: [] };
+				ParseCloud.register({userID: data.id, userName: data.user_login})
+				.then(function(){
+					//clear users 'MY JOBS' if present
+					$rootScope.myjobs = { offset: 0, myJobsArray: [] };
+					var cookie = data.logged_in_cookie_key + '=' + data.logged_in_cookie_value;
 
-				var cookie = data.logged_in_cookie_key + '=' + data.logged_in_cookie_value;
+					Storage.setUserID(data.id);
+	            	Storage.setUserName(data.user_login);
+	            	Storage.setDisplayName(data.display_name);
+	            	Storage.setLoginCookie(cookie);
+	            	Storage.setProfileImageSrc(data.avatar_url)
+	            	Storage.setLoginStatus('signed-in');
+	            	// $window.history.back();
+	            	$state.go('menu.browsejobs');
 
-				Storage.setUserID(data.id);
-            	Storage.setUserName(data.user_login);
-            	Storage.setDisplayName(data.display_name);
-            	Storage.setLoginCookie(cookie);
-            	Storage.setProfileImageSrc(data.avatar_url)
-            	Storage.setLoginStatus('signed-in');
-            	// $window.history.back();
-            	$state.go('menu.browsejobs');
+				}, function(error){
+					$scope.showLoader = false;
+            		Toast.responseError();
+				});
             }
             else{
-
             	$scope.showLoader = false;
             	Toast.invalidUsernamePassword();
-            } 
-
+            }
 		},
 
 		function(error){
@@ -135,10 +135,7 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 
 .config(function($stateProvider) {
 	
-	
 	$stateProvider
-
-	
 	//Login
 	.state('login', {
 		url: "/login",
@@ -150,6 +147,5 @@ angular.module('minyawns.login', ['minyawns.storage', 'minyawns.toast'])
 		url: "/fblogin",
 		templateUrl: 'views/fblogin.html',
 		controller: 'FbLoginController'
-	})
-	
+	});
 });

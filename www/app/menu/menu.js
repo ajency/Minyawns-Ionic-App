@@ -1,8 +1,10 @@
 angular.module('minyawns.menu', ['minyawns.storage'])
 
 
-.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http', 'Network', '$materialToast', 'Toast', '$ionicSideMenuDelegate'
-	, function($scope, $rootScope, Storage, $window, _, $http, Network, $materialToast, Toast, $ionicSideMenuDelegate){
+.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http'
+	, 'Network', '$materialToast', 'Toast', '$ionicSideMenuDelegate', 'ParseCloud', '$cordovaSpinnerDialog'
+	, function($scope, $rootScope, Storage, $window, _, $http, Network, $materialToast
+	, Toast, $ionicSideMenuDelegate, ParseCloud, $cordovaSpinnerDialog){
 
 		
 	$scope.updateTotalNoOfJobs = function(userID){
@@ -24,7 +26,6 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 			else{
 
 				$scope.applied_to = totalJobsCount;
-
 				var totalHired = 0;
 
 				_.each(myJobs, function(job){
@@ -35,7 +36,6 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 					if(job.user_to_job_status[index] === 'hired')
 						totalHired = totalHired + 1;
-
 				});
 
 				$scope.hired_for = totalHired;
@@ -48,11 +48,10 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 			console.log('updateHiredAndAppliedCount Error');
 			$scope.display="Error";
 		});
-
 	};
 	
 	var menuState = function(){
-		console.log('In menu state');
+		
 		Storage.clear();
 			
 		//reset my jobs on logout
@@ -69,6 +68,8 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 		
 		//Event handler in myjobs.js
 		$rootScope.$emit('go:to:browsejobs:from:myjobs', {});
+
+		$cordovaSpinnerDialog.hide();
 	};
 
 	var facebookLogoutSuccess = function(){
@@ -77,13 +78,12 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 	};
 
 	var facebookLogoutFailure = function(){
+		$cordovaSpinnerDialog.hide();
 		Toast.responseError();	
 	};	
-	
 
 
 	$scope.init = function(){
-		console.log('init called');
 		var user = Storage.getUserDetails();
 		$scope.display="No-Error";
 
@@ -107,7 +107,6 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 				$scope.menuLoader = false;
 				$scope.display="Error";
 			}
-				
 			
 		}
 		else{
@@ -122,35 +121,37 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 
 
 	$scope.openBlogLink = function(){
-
+		
 		$window.open('http://www.minyawns.com/blog/', '_system', 'location=yes')
-	}
+	};
     
 
 	$scope.onLogout = function(){
 
 		if(Network.isOnline()){
-			console.log('Online');
+			$cordovaSpinnerDialog.show('', 'Logging out...', true);
 
-			if ($rootScope.loggedInFacebook)  //Check if logged in through facebook
-				facebookConnectPlugin.logout(facebookLogoutSuccess, facebookLogoutFailure)
-			else
-				menuState();
-			
+			ParseCloud.deregister()
+			.then(function(){
+				if ($rootScope.loggedInFacebook)  //Check if logged in through facebook
+					facebookConnectPlugin.logout(facebookLogoutSuccess, facebookLogoutFailure)
+				else
+					menuState();
 
-			
+			}, function(error){
+				$cordovaSpinnerDialog.hide();
+				Toast.responseError();
+			});
 		}
 		else
 			Toast.connectionError();
-		
 	};
 
 
 	$rootScope.$on('refresh:menu:details', function(event, args) {
-
+		
 		$scope.init();
     });
-
 
 	//Keep track of current & previous state in abstract menu state.
 	$rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
@@ -158,7 +159,6 @@ angular.module('minyawns.menu', ['minyawns.storage'])
 	    $rootScope.previousState = from.name;
 	    $rootScope.currentState = to.name;
 	});
-
 }])
 
 
