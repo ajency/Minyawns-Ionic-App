@@ -1,11 +1,11 @@
-com.ionic.keyboard
-org.apache.cordova.inappbrowser
-org.apache.cordova.file
-org.apache.cordova.camera
-org.apache.cordova.file-transfer
-org.apache.cordova.device
-org.apache.cordova.network-information
-org.apache.cordova.splashscreen
+1) cordova plugin add com.ionic.keyboard
+2) cordova plugin add org.apache.cordova.inappbrowser
+3) cordova plugin add org.apache.cordova.file
+4) cordova plugin add org.apache.cordova.camera
+5) cordova plugin add org.apache.cordova.file-transfer
+6) cordova plugin add org.apache.cordova.device
+7) cordova plugin add org.apache.cordova.network-information
+8) cordova plugin add org.apache.cordova.splashscreen
 
 #Facebook Plugin
 cordova -d plugin add https://github.com/Wizcorp/phonegap-facebook-plugin/ --variable APP_ID="1578825815706920" --variable APP_NAME="Minyawns"
