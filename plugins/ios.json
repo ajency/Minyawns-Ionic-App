@@ -79,6 +79,10 @@
                         {
                             "xml": "<feature name=\"ParsePlugin\"><param name=\"ios-package\" value=\"CDVParsePlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PushPlugin\"><param name=\"ios-package\" value=\"PushPlugin\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -257,6 +261,9 @@
             "PACKAGE_NAME": "com.ajency.in.minyawns"
         },
         "com.parse.cordova.core.pushplugin": {
+            "PACKAGE_NAME": "com.ajency.in.minyawns"
+        },
+        "com.phonegap.plugins.PushPlugin": {
             "PACKAGE_NAME": "com.ajency.in.minyawns"
         }
     },
