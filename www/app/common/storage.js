@@ -1,8 +1,7 @@
-angular.module('minyawns.storage', ['ngUnderscore'])
+angular.module('minyawns.common')
 
 
-.factory('Storage', ['$window', '_', function($window, _) {
-
+.factory('Storage', ['$window', function($window) {
 
 	var LS = $window.localStorage;
 
@@ -37,8 +36,6 @@ angular.module('minyawns.storage', ['ngUnderscore'])
 
 			LS.setItem("minyawns_profile_image_src", src);
 		},
-
-		
 		
 		getUserDetails : function(){
 
@@ -59,8 +56,6 @@ angular.module('minyawns.storage', ['ngUnderscore'])
 				profileImgSrc 	: profileImg
 			};
 		},
-
-		
 		
 		clear : function(){
 
@@ -70,7 +65,6 @@ angular.module('minyawns.storage', ['ngUnderscore'])
 			LS.removeItem("minyawns_login_cookie");
 			LS.removeItem("minyawns_profile_image_src");
 		}
-
 	};
 
 	return localStorage;

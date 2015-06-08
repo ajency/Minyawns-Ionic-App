@@ -1,11 +1,11 @@
-angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngUnderscore', 'minyawns.jobstatus'])
+angular.module('minyawns.jobs')
 
 
 .controller('SinglejobController', ['$scope', '$rootScope','$stateParams', '$http'
-	, '$ionicSideMenuDelegate', 'Storage', '$state', '$cordovaCamera', '_', '$ionicPopup'
+	, '$ionicSideMenuDelegate', 'Storage', '$state', '$cordovaCamera', '$ionicPopup'
 	, '$ionicLoading', 'Toast','$window' , '$cordovaFile', 'JobStatus', '$timeout', '$ionicScrollDelegate'
 	, function($scope, $rootScope, $stateParams, $http, $ionicSideMenuDelegate
-	, Storage, $state, $cordovaCamera, _, $ionicPopup, $ionicLoading, Toast, $window, $cordovaFile
+	, Storage, $state, $cordovaCamera, $ionicPopup, $ionicLoading, Toast, $window, $cordovaFile
 	, JobStatus, $timeout, $ionicScrollDelegate) {
 
 	
@@ -371,8 +371,8 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 
 
 
-.controller('ApplicantController', ['$scope', '$rootScope', '$http', '_', '$ionicPopup'
-	, function($scope, $rootScope, $http, _, $ionicPopup){
+.controller('ApplicantController', ['$scope', '$rootScope', '$http', '$ionicPopup'
+	, function($scope, $rootScope, $http, $ionicPopup){
 
 	$scope.getMinionDetails = function(){
 
@@ -404,47 +404,7 @@ angular.module('minyawns.singlejob', ['minyawns.storage', 'minyawns.toast', 'ngU
 		$window.open(link, '_system', 'location=yes');
 	}
 
-
-	// $scope.openPopup = function(minionID){
-
-	// 	$scope.activeSlide = _.indexOf($scope.applicants, minionID);
-
-	// 	var popup = $ionicPopup.alert({
-	// 		templateUrl: 'views/minion-slidebox.html',
-	// 		scope: $scope,
-			
-	// 	});
-		
-	// 	popup.then(function(res) {
-	// 		console.log('Tapped!', res);
-	// 	});
-
-	// };
-	
-
 }])
-
-
-
-// .controller('MinionPopupController', ['$scope', '$rootScope', '$ionicSlideBoxDelegate', '_'
-// 	, function($scope, $rootScope, $ionicSlideBoxDelegate, _){
-	
-
-// 	$scope.$watchCollection("minionDetails", function(newValue, oldValue) {
-
-// 			var sortedArray  = _.sortBy(newValue, function(num){
-
-// 				return _.indexOf($scope.applicants, num.user_id);
-// 			})
-
-//             $rootScope.minionDetails = sortedArray;
-
-//             $ionicSlideBoxDelegate.update();
-//         }
-//     );
-	
-// }])
-
 
 
 .config(function($stateProvider, $compileProvider) {

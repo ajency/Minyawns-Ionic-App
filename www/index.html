@@ -17,19 +17,19 @@
     <!-- Ionic-Angular -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- Plugins-->
-    <script src="lib/plugins/hammer.js"></script> <!-- angular-material dependency -->
-    <script src="lib/plugins/moment.js"></script>
-    <script src="lib/plugins/jquery.min.js"></script>
-    <script src="lib/plugins/jquery-ui.min.js"></script>
-    <script src="lib/plugins/jquery-ui-touch-punch.js"></script>
-    <script src="lib/plugins/jquery.li-scroller.1.0.js"></script>
-    <script src="lib/parse/parse.min.js"></script>
+    <!-- Bower plugins -->
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/underscore/underscore-min.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="lib/moment/min/moment.min.js"></script>
 
-    <!-- Ng Modules-->
-    <script src="lib/modules/ng-cordova.js"></script>
-    <script src="lib/modules/angular-material.js"></script>
-    <script src="lib/modules/ng-underscore.js"></script>
+    <!-- Other plugins-->
+    <script src="lib/plugins/hammer.js"></script> <!-- angular-material dependency -->
+    <script src="lib/plugins/angular-material.js"></script>
+    <script src="lib/plugins/parse.min.js"></script>
+    <!-- // <script src="lib/plugins/jquery-ui.min.js"></script> -->
+    <!-- // <script src="lib/plugins/jquery-ui-touch-punch.js"></script> -->
+    <!-- // <script src="lib/plugins/jquery.li-scroller.1.0.js"></script> -->
 
     <!-- Common -->
     <script src="app/common/common.js"></script>
@@ -39,17 +39,21 @@
     <!-- Network -->
     <script src="app/network/network.js"></script>
 
-    <!-- Controllers -->
-    <script src="app/login/login.js"></script>
-    <script src="app/login/fblogin.js"></script>
-    <script src="app/login/parse.js"></script>
-    <script src="app/menu/menu.js"></script>
+    <!-- Auth -->
+    <script src="app/auth/auth.js"></script>
+    <script src="app/auth/login.js"></script>
+    <script src="app/auth/fblogin.js"></script>
+    <script src="app/auth/parse.js"></script>
+
+    <!-- Jobs -->
+    <script src="app/jobs/jobs.js"></script>
     <script src="app/jobs/browsejobs.js"></script>
     <script src="app/jobs/singlejob.js"></script>
-    <script src="app/jobs/myjobs.js"></script> 
-
-    <!--Services -->
+    <script src="app/jobs/myjobs.js"></script>
     <script src="app/jobs/jobstatus.js"></script>
+    
+    <!-- Menu -->
+    <script src="app/menu/menu.js"></script>
 
     <!-- Cordova | Global | App -->
     <script src="cordova.js"></script>

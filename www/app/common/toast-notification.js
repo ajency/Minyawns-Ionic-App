@@ -1,4 +1,4 @@
-angular.module('minyawns.toast', ['ngMaterial'])
+angular.module('minyawns.common')
 
 
 .factory('Toast', ['$materialToast', function($materialToast) {

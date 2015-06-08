@@ -1,9 +1,9 @@
-angular.module('minyawns.menu', ['minyawns.storage'])
+angular.module('minyawns.menu', [])
 
 
-.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '_', '$http'
+.controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '$http'
 	, 'Network', '$materialToast', 'Toast', '$ionicSideMenuDelegate', 'ParseCloud', '$cordovaSpinnerDialog'
-	, function($scope, $rootScope, Storage, $window, _, $http, Network, $materialToast
+	, function($scope, $rootScope, Storage, $window, $http, Network, $materialToast
 	, Toast, $ionicSideMenuDelegate, ParseCloud, $cordovaSpinnerDialog){
 
 		

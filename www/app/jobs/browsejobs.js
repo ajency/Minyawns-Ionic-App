@@ -1,10 +1,10 @@
-angular.module('minyawns.jobs', ['minyawns.network', 'minyawns.toast', 'minyawns.singlejob'
-	, 'minyawns.jobstatus'])
+angular.module('minyawns.jobs')
+
 
 .controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate', '_', '$ionicScrollDelegate', 'JobStatus'
+	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate', '$ionicScrollDelegate', 'JobStatus'
 	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network
-	, Toast, $ionicSideMenuDelegate, _, $ionicScrollDelegate, JobStatus){
+	, Toast, $ionicSideMenuDelegate, $ionicScrollDelegate, JobStatus){
 
 	$scope.title = "Browse Jobs";
 	$scope.controller = BrowseJobsItemController;

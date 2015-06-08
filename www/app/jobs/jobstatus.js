@@ -1,4 +1,5 @@
-angular.module('minyawns.jobstatus', ['minyawns.storage'])
+angular.module('minyawns.jobs')
+
 
 .factory('JobStatus', ['Storage',
     function(Storage) {

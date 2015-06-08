@@ -1,1 +1,1 @@
-angular.module('minyawns.common', []);
+angular.module('minyawns.common', ['ngMaterial']);
