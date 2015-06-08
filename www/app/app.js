@@ -3,9 +3,10 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 	, 'minyawns.common', 'minyawns.network', 'minyawns.menu', 'minyawns.auth', 'minyawns.jobs'])
 
 
-.run(['$rootScope', function($rootScope) {
+.run(['$rootScope', 'App', 'Push', function($rootScope, App, Push){
 
 	//Initialize $rootScope variables
+	$rootScope.App = App;
 	$rootScope.AJAXURL = "http://www.minyawns.com/wp-admin/admin-ajax.php";
 	$rootScope.GETURL  = "http://www.minyawns.com/wp-content/themes/minyawns/libs/job.php/";
 	$rootScope.SITEURL = "http://www.minyawns.com";
@@ -14,16 +15,29 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
     $rootScope.myjobs = { offset: 0, myJobsArray: [] };
 	$rootScope.loggedInFacebook = false;
 
-	// $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-	// 	console.log('Notification received');
-	// 	console.log(notification);
-	// });
+	//Push notification receiver
+	$rootScope.$on('$cordovaPush:notificationReceived', function(e, p) {
+		console.log('Notification received');
+		console.log(p);
+		
+		if(App.isAndroid()){
+			if(p.event === 'message'){
+				if(!p.foreground) 
+					Push.handlePayload(p.payload.data);
+			}
+		}
+
+		if(App.isIOS()){
+			if(p.foreground === "0")
+				Push.handlePayload(e);
+		}
+	});
 }])
 
 
 .controller('InitController', ['$ionicPlatform', '$state', '$ionicViewService', '$timeout'
-	, '$cordovaSplashscreen', '$window'
-	, function($ionicPlatform, $state, $ionicViewService, $timeout, $cordovaSplashscreen, $window){
+	, '$window', 'App'
+	, function($ionicPlatform, $state, $ionicViewService, $timeout, $window, App){
 
 	$ionicPlatform.ready(function() {
 		if($window.cordova && $window.cordova.plugins.Keyboard)
@@ -32,22 +46,10 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 		if($window.StatusBar)
 			StatusBar.styleDefault()
 
-		var androidConfig = {
-		    "senderID": "replace_with_sender_id",
-		  };
-
-		// $cordovaPush.register(androidConfig).then(function(result) {
-	 //      console.log('Push registration success');
-	 //    }, function(err) {
-	 //      // Error
-	 //    })
-
 		//Hide splash screen
-		if(ionic.Platform.isWebView()){
-            $timeout(function() {
-            	$cordovaSplashscreen.hide();
-            }, 500);
-		}
+        $timeout(function() {
+        	App.hideSplashScreen();
+        }, 500);
 
 		$state.go('browsejobs');
 

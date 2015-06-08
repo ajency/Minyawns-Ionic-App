@@ -200,7 +200,7 @@ angular.module('minyawns.jobs')
 
 		$scope.jobTitle = data.post_title;
 		$scope.noOfDays = data.days_to_job_expired;
-		$scope.startDate = moment(data.job_start_date).format('LL');;
+		$scope.startDate = moment(data.job_start_date).format('LL');
 
 		$scope.startTime = data.job_start_time;
 		$scope.startMeridiem = data.job_start_meridiem;

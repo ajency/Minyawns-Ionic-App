@@ -2,13 +2,16 @@ angular.module('minyawns.jobs')
 
 
 .controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate', '$ionicScrollDelegate', 'JobStatus'
+	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate', '$ionicScrollDelegate'
+	, 'JobStatus', 'Push'
 	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network
-	, Toast, $ionicSideMenuDelegate, $ionicScrollDelegate, JobStatus){
+	, Toast, $ionicSideMenuDelegate, $ionicScrollDelegate, JobStatus, Push){
 
 	$scope.title = "Browse Jobs";
 	$scope.controller = BrowseJobsItemController;
 	$scope.display="No-Error";
+
+	Push.register();
 	
 	$scope.reSet = function(){
 
