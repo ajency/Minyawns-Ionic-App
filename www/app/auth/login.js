@@ -62,7 +62,7 @@ angular.module('minyawns.auth')
 	            	Storage.setProfileImageSrc(data.avatar_url)
 	            	Storage.setLoginStatus('signed-in');
 	            	// $window.history.back();
-	            	$state.go('menu.browsejobs');
+	            	$state.go('browsejobs');
 
 				}, function(error){
 					$scope.showLoader = false;
@@ -94,28 +94,7 @@ angular.module('minyawns.auth')
 			console.log('visible Keyboard');
 			cordova.plugins.Keyboard.show();
 		}
-		
-	}
-
-
-	// $scope.toggleInput = function(){
-	// 	console.log("toggle called");
-
-	// 	if ($scope.iType=== 'password') {
-	// 		$scope.iType = 'text';
-	// 		$("#passwordField").focus();
-	// 		$scope.setFocus= true;
-			
-	// 	}
-			
-	// 	else{
-	// 		$scope.iType = 'password';
-	// 		$("#passwordField").focus();
-	// 	}
-			
-	// 	// $('[placeholder="Password"]').attr('type', 'text')  
-	// 	// $('[placeholder="Password"]').attr('type', 'text')  
-	// }
+	};
 	
 
 	function checkEmail(emailAddress) {
@@ -130,22 +109,5 @@ angular.module('minyawns.auth')
 			return (testresults);
 	};
 	
-}])
+}]);
 
-
-.config(function($stateProvider) {
-	
-	$stateProvider
-	//Login
-	.state('login', {
-		url: "/login",
-		templateUrl: 'views/login.html',
-		controller: 'LoginController'
-	})
-
-	.state('fblogin', {
-		url: "/fblogin",
-		templateUrl: 'views/fblogin.html',
-		controller: 'FbLoginController'
-	});
-});

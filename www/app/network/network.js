@@ -1,121 +1,67 @@
 angular.module('minyawns.network', [])
 
 
-.factory('Network', ['$cordovaNetwork', function($cordovaNetwork) {
+.factory('Network', ['$cordovaNetwork', 'App', function($cordovaNetwork, App) {
 
-	var network = {
+	var Network = {};
 
-		isOnline : function(){
-
-			if(ionic.Platform.isWebView()) return ($cordovaNetwork.isOnline()) ? true : false;
-			else return true; //When Browser
-		}
-
+	Network.isOnline = function(){
+		if(App.isWebView()) return ($cordovaNetwork.isOnline()) ? true : false;
+		else return navigator.onLine; //When Browser
 	};
 
-	return network;
-}])
-
-
-.factory('Method', [function() {
-	
-	var method =  {
-
-		isGET: function(config) {
-
-			var isUrl = config.url.indexOf('.html');
-
-			return (config.method === "GET" && isUrl == -1) ? true : false;
-		},
-
-		isPOST: function(config) {
-
-			return (config.method === "POST") ? true : false;
-		}
+	Network.isValidUrl = function(config){
+		return (config.url.indexOf('.html') == -1) ? true : false
 	};
 
-	return method;
+	return Network;
 }])
-
 
 
 //Interceptor to check if network is available for every online request.
-.factory('NetworkCheck', ['$q', 'Method', 'Network', function($q, Method, Network) {
+.factory('NetworkCheck', ['$q', 'Network', function($q, Network) {
 	
-	var networkCheck = {
+	var NetworkCheck = {};
 
-		request: function(config) {
+	NetworkCheck.request = function(config) {
 
-			if(Method.isGET(config) || Method.isPOST(config)){
-
-				if(Network.isOnline()) return config;
-				else return $q.reject('NetworkNotAvailable');
-			}
-
-			else return config;
+		if(Network.isValidUrl(config)){
+			if(Network.isOnline()) return config;
+			else return $q.reject('NetworkNotAvailable');
 		}
+		else return config;
 	};
 
-	return networkCheck;
+	return NetworkCheck;
 }])
-
 
 
 //Interceptor to inject cookies in every request.
-.factory('CookieInjector', ['Method', 'Storage', function(Method, Storage) {
+.factory('CookieInjector', ['Network', 'Storage', function(Network, Storage){
 	
-	var cookieInjector = {
+	var CookieInjector = {};
 
-		request: function(config) {
+	CookieInjector.request = function(config) {
 
-			if(Method.isGET(config) || Method.isPOST(config)){
-
-				var user = Storage.getUserDetails();
-				
-				config.headers['Set-Cookie'] = user.cookie;
-				return config;
-			}
-
-			else return config;
+		if(Network.isValidUrl(config)){
+			var user = Storage.getUserDetails();
+			config.headers['Set-Cookie'] = user.cookie;
+			return config;
 		}
+		else return config;
 	};
 
-	return cookieInjector;
+	return CookieInjector;
 }])
-
-
-
-//Interceptor to check if session has expired.
-.factory('SessionHandler', ['$q', 'Method', function($q, Method) {
-	
-	var sessionHandler = {
-
-		response: function(response) {
-
-			if(Method.isGET(response.config) || Method.isPOST(response.config)){
-
-				// console.log(response);
-				return response;
-			}
-
-			else return response;
-		}
-	};
-
-	return sessionHandler;
-}])
-
 
 
 .config(['$httpProvider', function($httpProvider) {
 
 	var contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
-
 	$httpProvider.defaults.headers.common['Content-Type'] = contentType;
-	$httpProvider.defaults.headers.post['Content-Type'] = contentType;
+	$httpProvider.defaults.headers.post['Content-Type']   = contentType;
 	// $httpProvider.defaults.withCredentials = true;
 
 	$httpProvider.interceptors.push('NetworkCheck');
 	// $httpProvider.interceptors.push('CookieInjector');
-	$httpProvider.interceptors.push('SessionHandler');
 }]);

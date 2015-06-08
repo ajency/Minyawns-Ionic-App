@@ -7,7 +7,6 @@ angular.module('minyawns.jobs')
 	, function($scope, $rootScope, $stateParams, $http, $ionicSideMenuDelegate
 	, Storage, $state, $cordovaCamera, $ionicPopup, $ionicLoading, Toast, $window, $cordovaFile
 	, JobStatus, $timeout, $ionicScrollDelegate) {
-
 	
 	$rootScope.minionDetails = [];
 	$rootScope.postID = $stateParams.postID;
@@ -234,7 +233,7 @@ angular.module('minyawns.jobs')
 
 	$scope.onViewLoad = function(){
 
-		if($rootScope.previousState === 'menu.singlejob'){
+		if($rootScope.previousState === 'singlejob'){
 			$scope.mainLoader = false;
 
 			 $timeout(function() {
@@ -404,23 +403,4 @@ angular.module('minyawns.jobs')
 		$window.open(link, '_system', 'location=yes');
 	}
 
-}])
-
-
-.config(function($stateProvider, $compileProvider) {
-
-	$compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
-	
-	$stateProvider
-
-	.state('menu.singlejob', {
-		url: "/singlejob:postID",
-		views: {
-			'menuContent' :{
-				templateUrl: "views/singlejob.html",
-				controller: 'SinglejobController'
-			}
-		}
-	})
-
-});
+}]);

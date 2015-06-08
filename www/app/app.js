@@ -3,7 +3,7 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 	, 'minyawns.common', 'minyawns.network', 'minyawns.menu', 'minyawns.auth', 'minyawns.jobs'])
 
 
-.run(function($ionicPlatform, $rootScope, $timeout, $cordovaSplashscreen, $window) {
+.run(['$rootScope', function($rootScope) {
 
 	//Initialize $rootScope variables
 	$rootScope.AJAXURL = "http://www.minyawns.com/wp-admin/admin-ajax.php";
@@ -18,16 +18,19 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 	// 	console.log('Notification received');
 	// 	console.log(notification);
 	// });
+}])
+
+
+.controller('InitController', ['$ionicPlatform', '$state', '$ionicViewService', '$timeout'
+	, '$cordovaSplashscreen', '$window'
+	, function($ionicPlatform, $state, $ionicViewService, $timeout, $cordovaSplashscreen, $window){
 
 	$ionicPlatform.ready(function() {
-		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-		// for form inputs)
-		if($window.cordova && $window.cordova.plugins.Keyboard) {
-			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-		}
-		if($window.StatusBar) {
-			StatusBar.styleDefault();
-		}
+		if($window.cordova && $window.cordova.plugins.Keyboard)
+			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true)
+
+		if($window.StatusBar)
+			StatusBar.styleDefault()
 
 		var androidConfig = {
 		    "senderID": "replace_with_sender_id",
@@ -41,52 +44,36 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 
 		//Hide splash screen
 		if(ionic.Platform.isWebView()){
-            
             $timeout(function() {
             	$cordovaSplashscreen.hide();
             }, 500);
 		}
 
-	});
-
-})
-
-
-.controller('StarterController', ['$ionicPlatform', '$state', '$ionicViewService'
-	, function($ionicPlatform, $state, $ionicViewService){
-
-	$ionicPlatform.ready(function() {
-		
-		$state.go('menu.browsejobs');
+		$state.go('browsejobs');
 
 		$ionicViewService.nextViewOptions({
 			disableAnimate: true,
 			disableBack: true
 		});
-			
 	});
-
 }])
 
 
-.config(function($stateProvider, $urlRouterProvider) {
-	
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 	
 	$stateProvider
 
-	.state('start', {
-		url: "/start",
-		controller: 'StarterController'
-	})
-
+		.state('init', {
+			url: "/init",
+			controller: 'InitController'
+		})
 	
-	//Menu
-	.state('menu', {
-		url: "/menu",
-		abstract: true,
-		templateUrl: "views/menu.html"
-	});
+		//Menu
+		.state('menu', {
+			url: "/menu",
+			abstract: true,
+			templateUrl: "views/menu.html"
+		});
 
-
-    $urlRouterProvider.otherwise('/start');
-});
+    $urlRouterProvider.otherwise('/init');
+}]);

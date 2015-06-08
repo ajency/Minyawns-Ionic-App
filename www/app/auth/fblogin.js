@@ -24,7 +24,7 @@ angular.module('minyawns.auth')
 	        	Storage.setLoginCookie(cookie);
 	        	Storage.setProfileImageSrc(data.avatar_url)
 	        	Storage.setLoginStatus('signed-in');
-	        	$state.go('menu.browsejobs');
+	        	$state.go('browsejobs');
 
 			}, function(error){
 				Toast.responseError();

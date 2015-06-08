@@ -211,7 +211,7 @@ angular.module('minyawns.jobs')
 	$scope.onSingleJobClick = function(postID){
 		
 		if(Network.isOnline())
-			$state.go('menu.singlejob',  { postID: postID });
+			$state.go('singlejob',  { postID: postID });
 		else 
 			Toast.connectionError();
 	};
@@ -239,25 +239,7 @@ angular.module('minyawns.jobs')
 	});
    
 
-}])
-
-
-.config(function($stateProvider) {
-	
-	$stateProvider
-
-	.state('menu.browsejobs', {
-		url: "/browsejobs",
-		views: {
-			'menuContent' :{
-				templateUrl: "views/jobs.html",
-				controller: 'BrowseController'
-			}
-		}
-	});
-
-});
-
+}]);
 
 
 var BrowseJobsItemController = function($scope, JobStatus){

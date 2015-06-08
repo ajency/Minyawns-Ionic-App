@@ -1,9 +1,7 @@
 angular.module('minyawns.jobs')
 
 
-.factory('JobStatus', ['Storage',
-    function(Storage) {
-
+.factory('JobStatus', ['Storage', function(Storage){
 
         var jobstatus = {
 
