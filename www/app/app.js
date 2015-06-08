@@ -1,14 +1,11 @@
 // Minyawns app
-angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
-	, 'minyawns.interceptor', 'minyawns.menu', 'minyawns.login', 'minyawns.jobs','minyawns.myjobs'])
+angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate', 'minyawns.common'
+	, 'minyawns.network', 'minyawns.menu', 'minyawns.login', 'minyawns.jobs','minyawns.myjobs'])
 
 
-.run(function($ionicPlatform, $rootScope, $timeout, $cordovaSplashscreen, $window, $cordovaPush) {
+.run(function($ionicPlatform, $rootScope, $timeout, $cordovaSplashscreen, $window) {
 
 	//Initialize $rootScope variables
-	// $rootScope.AJAXURL = "http://www.minyawns.ajency.in/wp-admin/admin-ajax.php";
-	// $rootScope.GETURL = "http://www.minyawns.ajency.in/wp-content/themes/minyawns/libs/job.php/";
-
 	$rootScope.AJAXURL = "http://www.minyawns.com/wp-admin/admin-ajax.php";
 	$rootScope.GETURL  = "http://www.minyawns.com/wp-content/themes/minyawns/libs/job.php/";
 	$rootScope.SITEURL = "http://www.minyawns.com";
@@ -17,10 +14,10 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
     $rootScope.myjobs = { offset: 0, myJobsArray: [] };
 	$rootScope.loggedInFacebook = false;
 
-	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-		console.log('Notification received');
-		console.log(notification);
-	});
+	// $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+	// 	console.log('Notification received');
+	// 	console.log(notification);
+	// });
 
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -36,11 +33,11 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 		    "senderID": "replace_with_sender_id",
 		  };
 
-		$cordovaPush.register(androidConfig).then(function(result) {
-	      console.log('Push registration success');
-	    }, function(err) {
-	      // Error
-	    })
+		// $cordovaPush.register(androidConfig).then(function(result) {
+	 //      console.log('Push registration success');
+	 //    }, function(err) {
+	 //      // Error
+	 //    })
 
 		//Hide splash screen
 		if(ionic.Platform.isWebView()){
