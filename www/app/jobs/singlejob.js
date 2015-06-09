@@ -10,23 +10,11 @@ angular.module('minyawns.jobs')
 	
 	$rootScope.minionDetails = [];
 	$rootScope.postID = $stateParams.postID;
-	$scope.mainLoader = $scope.mainContent = true;
+	$scope.mainLoader = true;
+	$scope.mainContent = true;
 	$scope.minyawnsAppliedPresent = true;
 	$scope.applyLoader = false;
 	$scope.cameraIcon = false;
-        
-        
-    $scope.onViewScroll = function(){
-    	  
-        scrollTop = $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top
-        
-        if(scrollTop > 1){
-            $('.bar-subheader').addClass("sticky");
-        }
-        else{
-            $('.bar-subheader').removeClass("sticky");
-        }
-    };
        
 
 	function refreshSingleJobInBrowseJobs(job){
@@ -62,7 +50,9 @@ angular.module('minyawns.jobs')
 
 			$scope.mainLoader = false;
 			$scope.applyLoader = false;
-			$scope.navigateBack();
+			$timeout(function(){
+				App.goBack();
+			}, 1000);
 		});
 
 	};
@@ -200,7 +190,7 @@ angular.module('minyawns.jobs')
 
 		$scope.jobTitle = data.post_title;
 		$scope.noOfDays = data.days_to_job_expired;
-		$scope.startDate = moment(data.job_start_date).format('LL');
+		$scope.startDate = moment(data.job_start_date, 'DD MMM YYYY').format('LL');
 
 		$scope.startTime = data.job_start_time;
 		$scope.startMeridiem = data.job_start_meridiem;
@@ -351,20 +341,6 @@ angular.module('minyawns.jobs')
 
 		$scope.updateApplySectionDetails();
     });
-
-
-	$scope.navigateBack = function(){
-
-		$timeout(function(){
-			$window.history.back();
-		}, 1000);
-	};
-	
-
-	$scope.onBackClick = function(){
-
-		$window.history.back();
-	};
 	
 }])
 

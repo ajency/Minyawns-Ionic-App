@@ -27,19 +27,6 @@ angular.module('minyawns.jobs')
 
 		$rootScope.myjobs = { offset: 0, myJobsArray: [] , changed: false, openJobsCount: 0};
 	};
-
-       
-    $scope.onViewScroll = function(){
-    	  
-        scrollTop = $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top
-        
-        if(scrollTop > 1){
-            $('.bar-subheader').addClass("sticky");
-        }
-        else{
-            $('.bar-subheader').removeClass("sticky");
-        }
-    };
        
 	$scope.getOpenJobs = function(){
 
@@ -266,13 +253,13 @@ angular.module('minyawns.jobs')
 }]);
 
 
-var MyJobsItemController = function($scope, JobStatus){
+var MyJobsItemController = ['$scope', 'JobStatus', function($scope, JobStatus){
     //Init
 	$scope.jobOpen = true;
 	$scope.showApplySlider = true;
     $scope.accordianToggle = false;
     
-	$scope.start_date = moment($scope.job.job_start_date).format('LL');
+	$scope.start_date = moment($scope.job.job_start_date, 'DD MMM YYYY').format('LL');
 
 	var required_minyawns = [];
 
@@ -311,5 +298,4 @@ var MyJobsItemController = function($scope, JobStatus){
          }
    		
    	};
-
-}
+}];

@@ -7,6 +7,7 @@ angular.module('minyawns.auth', [])
 	
 		.state('login', {
 			url: "/login",
+			cache: false,
 			templateUrl: 'views/login.html',
 			controller: 'LoginController'
 		})

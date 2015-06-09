@@ -1,9 +1,23 @@
 // Minyawns app
-angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
+angular.module('minyawns', ['ionic', 'ngCordova'
 	, 'minyawns.common', 'minyawns.network', 'minyawns.menu', 'minyawns.auth', 'minyawns.jobs'])
 
 
-.run(['$rootScope', 'App', 'Push', function($rootScope, App, Push){
+.run(['$rootScope', 'App', 'Push', '$state', '$ionicHistory', function($rootScope, App, Push, $state, $ionicHistory){
+
+	App.navigate = function(state, options){
+		if(!_.isUndefined(options) && options.replace)
+			$ionicHistory.nextViewOptions({
+				disableAnimate: true,
+				disableBack: true
+			});
+		
+		$state.go(state);
+	};
+
+	App.goBack = function(){
+		$ionicHistory.goBack();
+	};
 
 	//Initialize $rootScope variables
 	$rootScope.App = App;
@@ -35,9 +49,9 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 }])
 
 
-.controller('InitController', ['$ionicPlatform', '$state', '$ionicViewService', '$timeout'
+.controller('InitController', ['$ionicPlatform', '$state', '$timeout'
 	, '$window', 'App'
-	, function($ionicPlatform, $state, $ionicViewService, $timeout, $window, App){
+	, function($ionicPlatform, $state, $timeout, $window, App){
 
 	$ionicPlatform.ready(function() {
 		if($window.cordova && $window.cordova.plugins.Keyboard)
@@ -50,18 +64,20 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
         $timeout(function() {
         	App.hideSplashScreen();
         }, 500);
-
-		$state.go('browsejobs');
-
-		$ionicViewService.nextViewOptions({
-			disableAnimate: true,
-			disableBack: true
-		});
+		
+		App.navigate('browsejobs', {replace:true});
 	});
 }])
 
 
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+.config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider'
+	, function($stateProvider, $urlRouterProvider, $ionicConfigProvider){
+
+	$ionicConfigProvider.views.forwardCache(true);
+	$ionicConfigProvider.backButton.previousTitleText(false).text('');
+	$ionicConfigProvider.navBar.alignTitle('center');
+	// if(ionic.Platform.isAndroid())
+	// 	$ionicConfigProvider.scrolling.jsScrolling(false);
 	
 	$stateProvider
 
@@ -74,6 +90,7 @@ angular.module('minyawns', ['ionic', 'ngCordova', 'ngAnimate'
 		.state('menu', {
 			url: "/menu",
 			abstract: true,
+			cache: false,
 			templateUrl: "views/menu.html"
 		});
 

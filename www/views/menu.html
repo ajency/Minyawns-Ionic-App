@@ -1,19 +1,19 @@
-<ion-side-menus>
+<ion-side-menus
+	enable-menu-with-back-views="true"
+	ng-controller="MenuController">
 
-	<ion-pane ion-side-menu-content>
-	
-		<ion-nav-bar class="bar-green" animation="nav-title-slide-ios7"></ion-nav-bar>
+	<ion-side-menu-content>
+		<ion-nav-bar 
+			class="bar-green"
+			no-tap-scroll="App.noTapScroll()">
+			
+			<ion-nav-back-button class="main-menu-toggle"> </ion-nav-back-button>
+		</ion-nav-bar>
 
-		<ion-nav-buttons side="left">
-			<button menu-toggle="left" class="button button-icon icon ion-drag main-menu-toggle"></button>
-		</ion-nav-buttons>
-
-		<ion-nav-view  name="menuContent" nav-router animation="slide-left-right"></ion-nav-view>
+		<ion-nav-view name="menuContent"></ion-nav-view>
+	</ion-side-menu-content>
 		
-	</ion-pane>
-		
-		
-	<ion-side-menu side="left" ng-controller="MenuController">
+	<ion-side-menu side="left">
 			
 		<ion-content>
 
@@ -126,33 +126,6 @@
 				</div>
 				
 			</div>
-
-			<!-- <div class="static-bottom">
-				
-				<div class="menu-sep">
-					{{menuTitle}}
-				</div>
-
-				<ion-list>
-
-					<ion-item ng-show="logInOutMenu" ui-sref="login">
-						Sign in
-					</ion-item>
-					<ion-item menu-close ui-sref="menu.browsejobs">
-						Job List
-					</ion-item>
-					<ion-item menu-close ui-sref="menu.myjobs" ng-hide="logInOutMenu">
-						My Jobs
-					</ion-item>
-					<ion-item menu-close nav-clear ng-click="openBlogLink()">
-						Blog
-					</ion-item>
-					<ion-item . nav-clear ng-hide="logInOutMenu" ng-click="onLogout()">
-						Logout
-					</ion-item>
-					
-				</ion-list>
-			</div> -->
 		</ion-content>
 
 	</ion-side-menu>

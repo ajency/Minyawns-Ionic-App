@@ -1,4 +1,12 @@
-<ion-view title="<img src='./img/logo.png' height='30px'/>">
+<ion-view>
+
+	<ion-nav-title>
+		<img src='./img/logo.png' height='30px'/>
+    </ion-nav-title>
+
+    <ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-drag main-menu-toggle"></button>
+	</ion-nav-buttons>
 
 	<div class="bar bar-subheader navheader">
 		<div class="row">
@@ -13,15 +21,17 @@
 		</div>
 	</div>
 
-	<ion-content ng-init="requestPending=false" scrollbar-y="false"  delegate-handle="mainScroll" on-scroll="onViewScroll()">
+	<ion-content
+		class="has-subheader"
+		ng-init="requestPending=false" 
+		scrollbar-y="false"
+		delegate-handle="mainScroll"
+		sticky-sub-header>
 
 		<ion-refresher 
 			ng-init="showRefresher=false" 
 			ng-if="showRefresher"
-			pulling-text="Pull to refresh..."
-			refreshing-icon="ion-loading-c"
 			on-refresh="onPullToRefresh()">
-			
 		</ion-refresher>
 	
 		<div class="list list-inset job-list single-job-card" >
@@ -31,8 +41,7 @@
 			    Connection error. Try again.
 			</ion-item>
 
-
-			<ion-item  ng-repeat="job in jobs" ng-controller="controller" ng-click="toggleAccordian()">
+			<ion-item ng-repeat="job in jobs" ng-controller="controller" ng-click="toggleAccordian()">
 		        
 		        <div class="job">  
 
@@ -61,7 +70,7 @@
 								<div class="col">
 									<div class="job-time">
 										<div class="row">
-											<div class="col col-10"><i class="ion-android-clock"></i> </div>
+											<div class="col col-10"><i class="ion-clock"></i> </div>
 											<div class="col col-90"><span class="time">{{ job.job_start_time }}{{job.job_start_meridiem}} - {{ job.job_end_time }}{{ job.job_end_meridiem }}</span></div>
 										</div>
 										<div class="row">
@@ -114,11 +123,14 @@
 		</div>
 
 		<ion-item ng-show="showNoMoreJobs" class="message no-more">
-	      <i class="icon ion-eye-disabled"></i>
-	      That's all folks! No more jobs <br>to be displayed.
+			<i class="icon ion-eye-disabled"></i>
+			That's all folks! No more jobs <br>to be displayed.
 	    </ion-item>
 
-		<ion-infinite-scroll icon="ion-loading-c" distance="5%" ng-if="canLoadMore" on-infinite="onInfiniteScroll()">
+		<ion-infinite-scroll
+			distance="1%" 
+			ng-if="canLoadMore" 
+			on-infinite="onInfiniteScroll()">
 		</ion-infinite-scroll>
 
 	</ion-content>

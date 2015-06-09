@@ -9,7 +9,7 @@ angular.module('minyawns.jobs')
 
 	$scope.title = "Browse Jobs";
 	$scope.controller = BrowseJobsItemController;
-	$scope.display="No-Error";
+	$scope.display = "No-Error";
 
 	Push.register();
 	
@@ -20,26 +20,12 @@ angular.module('minyawns.jobs')
 		$scope.canLoadMore = true;
 		$scope.openJobsLoader = false;
 	};
-
-	    $scope.onViewScroll = function(){
-    	  
-        scrollTop = $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top
-        
-        if(scrollTop > 1){
-            $('.bar-subheader').addClass("sticky");
-        }
-        else{
-            $('.bar-subheader').removeClass("sticky");
-        }
-    };
         
 	$scope.resetRootScope = function(){
 
 		$rootScope.jobs = { offset: 0, allJobs: [], openJobsCount: 0};
 	};
-
-       
-
+	
        
 	$scope.getOpenJobs = function(){
 
@@ -221,7 +207,7 @@ angular.module('minyawns.jobs')
 
 	$scope.networkCheck = function(){
 
-		  return Network.isOnline();
+		return Network.isOnline();
 	};
 
 	var reloadBrowseJobsControllerEvent = $rootScope.$on('reload:browsejobs:controller', function(event, args) {
@@ -245,7 +231,7 @@ angular.module('minyawns.jobs')
 }]);
 
 
-var BrowseJobsItemController = function($scope, JobStatus){
+var BrowseJobsItemController = ['$scope', 'JobStatus', function($scope, JobStatus){
 
 	//Init
 	$scope.jobOpen = true;
@@ -253,7 +239,7 @@ var BrowseJobsItemController = function($scope, JobStatus){
 	$scope.accordianToggle = false;
 
 
-	$scope.start_date = moment($scope.job.job_start_date).format('LL');
+	$scope.start_date = moment($scope.job.job_start_date, 'DD MMM YYYY').format('LL');
 
 	var required_minyawns = [];
 
@@ -290,6 +276,6 @@ var BrowseJobsItemController = function($scope, JobStatus){
    		
    	};
    
-};
+}];
 
 

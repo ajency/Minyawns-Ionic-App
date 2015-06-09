@@ -1,4 +1,9 @@
-<ion-view title="<img src='./img/logo.png' height='30px'/>" >
+<ion-view>
+
+	<ion-nav-title>
+		<img src='./img/logo.png' height='30px'/>
+    </ion-nav-title>
+
 	<div class="bar bar-subheader navheader">
 		<div class="row">
 			<div class="col col-100">
@@ -11,19 +16,20 @@
 			</div>
 		</div>
 
-		<span class="zoomIn badge badge-assertive" ng-click="onBackClick()"><i class="ion-reply"></i></span>
+		<span class="zoomIn badge badge-assertive" ng-click="App.goBack();"><i class="ion-reply"></i></span>
 	</div>
 
-<!--
-	<ion-content ng-show="mainLoader">
+	<!-- <ion-content ng-show="mainLoader">
 		<div class="padding loader">
 			<i class="icon ion-loading-c" ></i>
 		</div>
-	</ion-content>
--->
+	</ion-content> -->
 
-	<ion-content scrollbar-y="false" ng-hide="mainContent" delegate-handle="mainScroll" on-scroll="onViewScroll()">
-
+	<ion-content 
+		scrollbar-y="false" 
+		ng-hide="mainContent" 
+		delegate-handle="mainScroll"
+		sticky-sub-header>
 
 		<div class="list list-inset single-card sm-padding">
 			<div class="item">
@@ -169,7 +175,6 @@
 					ng-repeat="minion in applicants"
 					ng-controller="ApplicantController"
 					ng-init="minionLoader=true">
-					<!-- ng-click="openPopup(minion)" -->
 
 						<div class="padding loader" ng-show="minionLoader">
 							<i class="icon ion-loading-c"></i>
