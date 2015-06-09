@@ -69,7 +69,7 @@ angular.module('minyawns.menu', [])
 		//Event handler in myjobs.js
 		$rootScope.$emit('go:to:browsejobs:from:myjobs', {});
 
-		$cordovaSpinnerDialog.hide();
+		// $cordovaSpinnerDialog.hide();
 	};
 
 	var facebookLogoutSuccess = function(){
@@ -85,7 +85,7 @@ angular.module('minyawns.menu', [])
 
 	$scope.init = function(){
 		var user = Storage.getUserDetails();
-		$scope.display="No-Error";
+		$scope.display = "No-Error";
 
 		if(user.isLoggedIn){
 
@@ -117,8 +117,6 @@ angular.module('minyawns.menu', [])
 		}
 	};
 
-	$scope.init(); //Start
-
 
 	$scope.openBlogLink = function(){
 		
@@ -129,7 +127,7 @@ angular.module('minyawns.menu', [])
 	$scope.onLogout = function(){
 
 		if(Network.isOnline()){
-			$cordovaSpinnerDialog.show('', 'Logging out...', true);
+			// $cordovaSpinnerDialog.show('', 'Logging out...', true);
 
 			ParseCloud.deregister()
 			.then(function(){
@@ -139,7 +137,7 @@ angular.module('minyawns.menu', [])
 					menuState();
 
 			}, function(error){
-				$cordovaSpinnerDialog.hide();
+				// $cordovaSpinnerDialog.hide();
 				Toast.responseError();
 			});
 		}

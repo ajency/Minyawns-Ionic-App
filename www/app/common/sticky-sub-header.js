@@ -14,13 +14,16 @@ angular.module('minyawns.common')
 				var subHeader = parentView.find('.bar-subheader');
 
 				$(el).scroll(function(){
-					
-					var scrollTop = $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top;
-				
-					if(scrollTop > 1)
-				        $(subHeader).addClass("sticky");
-				    else
-				        $(subHeader).removeClass("sticky");
+					var position = $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition();
+
+					if(_.has(position, 'top')){
+						var scrollTop = position.top;
+			
+						if(scrollTop > 1)
+					        $(subHeader).addClass("sticky");
+					    else
+					        $(subHeader).removeClass("sticky");
+					}
 				});
 			});
 		}

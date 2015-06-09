@@ -1,283 +1,185 @@
 angular.module('minyawns.jobs')
 
 
-.controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, 'Network', 'Toast', '$ionicSideMenuDelegate','JobStatus', 'Push', 'App'
-	, function($scope, $rootScope, $http, $timeout, $state, Network
-	, Toast, $ionicSideMenuDelegate, JobStatus, Push, App){
+.controller('BrowseController', ['$scope', '$rootScope', '$timeout', '$state'
+	, 'Network', 'Toast', 'JobStatus', 'Push', 'App', 'JobsAPI'
+	, function($scope, $rootScope, $timeout, $state, Network, Toast, JobStatus
+	, Push, App, JobsAPI){
 
-	$scope.title = "Browse Jobs";
-	$scope.controller = BrowseJobsItemController;
-	$scope.display = "No-Error";
+	$scope.view = {
+		title: "Browse Jobs",
+		controller: BrowseJobsItemController,
+		display: 'Loader',
+		totalOpenJobs: 0,
+		refresher: true,
+		pullToRefresh: false,
+		connectionError: false,
+		requestPending: true,
+		requestComplete : function(){
+			$scope.$broadcast('scroll.infiniteScrollComplete');
+			$scope.$broadcast('scroll.refreshComplete');
+		}
+	};
 
-	Push.register();
+	$scope.jobs = {
+		offset: 0,
+		allJobs: [],
+		canLoadMore: true,
+		noMoreJobs: false
+	};
+
+	function displayTotalOpenJobs(){
+		$scope.view.display = 'Loader';
+
+		JobsAPI.getTotalOpenJobs()
+		.then(function(count){
+			$scope.view.totalOpenJobs = count;
+			$scope.view.display = 'OpenJobs';
+		
+		}, function(error){
+			$scope.view.display = 'Error';
+		});
+	};
 
 	$scope.$on('$ionicView.afterEnter', function(){
 		App.hideSplashScreen();
 	});
-	
-	$scope.reSet = function(){
 
-		$scope.showConnectionError = false;
-		$scope.showNoMoreJobs = false;
-		$scope.canLoadMore = true;
-		$scope.openJobsLoader = false;
+	$scope.$on('$ionicView.loaded', function(){
+		Push.register();
+		displayTotalOpenJobs();
+	});
+
+	function onSuccessFn(data){
+		$scope.view.refresher = true;
+
+		if(_.size(data) == 0){
+			$scope.jobs.canLoadMore = false;
+			$scope.jobs.noMoreJobs = true;
+		}
+		
+		if($scope.view.pullToRefresh)
+			$scope.jobs.allJobs = data;
+		else
+			$scope.jobs.allJobs = $scope.jobs.allJobs.concat(data);
+
+		$scope.view.pullToRefresh = false;
 	};
-        
-	$scope.resetRootScope = function(){
 
-		$rootScope.jobs = { offset: 0, allJobs: [], openJobsCount: 0};
+	function onErrorFn(error){
+		if(_.size($scope.jobs.allJobs) == 0){
+			$scope.view.refresher = false;
+			$scope.view.connectionError = true;
+		}
+		else{
+			$scope.view.refresher = true;
+			if(error === 'NetworkNotAvailable') Toast.connectionError();
+			else Toast.responseError();
+		}
+
+		$scope.jobs.canLoadMore = false;
 	};
-	
-       
-	$scope.getOpenJobs = function(){
 
-		$scope.openJobsLoader = true;
+	$scope.getJobs = function(){
+		$scope.view.connectionError = false;
+		$scope.jobs.noMoreJobs = false;
+		$scope.jobs.canLoadMore = true;
 
-		$http.get($rootScope.GETURL+'fetchjobs?offset=0&all_jobs=1')
-
-		.then(function(resp, status, headers, config){
-
-			$scope.openJobsLoader = false;
-
-			var count = 0;
-
-			if(resp.data.length == 0) count = 0;
-			else{
-
-				_.each(resp.data, function(job){
-
-					var status = JobStatus.get(job);
-					if(status.applicationStatus === "Applications Open")
-						count = count + 1;
-				});
-			}
-
-			$scope.openJobs = count;
-			$rootScope.jobs.openJobsCount = $scope.openJobs;
-			
-		},
-
-		function(error){
-
-			$scope.openJobsLoader = false;
-			$scope.openJobs = '';
-			$scope.display = "Error";
+		JobsAPI.getJobs($scope.jobs.offset)
+		.then(onSuccessFn, onErrorFn)
+		.finally(function(){
+			$scope.view.requestComplete();
+			$scope.jobs.offset = $scope.jobs.offset + 5;
 		});
 	};
 
+	// $scope.onViewLoad = function(){
+	// 	//On view load.
+	// 	if($rootScope.jobs.allJobs.length == 0){ 
 
-	
-	$scope.fetchJobs = function(){
+	// 		$scope.reSet();
+	// 		$scope.jobs = $rootScope.jobs.allJobs;
 
-		//Make only one request at a time.
-		if(!$scope.requestPending){
+	// 		$scope.openJobsLoader = true;
 
-			$scope.requestPending = true;
+	// 		//Event handler in menu.js
+	//     	$rootScope.$emit('refresh:menu:details', {});
+	// 	}
+	// 	else{
 
-			$http.get($rootScope.GETURL+'fetchjobs?offset='+$rootScope.jobs.offset)
-
-			.then(function(resp, status, headers, config){
-
-				$scope.onSuccessResponse(resp.data);
-			},
-
-			function(error){
-
-				$scope.onErrorResponse(error);
-			});
-		}
-	};
-
-
-
-	$scope.onViewLoad = function(){
-		$scope.display="No-Error";
-		//On view load.
-		if($rootScope.jobs.allJobs.length == 0){ 
-
-			$scope.reSet();
-			$scope.jobs = $rootScope.jobs.allJobs;
-
-			$scope.openJobsLoader = true;
-			$scope.getOpenJobs();
-
-			//Event handler in menu.js
-	    	$rootScope.$emit('refresh:menu:details', {});
-		}
-		else{
-
-			$scope.showRefresher = true;
+	// 		$scope.showRefresher = true;
 			
-			$scope.jobs = [];
-			$timeout(function(){
-				$scope.jobs = $rootScope.jobs.allJobs;
-				$scope.canLoadMore = true;
-			}, 500);
+	// 		$scope.jobs = [];
+	// 		$timeout(function(){
+	// 			$scope.jobs = $rootScope.jobs.allJobs;
+	// 			$scope.canLoadMore = true;
+	// 		}, 500);
 
-			$scope.openJobs = $rootScope.jobs.openJobsCount;
-		}
-	}
-
-	
-	$scope.onViewLoad();
-
-	$scope.onSuccessResponse = function(data){
-
-		$scope.requestPending = false;
-
-		$scope.fetchComplete();
-		$scope.showRefresher = true;
-
-		if(data.length == 0){
-
-			$scope.canLoadMore = false;
-			$scope.showNoMoreJobs = true;
-		}
-		
-		$rootScope.jobs.offset = $rootScope.jobs.offset + 5;
-		$rootScope.jobs.allJobs = $rootScope.jobs.allJobs.concat(data)
-		$scope.jobs = [];
-		$scope.jobs = $rootScope.jobs.allJobs;
-	};
-
-
-
-	$scope.onErrorResponse = function(error){
-
-		$scope.requestPending = false;
-
-		$rootScope.jobs.allJobs = $scope.jobs;
-
-		$timeout(function(){
-			$scope.fetchComplete();
-		}, 1000);
-		
-
-		if($rootScope.jobs.allJobs.length == 0){
-
-			$scope.showRefresher = false;
-
-			$timeout(function(){
-				$scope.showConnectionError = true;
-			}, 500);
-		}
-		else{
-			$scope.showRefresher = true;
-
-			$timeout(function(){
-				if(error === 'NetworkNotAvailable') Toast.connectionError();
-				else Toast.responseError();
-			}, 800);
-		}
-
-		$scope.canLoadMore = false;
-	};
-
-	
-	
-	$scope.onInfiniteScroll = function(){
-
-		$scope.fetchJobs();
-	};
-
-    
+	// 		$scope.openJobs = $rootScope.jobs.openJobsCount;
+	// 	}
+	// }
 
 	$scope.onPullToRefresh = function(){
-		
-		$scope.reSet();
-		$scope.resetRootScope();
-		$scope.fetchJobs();
-		$scope.getOpenJobs();
+		$scope.view.pullToRefresh = true;
+		$scope.jobs.offset = 0;
+		$scope.getJobs();
+		displayTotalOpenJobs();
 	};
 
-
-	$scope.fetchComplete = function(){
-
-		$scope.$broadcast('scroll.infiniteScrollComplete');
-		$scope.$broadcast('scroll.refreshComplete');
+	//Re-check this
+	$scope.onConnectionErrorRetry = function(){
+		$scope.jobs.offset = 0;
+		displayTotalOpenJobs();
+		$scope.getJobs();
+		$timeout(function(){
+			// $scope.view.requestComplete();
+			$scope.$broadcast('scroll.infiniteScrollComplete');
+		}, 500);
 	};
-
 
 	$scope.onSingleJobClick = function(postID){
-		
 		if(Network.isOnline())
 			$state.go('singlejob',  { postID: postID });
 		else 
 			Toast.connectionError();
 	};
 
-	$scope.networkCheck = function(){
-
-		return Network.isOnline();
-	};
-
-	var reloadBrowseJobsControllerEvent = $rootScope.$on('reload:browsejobs:controller', function(event, args) {
-		
-		event.stopPropagation()
-
-		$scope.jobs = []
+	var reloadController = $rootScope.$on('reload:browsejobs:controller', function(event, args) {
+		event.stopPropagation();
+		var allJobs = $scope.jobs.allJobs;
+		$scope.jobs.allJobs = [];
 		$timeout(function() {
-
-			$scope.jobs = $rootScope.jobs.allJobs;
+			$scope.jobs.allJobs = allJobs;
 		}, 100);
     });
-
 	
 	$scope.$on('$destroy', function(){
-
-		reloadBrowseJobsControllerEvent()
+		reloadController();
 	});
-   
-
 }]);
 
 
 var BrowseJobsItemController = ['$scope', 'JobStatus', function($scope, JobStatus){
 
-	//Init
-	$scope.jobOpen = true;
-	$scope.showApplySlider = true;
-	$scope.accordianToggle = false;
-
-
+	var toggle = false;
 	$scope.start_date = moment($scope.job.job_start_date, 'DD MMM YYYY').format('LL');
-
-	var required_minyawns = [];
-
-	for(i=0; i<$scope.job.required_minyawns; i++){
-		required_minyawns.push('min'+i);
-	}
-
-    $scope.required_minyawns = required_minyawns;
-
+    
     var status = JobStatus.get($scope.job);
-
-    if (status.validity ==='Available') 
-   		$scope.jobOpen = true;
-	else
-   		$scope.jobOpen = false;
-
     $scope.applicationStatus = status.applicationStatus;
-
     $scope.jobStatus = status.jobStatus;
 
-   	$scope.toggleAccordian = function(){
-         
-         if ($scope.accordianToggle) {
-           $scope.accordianToggle = false; 
-           $("ul#ticker"+$scope.job.post_id).removeClass('newsticker') //removes the extra class
-         }
-         else{
-         	$scope.accordianToggle = true;
-
-         	if ($scope.job.post_title.length>50) {
-    			$("ul#ticker"+$scope.job.post_id).liScroll();
-    		}
-         }
-   		
+   	$scope.listHorizontalScroll = function(){
+		if(toggle){
+			toggle = false; 
+			$("ul#ticker"+$scope.job.post_id).removeClass('newsticker') //removes the extra class
+		}
+		else{
+			toggle = true;
+			if ($scope.job.post_title.length>50) {
+				$("ul#ticker"+$scope.job.post_id).liScroll();
+			}
+		}
    	};
-   
 }];
 
 

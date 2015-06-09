@@ -25,7 +25,7 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 	$rootScope.GETURL  = "http://www.minyawns.com/wp-content/themes/minyawns/libs/job.php/";
 	$rootScope.SITEURL = "http://www.minyawns.com";
 
-	$rootScope.jobs = { offset: 0, allJobs: [] };
+	// $rootScope.jobs = { offset: 0, allJobs: [] };
     $rootScope.myjobs = { offset: 0, myJobsArray: [] };
 	$rootScope.loggedInFacebook = false;
 
@@ -91,7 +91,6 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 		.state('menu', {
 			url: "/menu",
 			abstract: true,
-			// cache: false,
 			templateUrl: "views/menu.html"
 		});
 

@@ -8,17 +8,17 @@
 		<button 
 			menu-toggle="left" 
 			class="button button-icon icon ion-drag main-menu-toggle"
-			ng-if="title==='Browse Jobs';">
+			ng-if="view.title==='Browse Jobs';">
 		</button>
 	</ion-nav-buttons>
 
 	<div class="bar bar-subheader navheader">
 		<div class="row">
-			<div class="col col-50"><h1>{{title}}</h1></div>
+			<div class="col col-50"><h1>{{view.title}}</h1></div>
 			<div class="col total-job">&nbsp;</div>
-			<div class="col total-job" ng-switch="display">
-				<b ng-hide="openJobsLoader" ng-switch-when="No-Error">{{openJobs}}</b>
-				<div ng-show="openJobsLoader" ng-switch-when="No-Error"><i class="icon ion-loading-c"></i></div>
+			<div class="col total-job" ng-switch="view.display">
+				<b ng-switch-when="OpenJobs">{{view.totalOpenJobs}}</b>
+				<div ng-switch-when="Loader"><i class="icon ion-loading-c"></i></div>
 				<div ng-switch-when="Error"><i class="icon ion-alert-circled"></i></div>
 				Jobs Open
 			</div>
@@ -33,23 +33,26 @@
 		sticky-sub-header>
 
 		<ion-refresher 
-			ng-init="showRefresher=false" 
-			ng-if="showRefresher"
-			on-refresh="onPullToRefresh()">
+			ng-if="view.refresher"
+			on-refresh="onPullToRefresh();">
 		</ion-refresher>
 	
 		<div class="list list-inset job-list single-job-card" >
 
-		    <ion-item ng-show="showConnectionError" ng-click="onViewLoad()" class="message connection-error">
-		    	<i class="icon ion-alert-circled"></i>
-			    Connection error. Try again.
+		    <ion-item 
+		    	ng-show="view.connectionError" 
+		    	ng-click="onConnectionErrorRetry();" 
+		    	class="message connection-error">
+			    	<i class="icon ion-alert-circled"></i>
+				    Connection error. Try again.
 			</ion-item>
 
-			<ion-item ng-repeat="job in jobs" ng-controller="controller" ng-click="toggleAccordian()">
+			<ion-item 
+				ng-repeat="job in jobs.allJobs" 
+				ng-controller="view.controller" 
+				ng-click="listHorizontalScroll();">
 		        
-		        <div class="job">  
-
-		            <!-- <div ng-if="jobOpen"> -->
+		        <div class="job">
 
 					<div class="row" >
 						<div class="col" >
@@ -57,7 +60,7 @@
 								<div class="col col-75" >
 									<h2 class="job-title">
 									<ul id="ticker{{job.post_id}}">
-									<li><a>{{ job.post_title }}</a></li><!-- eccetera -->
+									<li><a>{{ job.post_title }}</a></li>
 									</ul>
 									</h2>
 									<span class="date">{{start_date}} </span>
@@ -118,23 +121,21 @@
 
                     </div>
 
-		       		<!-- </div> -->
-
 		        </div>   
 
 			</ion-item>
 
 		</div>
 
-		<ion-item ng-show="showNoMoreJobs" class="message no-more">
+		<ion-item ng-show="jobs.noMoreJobs" class="message no-more">
 			<i class="icon ion-eye-disabled"></i>
 			That's all folks! No more jobs <br>to be displayed.
 	    </ion-item>
 
 		<ion-infinite-scroll
 			distance="1%" 
-			ng-if="canLoadMore" 
-			on-infinite="onInfiniteScroll()">
+			ng-if="jobs.canLoadMore" 
+			on-infinite="getJobs();">
 		</ion-infinite-scroll>
 
 	</ion-content>

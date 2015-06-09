@@ -1,76 +1,47 @@
 angular.module('minyawns.common')
 
 
-.factory('Toast', [function() {
+.factory('Toast', ['$mdToast', function($mdToast) {
 
-	var toast = {
+	var showToast = function(content){
+		$mdToast.show(
+	      $mdToast.simple()
+	        .content(content)
+	        .position('bottom')
+	        .hideDelay(2000)
+	    );
+	};
+
+	var Toast = {
 
 		connectionError : function(){
-
-			$materialToast({
-				templateUrl: 'views/toast/connection-error.html',
-				duration: 2000,
-				position: 'bottom'
-			});
+			showToast("Connection error. No internet connection.");
 		},
-
 		
 		responseError : function(){
-
-			$materialToast({
-				templateUrl: 'views/toast/response-error.html',
-				duration: 2000,
-				position: 'bottom'
-			});
+			showToast("Could not connect to server. Try again.");
 		},
-
 		
 		emptyUsernamePassword : function(){
-
-			$materialToast({
-				templateUrl: 'views/toast/empty-username-password.html',
-				duration: 2000,
-				position: 'bottom'
-			});
+			showToast("Please enter Username/Password.");
 		},
-
 		
 		invalidUsernamePassword : function(){
-
-			$materialToast({
-				templateUrl: 'views/toast/invalid-username-password.html',
-				duration: 2000,
-				position: 'bottom'
-			});
+			showToast("Invalid Username/Password.");
 		},
 
 		invalidEmail : function(){
-
-			$materialToast({
-				templateUrl: 'views/toast/invalid-email.html',
-				duration: 2000,
-				position: 'bottom'
-			});
+			showToast("Please enter valid email address.");
 		},
 
 		noAccessToken : function(){
-
-			$materialToast({
-				templateUrl: 'views/toast/no-access-token.html',
-				duration: 2000,
-				position: 'bottom'
-			});
+			showToast("Could not get access token.");
 		},
 
 		incorrectFbPassword : function(){
-
-			$materialToast({
-				templateUrl: 'views/toast/fb-incorrect-password.html',
-				duration: 2000,
-				position: 'bottom'
-			});
+			showToast("Please enter correct password.");
 		}
 	};
 
-	return toast;
+	return Toast;
 }])

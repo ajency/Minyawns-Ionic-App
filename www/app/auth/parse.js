@@ -14,11 +14,12 @@ angular.module('minyawns.auth')
 
 	ParseCloud.getInstallationId = function(){
 		var defer = $q.defer();
-		parsePlugin.getInstallationId(function(installationId){
-			return defer.resolve(installationId);
-		}, function(error){
-			return defer.reject(error);
-		});
+		// parsePlugin.getInstallationId(function(installationId){
+		// 	return defer.resolve(installationId);
+		// }, function(error){
+		// 	return defer.reject(error);
+		// });
+		defer.resolve('DUMMY');
 
 		return defer.promise;
 	},
