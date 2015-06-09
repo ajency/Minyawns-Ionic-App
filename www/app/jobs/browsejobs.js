@@ -11,10 +11,10 @@ angular.module('minyawns.jobs')
 		controller: BrowseJobsItemController,
 		display: 'Loader',
 		totalOpenJobs: 0,
-		refresher: true,
+		refresher: false,
 		pullToRefresh: false,
 		connectionError: false,
-		requestPending: true,
+		requestPending: false,
 		requestComplete : function(){
 			$scope.$broadcast('scroll.infiniteScrollComplete');
 			$scope.$broadcast('scroll.refreshComplete');
@@ -81,16 +81,20 @@ angular.module('minyawns.jobs')
 	};
 
 	$scope.getJobs = function(){
-		$scope.view.connectionError = false;
-		$scope.jobs.noMoreJobs = false;
-		$scope.jobs.canLoadMore = true;
+		if(!$scope.view.requestPending){
+			$scope.view.requestPending = true;
+			$scope.view.connectionError = false;
+			$scope.jobs.noMoreJobs = false;
+			$scope.jobs.canLoadMore = true;
 
-		JobsAPI.getJobs($scope.jobs.offset)
-		.then(onSuccessFn, onErrorFn)
-		.finally(function(){
-			$scope.view.requestComplete();
-			$scope.jobs.offset = $scope.jobs.offset + 5;
-		});
+			JobsAPI.getJobs($scope.jobs.offset)
+			.then(onSuccessFn, onErrorFn)
+			.finally(function(){
+				$scope.view.requestPending = false;
+				$scope.view.requestComplete();
+				$scope.jobs.offset = $scope.jobs.offset + 5;
+			});
+		}
 	};
 
 	// $scope.onViewLoad = function(){
@@ -139,7 +143,7 @@ angular.module('minyawns.jobs')
 
 	$scope.onSingleJobClick = function(postID){
 		if(Network.isOnline())
-			$state.go('singlejob',  { postID: postID });
+			$state.go('singlejob', {postID: postID});
 		else 
 			Toast.connectionError();
 	};
