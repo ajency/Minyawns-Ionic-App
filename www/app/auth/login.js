@@ -1,10 +1,10 @@
 angular.module('minyawns.auth')
 
 
-.controller('LoginController', ['$scope', '$rootScope', '$state', '$http'
-	, 'Storage', 'Toast', '$window','$cordovaNetwork', '$timeout' , '$cordovaKeyboard', 'ParseCloud'
-	, function($scope, $rootScope, $state, $http, Storage, Toast, $window, $cordovaNetwork, $timeout
-	, $cordovaKeyboard, ParseCloud) {
+.controller('LoginController', ['$scope', '$rootScope', '$http'
+	, 'Storage', 'Toast', '$window','$cordovaNetwork', '$timeout' , '$cordovaKeyboard', 'ParseCloud', 'App'
+	, function($scope, $rootScope, $http, Storage, Toast, $window, $cordovaNetwork, $timeout
+	, $cordovaKeyboard, ParseCloud, App) {
 
 	//Default
 	$scope.showLoader = false;
@@ -31,7 +31,7 @@ angular.module('minyawns.auth')
 	$scope.onFacebookButtonClick = function(){
 
 		if ($cordovaNetwork.isOnline())
-			$state.go('fblogin');
+			App.navigate('fblogin');
 		else Toast.connectionError();
 	};
 
@@ -61,8 +61,7 @@ angular.module('minyawns.auth')
 	            	Storage.setLoginCookie(cookie);
 	            	Storage.setProfileImageSrc(data.avatar_url)
 	            	Storage.setLoginStatus('signed-in');
-	            	// $window.history.back();
-	            	$state.go('browsejobs');
+	            	App.navigate('browsejobs', {replace:true});
 
 				}, function(error){
 					$scope.showLoader = false;

@@ -1,7 +1,7 @@
 angular.module('minyawns.common')
 
 
-.factory('Toast', ['$materialToast', function($materialToast) {
+.factory('Toast', [function() {
 
 	var toast = {
 

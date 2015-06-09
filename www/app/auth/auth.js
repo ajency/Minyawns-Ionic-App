@@ -14,6 +14,7 @@ angular.module('minyawns.auth', [])
 
 		.state('fblogin', {
 			url: "/fblogin",
+			cache: false,
 			templateUrl: 'views/fblogin.html',
 			controller: 'FbLoginController'
 		});

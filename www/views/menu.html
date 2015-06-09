@@ -77,19 +77,18 @@
 					</div>
 
 					<ion-list>
-						<ion-item menu-close ui-sref="browsejobs">
+						<ion-item menu-close ng-click="App.navigate('browsejobs');">
 							Job List
 						</ion-item>
-						<ion-item menu-close ui-sref="myjobs">
+						<ion-item menu-close ng-click="App.navigate('myjobs');">
 							My Jobs
 						</ion-item>
-						<ion-item menu-close nav-clear ng-click="openBlogLink()">
+						<ion-item menu-close ng-click="openBlogLink()">
 							Blog
 						</ion-item>
-						<ion-item . nav-clear ng-click="onLogout()">
+						<ion-item ng-click="onLogout()">
 							Logout
 						</ion-item>
-						
 					</ion-list>
 				</div>
 			</div>
@@ -111,17 +110,15 @@
 					</div>
 
 					<ion-list>
-
-						<ion-item ui-sref="login">
+						<ion-item menu-close ng-click="App.navigate('login');">
 							Sign in
 						</ion-item>
-						<ion-item menu-close ui-sref="browsejobs">
+						<ion-item menu-close ng-click="App.navigate('browsejobs');">
 							Job List
 						</ion-item>
-						<ion-item menu-close nav-clear ng-click="openBlogLink()">
+						<ion-item menu-close ng-click="openBlogLink()">
 							Blog
 						</ion-item>
-						
 					</ion-list>
 				</div>
 				

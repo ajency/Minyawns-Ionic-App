@@ -1,25 +1,28 @@
 angular.module('minyawns.common')
 
 
-.directive('stickySubHeader', ['$ionicScrollDelegate', function($ionicScrollDelegate){
+.directive('stickySubHeader', ['$ionicScrollDelegate', '$timeout', function($ionicScrollDelegate, $timeout){
 	return{
 		restrict: 'A',
 		replace: true,
 
 		link: function(scope, el, attrs){
 
-			var parentView = $(el).parent();
-			var subHeader = parentView.find('.bar-subheader');
+			$timeout(function(){
 
-			$(el).scroll(function(){
-				var scrollTop = $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top;
+				var parentView = $(el).parent();
+				var subHeader = parentView.find('.bar-subheader');
+
+				$(el).scroll(function(){
+					
+					var scrollTop = $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top;
 				
-				if(scrollTop > 1)
-			        $(subHeader).addClass("sticky");
-			    else
-			        $(subHeader).removeClass("sticky");
+					if(scrollTop > 1)
+				        $(subHeader).addClass("sticky");
+				    else
+				        $(subHeader).removeClass("sticky");
+				});
 			});
-
 		}
 	};
 }]);

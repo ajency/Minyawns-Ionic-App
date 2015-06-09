@@ -2,8 +2,8 @@ angular.module('minyawns.jobs')
 
 
 .controller('MyJobsController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate','Storage', 'JobStatus', '$ionicScrollDelegate'
-	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network
+	, 'Network', 'Toast', '$ionicSideMenuDelegate','Storage', 'JobStatus', '$ionicScrollDelegate'
+	, function($scope, $rootScope, $http, $timeout, $state, Network
 	, Toast, $ionicSideMenuDelegate, Storage, JobStatus,$ionicScrollDelegate){
 
 	

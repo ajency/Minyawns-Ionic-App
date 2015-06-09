@@ -2,16 +2,19 @@ angular.module('minyawns.jobs')
 
 
 .controller('BrowseController', ['$scope', '$rootScope','$http', '$timeout', '$state'
-	, '$materialToast', 'Network', 'Toast', '$ionicSideMenuDelegate', '$ionicScrollDelegate'
-	, 'JobStatus', 'Push'
-	, function($scope, $rootScope, $http, $timeout, $state, $materialToast, Network
-	, Toast, $ionicSideMenuDelegate, $ionicScrollDelegate, JobStatus, Push){
+	, 'Network', 'Toast', '$ionicSideMenuDelegate','JobStatus', 'Push', 'App'
+	, function($scope, $rootScope, $http, $timeout, $state, Network
+	, Toast, $ionicSideMenuDelegate, JobStatus, Push, App){
 
 	$scope.title = "Browse Jobs";
 	$scope.controller = BrowseJobsItemController;
 	$scope.display = "No-Error";
 
 	Push.register();
+
+	$scope.$on('$ionicView.afterEnter', function(){
+		App.hideSplashScreen();
+	});
 	
 	$scope.reSet = function(){
 
@@ -59,7 +62,7 @@ angular.module('minyawns.jobs')
 
 			$scope.openJobsLoader = false;
 			$scope.openJobs = '';
-			$scope.display="Error";
+			$scope.display = "Error";
 		});
 	};
 
@@ -116,9 +119,8 @@ angular.module('minyawns.jobs')
 		}
 	}
 
-
+	
 	$scope.onViewLoad();
-
 
 	$scope.onSuccessResponse = function(data){
 

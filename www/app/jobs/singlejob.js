@@ -3,10 +3,10 @@ angular.module('minyawns.jobs')
 
 .controller('SinglejobController', ['$scope', '$rootScope','$stateParams', '$http'
 	, '$ionicSideMenuDelegate', 'Storage', '$state', '$cordovaCamera', '$ionicPopup'
-	, '$ionicLoading', 'Toast','$window' , '$cordovaFile', 'JobStatus', '$timeout', '$ionicScrollDelegate'
+	, '$ionicLoading', 'Toast','$window' , '$cordovaFile', 'JobStatus', '$timeout','App'
 	, function($scope, $rootScope, $stateParams, $http, $ionicSideMenuDelegate
 	, Storage, $state, $cordovaCamera, $ionicPopup, $ionicLoading, Toast, $window, $cordovaFile
-	, JobStatus, $timeout, $ionicScrollDelegate) {
+	, JobStatus, $timeout, App) {
 	
 	$rootScope.minionDetails = [];
 	$rootScope.postID = $stateParams.postID;
@@ -322,20 +322,9 @@ angular.module('minyawns.jobs')
     $scope.loginToApply = function(){
 
 		if($scope.helperText === "Applications Open. Sign In to apply.") 
-			$state.go('login');
+			App.navigate('login');
     };
-
-    $scope.stickyMenu = function(){
-        console.log("Sticky footer");
-     $(window).scroll(function() {
-     if ($(this).scrollTop() > 1){  
-        $('.navheader').addClass("sticky");
-    }
-    else{
-        $('.navheader').removeClass("sticky");
-    }
-});
-    }
+    
     
     $rootScope.$on('update:apply:section:details', function(event, args) {
 

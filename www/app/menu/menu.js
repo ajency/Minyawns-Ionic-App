@@ -2,8 +2,8 @@ angular.module('minyawns.menu', [])
 
 
 .controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window', '$http'
-	, 'Network', '$materialToast', 'Toast', '$ionicSideMenuDelegate', 'ParseCloud', '$cordovaSpinnerDialog'
-	, function($scope, $rootScope, Storage, $window, $http, Network, $materialToast
+	, 'Network', 'Toast', '$ionicSideMenuDelegate', 'ParseCloud', '$cordovaSpinnerDialog'
+	, function($scope, $rootScope, Storage, $window, $http, Network
 	, Toast, $ionicSideMenuDelegate, ParseCloud, $cordovaSpinnerDialog){
 
 		
@@ -152,13 +152,6 @@ angular.module('minyawns.menu', [])
 		
 		$scope.init();
     });
-
-	//Keep track of current & previous state in abstract menu state.
-	$rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
-
-	    $rootScope.previousState = from.name;
-	    $rootScope.currentState = to.name;
-	});
 }])
 
 

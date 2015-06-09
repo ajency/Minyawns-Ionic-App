@@ -5,7 +5,11 @@
     </ion-nav-title>
 
     <ion-nav-buttons side="left">
-		<button menu-toggle="left" class="button button-icon icon ion-drag main-menu-toggle"></button>
+		<button 
+			menu-toggle="left" 
+			class="button button-icon icon ion-drag main-menu-toggle"
+			ng-if="title==='Browse Jobs';">
+		</button>
 	</ion-nav-buttons>
 
 	<div class="bar bar-subheader navheader">

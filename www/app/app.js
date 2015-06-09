@@ -29,6 +29,12 @@ angular.module('minyawns', ['ionic', 'ngCordova'
     $rootScope.myjobs = { offset: 0, myJobsArray: [] };
 	$rootScope.loggedInFacebook = false;
 
+	//Keep track of current & previous state in abstract menu state.
+	$rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
+	    $rootScope.previousState = from.name;
+	    $rootScope.currentState = to.name;
+	});
+
 	//Push notification receiver
 	$rootScope.$on('$cordovaPush:notificationReceived', function(e, p) {
 		console.log('Notification received');
@@ -55,15 +61,10 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 
 	$ionicPlatform.ready(function() {
 		if($window.cordova && $window.cordova.plugins.Keyboard)
-			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true)
+			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
 		if($window.StatusBar)
-			StatusBar.styleDefault()
-
-		//Hide splash screen
-        $timeout(function() {
-        	App.hideSplashScreen();
-        }, 500);
+			StatusBar.styleDefault();
 		
 		App.navigate('browsejobs', {replace:true});
 	});
@@ -90,7 +91,7 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 		.state('menu', {
 			url: "/menu",
 			abstract: true,
-			cache: false,
+			// cache: false,
 			templateUrl: "views/menu.html"
 		});
 

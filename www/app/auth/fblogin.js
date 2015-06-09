@@ -1,9 +1,9 @@
 angular.module('minyawns.auth')
 
-.controller('FbLoginController', ['$scope', '$rootScope', '$state', '$http'
-	, 'Storage', 'Toast', '$window','$cordovaNetwork', '$timeout', 'ParseCloud'
-	, function($scope, $rootScope, $state, $http, Storage, Toast, $window
-	, $cordovaNetwork, $timeout, ParseCloud) {
+.controller('FbLoginController', ['$scope', '$rootScope', '$http'
+	, 'Storage', 'Toast', '$window','$cordovaNetwork', '$timeout', 'ParseCloud', 'App'
+	, function($scope, $rootScope, $http, Storage, Toast, $window
+	, $cordovaNetwork, $timeout, ParseCloud, App) {
 
 	var connectToServer = function(token){
 		
@@ -24,7 +24,7 @@ angular.module('minyawns.auth')
 	        	Storage.setLoginCookie(cookie);
 	        	Storage.setProfileImageSrc(data.avatar_url)
 	        	Storage.setLoginStatus('signed-in');
-	        	$state.go('browsejobs');
+	        	App.navigate('browsejobs', {replace:true});
 
 			}, function(error){
 				Toast.responseError();
@@ -58,7 +58,7 @@ angular.module('minyawns.auth')
 				console.log('The error');	
 				console.log(error);
 				Storage.clear();
-				$state.go('login');
+				App.navigate('login');
     	});
 	};
 
