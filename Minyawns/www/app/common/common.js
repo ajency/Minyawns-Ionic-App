@@ -3,7 +3,9 @@ angular.module('minyawns.common', ['ngMaterial'])
 
 .factory('App', ['$cordovaSplashscreen', function($cordovaSplashscreen){
 
-	var App = {};
+	var App = {
+		validateEmail: /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/
+	};
 
 	App.isWebView = function(){
 		return ionic.Platform.isWebView();

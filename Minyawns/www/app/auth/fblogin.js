@@ -1,5 +1,6 @@
 angular.module('minyawns.auth')
 
+
 .controller('FbLoginController', ['$scope', '$rootScope', '$http'
 	, 'Storage', 'Toast', '$window','$cordovaNetwork', '$timeout', 'ParseCloud', 'App'
 	, function($scope, $rootScope, $http, Storage, Toast, $window

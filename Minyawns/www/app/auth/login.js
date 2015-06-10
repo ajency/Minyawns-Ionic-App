@@ -1,70 +1,31 @@
 angular.module('minyawns.auth')
 
 
-.controller('LoginController', ['$scope', '$rootScope', '$http'
-	, 'Storage', 'Toast', '$window','$cordovaNetwork', '$timeout' , '$cordovaKeyboard', 'ParseCloud', 'App'
-	, function($scope, $rootScope, $http, Storage, Toast, $window, $cordovaNetwork, $timeout
-	, $cordovaKeyboard, ParseCloud, App) {
+.controller('LoginController', ['$scope', 'Storage', 'Toast', '$cordovaKeyboard', 'ParseCloud'
+	, 'App', 'Network', 'AuthAPI'
+	, function($scope, Storage, Toast, $cordovaKeyboard, ParseCloud, App, Network, AuthAPI) {
 	
-	
-	$scope.showLoader = false;
+
+	$scope.form = {
+		username: '',
+		password: '',
+		loader: false,
+		showPassword: false
+	};
+
 	var user = Storage.getUserDetails();
-	$scope.username = user.userName;
+	$scope.form.username = user.userName;
 
-	function checkEmail(emailAddress) {
-		var str = emailAddress;
-		var filter = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-	
-		if (filter.test(str)) {
-			testresults = true;
-		} else {
-			testresults = false;
-		}
-			return (testresults);
-	};
+	function authenticate(username, password){
+		$scope.form.loader = true;
 
-	$scope.onLoginAction = function(username, password){
-
-		if (!checkEmail(username))
-			Toast.invalidEmail();
-
-		else if(angular.isUndefined(username) || angular.isUndefined(password) 
-			|| username.trim() === "" || password.trim() === "")
-				Toast.emptyUsernamePassword();
-		else{
-
-			$scope.showLoader = true;
-
-			$scope.authenticate(username, password);
-		}
-	};
-
-	$scope.onFacebookButtonClick = function(){
-
-		if ($cordovaNetwork.isOnline())
-			App.navigate('fblogin');
-		else Toast.connectionError();
-	};
-
-	$scope.authenticate = function(username, password){
-	    
-	    $http.get(SITEURL+'/api/authenticate/?username='+username
-	    	+'&password='+password)
-
-	    .then(function(resp, status, headers, config){
-
-	    	var data = resp.data;
-	    	console.log('response');
-	    	console.log(username);
-	    	console.log(password);
-	    	console.log(resp);
+		AuthAPI.authenticate(username, password)
+		.then(function(data){
+			
 			if(data.status){
-
 				ParseCloud.register({userID: data.id, userName: data.user_login})
 				.then(function(){
-
-					var cookie = data.logged_in_cookie_key + '=' + data.logged_in_cookie_value;
-
+					var cookie = data.logged_in_cookie_key+'='+data.logged_in_cookie_value;
 					Storage.setUserID(data.id);
 	            	Storage.setUserName(data.user_login);
 	            	Storage.setDisplayName(data.display_name);
@@ -74,33 +35,46 @@ angular.module('minyawns.auth')
 	            	App.navigate('browsejobs', {replace:true});
 
 				}, function(error){
-					$scope.showLoader = false;
+					$scope.form.loader = false;
             		Toast.responseError();
 				});
             }
             else{
-            	$scope.showLoader = false;
+            	$scope.form.loader = false;
             	Toast.invalidUsernamePassword();
             }
-		},
 
-		function(error){
-			$scope.showLoader = false;
-
+		}, function(error){
+			$scope.form.loader = false;
             if(error === 'NetworkNotAvailable') Toast.connectionError();
 			else Toast.responseError();
-
 		});
 	};
 
-	$scope.forceFocus= function(){
-		console.log('In focus');
-		if (!cordova.plugins.Keyboard.isVisible){
-			console.log('visible Keyboard');
-			cordova.plugins.Keyboard.show();
-		}
+	$scope.onLoginAction = function(){
+		username = $scope.form.username;
+		password = $scope.form.password;
+		
+		if(_.isUndefined(username)) 
+			Toast.invalidEmail();
+		else if(username === '' || password === '')
+			Toast.emptyUsernamePassword();
+		else
+			authenticate(username, password);
 	};
-	
+
+	$scope.onFacebookButtonClick = function(){
+		if (Network.isOnline()) App.navigate('fblogin');
+		else Toast.connectionError();
+	};
+
+	$scope.forceFocus= function(){
+		// console.log('In focus');
+		// if (!cordova.plugins.Keyboard.isVisible){
+		// 	console.log('visible Keyboard');
+		// 	cordova.plugins.Keyboard.show();
+		// }
+	};
 	
 }]);
 
