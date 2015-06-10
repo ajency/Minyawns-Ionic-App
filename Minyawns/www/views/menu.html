@@ -1,0 +1,129 @@
+<ion-side-menus
+	enable-menu-with-back-views="true"
+	ng-init="init()"
+	ng-controller="MenuController">
+
+	<ion-side-menu-content>
+		<ion-nav-bar 
+			class="bar-green"
+			no-tap-scroll="App.noTapScroll()">
+			
+			<ion-nav-back-button class="main-menu-toggle"> </ion-nav-back-button>
+		</ion-nav-bar>
+
+		<ion-nav-view name="menuContent"></ion-nav-view>
+	</ion-side-menu-content>
+		
+	<ion-side-menu side="left">
+			
+		<ion-content>
+
+			<div class="log-view">
+				<div class="profile-img">
+				<img ng-src="{{view.displayImage}}">
+				</div>
+				<div ng-show="view.loggedIn">
+					<h2>Hello, <span>{{view.displayName}}</span></h2>
+					<div class="desc">You are logged in as: A Minion</div>
+					
+				</div>
+				<div ng-hide="view.loggedIn">
+					<h2>Hello There!</h2>
+					<div class="desc">You are not signed in.</div>
+				</div>
+				
+			</div>
+
+			<div ng-if="view.loggedIn">
+				<div  class="details pull-center">
+					<br>
+					<b class=" pull-center">Total number of Jobs</b>
+
+					<div>
+						<div class="row" ng-switch="view.display">
+							<div class="col col-50">
+								<div class="col-demo"><p> Applied to <br>
+									<span ng-switch-when="Count" class="number">{{view.applied_to}}</span></p>
+								</div>
+
+								<div ng-switch-when="Loader">
+									<i class="icon ion-loading-c"></i>
+								</div>
+							</div>
+
+							<div class="col col-10" ng-switch-when="Error">
+								<i class="icon ion-alert-circled" ng-click="init()"></i>
+							</div>
+
+							<div class="col col-50">
+								<div class="col-demo"><p>Hired for <br>
+									<span ng-switch-when="Count" class="number">{{view.hired_for}}</span></p>
+								</div>
+								
+								<div ng-switch-when="Loader">
+									<i class="icon ion-loading-c"></i>
+								</div>
+
+							</div>
+					 	</div>
+					</div>
+				</div>
+
+				<div class="static-bottom">
+				
+					<div class="menu-sep">
+						{{view.menuTitle}}
+					</div>
+
+					<ion-list>
+						<ion-item menu-close ng-click="App.navigate('browsejobs');">
+							Job List
+						</ion-item>
+						<ion-item menu-close ng-click="App.navigate('myjobs');">
+							My Jobs
+						</ion-item>
+						<ion-item menu-close ng-click="openBlogLink()">
+							Blog
+						</ion-item>
+						<ion-item ng-click="onLogout()">
+							Logout
+						</ion-item>
+					</ion-list>
+				</div>
+			</div>
+				
+			<div ng-if="!view.loggedIn">
+			
+				<div class="details pull-center">
+					<p class="p-20">Sadly, you are missing out on a lot of action! To apply to Jobs, update your profile and do a lot more you will need to 
+					<span class="sign-in">
+					Sign In
+					</span>
+					</p>
+				</div>
+
+				<div class="static-bottom">
+				
+					<div class="menu-sep">
+						{{view.menuTitle}}
+					</div>
+
+					<ion-list>
+						<ion-item menu-close ng-click="App.navigate('login');">
+							Sign in
+						</ion-item>
+						<ion-item menu-close ng-click="App.navigate('browsejobs');">
+							Job List
+						</ion-item>
+						<ion-item menu-close ng-click="openBlogLink()">
+							Blog
+						</ion-item>
+					</ion-list>
+				</div>
+				
+			</div>
+		</ion-content>
+
+	</ion-side-menu>
+
+</ion-side-menus>
