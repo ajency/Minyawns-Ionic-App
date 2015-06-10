@@ -129,11 +129,11 @@ angular.module('minyawns.jobs')
 	// 	$scope.onViewLoad();
 	// }
 
-	$scope.onPullToRefresh = function(){
-		$scope.view.pullToRefresh = true;
+	$scope.onRefresh = function(bool){
+		$scope.view.pullToRefresh = bool;
 		$scope.jobs.offset = 0;
 		$scope.getJobs();
-		displayMyOpenJobs();
+		displayTotalOpenJobs();
 	};
 
 	$scope.onSingleJobClick = function(postID){

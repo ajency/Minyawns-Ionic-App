@@ -34,14 +34,14 @@
 
 		<ion-refresher 
 			ng-if="view.refresher"
-			on-refresh="onPullToRefresh();">
+			on-refresh="onRefresh(true);">
 		</ion-refresher>
 	
 		<div class="list list-inset job-list single-job-card" >
 
 		    <ion-item 
 		    	ng-show="view.connectionError" 
-		    	ng-click="onConnectionErrorRetry();" 
+		    	ng-click="onRefresh(false);" 
 		    	class="message connection-error">
 			    	<i class="icon ion-alert-circled"></i>
 				    Connection error. Try again.

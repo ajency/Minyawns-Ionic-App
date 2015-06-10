@@ -123,22 +123,11 @@ angular.module('minyawns.jobs')
 	// 	}
 	// }
 
-	$scope.onPullToRefresh = function(){
-		$scope.view.pullToRefresh = true;
+	$scope.onRefresh = function(bool){
+		$scope.view.pullToRefresh = bool;
 		$scope.jobs.offset = 0;
 		$scope.getJobs();
 		displayTotalOpenJobs();
-	};
-
-	//Re-check this
-	$scope.onConnectionErrorRetry = function(){
-		$scope.jobs.offset = 0;
-		displayTotalOpenJobs();
-		$scope.getJobs();
-		$timeout(function(){
-			// $scope.view.requestComplete();
-			$scope.$broadcast('scroll.infiniteScrollComplete');
-		}, 500);
 	};
 
 	$scope.onSingleJobClick = function(postID){
