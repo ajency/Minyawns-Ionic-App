@@ -143,6 +143,11 @@ angular.module('minyawns.jobs')
 		getSingleJobDetails();
 	});
 
+	$scope.$on('$ionicView.beforeEnter', function(){
+		if($rootScope.previousState === 'login')
+			updateApplySectionDetails();
+	});
+
 	function minyawnJobAction(action){
     	$scope.view.applyLoader = true;
 
