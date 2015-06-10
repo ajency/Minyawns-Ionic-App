@@ -155,6 +155,7 @@ angular.module('minyawns.jobs')
     	.then(function(resp){
     		getSingleJobDetails();
 	    	$rootScope.$broadcast('refresh:my:jobs', {});
+	    	$rootScope.$broadcast('refresh:menu:details', {});
 
     	}, function(error){
     		$scope.view.applyLoader = false;

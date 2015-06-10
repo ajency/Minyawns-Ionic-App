@@ -1,15 +1,13 @@
 angular.module('minyawns.common')
 
 
-.factory('Toast', ['$mdToast', function($mdToast) {
+.factory('Toast', ['$cordovaToast', 'App', function($cordovaToast, App) {
 
 	var showToast = function(content){
-		$mdToast.show(
-	      $mdToast.simple()
-	        .content(content)
-	        .position('bottom')
-	        .hideDelay(2000)
-	    );
+		if(App.isWebView()) 
+			$cordovaToast.showShortBottom(content);
+		else
+			console.log(content);
 	};
 
 	var Toast = {

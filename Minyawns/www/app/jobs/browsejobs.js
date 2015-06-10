@@ -123,7 +123,7 @@ angular.module('minyawns.jobs')
 		$scope.jobs.allJobs = [];
 		$timeout(function() {
 			$scope.jobs.allJobs = allJobs;
-		}, 100);
+		}, 50);
     });
 	
 	$scope.$on('$destroy', function(){

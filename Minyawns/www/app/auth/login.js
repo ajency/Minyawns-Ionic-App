@@ -28,6 +28,8 @@ angular.module('minyawns.auth')
         	Storage.setLoginStatus('signed-in');
 
         	$rootScope.$broadcast('refresh:menu:details', {});
+        	$rootScope.$broadcast('refresh:my:jobs', {});
+        	$rootScope.$broadcast('reload:browsejobs:controller', {});
 
         	if($rootScope.previousState === 'singlejob')
         		App.goBack();

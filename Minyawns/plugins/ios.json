@@ -87,6 +87,10 @@
                         {
                             "xml": "<feature name=\"ParsePlugin\"><param name=\"ios-package\" value=\"CDVParsePlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Toast\"><param name=\"ios-package\" value=\"Toast\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -184,7 +188,7 @@
                     "QuartzCore.framework": [
                         {
                             "xml": false,
-                            "count": 1
+                            "count": 2
                         }
                     ],
                     "StoreKit.framework": [
@@ -274,6 +278,9 @@
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
         "com.parse.cordova.core.pushplugin": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "nl.x-services.plugins.toast": {
             "PACKAGE_NAME": "com.ionicframework.starter"
         }
     },

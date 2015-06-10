@@ -18,7 +18,9 @@
 			<div class="col total-job">&nbsp;</div>
 			<div class="col total-job" ng-switch="view.display">
 				<b ng-switch-when="OpenJobs">{{view.totalOpenJobs}}</b>
-				<div ng-switch-when="Loader"><i class="icon ion-loading-c"></i></div>
+				<div ng-switch-when="Loader">
+					<ion-spinner class="aj-small-spinner"> </ion-spinner>
+				</div>
 				<div ng-switch-when="Error"><i class="icon ion-alert-circled"></i></div>
 				Jobs Open
 			</div>
@@ -33,6 +35,7 @@
 		sticky-sub-header>
 
 		<ion-refresher 
+			class="aj-refresher"
 			ng-if="view.refresher"
 			on-refresh="onRefresh(true);">
 		</ion-refresher>
@@ -133,6 +136,7 @@
 	    </ion-item>
 
 		<ion-infinite-scroll
+			class="aj-refresher"
 			distance="1%" 
 			ng-if="jobs.canLoadMore" 
 			on-infinite="getJobs();">

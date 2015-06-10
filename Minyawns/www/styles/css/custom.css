@@ -1,4 +1,40 @@
 .aj-spinner svg{
   display: block;
   margin: 70% auto;
+  stroke: #949494;
+  fill: #949494;
+  width: 30px;
+  height: 30px;
 }
+
+.aj-login-spinner svg{
+  display: block;
+  margin: 0% auto;
+  stroke: #FFFFFF;
+  fill: #FFFFFF;
+  width: 40px;
+  height: 40px;
+}
+
+.aj-menu-spinner svg{
+  display: block;
+  margin: 0% auto;
+  stroke: #88d816;
+  fill: #88d816;
+  width: 20px;
+  height: 20px;
+}
+
+.aj-small-spinner svg{
+  display: block;
+  margin: 0% auto;
+  stroke: #FFFFFF;
+  fill: #FFFFFF;
+  width: 20px;
+  height: 20px;
+}
+
+.aj-refresher .spinner svg{
+	stroke: #949494;
+  	fill: #949494;
+};

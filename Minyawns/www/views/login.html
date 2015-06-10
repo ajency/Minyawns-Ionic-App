@@ -30,7 +30,7 @@
 				  <div class="item item-input" ng-show="form.showPassword">
 				    <input type= "text" placeholder="Password" ng-model="form.password"  >
 				    <a  class="padding-horizontal show-password" 
-				    	ng-click="form.showPassword=false;forceFocus()" >
+				    	ng-click="form.showPassword=false;forceFocus();" >
 					    	<i  class="icon ion-eye show-password shown"></i>
 					</a>
 				  </div>
@@ -38,7 +38,7 @@
 				  <div class="item item-input" ng-hide="form.showPassword">
 				    <input type="password" placeholder="Password" ng-model="form.password"  >
 				    <a  class="padding-horizontal show-password" 
-				    	ng-click="form.showPassword=true;forceFocus()">
+				    	ng-click="form.showPassword=true;forceFocus();">
 					    	<i class="icon ion-eye show-password"></i>
 					</a>
 				  </div>
@@ -64,7 +64,7 @@
 		</div>
 
 		<div class="padding loader" ng-show="form.loader">
-			<i class="icon ion-loading-c"></i>
+			<ion-spinner class="aj-login-spinner"> </ion-spinner>
 		</div>
 
     </ion-content>

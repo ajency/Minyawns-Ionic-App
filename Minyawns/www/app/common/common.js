@@ -1,4 +1,4 @@
-angular.module('minyawns.common', ['ngMaterial'])
+angular.module('minyawns.common', [])
 
 
 .factory('App', ['$cordovaSplashscreen', function($cordovaSplashscreen){
