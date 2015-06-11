@@ -22,7 +22,7 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 	//Initialize $rootScope variables
 	$rootScope.App = App;
 
-	//Keep track of current & previous state in abstract menu state.
+	//Keep track of current & previous state.
 	$rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
 	    $rootScope.previousState = from.name;
 	    $rootScope.currentState = to.name;

@@ -4,7 +4,6 @@ angular.module('minyawns.auth')
 .controller('LoginController', ['$scope', '$rootScope', 'Storage', 'Toast', '$cordovaKeyboard', 'ParseCloud'
 	, 'App', 'Network', 'AuthAPI'
 	, function($scope, $rootScope, Storage, Toast, $cordovaKeyboard, ParseCloud, App, Network, AuthAPI) {
-	
 
 	$scope.form = {
 		username: '',
@@ -19,6 +18,7 @@ angular.module('minyawns.auth')
 	function registerOnParse(data){
 		ParseCloud.register({userID: data.id, userName: data.user_login})
 		.then(function(){
+			
 			var cookie = data.logged_in_cookie_key+'='+data.logged_in_cookie_value;
 			Storage.setUserID(data.id);
         	Storage.setUserName(data.user_login);
@@ -31,10 +31,8 @@ angular.module('minyawns.auth')
         	$rootScope.$broadcast('refresh:my:jobs', {});
         	$rootScope.$broadcast('reload:browsejobs:controller', {});
 
-        	if($rootScope.previousState === 'singlejob')
-        		App.goBack();
-        	else
-        		App.navigate('browsejobs', {replace:true});
+        	if($rootScope.previousState === 'singlejob') App.goBack();
+        	else App.navigate('browsejobs', {replace:true});
 
 		}, function(error){
 			$scope.form.loader = false;
@@ -88,14 +86,5 @@ angular.module('minyawns.auth')
 		}
 		else Toast.connectionError();
 	};
-
-	$scope.forceFocus= function(){
-		// console.log('In focus');
-		// if (!cordova.plugins.Keyboard.isVisible){
-		// 	console.log('visible Keyboard');
-		// 	cordova.plugins.Keyboard.show();
-		// }
-	};
-	
 }]);
 

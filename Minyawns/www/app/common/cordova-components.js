@@ -47,18 +47,46 @@ angular.module('minyawns.common')
 
 .factory('SpinnerDialog', ['$cordovaSpinnerDialog', 'App', function($cordovaSpinnerDialog, App) {
 
+	var isWebView = App.isWebView();
+
 	var SpinnerDialog = {
 
 		show : function(title, message, persist){
-			if(App.isWebView())
+			if(isWebView)
 				$cordovaSpinnerDialog.show(title, message, persist);
 		},
 		
 		hide : function(){
-			if(App.isWebView())
+			if(isWebView)
 				$cordovaSpinnerDialog.hide();
-		},
+		}
 	};
 
 	return SpinnerDialog;
+}])
+
+
+.factory('CKeyboard', ['$cordovaKeyboard', 'App', function($cordovaKeyboard, App) {
+
+	var isWebView = App.isWebView();
+
+	var CKeyboard = {
+
+		isVisible : function(){
+			if(isWebView)
+				$cordovaKeyboard.isVisible();
+		},
+		
+		show : function(){
+			if(isWebView && App.isAndroid())
+				$cordovaKeyboard.show();
+		},
+
+		close : function(){
+			if(isWebView)
+				$cordovaKeyboard.close();
+		}
+	};
+
+	return CKeyboard;
 }]);
