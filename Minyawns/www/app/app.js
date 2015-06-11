@@ -78,7 +78,8 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 
 		.state('init', {
 			url: "/init",
-			controller: 'InitController'
+			controller: 'InitController',
+			templateUrl: "views/blank.html"
 		})
 	
 		//Menu

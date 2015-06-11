@@ -2,9 +2,9 @@ angular.module('minyawns.menu', [])
 
 
 .controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window'
-	, 'Network', 'Toast', '$ionicSideMenuDelegate', 'ParseCloud', '$cordovaSpinnerDialog', 'MenuAPI'
+	, 'Network', 'Toast', '$ionicSideMenuDelegate', 'ParseCloud', 'MenuAPI', 'SpinnerDialog'
 	, function($scope, $rootScope, Storage, $window, Network, Toast, $ionicSideMenuDelegate, ParseCloud
-	, $cordovaSpinnerDialog, MenuAPI){
+	, MenuAPI, SpinnerDialog){
 
 
 	$scope.view = {
@@ -66,7 +66,7 @@ angular.module('minyawns.menu', [])
 		//Event handler in myjobs.js
 		$rootScope.$broadcast('go:to:browsejobs:from:myjobs', {});
 
-		// $cordovaSpinnerDialog.hide();
+		SpinnerDialog.hide();
 	};
 
 	function facebookLogoutSuccess(){
@@ -81,7 +81,7 @@ angular.module('minyawns.menu', [])
 
 	$scope.onLogout = function(){
 		if(Network.isOnline()){
-			// $cordovaSpinnerDialog.show('', 'Logging out...', true);
+			SpinnerDialog.show('', 'Logging out...', true);
 
 			ParseCloud.deregister()
 			.then(function(){
@@ -91,7 +91,7 @@ angular.module('minyawns.menu', [])
 					afterLogout();
 
 			}, function(error){
-				// $cordovaSpinnerDialog.hide();
+				SpinnerDialog.hide();
 				Toast.responseError();
 			});
 		}

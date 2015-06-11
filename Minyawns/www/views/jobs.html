@@ -19,7 +19,7 @@
 			<div class="col total-job" ng-switch="view.display">
 				<b ng-switch-when="OpenJobs">{{view.totalOpenJobs}}</b>
 				<div ng-switch-when="Loader">
-					<ion-spinner class="aj-small-spinner"> </ion-spinner>
+					<ion-spinner class="aj-small-spinner" icon="ripple"> </ion-spinner>
 				</div>
 				<div ng-switch-when="Error"><i class="icon ion-alert-circled"></i></div>
 				Jobs Open
@@ -28,7 +28,6 @@
 	</div>
 
 	<ion-content
-		class="has-subheader"
 		ng-init="requestPending=false" 
 		scrollbar-y="false"
 		delegate-handle="mainScroll"
@@ -62,9 +61,9 @@
 							<div class="row" >
 								<div class="col col-75" >
 									<h2 class="job-title">
-									<ul id="ticker{{job.post_id}}">
-									<li><a>{{ job.post_title }}</a></li>
-									</ul>
+										<ul id="ticker{{job.post_id}}">
+											<li><a>{{job.post_title}}</a></li>
+										</ul>
 									</h2>
 									<span class="date">{{start_date}} </span>
 								</div>

@@ -103,7 +103,8 @@
 								<div ng-hide="view.applyLoader" class="helper-text">{{view.helperText}}</div>
 
 								<div ng-show="view.applyLoader" class="detail-loader">
-									<i class="icon ion-loading-c"></i> {{view.actionText}}...
+									<ion-spinner class="aj-apply-spinner"> </ion-spinner>
+									{{view.actionText}}...
 								</div>
 							</div>
 

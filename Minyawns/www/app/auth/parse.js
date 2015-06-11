@@ -7,19 +7,22 @@ angular.module('minyawns.auth')
 })
 
 
-.factory('ParseCloud', ['PARSE_APP_KEYS', '$q', 'Storage', function(PARSE_APP_KEYS, $q, Storage){
+.factory('ParseCloud', ['PARSE_APP_KEYS', '$q', 'Storage', 'App', function(PARSE_APP_KEYS, $q, Storage, App){
 
 	Parse.initialize(PARSE_APP_KEYS.APP_ID, PARSE_APP_KEYS.JS_KEY);
 	var ParseCloud = {};
 
 	ParseCloud.getInstallationId = function(){
 		var defer = $q.defer();
-		// parsePlugin.getInstallationId(function(installationId){
-		// 	return defer.resolve(installationId);
-		// }, function(error){
-		// 	return defer.reject(error);
-		// });
-		defer.resolve('DUMMY');
+
+		if(App.isWebView())
+			parsePlugin.getInstallationId(function(installationId){
+				return defer.resolve(installationId);
+			}, function(error){
+				return defer.reject(error);
+			});
+		else
+			defer.resolve('DUMMY INSTALLATION ID');
 
 		return defer.promise;
 	},

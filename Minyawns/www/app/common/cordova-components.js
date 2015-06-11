@@ -43,3 +43,22 @@ angular.module('minyawns.common')
 
 	return Toast;
 }])
+
+
+.factory('SpinnerDialog', ['$cordovaSpinnerDialog', 'App', function($cordovaSpinnerDialog, App) {
+
+	var SpinnerDialog = {
+
+		show : function(title, message, persist){
+			if(App.isWebView())
+				$cordovaSpinnerDialog.show(title, message, persist);
+		},
+		
+		hide : function(){
+			if(App.isWebView())
+				$cordovaSpinnerDialog.hide();
+		},
+	};
+
+	return SpinnerDialog;
+}]);

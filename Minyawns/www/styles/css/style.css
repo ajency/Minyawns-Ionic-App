@@ -652,7 +652,8 @@ body .pane .has-header {
 }
 /**** Scroll Refresher Styles ****/
 .scroll-refresher {
-  top: -90px;
+  /*top: -90px;*/
+  top: -75px;
 }
 /**** Loader Styles ****/
 .loader {
