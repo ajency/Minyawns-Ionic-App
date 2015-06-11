@@ -2,9 +2,9 @@ angular.module('minyawns.menu', [])
 
 
 .controller('MenuController', ['$scope', '$rootScope', 'Storage', '$window'
-	, 'Network', 'Toast', '$ionicSideMenuDelegate', 'ParseCloud', 'MenuAPI', 'SpinnerDialog'
+	, 'Network', 'Toast', '$ionicSideMenuDelegate', 'ParseCloud', 'MenuAPI', 'SpinnerDialog', 'AuthAPI'
 	, function($scope, $rootScope, Storage, $window, Network, Toast, $ionicSideMenuDelegate, ParseCloud
-	, MenuAPI, SpinnerDialog){
+	, MenuAPI, SpinnerDialog, AuthAPI){
 
 
 	$scope.view = {
@@ -69,26 +69,14 @@ angular.module('minyawns.menu', [])
 		SpinnerDialog.hide();
 	};
 
-	function facebookLogoutSuccess(){
-		$rootScope.loggedInFacebook = false;
-		afterLogout();	
-	};
-
-	function facebookLogoutFailure(){
-		$cordovaSpinnerDialog.hide();
-		Toast.responseError();	
-	};
-
 	$scope.onLogout = function(){
 		if(Network.isOnline()){
 			SpinnerDialog.show('', 'Logging out...', true);
 
 			ParseCloud.deregister()
 			.then(function(){
-				if ($rootScope.loggedInFacebook)  //Check if logged in through facebook
-					facebookConnectPlugin.logout(facebookLogoutSuccess, facebookLogoutFailure)
-				else
-					afterLogout();
+				AuthAPI.fbLogout()
+				.then(afterLogout);
 
 			}, function(error){
 				SpinnerDialog.hide();

@@ -73,8 +73,19 @@ angular.module('minyawns.auth')
 			authenticate(username, password);
 	};
 
-	$scope.onFacebookButtonClick = function(){
-		if (Network.isOnline()) App.navigate('fblogin');
+	$scope.onFacebookLogin = function(){
+		if (Network.isOnline()){
+			$scope.form.loader = true;
+
+			if (App.isWebView())
+				AuthAPI.fbLogin()
+				.then(function(data){
+					registerOnParse(data);
+				}, function(error){
+					$scope.form.loader = false;
+					Toast.responseError();
+				});
+		}
 		else Toast.connectionError();
 	};
 

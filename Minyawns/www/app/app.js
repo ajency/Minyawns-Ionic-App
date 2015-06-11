@@ -21,7 +21,6 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 
 	//Initialize $rootScope variables
 	$rootScope.App = App;
-	$rootScope.loggedInFacebook = false;
 
 	//Keep track of current & previous state in abstract menu state.
 	$rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
@@ -43,7 +42,7 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 
 		if(App.isIOS()){
 			if(p.foreground === "0")
-				Push.handlePayload(e);
+				Push.handlePayload(p);
 		}
 	});
 }])
