@@ -1,0 +1,29 @@
+1) single job apply loader alignment
+2) Jobs.html Application open font icon
+3) update css  .scroll-refresher{top: -75px}
+4) Minyawns icon and splash screen
+5) add new css .scroll-content {
+                  margin-bottom: -100px;
+                }
+6) Marquee
+7) Hide fb loader
+
+8) update css .login-view #logo-cover {
+                width: 100%;
+                height: 25%;
+                margin: 2rem 0 2rem;
+              }
+
+9) add new css .login-nav-button{
+                  text-align: center;
+                  margin-top: 10px;
+                }
+
+                .login-nav-button h1{
+                  color: #ffffff;
+                  font-family: 'Light', sans-serif;
+                  font-size: 1rem;
+                  padding: 5px;
+                }
+
+10) Put sign up link on login view and vice versa

@@ -52,7 +52,6 @@ angular.module('minyawns.auth')
             }
 
 		}, function(error){
-
 			$scope.form.loader = false;
             if(error === 'NetworkNotAvailable') Toast.connectionError();
 			else Toast.responseError();
@@ -60,12 +59,12 @@ angular.module('minyawns.auth')
 	};
 
 	$scope.onLoginAction = function(){
-		username = $scope.form.username;
-		password = $scope.form.password;
+		var username = $scope.form.username;
+		var password = $scope.form.password;
 		
 		if(_.isUndefined(username)) 
 			Toast.invalidEmail();
-		else if(username === '' || password === '')
+		else if(_.contains([username, password], ''))
 			Toast.emptyUsernamePassword();
 		else
 			authenticate(username, password);
@@ -78,7 +77,12 @@ angular.module('minyawns.auth')
 			if (App.isWebView())
 				AuthAPI.fbLogin()
 				.then(function(data){
-					registerOnParse(data);
+					if(_.isNull(data.id)){
+						$scope.form.loader = false;
+						Toast.userNotRegistered();
+					}
+					else registerOnParse(data);
+
 				}, function(error){
 					$scope.form.loader = false;
 					Toast.responseError();

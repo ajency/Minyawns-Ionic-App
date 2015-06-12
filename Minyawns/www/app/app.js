@@ -27,7 +27,8 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 	    $rootScope.previousState = from.name;
 	    currentState = to.name;
 
-	    if(currentState === 'login'){
+	    var authStates = ['login', 'register'];
+	    if(_.contains(authStates, currentState)){
 	    	$('.bar-green').css({'background': '#6BB304'});
 	    	App.menuEnabled = false;
 	    }

@@ -15,5 +15,17 @@ angular.module('minyawns.auth', [])
 					controller: 'LoginController'
 				}
 			}
+		})
+
+		.state('register', {
+			url: "/register",
+			parent: "menu",
+			cache: false,
+			views: {
+				'menuContent' :{
+					templateUrl: "views/register.html",
+					controller: 'RegisterController'
+				}
+			}
 		});
 }]);

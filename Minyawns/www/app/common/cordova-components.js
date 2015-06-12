@@ -23,6 +23,10 @@ angular.module('minyawns.common')
 		emptyUsernamePassword : function(){
 			showToast("Please enter Username/Password.");
 		},
+
+		emptyFields : function(){
+			showToast("Please fill out all information.");
+		},
 		
 		invalidUsernamePassword : function(){
 			showToast("Invalid Username/Password.");
@@ -38,6 +42,14 @@ angular.module('minyawns.common')
 
 		incorrectFbPassword : function(){
 			showToast("Please enter correct password.");
+		}, 
+
+		userAlreadyExists : function(){
+			showToast("User with the email Id provided already exists.");
+		},
+
+		userNotRegistered : function(){
+			showToast("User not registered on Minyawns.");
 		}
 	};
 
