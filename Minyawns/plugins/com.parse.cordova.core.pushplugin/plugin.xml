@@ -106,7 +106,7 @@ If you have a build system, you may be able to automate this.
         <framework src="libz.dylib" />
         <framework src="libsqlite3.dylib" />
 
-        <framework src="src/ios/Frameworks/Bolts.framework" custom="true" />
+        <!-- <framework src="src/ios/Frameworks/Bolts.framework" custom="true" /> -->
         <framework src="src/ios/Frameworks/Parse.framework" custom="true" />
     </platform>
 

@@ -19,10 +19,14 @@
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
-    "com.ionic.keyboard"
+    "com.ionic.keyboard",
+    {
+      "locator": "/Users/deepak/Desktop/com.parse.cordova.core.pushplugin",
+      "id": "com.parse.cordova.core.pushplugin"
+    }
   ],
   "cordovaPlatforms": [
-    "ios",
-    "android"
+    "android",
+    "ios"
   ]
 }

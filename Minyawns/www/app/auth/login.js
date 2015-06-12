@@ -16,12 +16,12 @@ angular.module('minyawns.auth')
 	$scope.form.username = user.userName;
 
 	function registerOnParse(data){
-		ParseCloud.register({userID: data.id, userName: data.user_login})
+		ParseCloud.register({userID: data.id, userName: data.user_email})
 		.then(function(){
 			
 			var cookie = data.logged_in_cookie_key + '=' + data.logged_in_cookie_value;
 			Storage.setUserID(data.id);
-        	Storage.setUserName(data.user_login);
+        	Storage.setUserName(data.user_email);
         	Storage.setDisplayName(data.display_name);
         	Storage.setLoginCookie(cookie);
         	Storage.setProfileImageSrc(data.avatar_url)

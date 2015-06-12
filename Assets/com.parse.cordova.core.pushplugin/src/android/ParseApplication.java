@@ -7,7 +7,7 @@ import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.PushService;
 
-import com.ajency.in.minyawns.CordovaApp;
+import com.ajency.in.minyawns.MainActivity;
 
 public class ParseApplication extends Application 
 {
@@ -26,7 +26,7 @@ public class ParseApplication extends Application
 		super.onCreate();
 		// register device for parse
 		Parse.initialize(this, "WkWfnsbpAF555UQLYfL71yYxlGRSrB8IYfnKTx8M", "dIP7JKPlYjIBVWiCDYmRldveKnKHPDBBPevahc4M");
-		PushService.setDefaultPushCallback(this, CordovaApp.class);
+		PushService.setDefaultPushCallback(this, MainActivity.class);
 		ParseInstallation.getCurrentInstallation().saveInBackground();
 	}
 }
