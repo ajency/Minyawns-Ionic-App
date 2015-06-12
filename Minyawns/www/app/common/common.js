@@ -4,7 +4,8 @@ angular.module('minyawns.common', [])
 .factory('App', ['$cordovaSplashscreen', function($cordovaSplashscreen){
 
 	var App = {
-		validateEmail: /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/
+		validateEmail: /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/,
+		menuEnabled: true
 	};
 
 	App.isWebView = function(){

@@ -4,11 +4,16 @@ angular.module('minyawns.auth', [])
 .config(['$stateProvider', function($stateProvider) {
 	
 	$stateProvider
-	
+
 		.state('login', {
 			url: "/login",
+			parent: "menu",
 			cache: false,
-			templateUrl: 'views/login.html',
-			controller: 'LoginController'
+			views: {
+				'menuContent' :{
+					templateUrl: "views/login.html",
+					controller: 'LoginController'
+				}
+			}
 		});
 }]);

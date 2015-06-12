@@ -1,11 +1,15 @@
-<ion-view class="login-view">
-    
-    <div class="bar login-bar">
-		<h1 class="pull-left" ng-click="App.goBack();">
-			<i class="ion-arrow-left-c"></i> 
-			Job List
-		</h1>
-	</div>
+<ion-view 
+	class="login-view"
+	hide-back-button="true">
+
+	<ion-nav-buttons side="left">
+		<div class="login-nav-button" ng-click="App.goBack();">
+			<h1>
+				<i class="ion-arrow-left-c"></i> 
+				Job List
+			</h1>
+		</div>
+	</ion-nav-buttons>
 
     <ion-content>
     	

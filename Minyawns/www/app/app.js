@@ -25,7 +25,16 @@ angular.module('minyawns', ['ionic', 'ngCordova'
 	//Keep track of current & previous state.
 	$rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
 	    $rootScope.previousState = from.name;
-	    $rootScope.currentState = to.name;
+	    currentState = to.name;
+
+	    if(currentState === 'login'){
+	    	$('.bar-green').css({'background': '#6BB304'});
+	    	App.menuEnabled = false;
+	    }
+	    else{
+	    	$('.bar-green').css({'background': '#84D50E'});
+	    	App.menuEnabled = true;
+	    }
 	});
 
 	//Push notification receiver
