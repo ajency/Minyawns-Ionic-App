@@ -50,10 +50,10 @@ angular.module('minyawns.auth')
 			register(fields);
 	};
 
-	$scope.onFacebookSignUp = function(){
-		if (Network.isOnline()){
+	// $scope.onFacebookSignUp = function(){
+	// 	if (Network.isOnline()){
 			
-		}
-		else Toast.connectionError();
-	};
+	// 	}
+	// 	else Toast.connectionError();
+	// };
 }]);

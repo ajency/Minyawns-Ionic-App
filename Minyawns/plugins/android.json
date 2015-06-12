@@ -45,6 +45,22 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"SpinnerDialog\"><param name=\"android-package\" value=\"hu.dpal.phonegap.plugins.SpinnerDialog\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PushPlugin\"><param name=\"android-package\" value=\"com.plugin.gcm.PushPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"ParsePlugin\"><param name=\"android-package\" value=\"org.apache.cordova.core.ParsePlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Toast\"><param name=\"android-package\" value=\"nl.xservices.plugins.Toast\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"FacebookConnectPlugin\"><param name=\"android-package\" value=\"org.apache.cordova.facebook.ConnectPlugin\" /></feature>",
                             "count": 1
                         },
@@ -66,22 +82,6 @@
                         },
                         {
                             "xml": "<access origin=\"https://*.akamaihd.net\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"SpinnerDialog\"><param name=\"android-package\" value=\"hu.dpal.phonegap.plugins.SpinnerDialog\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"PushPlugin\"><param name=\"android-package\" value=\"com.plugin.gcm.PushPlugin\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"ParsePlugin\"><param name=\"android-package\" value=\"org.apache.cordova.core.ParsePlugin\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Toast\"><param name=\"android-package\" value=\"nl.xservices.plugins.Toast\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -179,11 +179,11 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<string name=\"fb_app_id\">1578825815706920</string>",
+                            "xml": "<string name=\"fb_app_id\">570787896309130</string>",
                             "count": 1
                         },
                         {
-                            "xml": "<string name=\"fb_app_name\">Minyawns</string>",
+                            "xml": "<string name=\"fb_app_name\">Minyawns ajency</string>",
                             "count": 1
                         }
                     ]
@@ -222,11 +222,6 @@
         "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "com.ajency.in.minyawns"
         },
-        "com.phonegap.plugins.facebookconnect": {
-            "APP_ID": "1578825815706920",
-            "APP_NAME": "Minyawns",
-            "PACKAGE_NAME": "com.ajency.in.minyawns"
-        },
         "hu.dpal.phonegap.plugins.SpinnerDialog": {
             "PACKAGE_NAME": "com.ajency.in.minyawns"
         },
@@ -237,6 +232,11 @@
             "PACKAGE_NAME": "com.ajency.in.minyawns"
         },
         "nl.x-services.plugins.toast": {
+            "PACKAGE_NAME": "com.ajency.in.minyawns"
+        },
+        "com.phonegap.plugins.facebookconnect": {
+            "APP_ID": "570787896309130",
+            "APP_NAME": "Minyawns ajency",
             "PACKAGE_NAME": "com.ajency.in.minyawns"
         }
     },

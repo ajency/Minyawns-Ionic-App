@@ -1,7 +1,8 @@
 angular.module('minyawns.common', [])
 
 
-.factory('App', ['$cordovaSplashscreen', function($cordovaSplashscreen){
+.factory('App', ['$cordovaSplashscreen', '$ionicScrollDelegate'
+	, function($cordovaSplashscreen, $ionicScrollDelegate){
 
 	var App = {
 		validateEmail: /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/,
@@ -28,6 +29,10 @@ angular.module('minyawns.common', [])
 
 	App.hideSplashScreen = function(){
 		if(this.isWebView()) $cordovaSplashscreen.hide();
+	};
+
+	App.resize = function(){
+		$ionicScrollDelegate.resize();
 	};
 
 	return App;

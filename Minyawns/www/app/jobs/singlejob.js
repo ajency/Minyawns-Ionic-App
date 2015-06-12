@@ -266,8 +266,8 @@ angular.module('minyawns.jobs')
 }])
 
 
-.controller('ApplicantController', ['$scope', '$rootScope', 'JobsAPI', '$window'
-	, function($scope, $rootScope, JobsAPI, $window){
+.controller('ApplicantController', ['$scope', '$rootScope', 'JobsAPI', '$window', 'App'
+	, function($scope, $rootScope, JobsAPI, $window, App){
 
 	JobsAPI.getMinionDetails($scope.applicant, $rootScope.postID)
 	.then(function(data){
@@ -275,6 +275,7 @@ angular.module('minyawns.jobs')
 	})
 	.finally(function(){
 		$scope.minion.loader = false;
+		App.resize();
 	});
 
 	$scope.openFacebookLink = function(link){

@@ -79,18 +79,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "com.phonegap.plugins.facebookconnect": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Wizcorp/phonegap-facebook-plugin",
-            "subdir": "."
-        },
-        "is_top_level": true,
-        "variables": {
-            "APP_ID": "1578825815706920",
-            "APP_NAME": "Minyawns"
-        }
-    },
     "hu.dpal.phonegap.plugins.SpinnerDialog": {
         "source": {
             "type": "git",
@@ -125,5 +113,17 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.phonegap.plugins.facebookconnect": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Wizcorp/phonegap-facebook-plugin",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {
+            "APP_ID": "570787896309130",
+            "APP_NAME": "Minyawns ajency"
+        }
     }
 }

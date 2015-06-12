@@ -19,7 +19,7 @@ angular.module('minyawns.auth')
 		ParseCloud.register({userID: data.id, userName: data.user_login})
 		.then(function(){
 			
-			var cookie = data.logged_in_cookie_key+'='+data.logged_in_cookie_value;
+			var cookie = data.logged_in_cookie_key + '=' + data.logged_in_cookie_value;
 			Storage.setUserID(data.id);
         	Storage.setUserName(data.user_login);
         	Storage.setDisplayName(data.display_name);
@@ -76,17 +76,11 @@ angular.module('minyawns.auth')
 
 			if (App.isWebView())
 				AuthAPI.fbLogin()
-				.then(function(data){
-					if(_.isNull(data.id)){
+				.then(registerOnParse
+					, function(error){
 						$scope.form.loader = false;
-						Toast.userNotRegistered();
-					}
-					else registerOnParse(data);
-
-				}, function(error){
-					$scope.form.loader = false;
-					Toast.responseError();
-				});
+						Toast.responseError();
+					});
 		}
 		else Toast.connectionError();
 	};

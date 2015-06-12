@@ -46,10 +46,6 @@ angular.module('minyawns.common')
 
 		userAlreadyExists : function(){
 			showToast("User with the email Id provided already exists.");
-		},
-
-		userNotRegistered : function(){
-			showToast("User not registered on Minyawns.");
 		}
 	};
 

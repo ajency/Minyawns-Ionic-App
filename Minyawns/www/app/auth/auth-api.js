@@ -1,13 +1,10 @@
 angular.module('minyawns.auth')
 
 
-.factory('AuthAPI', ['$q', '$http', 'App', function($q, $http, App){
+.factory('AuthAPI', ['$q', '$http', 'App', 'ParseCloud', '$rootScope', 'Storage'
+	, function($q, $http, App, ParseCloud, $rootScope, Storage){
 
 	var AuthAPI = {};
-
-	function onErrorFn(error){
-		return defer.reject(error);
-	};
 
 	AuthAPI.authenticate = function(username, password){
 		var defer = $q.defer();
@@ -16,7 +13,9 @@ angular.module('minyawns.auth')
 	    .then(function(resp, status, headers, config){
 	    	return defer.resolve(resp.data);
 		
-		}, onErrorFn);
+		}, function(error){
+			return defer.reject(error);
+		});
 
 	    return defer.promise;
 	};
@@ -37,13 +36,19 @@ angular.module('minyawns.auth')
 	    .then(function(resp, status, headers, config){
 	    	return defer.resolve(resp.data);
 		
-		}, onErrorFn);
+		}, function(error){
+			return defer.reject(error);
+		});
 
 	    return defer.promise;
 	};
 
 	AuthAPI.fbLogin = function(){
 		var defer = $q.defer();
+
+		function onErrorFn(error){
+			return defer.reject(error);
+		};
 
 		function onSuccessFn(token){
 			$http.get(SITEURL+"/api/fblogin/token/"+token)
@@ -61,6 +66,10 @@ angular.module('minyawns.auth')
 
 	AuthAPI.getFBToken = function(){
 		var defer = $q.defer();
+
+		function onErrorFn(error){
+			return defer.reject(error);
+		};
 
 		function fbLoginSuccess(userData){
 			facebookConnectPlugin.getAccessToken(function(token) {

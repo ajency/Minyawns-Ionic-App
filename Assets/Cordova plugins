@@ -11,7 +11,7 @@
 11) com.parse.cordova.core.pushplugin
 
 #Facebook Plugin
-cordova -d plugin add https://github.com/Wizcorp/phonegap-facebook-plugin/ --variable APP_ID="1578825815706920" --variable APP_NAME="Minyawns"
+cordova -d plugin add https://github.com/Wizcorp/phonegap-facebook-plugin/ --variable APP_ID="570787896309130" --variable APP_NAME="Minyawns ajency"
 
 #Android development hash key for Facebook
 keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
